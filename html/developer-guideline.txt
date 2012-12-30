@@ -1,0 +1,7 @@
+! Developer Guideline
+
+This guideline should be read by all people, who want to support or contribute to this project. 
+
+!! Issue Tracking
+
+Due to the fact, that the current version of the codeplex's issue tracker doesn't support agile developing methods, another platform will be used for active development. The current issue tracking is avaiable under [url:this link|http://rcondev.myjetbrains.com/youtrack].

@@ -1,0 +1,30 @@
+--- Packet.cs
++++ Packet.cs
+@@ -3,7 +3,6 @@
+     using System;
+     using System.Linq;
+     using System.Collections.Generic;
+-    using Battlefield3;
+     using Battlefield3.Ui.Util;
+ 
+     public class Packet : IPacket
+@@ -76,8 +75,8 @@
+             this.Words = new List<string>();
+         }
+ 
+-        public Packet(PacketOrigin origin, bool isResponse, uint sequenceId, IList<string> words)
++        public Packet(PacketOrigin origin, bool isResponse, uint sequenceId, IEnumerable<string> words)
+         {
+             this.Origin = origin;
+             this.IsResponse = isResponse;
+             this.SequenceId = sequenceId;
+@@ -80,8 +79,8 @@
+         {
+             this.Origin = origin;
+             this.IsResponse = isResponse;
+             this.SequenceId = sequenceId;
+-            this.Words = words;
++            this.Words = words.ToList();
+         }
+ 
+         #endregion

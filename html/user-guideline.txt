@@ -1,0 +1,17 @@
+! Installation
+
+The Development Server can easily be deployed by an xcopy deployment to a location of your choice. Be sure to have the .NET Framework 4.0 installed. This is the only requirement.
+
+! Configuration
+
+In order to setup the listening port and the numer of maximal suported sessions you have to visit the *.config file in the application directory.
+
+
+! How to use BF3 Development Server?
+
+You can use the development server as you would connect to a normal rcon server. 
+
+! How to...
+
+* ...[Manual build Packets|Building Packets]
+* ...[Create Script|Scripting Events]

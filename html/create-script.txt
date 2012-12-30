@@ -1,0 +1,46 @@
+<insert screenshot>
+
+! Scripting Events
+
+!! Guideline
+
+Creating the script which sends events is fairly easy. Look at the following information and you will be able to simulate your own scenarios without hiring a lot of players who play according to your orders.
+
+!! Running the Script
+
+Above the Script Editor you have the "Play" Button. With this Button you can start the script's execution. While the script is running, you are not able to edit the script.
+
+!! Event Commands
+
+In general you are currently able to send all events specified in the bf3 rcon protocol.
+
+All events must be placed into one line. The wrapping in the editor is not recognized as a line break. Only a new line within the text is noticed as the end of an event.
+
+In first place put the name of the event as it is known from the rcon protocol of bf3. After this, you have to put a "Space". Afterwards you state all event parameters separated by a ",".
+
+!!! Player Events
+!!!! player.onAuthenticated Event
+* player.onAuthenticated <soldier name:string>
+
+!!!! player.onJoin Event
+* player.onJoin <soldier name:string>,<soldier guid:GUID/string>
+
+!!!! player.onLeave
+* player.onLeave <soldier name:string>,<soldier guid:GUID/string>,<team id:int>,<squad id:int>,<kills:int>,<deaths:int>,<score:int>
+
+!!!! player.onKill Event
+* player.onKill <killing soldier name: string>,<killed soldier name: string>,<weapon: string>,<headshot: boolean>
+
+!! Other script commands
+
+!!! Sleep
+Pauses the execution of the script at the location inserted for the given number of seconds.
+*Example:*
+* sleep <seconds:int>
+
+!! Known issues
+Surely there a many possible improvements concerning this feature. Goal of v0.3 is to provide simple features to fullfil our needs. That's the main reason why there is no validation result shown to the user. If an event is not known or wrong it will be ignored by the script engine.
+
+So, if the command is not shown within the console view, you have done something wrong. Don't mind and try again.
+
+;-)

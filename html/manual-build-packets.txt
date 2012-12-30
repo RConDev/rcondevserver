@@ -1,0 +1,19 @@
+! Building Packets
+
+The development server is intented to be a real rcon server sending events and commandresponses to the RCon-Client. That's the reason the development server also needs an interface for individual events and manual responses to client's commands.
+
+! PacketBuilder
+
+Within the "Console" Tab of the Server UI, you can find the PacketBuilder at the bottom of the window.
+
+<Insert Screenshot>
+
+*Sequence Id:* This id is the request/response numeric id for identifing packets. Be sure not to use the same id twice.
+
+*Is Server Originated:* Should be checked to simulate server events to the rcon client.
+
+*Is Response:* Should be checked to identify the packet created to be an answer to a client's command with the sequence id stated.
+
+In the textbox each line should be seen as a word. 
+
+With clicking the send button, the data is summed up and send to the connected client.
