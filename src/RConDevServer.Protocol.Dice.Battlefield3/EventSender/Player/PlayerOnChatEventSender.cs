@@ -17,7 +17,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 
         public override string EventCommand
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.EVENT_PLAYER_ON_CHAT; }
+            get { return Constants.EVENT_PLAYER_ON_CHAT; }
         }
 
         public override Packet EventPacket

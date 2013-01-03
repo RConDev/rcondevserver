@@ -129,7 +129,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             if (eventSender != null)
             {
                 eventSender.Send(Server);
-                System.Console.WriteLine("EVENT GESENDET");
+                Console.WriteLine("EVENT GESENDET");
             }
         }
 

@@ -1,8 +1,8 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event
-{
-    using System.Collections.Generic;
-    using Data;
+﻿using System.Collections.Generic;
+using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
+namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+{
     /// <summary>
     /// The <see cref="PlayerOnChatEvent"/> is send, after a "a"
     /// </summary>

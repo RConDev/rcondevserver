@@ -140,6 +140,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                     InvokeErrorCreatingEvent("Event not found");
                 }
             }
+
             return eventSender;
         }
 

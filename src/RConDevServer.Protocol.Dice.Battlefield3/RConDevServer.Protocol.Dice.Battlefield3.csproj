@@ -307,7 +307,11 @@
     <Compile Include="EventSender\Server\ServerOnRoundOverEventSender.cs" />
     <Compile Include="DataStore\IMapListDataFile.cs" />
     <Compile Include="Event\IEvent.cs" />
-    <Compile Include="Event\PlayerOnChatEvent.cs" />
+    <Compile Include="Event\IEventFactory.cs" />
+    <Compile Include="Event\Player\PlayerOnAuthenticatedEvent.cs" />
+    <Compile Include="Event\Player\PlayerOnChatEvent.cs" />
+    <Compile Include="Event\Player\PlayerOnJoinEvent.cs" />
+    <Compile Include="Event\Player\PlayerOnKillEvent.cs" />
     <Compile Include="Injection\Battlefield3Module.cs" />
     <Compile Include="DataStore\IMapRepository.cs" />
     <Compile Include="IPacket.cs" />

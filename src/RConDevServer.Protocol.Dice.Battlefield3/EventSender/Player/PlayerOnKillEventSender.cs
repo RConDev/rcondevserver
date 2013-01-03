@@ -17,7 +17,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 
         public override string EventCommand
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.EVENT_PLAYER_ON_KILL; }
+            get { return Constants.EVENT_PLAYER_ON_KILL; }
         }
 
         public override Packet EventPacket
@@ -46,6 +46,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
                 IsHeadShot = Convert.ToBoolean(parameters[3]);
                 return true;
             }
+
             return false;
         }
     }
