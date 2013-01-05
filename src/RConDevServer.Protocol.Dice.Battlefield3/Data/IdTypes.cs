@@ -21,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         ////public static IdType Guid = new IdType
         ////                                {
         ////                                    Code = "guid",
-        ////                                    Display = "Player GUID"
+        ////                                    Display = "PlayerInfo GUID"
         ////                                };
 
         #endregion

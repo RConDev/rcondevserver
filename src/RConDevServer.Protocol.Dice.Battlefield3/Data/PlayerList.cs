@@ -5,13 +5,13 @@ using System.Linq;
 namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
     /// <summary>
-    /// this class encapsulates the current list of player on the server
+    /// this class encapsulates the current list of PlayerInfo on the server
     /// </summary>
     public class PlayerList
     {
         private readonly object syncRoot = new object();
 
-        private readonly IList<Player> players = new List<Player>();
+        private readonly IList<PlayerInfo> players = new List<PlayerInfo>();
 
         /// <summary>
         /// Creates a new instance of the <see cref="PlayerList"/>
@@ -20,12 +20,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         {
         }
 
+        public PlayerList(IEnumerable<PlayerInfo> initialPlayers)
+        {
+            foreach (var initialPlayer in initialPlayers)
+            {
+                this.AddPlayer(initialPlayer);
+            }
+        }
+
         #region Public Properties
 
         /// <summary>
         /// Gets the current set of players on the server
         /// </summary>
-        public IList<Player> Players
+        public IList<PlayerInfo> Players
         {
             get
             {
@@ -41,32 +49,32 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         #region Public Methods
 
         /// <summary>
-        /// adds a player to the collection
+        /// adds a PlayerInfo to the collection
         /// </summary>
-        /// <param name="player"></param>
-        public void AddPlayer(Player player)
+        /// <param name="playerInfo"></param>
+        public void AddPlayer(PlayerInfo playerInfo)
         {
             lock (syncRoot)
             {
-                players.Add(player);
+                players.Add(playerInfo);
             }
         }
 
         /// <summary>
-        /// Removes a player from the collection
+        /// Removes a PlayerInfo from the collection
         /// </summary>
-        /// <param name="player"></param>
-        public void RemovePlayer(Player player)
+        /// <param name="playerInfo"></param>
+        public void RemovePlayer(PlayerInfo playerInfo)
         {
             lock (syncRoot)
             {
-                if (players.Contains(player))
-                    players.Remove(player);
+                if (players.Contains(playerInfo))
+                    players.Remove(playerInfo);
             }
         }
 
         /// <summary>
-        /// converts the current player collection to the players list words 
+        /// converts the current PlayerInfo collection to the players list words 
         /// which can be send over the wire to the clients
         /// </summary>
         /// <returns></returns>

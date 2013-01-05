@@ -10,11 +10,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
     {
         public string SoldierName { get; set; }
 
-        public Data.Player PlayerInfo { get; set; }
+        public Data.PlayerInfo PlayerInfo { get; set; }
 
         public override string EventCommand
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.EVENT_PLAYER_ON_LEAVE; }
+            get { return Constants.EVENT_PLAYER_ON_LEAVE; }
         }
 
         public override Packet EventPacket
@@ -34,7 +34,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
             if (parameters.Count == 7)
             {
                 this.SoldierName = parameters[0];
-                this.PlayerInfo = new Data.Player()
+                this.PlayerInfo = new Data.PlayerInfo()
                                       {
                                           Name = parameters[0],
                                           EaGuid = parameters[1],

@@ -13,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
     public class PlayersViewModel : ViewModelBase
     {
-        private readonly DataContractSerializer serializer = new DataContractSerializer(typeof(IEnumerable<Player>));
+        private readonly DataContractSerializer serializer = new DataContractSerializer(typeof(IEnumerable<PlayerInfo>));
 
         private readonly PlayerList players;
 
@@ -29,18 +29,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
 
             this.InitializePlayers(this.players.Players);
-            this.NewPlayer = new Player();
+            this.NewPlayerInfo = new PlayerInfo();
 
             Initialize();
         }
 
-        private void InitializePlayers (IEnumerable<Player> playersList)
+        private void InitializePlayers (IEnumerable<PlayerInfo> playersList)
         {
             if (this.Players != null)
             {
                 this.Players.CollectionChanged -= this.PlayersOnCollectionChanged;
             }
-            this.Players = new ObservableCollection<Player>(playersList);
+            this.Players = new ObservableCollection<PlayerInfo>(playersList);
             this.Players.CollectionChanged += this.PlayersOnCollectionChanged;
             this.InvokePropertyChanged(null);
         }
@@ -49,9 +49,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         public ObservableCollection<PlayerListStoreItem> PlayerListStore { get; private set; } 
 
-        public ObservableCollection<Player> Players { get; private set; }
+        public ObservableCollection<PlayerInfo> Players { get; private set; }
 
-        public Player NewPlayer { get; set; }
+        public PlayerInfo NewPlayerInfo { get; set; }
 
         #region Public Methods
 
@@ -107,7 +107,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         {
             using (var memoryStream = new MemoryStream(storeItem.Store))
             {
-                var players = serializer.ReadObject(memoryStream) as IEnumerable<Player>;
+                var players = serializer.ReadObject(memoryStream) as IEnumerable<PlayerInfo>;
                 if (players != null)
                 {
                     this.players.Clear();
@@ -129,13 +129,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             switch (args.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    foreach (Player item in args.NewItems)
+                    foreach (PlayerInfo item in args.NewItems)
                     {
                         players.AddPlayer(item);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (Player item in args.OldItems)
+                    foreach (PlayerInfo item in args.OldItems)
                     {
                         if (players.Players.Contains(item))
                         {

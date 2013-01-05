@@ -10,7 +10,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
     /// represents a player with his properties
     /// </summary>
     [DataContract]
-    public class Player
+    public class PlayerInfo
     {
         #region Public Properties
 
@@ -41,7 +41,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         #region Constructor
 
-        public Player()
+        public PlayerInfo()
         {
             this.EaGuid = "EA_" + Guid.NewGuid().ToString().Replace("-", string.Empty).ToUpper();
         }

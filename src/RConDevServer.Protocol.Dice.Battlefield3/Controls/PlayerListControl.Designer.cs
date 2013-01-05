@@ -225,7 +225,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             this.grbCreatePlayer.Size = new System.Drawing.Size(291, 168);
             this.grbCreatePlayer.TabIndex = 2;
             this.grbCreatePlayer.TabStop = false;
-            this.grbCreatePlayer.Text = "Create new Player";
+            this.grbCreatePlayer.Text = "Create new PlayerInfo";
             // 
             // btnAdd
             // 
@@ -249,7 +249,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             // 
             // dbsNewPlayer
             // 
-            this.dbsNewPlayer.DataSource = typeof(RConDevServer.Protocol.Dice.Battlefield3.Data.Player);
+            this.dbsNewPlayer.DataSource = typeof(RConDevServer.Protocol.Dice.Battlefield3.Data.PlayerInfo);
             // 
             // squadIdTextBox
             // 
@@ -316,7 +316,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             this.grbPlayerListStore.Size = new System.Drawing.Size(308, 168);
             this.grbPlayerListStore.TabIndex = 0;
             this.grbPlayerListStore.TabStop = false;
-            this.grbPlayerListStore.Text = "Saved Player Lists";
+            this.grbPlayerListStore.Text = "Saved PlayerInfo Lists";
             // 
             // btnSavePlayerList
             // 
@@ -450,12 +450,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             // 
             this.mitPlayerRemove.Name = "mitPlayerRemove";
             this.mitPlayerRemove.Size = new System.Drawing.Size(152, 22);
-            this.mitPlayerRemove.Text = "Remove Player";
+            this.mitPlayerRemove.Text = "Remove PlayerInfo";
             this.mitPlayerRemove.Click += new System.EventHandler(this.mitPlayerRemove_Click);
             // 
             // dbsPlayers
             // 
-            this.dbsPlayers.DataSource = typeof(RConDevServer.Protocol.Dice.Battlefield3.Data.Player);
+            this.dbsPlayers.DataSource = typeof(RConDevServer.Protocol.Dice.Battlefield3.Data.PlayerInfo);
             // 
             // errProvider
             // 

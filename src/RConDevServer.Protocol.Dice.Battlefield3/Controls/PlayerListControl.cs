@@ -31,7 +31,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 if (dataContext == null) return;
 
                 dbsPlayers.DataSource = dataContext.Players;
-                dbsNewPlayer.DataSource = dataContext.NewPlayer;
+                dbsNewPlayer.DataSource = dataContext.NewPlayerInfo;
                 dbsPlayers.ResetBindings(false);
 
                 this.dataContext.Initialize();
@@ -46,7 +46,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         private void mitPlayerRemove_Click(object sender, EventArgs e)
         {
-            var current = this.dbsPlayers.Current as Player;
+            var current = this.dbsPlayers.Current as PlayerInfo;
             if (current != null)
             {
                 if (this.dataContext.Players.Contains(current))
@@ -67,21 +67,21 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 return;
 
             this.errProvider.Clear();
-            dataContext.Players.Add(dataContext.NewPlayer);
+            dataContext.Players.Add(dataContext.NewPlayerInfo);
             dbsPlayers.ResetBindings(false);
-            dataContext.NewPlayer = new Player();
-            dbsNewPlayer.DataSource = dataContext.NewPlayer;
+            dataContext.NewPlayerInfo = new PlayerInfo();
+            dbsNewPlayer.DataSource = dataContext.NewPlayerInfo;
             this.dbsPlayers.ResetBindings(false);
         }
 
         private bool AreFieldsValid()
         {
-            var playerName = dataContext.NewPlayer.Name;
-            var teamId = dataContext.NewPlayer.TeamId;
-            var squadId = dataContext.NewPlayer.SquadId;
-            var kills = dataContext.NewPlayer.Kills;
-            var deaths = dataContext.NewPlayer.Deaths;
-            var score = dataContext.NewPlayer.Score;
+            var playerName = dataContext.NewPlayerInfo.Name;
+            var teamId = dataContext.NewPlayerInfo.TeamId;
+            var squadId = dataContext.NewPlayerInfo.SquadId;
+            var kills = dataContext.NewPlayerInfo.Kills;
+            var deaths = dataContext.NewPlayerInfo.Deaths;
+            var score = dataContext.NewPlayerInfo.Score;
             var isValid = true;
 
             #region Name
@@ -92,7 +92,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             }
             if (this.dataContext.Players.Any(x => x.Name == playerName))
             {
-                this.errProvider.SetError(this.nameTextBox, "Player allready exists");
+                this.errProvider.SetError(this.nameTextBox, "PlayerInfo allready exists");
                 isValid = false;
             }
             #endregion

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
- 
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
 {
@@ -11,7 +10,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
 
         public override string EventCommand
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.EVENT_SERVER_ON_ROUND_OVER; }
+            get { return Constants.EVENT_SERVER_ON_ROUND_OVER; }
         }
 
         public override Packet EventPacket

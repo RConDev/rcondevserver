@@ -55,7 +55,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             }
             if (this.dataContext.ReservedSlots.Any(x => x.PlayerName == playerName))
             {
-                this.errProvider.SetError(this.tbxPlayerName, "Player already is listed.");
+                this.errProvider.SetError(this.tbxPlayerName, "PlayerInfo already is listed.");
                 hasError = true;
             }
             if (!hasError)

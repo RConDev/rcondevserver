@@ -194,7 +194,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         private void InitializePlayerList()
         {
             this.PlayerList = new PlayerList();
-            this.PlayerList.AddPlayer(new Player()
+            this.PlayerList.AddPlayer(new PlayerInfo()
             {
                 Name = "JohnDoe21",
                 Deaths = 5,

@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
  
 using RConDevServer.Protocol.Dice.Battlefield3.Ui.Util;
-using RConDevServer.Protocol.Dice.Battlefield3.Util;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3
 {
@@ -65,7 +64,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public string WordsString
         {
-            get { return StringEnumerableExtensions.DisplayWords(Words); }
+            get { return Words.DisplayWords(); }
         }
 
         #endregion

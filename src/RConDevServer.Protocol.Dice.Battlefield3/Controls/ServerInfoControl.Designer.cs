@@ -137,7 +137,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             maxPlayerCountLabel.Name = "maxPlayerCountLabel";
             maxPlayerCountLabel.Size = new System.Drawing.Size(93, 13);
             maxPlayerCountLabel.TabIndex = 8;
-            maxPlayerCountLabel.Text = "Max Player Count:";
+            maxPlayerCountLabel.Text = "Max PlayerInfo Count:";
             // 
             // roundsPlayedLabel
             // 
