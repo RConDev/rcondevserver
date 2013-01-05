@@ -5,14 +5,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 {
     public class ServerOnMaxPlayerCountChangedEvent : IEvent
     {
-        public int MaxPlayerCount { get; set; }
-
         public ServerOnMaxPlayerCountChangedEvent(int maxPlayerCount)
         {
             MaxPlayerCount = maxPlayerCount;
         }
 
-        public string Event { get { return Constants.EVENT_SERVER_ON_MAX_PLAYER_COUNT_CHANGE; } }
+        public int MaxPlayerCount { get; set; }
+
+        public string Event
+        {
+            get { return Constants.EVENT_SERVER_ON_MAX_PLAYER_COUNT_CHANGE; }
+        }
 
         public IEnumerable<string> ToWords()
         {

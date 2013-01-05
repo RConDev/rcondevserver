@@ -1,4 +1,6 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿using RConDevServer.Protocol.Dice.Battlefield3.Event.Server;
+
+namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     public class MapListEndRoundCommandHandler : CommandHandlerBase
     {
@@ -20,6 +22,16 @@
             {
                 return this.ResponseInvalidArguments(responsePacket);
             }
+
+            // send events
+            var roundOverEvent = new ServerOnRoundOverEvent(winningTeamId);
+            session.Server.PublishEvent(roundOverEvent);
+
+            var roundOverPlayersEvent = new ServerOnRoundOverPlayersEvent(session.Server.PlayerList);
+            session.Server.PublishEvent(roundOverPlayersEvent);
+
+            var roundOverTeamScoresEvent = new ServerOnRoundOverTeamScoresEvent(session.Server.TeamScores);
+            session.Server.PublishEvent(roundOverTeamScoresEvent);
 
             return this.ResponseSuccess(responsePacket);
         }

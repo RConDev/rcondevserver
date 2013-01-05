@@ -1,5 +1,5 @@
 ﻿using System.Linq;
- 
+
 using RConDevServer.Protocol.Dice.Battlefield3.Data;
 using RConDevServer.Protocol.Dice.Battlefield3.DataStore;
 using RConDevServer.Protocol.Dice.Battlefield3.Injection;
@@ -77,7 +77,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public BanTypes BanTypes { get; private set; }
 
-        public IList<Country> Countries { get; private set; } 
+        public IList<Country> Countries { get; private set; }
 
         #endregion
 
@@ -102,7 +102,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             this.PacketSessions = new List<PacketSession>();
             this.Password = "test123";
             this.ServerDescription = "RCon Test Server";
-            
+
             this.InitializeServerInfo();
             this.InitializePlayerList();
             this.InitializeMapList();
@@ -118,10 +118,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         #region Event Handler
 
-	public void PublishEvent(IEvent anEvent)
+        public void PublishEvents(IEnumerable<IEvent> events)
+        {
+            foreach (var anEvent in events)
+            {
+                PublishEvent(anEvent);
+            }
+        }
+
+        public void PublishEvent(IEvent anEvent)
         {
             var packet = new Packet(PacketOrigin.Server, false, 0, anEvent.ToWords());
-            foreach(var session in this.PacketSessions)
+            foreach (var session in this.PacketSessions)
             {
                 session.SendToClient(packet);
             }

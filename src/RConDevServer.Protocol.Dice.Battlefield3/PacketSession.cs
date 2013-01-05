@@ -7,6 +7,7 @@ using RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList;
 using RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated;
 using RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots;
 using RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars;
+using RConDevServer.Protocol.Dice.Battlefield3.Event;
 using RConDevServer.Protocol.Interface;
 using System;
 using RConDevServer.Util;
@@ -173,6 +174,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
                 this.EventsSent.Add(eventPacket);
             }
             this.SendToClient(eventPacket);
+        }
+
+        public void RaiseServerEvent(IEvent serverEvent)
+        {
+            var packet = new Packet(PacketOrigin.Server, false, 0, serverEvent.ToWords());
+            RaiseServerEvent(packet);
         }
 
         #endregion

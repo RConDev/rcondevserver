@@ -316,7 +316,8 @@
     <Compile Include="Event\Player\PlayerOnSpawnEvent.cs" />
     <Compile Include="Event\Player\PlayerOnSquadChangeEvent.cs" />
     <Compile Include="Event\Player\PlayerOnTeamChangeEvent.cs" />
-    <Compile Include="Event\Server\EventNames.cs" />
+    <Compile Include="Event\PunkBuster\PunkbusterOnMessageEvent.cs" />
+    <Compile Include="Event\EventNames.cs" />
     <Compile Include="Event\Server\ServerOnLevelLoadedEvent.cs" />
     <Compile Include="Event\Server\ServerOnMaxPlayerCountChangedEvent.cs" />
     <Compile Include="Event\Server\ServerOnRoundOverEvent.cs" />
