@@ -5,14 +5,14 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
-    public class ReservedSlotsListAddCommandHandler : ICanHandleClientCommands
+    public class ReservedSlotsListAddCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_ADD; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount != 2)
             {

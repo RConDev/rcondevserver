@@ -4,16 +4,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
     /// <summary>
     /// Handles the Command "listPlayers"
     /// </summary>
-    public class ListPlayersCommandHandler : ICanHandleClientCommands
+    public class ListPlayersCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
             get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LIST_PLAYERS; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             // create a default list not regarding the player subset
             foreach (string word in session.Server.PlayerList.ToWords(false))

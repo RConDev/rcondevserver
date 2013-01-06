@@ -2,19 +2,19 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
-    public class LoginPlainTextHandler : ICanHandleClientCommands
+    public class LoginPlainTextHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LOGIN_PLAIN_TEXT; }
+            get { return Constants.COMMAND_LOGIN_PLAIN_TEXT; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (string.Equals(requestPacket.Words[0],
-                              RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LOGIN_PLAIN_TEXT,
+                              Constants.COMMAND_LOGIN_PLAIN_TEXT,
                               StringComparison.InvariantCultureIgnoreCase))
             {
                 if (requestPacket.Words.Count == 2 && requestPacket.Words[1] != string.Empty)

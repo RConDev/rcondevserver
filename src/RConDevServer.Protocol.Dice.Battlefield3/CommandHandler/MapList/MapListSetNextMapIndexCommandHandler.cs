@@ -38,5 +38,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             }
             return true;
         }
+
+        public void OnProcessingCommand(Battlefield3Server server)
+        {
+            
+        }
     }
 }

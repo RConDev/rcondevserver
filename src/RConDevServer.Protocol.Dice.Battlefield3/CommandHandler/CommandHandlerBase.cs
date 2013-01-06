@@ -8,6 +8,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
         
         public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket);
 
+        public virtual void OnProcessingCommand(Battlefield3Server server) {}
+
         protected bool ResponseSuccess(Packet responsePacket)
         {
             responsePacket.Words.AddRange(new[] { Constants.RESPONSE_SUCCESS });

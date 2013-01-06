@@ -5,11 +5,11 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    public class AdminEffectiveMaxPlayers : ICanHandleClientCommands
+    public class AdminEffectiveMaxPlayers : CommandHandlerBase
     {
-        public string Command { get { return Constants.COMMAND_ADMIN_EFFECTIVE_MAX_PLAYERS; } }
-        
-        public bool OnCreatingResponse (PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override string Command { get { return Constants.COMMAND_ADMIN_EFFECTIVE_MAX_PLAYERS; } }
+
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 1)
             {

@@ -2,16 +2,16 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
-    public class MapListListCommandHandler : ICanHandleClientCommands
+    public class MapListListCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_LIST; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             var startIndex = 0;
             if (requestPacket.Words.Count == 2)

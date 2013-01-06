@@ -4,18 +4,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
 {
     using Util;
 
-    public class LoginHashedHandler : ICanHandleClientCommands
+    public class LoginHashedHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LOGIN_HASHED; }
+            get { return Constants.COMMAND_LOGIN_HASHED; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
-            if (string.Equals(requestPacket.Words[0], RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LOGIN_HASHED,
+            if (string.Equals(requestPacket.Words[0], Constants.COMMAND_LOGIN_HASHED,
                               StringComparison.InvariantCultureIgnoreCase))
             {
                 #region Receiving Hash Value

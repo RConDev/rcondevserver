@@ -5,14 +5,14 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    public class AdminKillPlayerCommandHandler : ICanHandleClientCommands
+    public class AdminKillPlayerCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_ADMIN_KILL_PLAYER; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 2)
             {

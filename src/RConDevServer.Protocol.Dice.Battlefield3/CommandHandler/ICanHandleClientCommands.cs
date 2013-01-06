@@ -17,5 +17,12 @@
         /// <param name="requestPacket"></param>
         /// <param name="responsePacket"></param>
         bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket);
+
+        /// <summary>
+        /// After having created the response
+        /// </summary>
+        /// <param name="server"></param>
+        /// <returns></returns>
+        void OnProcessingCommand(Battlefield3Server server);
     }
 }

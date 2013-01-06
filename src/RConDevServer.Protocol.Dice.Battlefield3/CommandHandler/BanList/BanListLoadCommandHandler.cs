@@ -12,5 +12,9 @@
             responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
             return true;
         }
+
+        public void OnProcessingCommand(Battlefield3Server server)
+        {
+        }
     }
 }

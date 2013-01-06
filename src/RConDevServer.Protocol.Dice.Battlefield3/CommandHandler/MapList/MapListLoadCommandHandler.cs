@@ -3,14 +3,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using System.Linq;
 
-    public class MapListLoadCommandHandler : ICanHandleClientCommands
+    public class MapListLoadCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_LOAD; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             var mapListItemsFromStore = session.Server.MapListStore.GetAll();
             foreach (var mapListItem in mapListItemsFromStore)

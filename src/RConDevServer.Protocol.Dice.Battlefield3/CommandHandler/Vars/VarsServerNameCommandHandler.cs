@@ -4,16 +4,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using Data;
 
-    public class VarsServerNameCommandHandler : ICanHandleClientCommands
+    public class VarsServerNameCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_SERVERNAME; }
+            get { return Constants.COMMAND_VARS_SERVERNAME; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount == 1)
             {
@@ -22,12 +22,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
                 if (vars.ContainsKey(Command))
                 {
                     object value = vars[Command];
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                     responsePacket.Words.Add(Convert.ToString(value));
                 }
                 else
                 {
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_UNKNOWN_COMMAND);
+                    responsePacket.Words.Add(Constants.RESPONSE_UNKNOWN_COMMAND);
                 }
             }
             else if (requestPacket.WordCount == 2)
@@ -36,17 +36,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
                 string valueToSet = requestPacket.Words[1];
                 if (valueToSet.Length > 240)
                 {
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_TOO_LONG_NAME);
+                    responsePacket.Words.Add(Constants.RESPONSE_TOO_LONG_NAME);
                 }
                 else
                 {
                     session.Server.ServerInfo.ServerName = valueToSet;
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                 }
             }
             else
             {
-                responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+                responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             }
             return true;
         }

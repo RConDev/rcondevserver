@@ -4,14 +4,14 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
-    public class BanListAddCommandHandler : ICanHandleClientCommands
+    public class BanListAddCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_BAN_LIST_ADD; }
+            get { return Constants.COMMAND_BAN_LIST_ADD; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (ValidateRequestPacket(requestPacket))
             {
@@ -44,16 +44,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
                 if (itemCreated)
                 {
                     session.Server.BanList.Add(banListItem);
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                 }
                 else
                 {
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+                    responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
                 }
             }
             else
             {
-                responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+                responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             }
             return true;
         }

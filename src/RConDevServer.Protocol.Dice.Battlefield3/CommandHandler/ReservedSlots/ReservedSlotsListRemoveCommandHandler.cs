@@ -2,14 +2,14 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
-    public class ReservedSlotsListRemoveCommandHandler : ICanHandleClientCommands
+    public class ReservedSlotsListRemoveCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_REMOVE; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             // incorrect number of parameters
             if (requestPacket.Words.Count != 2)

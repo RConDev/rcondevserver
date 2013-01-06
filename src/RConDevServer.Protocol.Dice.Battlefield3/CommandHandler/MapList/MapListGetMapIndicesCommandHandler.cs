@@ -2,14 +2,14 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
-    public class MapListGetMapIndicesCommandHandler : ICanHandleClientCommands
+    public class MapListGetMapIndicesCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_GET_MAP_INDICES; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {
@@ -21,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             }
             else
             {
-                responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
+                ResponseInvalidArguments(responsePacket);
             }
             return true;
         }

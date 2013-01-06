@@ -5,14 +5,14 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    public class AdminKickPlayerCommandHandler : ICanHandleClientCommands
+    public class AdminKickPlayerCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_ADMIN_KICK_PLAYER; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count > 3)
             {
@@ -24,7 +24,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             var playerName = requestPacket.Words[1];
 
             var playerList = session.Server.PlayerList.Players;
-            if (!playerList.Any(x => x.Name == playerName))
+            if (playerList.All(x => x.Name != playerName))
             {
                 responsePacket.Words.Add(Constants.RESPONSE_PLAYER_NOT_FOUND);
                 return true;

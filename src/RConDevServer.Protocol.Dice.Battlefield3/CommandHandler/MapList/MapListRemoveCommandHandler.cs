@@ -2,14 +2,14 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
-    public class MapListRemoveCommandHandler : ICanHandleClientCommands
+    public class MapListRemoveCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_REMOVE; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             var index = Convert.ToInt32(requestPacket.Words[1]);
             var mapList = session.Server.MapList;

@@ -25,6 +25,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             return true;
         }
 
+        public void OnProcessingCommand(Battlefield3Server server)
+        {
+            
+        }
+
         #endregion
     }
 }

@@ -1,13 +1,9 @@
 ﻿
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public abstract class VarsCommandHandlerBase : ICanHandleClientCommands
+    public abstract class VarsCommandHandlerBase : CommandHandlerBase
     {
-        #region ICanHandleClientCommands Members
-
-        public abstract string Command { get; }
-
-        public virtual bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {
@@ -17,11 +13,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
             {
                 return OnSetValue(session, requestPacket, responsePacket);
             }
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+            responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             return true;
         }
-
-        #endregion
 
         protected abstract bool OnGetValue(PacketSession session, Packet responsePacket);
 

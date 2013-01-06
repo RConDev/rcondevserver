@@ -13,5 +13,10 @@
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             return true;
         }
+
+        public void OnProcessingCommand(Battlefield3Server server)
+        {
+            
+        }
     }
 }

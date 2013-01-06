@@ -3,16 +3,16 @@ using RConDevServer.Protocol.Dice.Battlefield3.Util;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
-    public class MapListGetRoundsCommandHandler : ICanHandleClientCommands
+    public class MapListGetRoundsCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_GET_ROUNDS; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

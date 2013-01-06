@@ -6,16 +6,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
     using Event;
 
-    public class AdminSayCommandHandler : ICanHandleClientCommands
+    public class AdminSayCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_ADMIN_SAY; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             var message = requestPacket.Words[1];
             var playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());

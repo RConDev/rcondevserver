@@ -4,53 +4,53 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    public class AdminYellCommandHandler : ICanHandleClientCommands
+    public class AdminYellCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_ADMIN_YELL; }
+            get { return Constants.COMMAND_ADMIN_YELL; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
-            var message = requestPacket.Words[1];
-            var duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;
-            var playerSubset = (requestPacket.Words.Count > 3)
-                                   ? PlayerSubset.FromWords(requestPacket.Words.Skip(3).ToList())
-                                   : new PlayerSubset { Type = PlayerSubsetType.All };
+            string message = requestPacket.Words[1];
+            int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;
+            PlayerSubset playerSubset = (requestPacket.Words.Count > 3)
+                                            ? PlayerSubset.FromWords(requestPacket.Words.Skip(3).ToList())
+                                            : new PlayerSubset {Type = PlayerSubsetType.All};
 
             if (message.Length >= 256)
             {
-                responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_TOO_LONG_MESSAGE);
+                responsePacket.Words.Add(Constants.RESPONSE_TOO_LONG_MESSAGE);
                 return true;
             }
 
             switch (playerSubset.Type)
             {
                 case PlayerSubsetType.None:
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+                    responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
                     return true;
 
                 case PlayerSubsetType.All:
-                    responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                     return true;
 
                 case PlayerSubsetType.Team:
                     responsePacket.Words.Add(playerSubset.TeamId <= 16
-                                                 ? RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS
-                                                 : RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_TEAM);
+                                                 ? Constants.RESPONSE_SUCCESS
+                                                 : Constants.RESPONSE_INVALID_TEAM);
                     return true;
 
                 case PlayerSubsetType.Squad:
                     if (playerSubset.TeamId <= 16)
                     {
                         responsePacket.Words.Add(playerSubset.SquadId <= 32
-                                                     ? RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS
-                                                     : RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_SQUAD);
+                                                     ? Constants.RESPONSE_SUCCESS
+                                                     : Constants.RESPONSE_INVALID_SQUAD);
                     }
                     else
                     {
-                        responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_TEAM);
+                        responsePacket.Words.Add(Constants.RESPONSE_INVALID_TEAM);
                     }
                     return true;
 
@@ -58,10 +58,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 
                     responsePacket.Words.Add(
                         session.Server.PlayerList.Players.Any(x => x.Name == playerSubset.PlayerName)
-                            ? RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS
-                            : RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_PLAYER_NOT_FOUND);
+                            ? Constants.RESPONSE_SUCCESS
+                            : Constants.RESPONSE_PLAYER_NOT_FOUND);
                     return true;
-
             }
 
             return false;

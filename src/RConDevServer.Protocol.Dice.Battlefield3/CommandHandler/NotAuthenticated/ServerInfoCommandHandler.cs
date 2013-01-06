@@ -3,7 +3,7 @@ using RConDevServer.Protocol.Interface;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
-    public class ServerInfoCommandHandler : ICanHandleClientCommands
+    public class ServerInfoCommandHandler : CommandHandlerBase
     {
         public IServiceLocator ServiceLocator { get; set; }
 
@@ -14,12 +14,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
 
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_SERVER_INFO; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {
