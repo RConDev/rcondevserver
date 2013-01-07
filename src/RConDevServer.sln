@@ -6,6 +6,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RConDevServer.Protocol.Interface", "RConDevServer.Protocol.Interface\RConDevServer.Protocol.Interface.csproj", "{BFA65175-1141-4239-8DB0-F5F14ED29E5A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RConDevServer.Protocol.Dice.Battlefield3", "RConDevServer.Protocol.Dice.Battlefield3\RConDevServer.Protocol.Dice.Battlefield3.csproj", "{25F85AC2-D6E2-48A2-B889-1582F9508E46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{31400147-F2E9-4A69-B8A0-4642A9AA30EE} = {31400147-F2E9-4A69-B8A0-4642A9AA30EE}
+		{0242465B-024E-420A-B59E-339DB4BEEFD1} = {0242465B-024E-420A-B59E-339DB4BEEFD1}
+		{BB8606D4-DADF-4031-901F-D0991B8FE418} = {BB8606D4-DADF-4031-901F-D0991B8FE418}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protocols", "Protocols", "{E3A040AF-34B7-4377-A2AE-C4F3DE262FBB}"
 EndProject

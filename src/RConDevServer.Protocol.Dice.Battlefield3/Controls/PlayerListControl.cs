@@ -160,6 +160,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         private void btnSavePlayerList_Click(object sender, EventArgs e)
         {
             var listName = this.tbxNewSavedPlayerList.Text;
+            if (string.IsNullOrEmpty(listName))
+            {
+                MessageBox.Show("A list cannot be saved without a unique name.");
+                return;
+            }
+
             bool overrideExisting = false;
             if (this.dataContext.PlayerListStore.Any(x => x.Label == listName))
             {
