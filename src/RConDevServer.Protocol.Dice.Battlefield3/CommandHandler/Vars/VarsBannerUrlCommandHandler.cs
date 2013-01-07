@@ -1,25 +1,22 @@
 ﻿
+using RConDevServer.Protocol.Dice.Battlefield3.Event;
+
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsBannerUrlCommandHandler : ICanHandleClientCommands
+    public class VarsBannerUrlCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_BANNER_URL; }
+            get { return Constants.COMMAND_VARS_BANNER_URL; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             responsePacket.Words.Add(string.Empty);
             return true;
-        }
-
-        public void OnProcessingCommand(Battlefield3Server server)
-        {
-            
         }
 
         #endregion

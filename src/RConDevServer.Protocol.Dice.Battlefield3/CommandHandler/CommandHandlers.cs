@@ -55,15 +55,23 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                 var currentCommand = requestPacket.Words[0];
                 if (CommandReveiverAccess.ContainsKey(currentCommand.ToLower()))
                 {
-                    var commandReceiver = CommandReveiverAccess[currentCommand.ToLower()];
-                    var responsePacket = new Packet(requestPacket.Origin, true, requestPacket.SequenceId.Value,
-                                                        new List<string>());
-                    if (commandReceiver.OnCreatingResponse(session, requestPacket, responsePacket))
+                    var commandHandler = CommandReveiverAccess[currentCommand.ToLower()];
+                    var responsePacket = new Packet(requestPacket.Origin,
+                                                    true,
+                                                    requestPacket.SequenceId.Value,
+                                                    new List<string>());
+                    if (commandHandler.OnCreatingResponse(session, requestPacket, responsePacket))
                     {
                         session.SendToClient(responsePacket);
+                        if (commandHandler.CommandEvents.Count > 0)
+                        {
+                            session.Server.PublishEvents(commandHandler.CommandEvents);
+                            commandHandler.CommandEvents.Clear();
+                        }
                         return true;
                     }
                 }
+
                 return false;
             }
             return false;

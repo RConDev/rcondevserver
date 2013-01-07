@@ -13,27 +13,22 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
         {
             if (requestPacket.Words.Count != 2)
             {
-                return this.ResponseInvalidArguments(responsePacket);
+                return ResponseInvalidArguments(responsePacket);
             }
 
             var winningTeamIdString = requestPacket.Words[1];
             int winningTeamId;
             if (!int.TryParse(winningTeamIdString, out winningTeamId))
             {
-                return this.ResponseInvalidArguments(responsePacket);
+                return ResponseInvalidArguments(responsePacket);
             }
 
             // send events
-            var roundOverEvent = new ServerOnRoundOverEvent(winningTeamId);
-            session.Server.PublishEvent(roundOverEvent);
-
-            var roundOverPlayersEvent = new ServerOnRoundOverPlayersEvent(session.Server.PlayerList);
-            session.Server.PublishEvent(roundOverPlayersEvent);
-
-            var roundOverTeamScoresEvent = new ServerOnRoundOverTeamScoresEvent(session.Server.TeamScores);
-            session.Server.PublishEvent(roundOverTeamScoresEvent);
-
-            return this.ResponseSuccess(responsePacket);
+            AddEvent(new ServerOnRoundOverEvent(winningTeamId));
+            AddEvent(new ServerOnRoundOverPlayersEvent(session.Server.PlayerList));
+            AddEvent(new ServerOnRoundOverTeamScoresEvent(session.Server.TeamScores));
+            
+            return ResponseSuccess(responsePacket);
         }
     }
 }

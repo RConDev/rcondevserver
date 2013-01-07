@@ -1,15 +1,17 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿using RConDevServer.Protocol.Dice.Battlefield3.Event;
+
+namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    public class AdminEventsEnabledCommandHandler : ICanHandleClientCommands
+    public class AdminEventsEnabledCommandHandler : CommandHandlerBase
     {
         #region ICommandHandler Members
 
-        public string Command
+        public override string Command
         {
             get { return Constants.COMMAND_ADMIN_EVENTS_ENABLED; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             // decide between get or set option
             if (requestPacket.Words.Count == 1)
@@ -39,10 +41,6 @@
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             }
             return true;
-        }
-
-        public void OnProcessingCommand(Battlefield3Server server)
-        {
         }
 
         #endregion

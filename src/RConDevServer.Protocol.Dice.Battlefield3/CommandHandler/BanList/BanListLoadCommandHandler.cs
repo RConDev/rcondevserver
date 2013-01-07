@@ -1,20 +1,16 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
-    public class BanListLoadCommandHandler : ICanHandleClientCommands
+    public class BanListLoadCommandHandler : CommandHandlerBase
     {
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_BAN_LIST_LOAD; }
+            get { return Constants.COMMAND_BAN_LIST_LOAD; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             return true;
-        }
-
-        public void OnProcessingCommand(Battlefield3Server server)
-        {
         }
     }
 }

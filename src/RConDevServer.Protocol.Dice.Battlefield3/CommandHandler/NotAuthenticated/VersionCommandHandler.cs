@@ -1,16 +1,18 @@
 ﻿
+using RConDevServer.Protocol.Dice.Battlefield3.Event;
+
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
-    public class VersionCommandHandler : ICanHandleClientCommands
+    public class VersionCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
 
-        public string Command
+        public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VERSION; }
+            get { return Constants.COMMAND_VERSION; }
         }
 
-        public bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {
@@ -23,11 +25,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             }
             return true;
-        }
-
-        public void OnProcessingCommand(Battlefield3Server server)
-        {
-            
         }
 
         #endregion

@@ -1,14 +1,30 @@
+using System.Collections.Generic;
+using RConDevServer.Protocol.Dice.Battlefield3.Event;
+
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
     using Util;
 
     public abstract class CommandHandlerBase : ICanHandleClientCommands
     {
+        public IList<IEvent> CommandEvents { get; private set; }
+
         public abstract string Command { get; }
-        
+
+        protected CommandHandlerBase()
+        {
+            this.CommandEvents = new SynchronizedCollection<IEvent>();
+        }
+
         public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket);
 
-        public virtual void OnProcessingCommand(Battlefield3Server server) {}
+        public virtual void AddEvent(IEvent anEvent)
+        {
+            if (anEvent != null)
+            {
+                CommandEvents.Add(anEvent);
+            }
+        }
 
         protected bool ResponseSuccess(Packet responsePacket)
         {

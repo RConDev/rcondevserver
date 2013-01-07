@@ -1,4 +1,6 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿using RConDevServer.Protocol.Dice.Battlefield3.Event;
+
+namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
     public class ReservedSlotsListClearCommandHandler : CommandHandlerBase
     {
@@ -21,7 +23,7 @@
             return true;
         }
 
-        public override void OnProcessingCommand(Battlefield3Server server)
+        public override void AddEvent(IEvent anEvent)
         {
         }
     }
