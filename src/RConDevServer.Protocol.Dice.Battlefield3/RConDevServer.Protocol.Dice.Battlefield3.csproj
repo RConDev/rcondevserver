@@ -79,6 +79,9 @@
     </Compile>
     <Compile Include="Battlefield3Protocol.cs" />
     <Compile Include="Battlefield3Server.cs" />
+    <Compile Include="CommandFactory\Admin\KickPlayerCommandFactory.cs" />
+    <Compile Include="CommandFactory\CommandFactoryBase.cs" />
+    <Compile Include="CommandFactory\ICommandFactory.cs" />
     <Compile Include="CommandHandler\Admin\AdminCommandHandlers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEffectiveMaxPlayers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEventsEnabledCommandHandler.cs" />
@@ -99,7 +102,6 @@
     <Compile Include="CommandHandler\CommandHandlers.cs" />
     <Compile Include="CommandHandler\CommandHandlersList.cs" />
     <Compile Include="CommandHandler\ICanHandleClientCommands.cs" />
-    <Compile Include="CommandHandler\ICanSendEventsOnCommand.cs" />
     <Compile Include="CommandHandler\MapList\MapListAddCommandHandler.cs" />
     <Compile Include="CommandHandler\MapList\MapListClearCommandHandler.cs" />
     <Compile Include="CommandHandler\MapList\MapListCommandHandlers.cs" />
@@ -171,6 +173,9 @@
     <Compile Include="CommandHandler\Vars\VarsUnlockModeCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnAllowedCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnDelayCommandHandler.cs" />
+    <Compile Include="Command\Admin\KickPlayerCommand.cs" />
+    <Compile Include="Command\CommandNames.cs" />
+    <Compile Include="Command\ICommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BanListControl.cs">
       <SubType>UserControl</SubType>
@@ -326,6 +331,7 @@
     <Compile Include="Event\Server\ServerOnRoundOverTeamScoresEvent.cs" />
     <Compile Include="Injection\Battlefield3Module.cs" />
     <Compile Include="DataStore\IMapRepository.cs" />
+    <Compile Include="Injection\CommandFactoryModule.cs" />
     <Compile Include="IPacket.cs" />
     <Compile Include="IPacketSerializer.cs" />
     <Compile Include="DataStore\MapListDataFile.cs" />
@@ -371,6 +377,7 @@
     <Compile Include="Util\ListExtensions.cs" />
     <Compile Include="Util\PacketBuilderErrorEventArgs.cs" />
     <Compile Include="Util\PasswordHashService.cs" />
+    <Compile Include="Util\Requires.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\BanListControl.resx">
@@ -452,9 +459,7 @@
     </None>
     <None Include="Resources\bf3-logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Command\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>

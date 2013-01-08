@@ -8,6 +8,10 @@ using RConDevServer.Protocol.Interface;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Injection
 {
+    using Command;
+    using CommandFactory;
+    using CommandFactory.Admin;
+
     /// <summary>
     /// this module holds all "services" for 
     /// </summary>
@@ -25,6 +29,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Injection
             ServiceLocator.RegisterService(typeof (ICountryRepository), new CountryRepository(serviceLocator));
             ServiceLocator.RegisterService(typeof (IPlayerListStoreRepository),
                                            new PlayerListStoreRepository(serviceLocator));
+
+            ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, KickPlayerCommandFactory>(
+                CommandNames.AdminKickPlayer);
         }
     }
 }

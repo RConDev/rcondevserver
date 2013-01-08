@@ -1,4 +1,5 @@
 REM ..\src\.nuget\nuget.exe update ..\src\RConDevServer.sln
+rmdir /S /Q ..\_Artifacts
 SET NET_DIRECTORY=%SystemRoot%\Microsoft.NET\Framework\v4.0.30319\
 %NET_DIRECTORY%\msbuild ..\src\RConDevServer.sln /t:clean,rebuild
 mkdir ..\_Artifacts\reports\

@@ -60,7 +60,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                                                     true,
                                                     requestPacket.SequenceId.Value,
                                                     new List<string>());
-                    if (commandHandler.OnCreatingResponse(session, requestPacket, responsePacket))
+                    
+                    bool responseCreated = false;
+                    try
+                    {
+                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket);
+                    }
+                    catch (Exception) {}
+
+                    if (responseCreated)
                     {
                         session.SendToClient(responsePacket);
                         if (commandHandler.CommandEvents.Count > 0)

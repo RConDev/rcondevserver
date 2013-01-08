@@ -126,7 +126,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             this.CommandHandlersList.Add(new BanListCommandHandlers());
             this.CommandHandlersList.Add(new VarsCommandHandlers());
             this.CommandHandlersList.Add(new ReservedSlotsListCommandHandlers());
-            this.CommandHandlersList.Add(new AdminCommandHandlers());
+            this.CommandHandlersList.Add(new AdminCommandHandlers(server.ServiceLocator));
             this.CommandHandlersList.Add(new NotAuthenticatedCommandHandlers(server.ServiceLocator));
 
             this.ClientCommandReceived += CommandHandlersList.OnCommandReceived;

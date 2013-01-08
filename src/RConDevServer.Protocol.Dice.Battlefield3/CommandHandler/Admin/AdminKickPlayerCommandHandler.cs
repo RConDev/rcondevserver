@@ -1,15 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using System.Linq;
+    using Command;
+    using Command.Admin;
+    using CommandFactory;
+    using Interface;
+
     public class AdminKickPlayerCommandHandler : CommandHandlerBase
     {
+        public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator) : base(serviceLocator)
+        {
+            this.CommandFactory = this.ServiceLocator.GetService<ICommandFactory<ICommand>>(this.Command);
+        }
+
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_KICK_PLAYER; }
+            get { return CommandNames.AdminKickPlayer; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
@@ -19,18 +25,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
                 return true;
             }
-
             
-            var playerName = requestPacket.Words[1];
-
+            var command = this.CommandFactory.FromWords(requestPacket.Words) as KickPlayerCommand;
             var playerList = session.Server.PlayerList.Players;
-            if (playerList.All(x => x.Name != playerName))
+            if (playerList.All(x => x.Name != command.SoldierName))
             {
                 responsePacket.Words.Add(Constants.RESPONSE_PLAYER_NOT_FOUND);
                 return true;
             }
 
-            var reason = (requestPacket.Words.Count == 3) ? requestPacket.Words[2] : Constants.DEFAULT_KICK_REASON;
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             return true;
         }

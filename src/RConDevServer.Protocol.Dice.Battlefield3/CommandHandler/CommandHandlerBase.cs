@@ -3,19 +3,28 @@ using RConDevServer.Protocol.Dice.Battlefield3.Event;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
+    using Command;
+    using Command.Admin;
+    using CommandFactory;
+    using Interface;
     using Util;
 
     public abstract class CommandHandlerBase : ICanHandleClientCommands
     {
+        public IServiceLocator ServiceLocator { get; private set; }
+
         public IList<IEvent> CommandEvents { get; private set; }
 
         public abstract string Command { get; }
 
-        protected CommandHandlerBase()
+        public ICommandFactory<ICommand> CommandFactory { get; protected set; }
+
+        protected CommandHandlerBase(IServiceLocator serviceLocator = null)
         {
             this.CommandEvents = new SynchronizedCollection<IEvent>();
+            this.ServiceLocator = serviceLocator;
         }
-
+        
         public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket);
 
         public virtual void AddEvent(IEvent anEvent)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using RConDevServer.Protocol.Dice.Battlefield3.Data;
@@ -7,10 +6,6 @@ using RConDevServer.Protocol.Dice.Battlefield3.Ui;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
-    using System.IO;
-    using System.Runtime.Serialization;
-    using Resource.Properties;
-
     public partial class PlayerListControl : UserControl
     {
         private PlayersViewModel dataContext;
@@ -150,13 +145,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             return isValid;
         }
 
-        private void TsbSavePlayerListClick(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
-
         private void btnSavePlayerList_Click(object sender, EventArgs e)
         {
             var listName = this.tbxNewSavedPlayerList.Text;
@@ -195,5 +183,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 this.dbsPlayers.ResetBindings(false);
             }
         }
+
+
+        #endregion
     }
 }

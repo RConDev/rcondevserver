@@ -22,6 +22,11 @@ namespace RConDevServer.Util
             return Kernel.Get<T>();
         }
 
+        public T GetService<T>(string name)
+        {
+            return Kernel.Get<T>(name);
+        }
+
         public bool RegisterService(Type type, object service)
         {
             try
@@ -36,6 +41,21 @@ namespace RConDevServer.Util
             catch(Exception ex)
             {
                 logger.Error(string.Format("Failed registering service '{0}' ", type), ex);
+                return false;
+            }
+        }
+
+        public bool RegisterNamedService<TInterface, TImplementation>(string name) where TImplementation : TInterface
+        {
+            try
+            {
+                Kernel.Bind<TInterface>().To<TImplementation>().Named(name);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                string message = string.Format("Failed registering service '{0}' to '{1}' with name '{2}'", typeof (TInterface).Name, typeof (TImplementation).Name, name);
+                logger.Error(message, ex);
                 return false;
             }
         }
