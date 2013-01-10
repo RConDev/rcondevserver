@@ -4,7 +4,6 @@ using RConDevServer.Protocol.Dice.Battlefield3.Event;
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
     using Command;
-    using Command.Admin;
     using CommandFactory;
     using Interface;
     using Util;
@@ -13,19 +12,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
     {
         public IServiceLocator ServiceLocator { get; private set; }
 
+        public ICommandFactory<ICommand> CommandFactory { get; private set; }
+
         public IList<IEvent> CommandEvents { get; private set; }
 
         public abstract string Command { get; }
 
-        public ICommandFactory<ICommand> CommandFactory { get; protected set; }
-
-        protected CommandHandlerBase(IServiceLocator serviceLocator = null)
+        protected CommandHandlerBase(IServiceLocator serviceLocator = null, ICommandFactory<ICommand> commandFactory = null)
         {
             this.CommandEvents = new SynchronizedCollection<IEvent>();
             this.ServiceLocator = serviceLocator;
+            this.CommandFactory = commandFactory;
         }
         
-        public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket);
+        public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command);
 
         public virtual void AddEvent(IEvent anEvent)
         {

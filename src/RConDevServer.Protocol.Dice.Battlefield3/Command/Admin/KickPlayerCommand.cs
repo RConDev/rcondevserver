@@ -3,11 +3,12 @@
     using System.Collections.Generic;
 
     /// <summary>
+    /// the command for kicking a player from the server
     /// </summary>
     public class KickPlayerCommand : ICommand
     {
         /// <summary>
-        ///     Create a new <see cref="KickPlayerCommand" />
+        /// create a new <see cref="KickPlayerCommand" />
         /// </summary>
         /// <param name="soldierName">The Name of the soldier to be kicked</param>
         /// <param name="reason">The reason for kicking the soldier</param>
@@ -17,10 +18,19 @@
             this.Reason = reason;
         }
 
+        /// <summary>
+        /// the name of the soldier to be kicked
+        /// </summary>
         public string SoldierName { get; private set; }
 
+        /// <summary>
+        /// the reason for kicking the soldier
+        /// </summary>
         public string Reason { get; private set; }
 
+        /// <summary>
+        /// The command name 
+        /// </summary>
         public string Command
         {
             get { return CommandNames.AdminKickPlayer; }

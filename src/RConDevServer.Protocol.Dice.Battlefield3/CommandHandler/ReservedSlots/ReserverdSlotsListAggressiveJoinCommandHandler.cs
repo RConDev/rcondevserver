@@ -2,13 +2,14 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
+    using Command;
     using Util;
 
     public class ReserverdSlotsListAggressiveJoinCommandHandler : CommandHandlerBase
     {
         public override string Command { get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_AGGRESSIVE_JOIN; } }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (requestPacket.WordCount == 2)
             {

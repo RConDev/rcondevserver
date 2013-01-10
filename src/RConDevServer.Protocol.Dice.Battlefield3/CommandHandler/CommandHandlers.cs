@@ -64,7 +64,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                     bool responseCreated = false;
                     try
                     {
-                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket);
+                        //var command = commandHandler.
+                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket, null);
                     }
                     catch (Exception) {}
 

@@ -1,9 +1,11 @@
 ﻿
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using Command;
+
     public abstract class VarsCommandHandlerBase : CommandHandlerBase
     {
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (requestPacket.Words.Count == 1)
             {

@@ -1,6 +1,8 @@
 ﻿
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using Command;
+
     /// <summary>
     /// Handles the Command "logout"
     /// </summary>
@@ -13,7 +15,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             get { return Constants.COMMAND_LOGOUT; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             session.IsAuthenticated = false;
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);

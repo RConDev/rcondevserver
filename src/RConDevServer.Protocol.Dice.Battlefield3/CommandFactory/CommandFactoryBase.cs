@@ -6,16 +6,36 @@
     using Command;
     using log4net;
 
+    /// <summary>
+    /// abstract base implementation for <see cref="ICommandFactory{TCommand}"/>
+    /// </summary>
+    /// <typeparam name="TCommand"></typeparam>
     public abstract class CommandFactoryBase<TCommand> : ICommandFactory<TCommand>
         where TCommand : class, ICommand
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof (KickPlayerCommandFactory));
-        
+
+        /// <summary>
+        /// creates a command from the DICE <see cref="Packet"/> words
+        /// </summary>
+        /// <param name="commandWords"></param>
+        /// <returns></returns>
         public abstract TCommand FromWords(IEnumerable<string> commandWords);
 
+        /// <summary>
+        /// parses the command out of a <see cref="string"/>
+        /// </summary>
+        /// <param name="commandString"></param>
+        /// <returns>the <see cref="ICommand"/> implementation if found</returns>
         public abstract TCommand Parse(string commandString);
 
-        public bool TryParse(string commandString, out TCommand command)
+        /// <summary>
+        /// tries to parse the command string 
+        /// </summary>
+        /// <param name="commandString">the command string</param>
+        /// <param name="command">the command parsed from string</param>
+        /// <returns></returns>
+        protected bool TryParse(string commandString, out TCommand command)
         {
             try
             {
@@ -28,6 +48,17 @@
                 command = null;
                 return false;
             }
+        }
+
+        /// <summary>
+        /// extracts the words from the command string
+        /// </summary>
+        /// <param name="commandString"></param>
+        /// <returns></returns>
+        protected IEnumerable<string> ExtractCommandWords(string commandString)
+        {
+            return new CommandString(commandString)
+                .CommandWords();
         }
     }
 }

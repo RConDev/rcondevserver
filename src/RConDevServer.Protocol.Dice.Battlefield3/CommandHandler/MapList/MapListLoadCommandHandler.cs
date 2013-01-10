@@ -2,6 +2,7 @@
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using System.Linq;
+    using Command;
 
     public class MapListLoadCommandHandler : CommandHandlerBase
     {
@@ -10,7 +11,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_LOAD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             var mapListItemsFromStore = session.Server.MapListStore.GetAll();
             foreach (var mapListItem in mapListItemsFromStore)

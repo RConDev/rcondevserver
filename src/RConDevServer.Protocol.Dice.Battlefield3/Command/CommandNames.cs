@@ -11,5 +11,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Command
     public static class CommandNames
     {
         public const string AdminKickPlayer = "admin.kickPlayer";
+
+        public const string AdminSay = "admin.say";
     }
 }

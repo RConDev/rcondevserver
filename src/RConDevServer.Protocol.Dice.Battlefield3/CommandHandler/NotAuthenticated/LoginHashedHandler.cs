@@ -2,6 +2,7 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using Command;
     using Util;
 
     public class LoginHashedHandler : CommandHandlerBase
@@ -13,7 +14,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             get { return Constants.COMMAND_LOGIN_HASHED; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (string.Equals(requestPacket.Words[0], Constants.COMMAND_LOGIN_HASHED,
                               StringComparison.InvariantCultureIgnoreCase))

@@ -3,14 +3,14 @@
     using System.Linq;
     using Command;
     using Command.Admin;
-    using CommandFactory;
+    using CommandFactory.Admin;
     using Interface;
 
     public class AdminKickPlayerCommandHandler : CommandHandlerBase
     {
-        public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator) : base(serviceLocator)
+        public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator) 
+            : base(serviceLocator, new KickPlayerCommandFactory())
         {
-            this.CommandFactory = this.ServiceLocator.GetService<ICommandFactory<ICommand>>(this.Command);
         }
 
         public override string Command
@@ -18,15 +18,15 @@
             get { return CommandNames.AdminKickPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command1)
         {
+            var command = command1 as KickPlayerCommand;
             if (requestPacket.Words.Count > 3)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
                 return true;
             }
             
-            var command = this.CommandFactory.FromWords(requestPacket.Words) as KickPlayerCommand;
             var playerList = session.Server.PlayerList.Players;
             if (playerList.All(x => x.Name != command.SoldierName))
             {

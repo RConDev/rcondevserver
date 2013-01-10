@@ -3,6 +3,8 @@ using RConDevServer.Protocol.Dice.Battlefield3.Util;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
+    using Command;
+
     public class ReservedSlotsListListCommandHandler : CommandHandlerBase
     {
         #region ICanHandleClientCommands Members
@@ -12,7 +14,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_LIST; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             int offset = 0;
             if (requestPacket.Words.Count == 2)

@@ -4,6 +4,8 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
+    using Command;
+
     public class BanListAddCommandHandler : CommandHandlerBase
     {
         public override string Command
@@ -11,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
             get { return Constants.COMMAND_BAN_LIST_ADD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (ValidateRequestPacket(requestPacket))
             {

@@ -3,6 +3,8 @@ using RConDevServer.Protocol.Dice.Battlefield3.Event;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
+    using Command;
+
     public class MapListSaveCommandHandler : CommandHandlerBase
     {
         public override string Command
@@ -10,7 +12,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_SAVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (requestPacket.Words.Count != 1)
             {

@@ -2,6 +2,7 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using Command;
     using Data;
 
     public class VarsGamePasswordCommandHandler : CommandHandlerBase
@@ -13,7 +14,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
             get { return Constants.COMMAND_VARS_GAMEPASSWORD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (requestPacket.WordCount == 1)
             {

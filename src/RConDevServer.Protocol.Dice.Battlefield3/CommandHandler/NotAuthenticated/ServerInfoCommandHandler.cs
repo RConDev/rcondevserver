@@ -3,6 +3,8 @@ using RConDevServer.Protocol.Interface;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using Command;
+
     public class ServerInfoCommandHandler : CommandHandlerBase
     {
         public IServiceLocator ServiceLocator { get; set; }
@@ -19,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             get { return Constants.COMMAND_SERVER_INFO; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             if (requestPacket.Words.Count == 1)
             {

@@ -2,6 +2,8 @@
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using Command;
+
     public class AdminEventsEnabledCommandHandler : CommandHandlerBase
     {
         #region ICommandHandler Members
@@ -11,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             get { return Constants.COMMAND_ADMIN_EVENTS_ENABLED; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             // decide between get or set option
             if (requestPacket.Words.Count == 1)

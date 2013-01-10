@@ -80,6 +80,7 @@
     <Compile Include="Battlefield3Protocol.cs" />
     <Compile Include="Battlefield3Server.cs" />
     <Compile Include="CommandFactory\Admin\KickPlayerCommandFactory.cs" />
+    <Compile Include="CommandFactory\Admin\SayCommandFactory.cs" />
     <Compile Include="CommandFactory\CommandFactoryBase.cs" />
     <Compile Include="CommandFactory\ICommandFactory.cs" />
     <Compile Include="CommandHandler\Admin\AdminCommandHandlers.cs" />
@@ -174,7 +175,9 @@
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnAllowedCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnDelayCommandHandler.cs" />
     <Compile Include="Command\Admin\KickPlayerCommand.cs" />
+    <Compile Include="Command\Admin\SayCommand.cs" />
     <Compile Include="Command\CommandNames.cs" />
+    <Compile Include="Command\CommandString.cs" />
     <Compile Include="Command\ICommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BanListControl.cs">

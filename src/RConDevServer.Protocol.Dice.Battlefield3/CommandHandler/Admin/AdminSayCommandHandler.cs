@@ -4,6 +4,7 @@ using RConDevServer.Protocol.Dice.Battlefield3.Event.Player;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using Command;
     using Event;
 
     public class AdminSayCommandHandler : CommandHandlerBase
@@ -15,7 +16,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             get { return Constants.COMMAND_ADMIN_SAY; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             var message = requestPacket.Words[1];
             var playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());

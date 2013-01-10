@@ -4,6 +4,8 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using Command;
+
     public class AdminYellCommandHandler : CommandHandlerBase
     {
         public override string Command
@@ -11,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             get { return Constants.COMMAND_ADMIN_YELL; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             string message = requestPacket.Words[1];
             int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;

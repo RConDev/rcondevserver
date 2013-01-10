@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System.Linq;
+
     public class PlayerSubset
     {
         public PlayerSubsetType Type { get; set; }
@@ -47,8 +49,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         #region Public Static Methods
 
-        public static PlayerSubset FromWords(List<string> words)
+        public static PlayerSubset FromWords(IEnumerable<string> subsetWords)
         {
+            var words = subsetWords.ToList();
             var playerSubset = new PlayerSubset();
             if (words.Count == 1 && words[0] == "all")
             {

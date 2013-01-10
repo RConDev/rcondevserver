@@ -4,6 +4,8 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
+    using Command;
+
     public class MapListAddCommandHandler : CommandHandlerBase
     {
         public override string Command
@@ -11,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_ADD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
         {
             // Check the given map code
             var map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
