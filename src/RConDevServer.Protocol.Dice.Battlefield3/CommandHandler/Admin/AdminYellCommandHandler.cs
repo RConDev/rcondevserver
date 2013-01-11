@@ -1,19 +1,24 @@
-﻿using System;
-using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using System;
+    using System.Linq;
     using Command;
+    using CommandFactory.Admin;
+    using Data;
 
     public class AdminYellCommandHandler : CommandHandlerBase
     {
-        public override string Command
+        public AdminYellCommandHandler() : base(null, new YellCommandFactory())
         {
-            get { return Constants.COMMAND_ADMIN_YELL; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override string Command
+        {
+            get { return CommandNames.AdminYell; }
+        }
+
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             string message = requestPacket.Words[1];
             int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;

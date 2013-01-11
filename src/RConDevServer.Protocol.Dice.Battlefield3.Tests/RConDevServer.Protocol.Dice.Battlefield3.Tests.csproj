@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\_Artifacts\Tests\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -58,6 +58,8 @@
     <Compile Include="Data\PlayerSubsetTest.cs" />
     <Compile Include="PacketSerializerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\BoolTest.cs" />
+    <Compile Include="Util\IntTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CommandHandler\" />

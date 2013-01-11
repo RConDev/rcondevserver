@@ -1,28 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.Windows.Forms;
+    using Ui;
+
     public partial class BanListControl : UserControl
     {
         private BanListViewModel dataContext;
 
         public BanListControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.dbsNewItem.DataSource = this.CreateNewBanListItem();
-        }
-
-        private BanListItemViewModel CreateNewBanListItem()
-        {
-            return new BanListItemViewModel(x => this.Invoke(x));
         }
 
         public BanListViewModel DataContext
@@ -54,7 +44,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             {
                 this.dataContext.BanListItems.Add(newItem);
                 this.dbsBanListItems.ResetBindings(false);
-                
+
                 this.dbsNewItem.DataSource = this.CreateNewBanListItem();
                 this.dbsNewItem.ResetBindings(false);
             }
@@ -71,6 +61,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         #endregion
 
-        
+        private BanListItemViewModel CreateNewBanListItem()
+        {
+            return new BanListItemViewModel(x => this.Invoke(x));
+        }
     }
 }

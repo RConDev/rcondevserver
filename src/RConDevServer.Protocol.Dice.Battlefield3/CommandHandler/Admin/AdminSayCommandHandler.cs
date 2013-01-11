@@ -1,22 +1,28 @@
-﻿using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Dice.Battlefield3.Event.Player;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using System.Linq;
     using Command;
-    using Event;
+    using CommandFactory.Admin;
+    using Data;
+    using Event.Player;
 
     public class AdminSayCommandHandler : CommandHandlerBase
     {
+        public AdminSayCommandHandler() : base(null, new SayCommandFactory())
+        {
+        }
+
         #region ICanHandleClientCommands Members
 
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_SAY; }
+            get { return CommandNames.AdminSay; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session,
+                                                Packet requestPacket,
+                                                Packet responsePacket,
+                                                ICommand command)
         {
             var message = requestPacket.Words[1];
             var playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());
@@ -27,7 +33,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
                 return true;
             }
 
-            var result = false;
+            bool result = false;
             switch (playerSubset.Type)
             {
                 case PlayerSubsetType.None:

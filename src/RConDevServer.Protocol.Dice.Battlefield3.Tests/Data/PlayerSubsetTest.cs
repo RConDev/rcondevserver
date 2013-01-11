@@ -54,5 +54,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
             Assert.AreEqual(0, subset.SquadId);
             Assert.AreEqual("TestPlayer", subset.PlayerName);
         }
+
+        [Test]
+        public void FromWords_WithNoneWords_ReturnsNull()
+        {
+            var words = new List<string>() { "dumb", "string" };
+            var subset = PlayerSubset.FromWords(words);
+
+            Assert.IsNull(subset);
+        }
     }
 }

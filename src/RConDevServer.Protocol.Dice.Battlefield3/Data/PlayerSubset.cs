@@ -80,7 +80,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
                 playerSubset.SquadId = Convert.ToInt32(words[2]);
             }
 
-            return playerSubset;
+            return playerSubset.Type == PlayerSubsetType.None ? null : playerSubset;
         }
 
         #endregion

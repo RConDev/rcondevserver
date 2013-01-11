@@ -27,7 +27,11 @@
         /// </summary>
         /// <param name="commandString"></param>
         /// <returns>the <see cref="ICommand"/> implementation if found</returns>
-        public abstract TCommand Parse(string commandString);
+        public TCommand Parse(string commandString)
+        {
+            var words = this.ExtractCommandWords(commandString);
+            return this.FromWords(words);
+        }
 
         /// <summary>
         /// tries to parse the command string 

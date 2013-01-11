@@ -8,6 +8,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 {
     public class Packet : IPacket
     {
+        private PacketOrigin packetOrigin;
+        private bool p1;
+        private uint p2;
+
         #region Public Properties
 
         /// <summary>
@@ -82,6 +86,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             this.IsResponse = isResponse;
             this.SequenceId = sequenceId;
             this.Words = words.ToList();
+        }
+
+        public Packet(PacketOrigin packetOrigin, bool isResponse, uint sequenceId)
+            : this(packetOrigin, isResponse, sequenceId, new List<string>())
+        {
         }
 
         #endregion

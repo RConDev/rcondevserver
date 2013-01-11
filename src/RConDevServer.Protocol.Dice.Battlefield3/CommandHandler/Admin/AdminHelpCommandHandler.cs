@@ -1,11 +1,15 @@
-﻿using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
     using Command;
+    using CommandFactory.Admin;
+    using Data;
 
     public class AdminHelpCommandHandler : CommandHandlerBase
     {
+        public AdminHelpCommandHandler() : base(null, new HelpCommandFactory())
+        {
+        }
+
         #region ICanHandleClientCommands Members
 
         public override string Command
@@ -13,7 +17,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             get { return Constants.COMMAND_ADMIN_HELP; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command1)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command1)
         {
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             foreach (string command in new Commands())

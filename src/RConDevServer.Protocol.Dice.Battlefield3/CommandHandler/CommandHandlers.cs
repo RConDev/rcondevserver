@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
- 
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
+    using System;
+    using System.Collections.Generic;
+    using Command;
+    using log4net;
+
     public class CommandHandlers
     {
-     protected readonly IDictionary<string, ICanHandleClientCommands> CommandReveiverAccess;
+        private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlers));
+
+        protected readonly IDictionary<string, ICanHandleClientCommands> CommandReveiverAccess;
 
         #region Constructor
 
         public CommandHandlers()
         {
-            CommandReveiverAccess = new Dictionary<string, ICanHandleClientCommands>(); 
+            this.CommandReveiverAccess = new Dictionary<string, ICanHandleClientCommands>();
         }
 
         #endregion
@@ -20,16 +23,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
         #region Public Methods
 
         /// <summary>
-        /// Adds a new <see cref="ICanHandleClientCommands"/> instance to the handler list
+        ///     Adds a new <see cref="ICanHandleClientCommands" /> instance to the handler list
         /// </summary>
         /// <param name="handler"></param>
         /// <returns>true if it was successfully added, false if it is already registered</returns>
         public bool RegisterCommandHandler(ICanHandleClientCommands handler)
         {
-            bool isAlreadyRegistered = CommandReveiverAccess.ContainsKey(handler.Command.ToLower());
+            string commandName = handler.Command.ToLower();
+            bool isAlreadyRegistered = this.CommandReveiverAccess.ContainsKey(commandName);
             if (!isAlreadyRegistered)
             {
-                CommandReveiverAccess.Add(handler.Command.ToLower(), handler);
+                this.CommandReveiverAccess.Add(commandName, handler);
                 return true;
             }
             return false;
@@ -40,34 +44,50 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
             var session = sender as PacketSession;
 
             // exit if session is not correctly initialized
-            if (session == null || session.Server == null) return false;
+            if (session == null || session.Server == null)
+            {
+                return false;
+            }
 
             // exit if no automatic response is requested
-            if (!session.Server.IsAutomaticResponse) return false;
+            if (!session.Server.IsAutomaticResponse)
+            {
+                return false;
+            }
 
             // process registered handlers
             Packet requestPacket = args.PacketData;
 
-            if (requestPacket == null) throw new ArgumentNullException("requestPacket");
+            if (requestPacket == null)
+            {
+                throw new ArgumentNullException("requestPacket");
+            }
 
             if (requestPacket.SequenceId != null && requestPacket.Words.Count > 0)
             {
-                var currentCommand = requestPacket.Words[0];
-                if (CommandReveiverAccess.ContainsKey(currentCommand.ToLower()))
+                string currentCommand = requestPacket.Words[0];
+                if (this.CommandReveiverAccess.ContainsKey(currentCommand.ToLower()))
                 {
-                    var commandHandler = CommandReveiverAccess[currentCommand.ToLower()];
+                    ICanHandleClientCommands commandHandler = this.CommandReveiverAccess[currentCommand.ToLower()];
                     var responsePacket = new Packet(requestPacket.Origin,
                                                     true,
-                                                    requestPacket.SequenceId.Value,
-                                                    new List<string>());
-                    
+                                                    requestPacket.SequenceId.Value);
+
                     bool responseCreated = false;
                     try
                     {
-                        //var command = commandHandler.
-                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket, null);
+                        ICommand command = null;
+                        if (commandHandler.CommandFactory != null)
+                        {
+                            command = commandHandler.CommandFactory.FromWords(requestPacket.Words);
+                        }
+                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket,
+                                                                            command);
                     }
-                    catch (Exception) {}
+                    catch (Exception ex)
+                    {
+                        logger.Error("Failed to create command response", ex);
+                    }
 
                     if (responseCreated)
                     {

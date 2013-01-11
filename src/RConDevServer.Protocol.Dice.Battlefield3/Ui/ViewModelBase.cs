@@ -1,16 +1,16 @@
-using System;
-using System.ComponentModel;
-using RConDevServer.Util;
-
 namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+    using System.ComponentModel;
+    using System.Reflection;
+    using log4net;
+
     /// <summary>
-    /// the basic view model 
+    ///     the basic view model
     /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
-        private readonly object syncRoot = new object();
-        protected static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        protected static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         #region Constructors
 
@@ -36,28 +36,33 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         #region Invoke Events
 
         /// <summary>
-        /// invokes the <see cref="PropertyChanged"/> event
+        ///     invokes the <see cref="PropertyChanged" /> event
         /// </summary>
         /// <param name="propertyName">Name of the Property for which the event is invoked</param>
         internal void InvokePropertyChanged(string propertyName)
         {
-            lock (syncRoot)
+            lock (this.syncRoot)
             {
-                if (this.PropertyChanged == null) return;
+                if (this.PropertyChanged == null)
+                {
+                    return;
+                }
 
-                SynchronousInvoker.Invoke(() =>
-                                              {
-                                                  var invokationList = PropertyChanged.GetInvocationList();
-                                                  foreach (var invDelegate in invokationList)
-                                                  {
-                                                      invDelegate.DynamicInvoke(this,
-                                                                                new PropertyChangedEventArgs(
-                                                                                    propertyName));
-                                                  }
-                                              });
+                this.SynchronousInvoker.Invoke(() =>
+                    {
+                        Delegate[] invokationList = this.PropertyChanged.GetInvocationList();
+                        foreach (Delegate invDelegate in invokationList)
+                        {
+                            invDelegate.DynamicInvoke(this,
+                                                      new PropertyChangedEventArgs(
+                                                          propertyName));
+                        }
+                    });
             }
         }
 
         #endregion
+
+        private readonly object syncRoot = new object();
     }
 }
