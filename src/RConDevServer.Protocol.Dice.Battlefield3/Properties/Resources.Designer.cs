@@ -71,11 +71,29 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The sequence &apos;{0}&apos; has not the expected length of {1} at minimum..
+        /// </summary>
+        internal static string EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET {
+            get {
+                return ResourceManager.GetString("EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The string does not start with the expected value: {0} ..
         /// </summary>
         internal static string EXC_MSG_NOT_STARTS_WITH {
             get {
                 return ResourceManager.GetString("EXC_MSG_NOT_STARTS_WITH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sequence &apos;{0}&apos; has not the expected length of {1}..
+        /// </summary>
+        internal static string EXC_MSG_SEQUENCE_LENGTH_NOT_SET {
+            get {
+                return ResourceManager.GetString("EXC_MSG_SEQUENCE_LENGTH_NOT_SET", resourceCulture);
             }
         }
     }

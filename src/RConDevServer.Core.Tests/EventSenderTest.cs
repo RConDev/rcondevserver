@@ -16,7 +16,7 @@ namespace RConDevServer.Core.Tests
     using Protocol.Dice.Battlefield3.Data;
     using Protocol.Dice.Battlefield3.EventSender;
 
-    [TestFixture]
+    //[TestFixture]
     public class EventSenderTest
     {
         private Mock<IServiceLocator> serviceLocatorMock;

@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Admin
 {
+    using System;
+    using System.Collections.Generic;
+
     public class EventsEnabledCommand : ICommand
     {
-        public bool? IsEnabled { get; private set; }
-
         public EventsEnabledCommand(bool? isEnabled = null)
         {
-            IsEnabled = isEnabled;
+            this.IsEnabled = isEnabled;
+        }
+
+        public bool? IsEnabled { get; private set; }
+
+        /// <summary>
+        ///     The command name
+        /// </summary>
+        public string Command
+        {
+            get { return CommandNames.AdminEventsEnabled; }
         }
 
         /// <summary>
-        /// The command name 
-        /// </summary>
-        public string Command { get { return CommandNames.AdminEventsEnabled; } }
-
-        /// <summary>
-        /// Generates the words needed to create the <see cref="IPacket"/>
+        ///     Generates the words needed to create the <see cref="IPacket" />
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ToWords()

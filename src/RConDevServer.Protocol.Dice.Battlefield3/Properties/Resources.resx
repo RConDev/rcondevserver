@@ -124,4 +124,10 @@
   <data name="EXC_MSG_NOT_STARTS_WITH" xml:space="preserve">
     <value>The string does not start with the expected value: {0} .</value>
   </data>
+  <data name="EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET" xml:space="preserve">
+    <value>The sequence '{0}' has not the expected length of {1} at minimum.</value>
+  </data>
+  <data name="EXC_MSG_SEQUENCE_LENGTH_NOT_SET" xml:space="preserve">
+    <value>The sequence '{0}' has not the expected length of {1}.</value>
+  </data>
 </root>

@@ -86,6 +86,16 @@
     <Compile Include="CommandFactory\Admin\YellCommandFactory.cs" />
     <Compile Include="CommandFactory\CommandFactoryBase.cs" />
     <Compile Include="CommandFactory\ICommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\ListPlayersCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\LoginPlainTextCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\LogoutCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\QuitCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\ServerInfoCommandFactory.cs" />
+    <Compile Include="CommandFactory\NotAuthenticated\VersionCommandFactory.cs" />
+    <Compile Include="CommandFactory\PunkBuster\PunkBusterActivateCommandFactory.cs" />
+    <Compile Include="CommandFactory\PunkBuster\PunkBusterIsActiveCommandFactory.cs" />
+    <Compile Include="CommandFactory\PunkBuster\PunkBusterPbSvCommandFactory.cs" />
     <Compile Include="CommandHandler\Admin\AdminCommandHandlers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEffectiveMaxPlayers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEventsEnabledCommandHandler.cs" />
@@ -185,6 +195,17 @@
     <Compile Include="Command\CommandNames.cs" />
     <Compile Include="Command\CommandString.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\NotAuthenticated\ListPlayersCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\LoginHashedCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\LoginPlainTextCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\LogoutCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\QuitCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\ServerInfoCommand.cs" />
+    <Compile Include="Command\NotAuthenticated\VersionCommand.cs" />
+    <Compile Include="Command\PunkBuster\PunkBusterActivateCommand.cs" />
+    <Compile Include="Command\PunkBuster\PunkBusterIsActiveCommand.cs" />
+    <Compile Include="Command\PunkBuster\PunkBusterPbSvCommand.cs" />
+    <Compile Include="Command\Vars\VarsRankedCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BanListControl.cs">
       <SubType>UserControl</SubType>
@@ -470,7 +491,9 @@
     </None>
     <None Include="Resources\bf3-logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="CommandFactory\Vars\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>

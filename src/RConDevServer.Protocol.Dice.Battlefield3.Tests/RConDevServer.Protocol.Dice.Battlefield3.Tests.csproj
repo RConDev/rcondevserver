@@ -53,7 +53,9 @@
     <Compile Include="..\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>
+    <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactoryTest.cs" />
     <Compile Include="Command\CommandStringTest.cs" />
+    <Compile Include="Command\NotAuthenticated\LoginHashedCommandTest.cs" />
     <Compile Include="Data\MapListItemTest.cs" />
     <Compile Include="Data\PlayerSubsetTest.cs" />
     <Compile Include="PacketSerializerTest.cs" />
