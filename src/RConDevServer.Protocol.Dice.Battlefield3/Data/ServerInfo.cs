@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System;
+    using System.Collections.Generic;
+
     public class ServerInfo
     {
         private readonly Battlefield3Server server;
@@ -14,17 +14,29 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public string ServerName { get; set; }
 
-        public decimal CurrentPlayerCount { get { return this.server.PlayerList.Players.Count; } }
+        public decimal CurrentPlayerCount
+        {
+            get { return this.server.PlayerList.Players.Count; }
+        }
 
         public decimal MaxPlayerCount { get; set; }
 
-        public GameMode CurrentGameMode { get { return this.server.CurrentMapListItem.Mode; } }
+        public GameMode CurrentGameMode
+        {
+            get { return this.server.CurrentMapListItem.Mode; }
+        }
 
-        public Map CurrentMap { get { return this.server.CurrentMapListItem.Map; } }
+        public Map CurrentMap
+        {
+            get { return this.server.CurrentMapListItem.Map; }
+        }
 
         public decimal RoundsPlayed { get; set; }
 
-        public decimal RoundsTotal { get { return this.server.CurrentMapListItem.Rounds; } }
+        public decimal RoundsTotal
+        {
+            get { return this.server.CurrentMapListItem.Rounds; }
+        }
 
         public string OnlineState { get; set; }
 
@@ -54,25 +66,25 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         {
             var words = new List<string>();
             words.Add(this.ServerName);
-            words.Add(CurrentPlayerCount.ToString());
-            words.Add(MaxPlayerCount.ToString());
-            words.Add(CurrentGameMode.ToWord());
-            words.Add(CurrentMap.ToWord());
-            words.Add(RoundsPlayed.ToString());
-            words.Add(RoundsTotal.ToString());
-            words.AddRange(server.TeamScores.ToWords());
-            words.Add(OnlineState);
-            words.Add(IsRanked.ToString());
-            words.Add(IsPunkbuster.ToString());
-            words.Add(HasGamePassword.ToString());
-            words.Add(Convert.ToInt32(ServerUpTime).ToString());
-            words.Add(Convert.ToInt32(RoundTime).ToString());
-            words.Add(IpPortPair.ToWord());
-            words.Add(PunkbusterVersion);
-            words.Add(IsJoinQueueEnabled.ToString());
-            words.Add(Region);
-            words.Add(ClosestPingSite);
-            words.Add(Country.CodeAlpha2);
+            words.Add(this.CurrentPlayerCount.ToString());
+            words.Add(this.MaxPlayerCount.ToString());
+            words.Add(this.CurrentGameMode.ToWord());
+            words.Add(this.CurrentMap.ToWord());
+            words.Add(this.RoundsPlayed.ToString());
+            words.Add(this.RoundsTotal.ToString());
+            words.AddRange(this.server.TeamScores.ToWords());
+            words.Add(this.OnlineState);
+            words.Add(this.IsRanked.ToString());
+            words.Add(this.IsPunkbuster.ToString());
+            words.Add(this.HasGamePassword.ToString());
+            words.Add(Convert.ToInt32(this.ServerUpTime).ToString());
+            words.Add(Convert.ToInt32(this.RoundTime).ToString());
+            words.Add(this.IpPortPair.ToWord());
+            words.Add(this.PunkbusterVersion);
+            words.Add(this.IsJoinQueueEnabled.ToString());
+            words.Add(this.Region);
+            words.Add(this.ClosestPingSite);
+            words.Add(this.Country.CodeAlpha2);
             return words;
         }
     }

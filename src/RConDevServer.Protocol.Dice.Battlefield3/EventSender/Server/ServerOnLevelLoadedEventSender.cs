@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
- 
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+    using Data;
+
     public class ServerOnLevelLoadedEventSender : EventSenderBase
     {
         private readonly Maps availableMaps;
@@ -16,8 +16,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
         }
 
         #region Constructors
-
-
 
         #endregion
 
@@ -39,25 +37,25 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Server
             get
             {
                 return new Packet(PacketOrigin.Server, false, 0, new List<string>
-                                                                       {
-                                                                           EventCommand,
-                                                                           Map.ToWord(),
-                                                                           GameMode.ToWord(),
-                                                                           Convert.ToString(RoundsPlayed),
-                                                                           Convert.ToString(TotalRounds)
-                                                                       });
+                    {
+                        this.EventCommand,
+                        this.Map.ToWord(),
+                        this.GameMode.ToWord(),
+                        Convert.ToString(this.RoundsPlayed),
+                        Convert.ToString(this.TotalRounds)
+                    });
             }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToList();
+            List<string> parameters = commandParameterList.ToList();
             if (parameters.Count == 4)
             {
-                Map = availableMaps.FindByCode(parameters[0]);
-                GameMode = GameModes.FindByCode(parameters[1]);
-                RoundsPlayed = Convert.ToInt32(parameters[2]);
-                TotalRounds = Convert.ToInt32(parameters[3]);
+                this.Map = this.availableMaps.FindByCode(parameters[0]);
+                this.GameMode = GameModes.FindByCode(parameters[1]);
+                this.RoundsPlayed = Convert.ToInt32(parameters[2]);
+                this.TotalRounds = Convert.ToInt32(parameters[3]);
 
                 return true;
             }

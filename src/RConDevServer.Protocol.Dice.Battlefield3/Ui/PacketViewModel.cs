@@ -1,7 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
     using System.ComponentModel;
-    using RConDevServer.Protocol.Dice.Battlefield3;
+    using Common;
 
     public class PacketViewModel : INotifyPropertyChanged
     {
@@ -25,7 +25,8 @@
         public bool IsServerOriginated
         {
             get { return this.Packet.Origin == PacketOrigin.Server; }
-            set {
+            set
+            {
                 this.Packet.Origin = value ? PacketOrigin.Server : PacketOrigin.Client;
                 this.InvokePropertyChanged("IsServerOriginated");
             }
@@ -34,8 +35,10 @@
         public bool IsResponse
         {
             get { return this.Packet.IsResponse; }
-            set { this.Packet.IsResponse = value;
-            this.InvokePropertyChanged("IsResponse");
+            set
+            {
+                this.Packet.IsResponse = value;
+                this.InvokePropertyChanged("IsResponse");
             }
         }
 
@@ -51,8 +54,9 @@
         {
             if (this.PropertyChanged != null)
             {
-                this.PropertyChanged.BeginInvoke(this, new PropertyChangedEventArgs(propertyName), this.PropertyChanged.EndInvoke,
-                                            null);
+                this.PropertyChanged.BeginInvoke(this, new PropertyChangedEventArgs(propertyName),
+                                                 this.PropertyChanged.EndInvoke,
+                                                 null);
             }
         }
 

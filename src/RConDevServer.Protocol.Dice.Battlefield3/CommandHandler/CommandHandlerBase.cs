@@ -1,15 +1,23 @@
-using System.Collections.Generic;
-using RConDevServer.Protocol.Dice.Battlefield3.Event;
-
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
+    using System.Collections.Generic;
     using Command;
     using CommandFactory;
+    using Common;
+    using Event;
     using Interface;
     using Util;
 
     public abstract class CommandHandlerBase : ICanHandleClientCommands
     {
+        protected CommandHandlerBase(IServiceLocator serviceLocator = null,
+                                     ICommandFactory<ICommand> commandFactory = null)
+        {
+            this.CommandEvents = new SynchronizedCollection<IEvent>();
+            this.ServiceLocator = serviceLocator;
+            this.CommandFactory = commandFactory;
+        }
+
         public IServiceLocator ServiceLocator { get; private set; }
 
         public ICommandFactory<ICommand> CommandFactory { get; private set; }
@@ -18,26 +26,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 
         public abstract string Command { get; }
 
-        protected CommandHandlerBase(IServiceLocator serviceLocator = null, ICommandFactory<ICommand> commandFactory = null)
-        {
-            this.CommandEvents = new SynchronizedCollection<IEvent>();
-            this.ServiceLocator = serviceLocator;
-            this.CommandFactory = commandFactory;
-        }
-        
-        public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command);
+        public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command);
 
         public virtual void AddEvent(IEvent anEvent)
         {
             if (anEvent != null)
             {
-                CommandEvents.Add(anEvent);
+                this.CommandEvents.Add(anEvent);
             }
         }
 
         protected bool ResponseSuccess(Packet responsePacket)
         {
-            responsePacket.Words.AddRange(new[] { Constants.RESPONSE_SUCCESS });
+            responsePacket.Words.AddRange(new[] {Constants.RESPONSE_SUCCESS});
             return true;
         }
 

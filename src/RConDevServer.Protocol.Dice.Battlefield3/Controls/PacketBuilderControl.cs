@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
- 
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.Windows.Forms;
+    using Common;
     using Ui;
     using Util;
 
@@ -11,9 +10,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
     {
         public PacketBuilderControl()
         {
-            InitializeComponent();
-            ViewModel = new PacketViewModel(new Packet());
-            packetViewModelBindingSource.DataSource = ViewModel;
+            this.InitializeComponent();
+            this.ViewModel = new PacketViewModel(new Packet());
+            this.packetViewModelBindingSource.DataSource = this.ViewModel;
         }
 
         #region Public Properties
@@ -25,12 +24,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #region Events
 
         /// <summary>
-        /// this event is invoked, when a packet is created and sent
+        ///     this event is invoked, when a packet is created and sent
         /// </summary>
         public event EventHandler<PacketDataEventArgs> PacketCreated;
 
         /// <summary>
-        /// this event is invoked, when entered values are not complete or wrong
+        ///     this event is invoked, when entered values are not complete or wrong
         /// </summary>
         public event EventHandler<PacketBuilderErrorEventArgs> BuildError;
 
@@ -39,22 +38,22 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #region Invoke Events
 
         /// <summary>
-        /// invokes the event <see cref="PacketCreated"/> with the given packet information
+        ///     invokes the event <see cref="PacketCreated" /> with the given packet information
         /// </summary>
         /// <param name="packet"></param>
         internal void InvokePacketCreated(Packet packet)
         {
-            if (PacketCreated != null)
+            if (this.PacketCreated != null)
             {
-                PacketCreated.Invoke(this, new PacketDataEventArgs(packet));
+                this.PacketCreated.Invoke(this, new PacketDataEventArgs(packet));
             }
         }
 
         internal void InvokeBuildError(Exception exception)
         {
-            if (BuildError != null)
+            if (this.BuildError != null)
             {
-                BuildError.Invoke(this, new PacketBuilderErrorEventArgs(exception));
+                this.BuildError.Invoke(this, new PacketBuilderErrorEventArgs(exception));
             }
         }
 
@@ -66,24 +65,24 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         {
             try
             {
-                Packet packet = ViewModel.Packet;
+                Packet packet = this.ViewModel.Packet;
 
                 packet.Words.Clear();
-                foreach (string line in wordsTextBox.Lines)
+                foreach (string line in this.wordsTextBox.Lines)
                 {
                     packet.Words.Add(line);
                 }
-                InvokePacketCreated(packet);
+                this.InvokePacketCreated(packet);
             }
             catch (Exception ex)
             {
-                InvokeBuildError(ex);
+                this.InvokeBuildError(ex);
             }
             finally
             {
-                ViewModel = new PacketViewModel(new Packet());
-                packetViewModelBindingSource.DataSource = ViewModel;
-                packetViewModelBindingSource.ResetBindings(false);
+                this.ViewModel = new PacketViewModel(new Packet());
+                this.packetViewModelBindingSource.DataSource = this.ViewModel;
+                this.packetViewModelBindingSource.ResetBindings(false);
             }
         }
 

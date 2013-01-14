@@ -1,12 +1,12 @@
-﻿using System.Data;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using NHibernate;
-using RConDevServer.Protocol.Dice.Battlefield3.DataMapping;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Data;
+    using DataMapping;
+    using FluentNHibernate.Cfg;
+    using FluentNHibernate.Cfg.Db;
+    using Interface;
+    using NHibernate;
+
     public class Battlefield3DataContext : IDataContext
     {
         #region Contstructor
@@ -31,16 +31,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
         private void Initialize()
         {
-            var connectionString = ServiceLocator.GetService<IDbConnection>().ConnectionString;
+            string connectionString = this.ServiceLocator.GetService<IDbConnection>().ConnectionString;
             this.SessionFactory = Fluently.Configure()
-                .Database(SQLiteConfiguration.Standard.ConnectionString(connectionString))
-                .Mappings(x => x.FluentMappings
-                    .Add<MapMapping>()
-                    .Add<GameModeMapping>()
-                    .Add<IdTypeMapping>()
-                    .Add<CountryMapping>()
-                    .Add<PlayerListStoreItemMapping>())
-                .BuildSessionFactory();
+                                          .Database(SQLiteConfiguration.Standard.ConnectionString(connectionString))
+                                          .Mappings(x => x.FluentMappings
+                                                          .Add<MapMapping>()
+                                                          .Add<GameModeMapping>()
+                                                          .Add<IdTypeMapping>()
+                                                          .Add<CountryMapping>()
+                                                          .Add<PlayerListStoreItemMapping>())
+                                          .BuildSessionFactory();
         }
 
         #endregion

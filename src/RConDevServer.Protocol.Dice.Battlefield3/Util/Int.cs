@@ -1,7 +1,6 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Util
 {
     /// <summary>
-    /// 
     /// </summary>
     public static class Int
     {

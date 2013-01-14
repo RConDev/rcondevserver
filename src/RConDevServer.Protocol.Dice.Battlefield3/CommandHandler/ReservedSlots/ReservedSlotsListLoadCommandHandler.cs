@@ -1,8 +1,10 @@
-﻿using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Command;
+    using Common;
+    using Data;
 
     public class ReservedSlotsListLoadCommandHandler : CommandHandlerBase
     {
@@ -11,7 +13,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             get { return Constants.COMMAND_RESERVED_SLOTS_LIST_LOAD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.Words.Count != 1)
             {
@@ -19,8 +22,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
                 return true;
             }
 
-            var reservedSlotsFromStore = session.Server.ReservedSlotsStore.GetAll();
-            foreach (var reservedSlot in reservedSlotsFromStore)
+            IEnumerable<ReservedSlot> reservedSlotsFromStore = session.Server.ReservedSlotsStore.GetAll();
+            foreach (ReservedSlot reservedSlot in reservedSlotsFromStore)
             {
                 if (session.Server.ReservedSlots.Any(x => x.PlayerName == reservedSlot.PlayerName))
                 {

@@ -1,10 +1,10 @@
-﻿using System;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+    using Data;
+
     /// <summary>
-    /// the view model for a single <see cref="BanListItem"/>
+    ///     the view model for a single <see cref="BanListItem" />
     /// </summary>
     public class BanListItemViewModel : ViewModelBase
     {
@@ -16,7 +16,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         }
 
         /// <summary>
-        /// Creates a new instance of <see cref="BanListItemViewModel"/>
+        ///     Creates a new instance of <see cref="BanListItemViewModel" />
         /// </summary>
         /// <param name="item"></param>
         /// <param name="synchronousInvoker"></param>
@@ -31,7 +31,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         #region Public Properties
 
         /// <summary>
-        /// the wrapped <see cref="BanListItem"/>
+        ///     the wrapped <see cref="BanListItem" />
         /// </summary>
         public BanListItem Item { get; private set; }
 

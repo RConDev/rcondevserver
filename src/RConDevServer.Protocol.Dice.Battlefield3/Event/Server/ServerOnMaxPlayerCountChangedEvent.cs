@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 {
+    using System;
+    using System.Collections.Generic;
+
     public class ServerOnMaxPlayerCountChangedEvent : IEvent
     {
         public ServerOnMaxPlayerCountChangedEvent(int maxPlayerCount)
         {
-            MaxPlayerCount = maxPlayerCount;
+            this.MaxPlayerCount = maxPlayerCount;
         }
 
         public int MaxPlayerCount { get; set; }
@@ -19,7 +19,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 
         public IEnumerable<string> ToWords()
         {
-            return new[] {Event, Convert.ToString(MaxPlayerCount)};
+            return new[] {this.Event, Convert.ToString(this.MaxPlayerCount)};
         }
     }
 }

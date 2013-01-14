@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 {
+    using System.Collections.Generic;
+
     public class PlayerOnJoinEvent : IEvent
     {
         public PlayerOnJoinEvent(string soldierName, string guid)
         {
-            SoldierName = soldierName;
-            Guid = guid;
+            this.SoldierName = soldierName;
+            this.Guid = guid;
         }
 
         public string SoldierName { get; private set; }
@@ -20,7 +20,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 
         public IEnumerable<string> ToWords()
         {
-            return new List<string> {Event, SoldierName, Guid};
+            return new List<string> {this.Event, this.SoldierName, this.Guid};
         }
     }
 }

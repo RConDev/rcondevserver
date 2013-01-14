@@ -15,7 +15,7 @@
         public abstract string Command { get; }
 
         /// <summary>
-        ///     Generates the words needed to create the <see cref="IPacket" />
+        ///     Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ToWords()

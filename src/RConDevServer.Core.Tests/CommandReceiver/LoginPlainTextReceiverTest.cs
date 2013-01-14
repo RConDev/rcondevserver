@@ -4,6 +4,8 @@ using RConDevServer.Protocol.Dice.Battlefield3;
 
 namespace BF3DevServer.Core.Tests.CommandReceiver
 {
+    using RConDevServer.Protocol.Dice.Common;
+
     [TestFixture]
     public class LoginPlainTextReceiverTest : ServerInstanceTestBase
     {

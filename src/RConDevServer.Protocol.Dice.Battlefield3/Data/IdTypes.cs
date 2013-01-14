@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System.Collections.Generic;
+
     public class IdTypes : List<IdType>
     {
         #region Direct Access

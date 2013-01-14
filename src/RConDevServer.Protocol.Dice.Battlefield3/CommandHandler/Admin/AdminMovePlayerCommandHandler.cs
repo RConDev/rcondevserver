@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using System;
+    using System.Linq;
     using Command;
+    using Common;
+    using Data;
 
     public class AdminMovePlayerCommandHandler : CommandHandlerBase
     {
-        public override string Command { get { return Constants.COMMAND_ADMIN_MOVE_PLAYER; } }
+        public override string Command
+        {
+            get { return Constants.COMMAND_ADMIN_MOVE_PLAYER; }
+        }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.Words.Count != 5)
             {
@@ -23,7 +26,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
             {
                 return this.ResponseInvalidPlayerName(responsePacket);
             }
-            var player = session.Server.PlayerList.Players.FirstOrDefault(x => x.Name == playerName);
+            PlayerInfo player = session.Server.PlayerList.Players.FirstOrDefault(x => x.Name == playerName);
 
             var teamIdString = requestPacket.Words[2];
             int teamId;

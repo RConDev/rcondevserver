@@ -1,46 +1,37 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using Data;
+
     public class BanListViewModel : ViewModelBase
     {
-        public BanList BanList { get; private set; }
-        
-        public IdTypes IdTypes { get; private set; }
-        
-        public BanTypes BanTypes { get; private set; }
-
-        public ObservableCollection<BanListItemViewModel> BanListItems { get; private set; }
-
         public BanListViewModel(BanList banList, IdTypes idTypes, BanTypes banTypes, Action<Action> synchronousInvoker)
             : base(synchronousInvoker)
         {
-            BanList = banList;
-            IdTypes = idTypes;
-            BanTypes = banTypes;
+            this.BanList = banList;
+            this.IdTypes = idTypes;
+            this.BanTypes = banTypes;
             this.BanListItems =
                 new ObservableCollection<BanListItemViewModel>(
-                    BanList.Select(x => new BanListItemViewModel(x, synchronousInvoker)));
-            this.BanListItems.CollectionChanged += BanListItemsOnCollectionChanged;
+                    this.BanList.Select(x => new BanListItemViewModel(x, synchronousInvoker)));
+            this.BanListItems.CollectionChanged += this.BanListItemsOnCollectionChanged;
         }
 
         #region Event Handler
 
         private void BanListItemsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs eventArgs)
         {
-            switch(eventArgs.Action)
+            switch (eventArgs.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    BaseAddItems(eventArgs);
+                    this.BaseAddItems(eventArgs);
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    BaseRemoveItems(eventArgs);
+                    this.BaseRemoveItems(eventArgs);
                     break;
             }
             this.InvokePropertyChanged(null);
@@ -68,5 +59,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         #endregion
 
+        public BanList BanList { get; private set; }
+
+        public IdTypes IdTypes { get; private set; }
+
+        public BanTypes BanTypes { get; private set; }
+
+        public ObservableCollection<BanListItemViewModel> BanListItems { get; private set; }
     }
 }

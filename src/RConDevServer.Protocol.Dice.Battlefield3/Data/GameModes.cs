@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class GameModes : List<GameMode>
     {
-        
-
         public GameModes()
         {
         }
 
-        public GameModes(IEnumerable<GameMode> modes )
+        public GameModes(IEnumerable<GameMode> modes)
         {
             this.AddRange(modes);
         }

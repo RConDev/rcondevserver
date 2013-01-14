@@ -7,6 +7,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
     public class MapListDataFile : IMapListDataFile
     {
+        public MapListDataFile(IDataFile dataFile, IMapRepository mapRepository, IGameModeRepository gameModeRepository)
+        {
+            this.DataFile = dataFile;
+            this.MapRepository = mapRepository;
+            this.GameModeRepository = gameModeRepository;
+        }
+
         public IDataFile DataFile { get; private set; }
 
         public IMapRepository MapRepository { get; set; }
@@ -15,23 +22,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
         public IMapRepository Repository { get; private set; }
 
-        public MapListDataFile(IDataFile dataFile, IMapRepository mapRepository, IGameModeRepository gameModeRepository)
-        {
-            this.DataFile = dataFile;
-            MapRepository = mapRepository;
-            GameModeRepository = gameModeRepository;
-        }
-
         public void Add(MapListItem item)
         {
-            var storeItem = item.ToMapListStoreItem();
+            MapListStoreItem storeItem = item.ToMapListStoreItem();
             this.DataFile.AppendLine(storeItem.ToDataString());
         }
 
         public IList<MapListItem> GetAll()
         {
-            var lines = this.DataFile.GetAllLines();
-            var storeItems = lines.Select(MapListStoreItem.FromDataString).ToList();
+            IEnumerable<string> lines = this.DataFile.GetAllLines();
+            List<MapListStoreItem> storeItems = lines.Select(MapListStoreItem.FromDataString).ToList();
             return storeItems.Select(x => new MapListItem
                 {
                     Map = this.MapRepository.FindByCode(x.MapCode),

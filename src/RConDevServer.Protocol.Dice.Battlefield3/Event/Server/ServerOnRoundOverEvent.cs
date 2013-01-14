@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 {
+    using System;
+    using System.Collections.Generic;
+
     public class ServerOnRoundOverEvent : IEvent
     {
         public ServerOnRoundOverEvent(int winningTeam)
         {
-            WinningTeam = winningTeam;
+            this.WinningTeam = winningTeam;
         }
 
         public int WinningTeam { get; set; }
@@ -19,7 +19,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 
         public IEnumerable<string> ToWords()
         {
-            return new[] {Event, Convert.ToString(WinningTeam)};
+            return new[] {this.Event, Convert.ToString(this.WinningTeam)};
         }
     }
 }

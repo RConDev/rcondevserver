@@ -9,7 +9,7 @@
     public class LoginHashedCommandFactory : CommandFactoryBase<LoginHashedCommand>
     {
         /// <summary>
-        ///     creates a command from the DICE <see cref="Packet" /> words
+        ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>

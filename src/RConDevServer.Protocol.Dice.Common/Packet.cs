@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
- 
-using RConDevServer.Protocol.Dice.Battlefield3.Ui.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3
+namespace RConDevServer.Protocol.Dice.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Packet : IPacket
     {
         private PacketOrigin packetOrigin;
@@ -39,7 +37,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         /// </summary>
         public uint WordCount
         {
-            get { return Convert.ToUInt32(Words.Count); }
+            get { return Convert.ToUInt32(this.Words.Count); }
         }
 
         /// <summary>
@@ -57,7 +55,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         {
             get
             {
-                return Origin == PacketOrigin.Server && IsResponse;
+                return this.Origin == PacketOrigin.Server && this.IsResponse;
             }
         }
 
@@ -68,7 +66,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public string WordsString
         {
-            get { return Words.DisplayWords(); }
+            get { return this.Words.DisplayWords(); }
         }
 
         #endregion
@@ -77,7 +75,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public Packet()
         {
-            Words = new List<string>();
+            this.Words = new List<string>();
         }
 
         public Packet(PacketOrigin origin, bool isResponse, uint sequenceId, IEnumerable<string> words)
@@ -102,28 +100,28 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != typeof(Packet)) return false;
-            return Equals((Packet)obj);
+            return this.Equals((Packet)obj);
         }
 
         public bool Equals(Packet other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.SequenceId.Equals(SequenceId)
-                && Equals(other.Origin, Origin)
-                && other.IsResponse.Equals(IsResponse)
-                && Words.SequenceEqual(other.Words);
+            return other.SequenceId.Equals(this.SequenceId)
+                && Equals(other.Origin, this.Origin)
+                && other.IsResponse.Equals(this.IsResponse)
+                && this.Words.SequenceEqual(other.Words);
         }
 
         public override int GetHashCode()
         {
             unchecked
             {
-                int result = (SequenceId.HasValue ? SequenceId.Value.GetHashCode() : 0);
-                result = (result * 397) ^ Origin.GetHashCode();
-                result = (result * 397) ^ IsResponse.GetHashCode();
-                result = (result * 397) ^ PacketSize.GetHashCode();
-                result = (result * 397) ^ (Words != null ? Words.GetHashCode() : 0);
+                int result = (this.SequenceId.HasValue ? this.SequenceId.Value.GetHashCode() : 0);
+                result = (result * 397) ^ this.Origin.GetHashCode();
+                result = (result * 397) ^ this.IsResponse.GetHashCode();
+                result = (result * 397) ^ this.PacketSize.GetHashCode();
+                result = (result * 397) ^ (this.Words != null ? this.Words.GetHashCode() : 0);
                 return result;
             }
         }

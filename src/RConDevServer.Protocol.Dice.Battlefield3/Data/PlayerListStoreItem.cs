@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
     public class PlayerListStoreItem
     {

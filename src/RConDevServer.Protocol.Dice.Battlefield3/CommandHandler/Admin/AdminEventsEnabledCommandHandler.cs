@@ -2,6 +2,7 @@
 {
     using Command;
     using CommandFactory.Admin;
+    using Common;
 
     public class AdminEventsEnabledCommandHandler : CommandHandlerBase
     {

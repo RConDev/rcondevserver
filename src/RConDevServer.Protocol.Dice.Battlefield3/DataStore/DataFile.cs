@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Collections.Generic;
+    using System.IO;
+
     /// <summary>
-    /// A <see cref="DataFile"/> serves as a data store for several data items of a type.
-    /// The data store is persissted in a file
+    ///     A <see cref="DataFile" /> serves as a data store for several data items of a type.
+    ///     The data store is persissted in a file
     /// </summary>
     public class DataFile : IDataFile
     {
         /// <summary>
-        /// name of the file incl. path
-        /// </summary>
-        public string FileName { get; private set; }
-
-        /// <summary>
-        /// creates a new <see cref="DataFile"/> instance
+        ///     creates a new <see cref="DataFile" /> instance
         /// </summary>
         /// <param name="fileName">filename</param>
         public DataFile(string fileName)
@@ -27,12 +19,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
         }
 
         /// <summary>
-        /// appends a line to the data file
+        ///     name of the file incl. path
+        /// </summary>
+        public string FileName { get; private set; }
+
+        /// <summary>
+        ///     appends a line to the data file
         /// </summary>
         /// <param name="dataString">Datenzeile</param>
         public void AppendLine(string dataString)
         {
-            using (var fileStream = new FileStream(FileName, FileMode.Append))
+            using (var fileStream = new FileStream(this.FileName, FileMode.Append))
             {
                 using (var writer = new StreamWriter(fileStream))
                 {
@@ -42,7 +39,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
         }
 
         /// <summary>
-        /// gets all lines from the datafile
+        ///     gets all lines from the datafile
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> GetAllLines()
@@ -66,9 +63,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
         public void Clear()
         {
-            if (File.Exists(FileName))
+            if (File.Exists(this.FileName))
             {
-                File.Delete(FileName);
+                File.Delete(this.FileName);
             }
         }
     }

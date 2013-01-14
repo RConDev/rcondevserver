@@ -4,7 +4,7 @@
     {
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_MINI_MAP_SPOTTING; }
+            get { return Constants.COMMAND_VARS_MINI_MAP_SPOTTING; }
         }
     }
 }

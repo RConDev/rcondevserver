@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using RConDevServer.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using RConDevServer.Util;
+
     public class MapList : IUpdatable
     {
         private const int MaxNumListItems = 100;
@@ -14,7 +14,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         #region Public Properties
 
-        public IList<MapListItem> Items { get { return this.items; } } 
+        public IList<MapListItem> Items
+        {
+            get { return this.items; }
+        }
 
         public int CurrentIndex { get; set; }
 
@@ -34,7 +37,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public int Count
         {
-            get { return items.Count; }
+            get { return this.items.Count; }
         }
 
         #endregion
@@ -46,7 +49,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
             this.CurrentIndex = 0;
             this.NextIndex = 0;
             this.CurrentRound = 1;
-            this.CurrentItem = items.Count > 0 ? this.items[0] : null;
+            this.CurrentItem = this.items.Count > 0 ? this.items[0] : null;
         }
 
         #endregion
@@ -54,61 +57,61 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         #region Public Methods
 
         /// <summary>
-        /// Adds an item to the MapList
+        ///     Adds an item to the MapList
         /// </summary>
         /// <param name="mapListItem"></param>
         public void Add(MapListItem mapListItem)
         {
-            items.Add(mapListItem);
-            InvokeUpdated();
+            this.items.Add(mapListItem);
+            this.InvokeUpdated();
         }
 
         /// <summary>
-        /// Inserts an item at defined index
+        ///     Inserts an item at defined index
         /// </summary>
         /// <param name="index"></param>
         /// <param name="mapListItem"></param>
         public void Insert(int index, MapListItem mapListItem)
         {
-            items.Insert(index, mapListItem);
-            InvokeUpdated();
+            this.items.Insert(index, mapListItem);
+            this.InvokeUpdated();
         }
 
         /// <summary>
-        /// Clears the map list
+        ///     Clears the map list
         /// </summary>
         public void Clear()
         {
-            items.Clear();
-            InvokeUpdated();
+            this.items.Clear();
+            this.InvokeUpdated();
         }
 
         /// <summary>
-        /// removes an item at the index
+        ///     removes an item at the index
         /// </summary>
         /// <param name="index"></param>
         public void RemoveAt(int index)
         {
-            items.RemoveAt(index);
-            InvokeUpdated();
+            this.items.RemoveAt(index);
+            this.InvokeUpdated();
         }
 
-        /// <summary> 
-        /// Converts the whole maplist into words
+        /// <summary>
+        ///     Converts the whole maplist into words
         /// </summary>
         /// <returns></returns>
         public IList<string> ToWords(int startIndex = 0)
         {
-            var itemsToList = items.Skip(startIndex).Take(MaxNumListItems).ToList();
+            List<MapListItem> itemsToList = this.items.Skip(startIndex).Take(MaxNumListItems).ToList();
             var words = new List<string>
-                            {
-                                Convert.ToString(itemsToList.Count),
-                                Convert.ToString(MapListItem.PROPERTIES_COUNT)
-                            };
+                {
+                    Convert.ToString(itemsToList.Count),
+                    Convert.ToString(MapListItem.PROPERTIES_COUNT)
+                };
 
             if (itemsToList.Count > 0)
             {
-                foreach (var mapListItem in itemsToList)
+                foreach (MapListItem mapListItem in itemsToList)
                 {
                     words.Add(mapListItem.Map.Code);
                     words.Add(mapListItem.Mode.Code);
@@ -121,18 +124,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public void NextMap()
         {
-            this.CurrentIndex = (CurrentIndex + 1) >= items.Count ? 0 : CurrentIndex + 1;
-            this.CurrentItem = this.items[CurrentIndex];
+            this.CurrentIndex = (this.CurrentIndex + 1) >= this.items.Count ? 0 : this.CurrentIndex + 1;
+            this.CurrentItem = this.items[this.CurrentIndex];
             this.CurrentRound = 1;
             this.InvokeUpdated();
         }
 
         public void NextRound()
         {
-            if (CurrentRound == CurrentItem.Rounds)
+            if (this.CurrentRound == this.CurrentItem.Rounds)
             {
                 // switch to the next map
-                NextMap();
+                this.NextMap();
             }
             else
             {
@@ -141,15 +144,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         }
 
         /// <summary>
-        /// removes an existing <see cref="MapListItem"/> from the <see cref="MapList"/>
+        ///     removes an existing <see cref="MapListItem" /> from the <see cref="MapList" />
         /// </summary>
         /// <param name="item"></param>
         public void Remove(MapListItem item)
         {
-            if (items.Contains(item))
+            if (this.items.Contains(item))
             {
-                items.Remove(item);
-                InvokeUpdated();
+                this.items.Remove(item);
+                this.InvokeUpdated();
             }
         }
 
@@ -159,8 +162,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         private void InvokeUpdated()
         {
-            if (this.Updated == null) return;
-            Updated.InvokeAll(this, new EventArgs());
+            if (this.Updated == null)
+            {
+                return;
+            }
+            this.Updated.InvokeAll(this, new EventArgs());
         }
     }
 }

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Punkbuster
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Punkbuster
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+
     public class PunkbusterOnMessageEventSender : EventSenderBase
     {
         public string Message { get; set; }
@@ -14,15 +15,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Punkbuster
 
         public override Packet EventPacket
         {
-            get { return new Packet(PacketOrigin.Server, false, 0, new List<string>{EventCommand, Message}); }
+            get { return new Packet(PacketOrigin.Server, false, 0, new List<string> {this.EventCommand, this.Message}); }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToList();
+            List<string> parameters = commandParameterList.ToList();
             if (parameters.Count == 1)
             {
-                Message = parameters[0];
+                this.Message = parameters[0];
                 return true;
             }
             return false;

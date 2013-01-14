@@ -1,9 +1,8 @@
-﻿
-using RConDevServer.Protocol.Dice.Battlefield3.Event;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Common;
+    using Data;
 
     public class MapListSaveCommandHandler : CommandHandlerBase
     {
@@ -12,7 +11,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_SAVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.Words.Count != 1)
             {
@@ -21,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             }
 
             session.Server.MapListStore.Clear();
-            foreach(var mapListItem in session.Server.MapList.Items)
+            foreach (MapListItem mapListItem in session.Server.MapList.Items)
             {
                 session.Server.MapListStore.Add(mapListItem);
             }

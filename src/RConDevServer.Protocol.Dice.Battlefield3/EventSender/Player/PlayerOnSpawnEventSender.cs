@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
- 
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+
     public class PlayerOnSpawnEventSender : EventSenderBase
     {
         public string SoldierName { get; set; }
@@ -20,13 +20,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
         {
             get
             {
-                return new Packet(PacketOrigin.Server, false, 0, new List<string> {EventCommand, SoldierName, Convert.ToString(TeamId)});
+                return new Packet(PacketOrigin.Server, false, 0,
+                                  new List<string> {this.EventCommand, this.SoldierName, Convert.ToString(this.TeamId)});
             }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToList();
+            List<string> parameters = commandParameterList.ToList();
             if (parameters.Count == 2)
             {
                 this.SoldierName = parameters[0];

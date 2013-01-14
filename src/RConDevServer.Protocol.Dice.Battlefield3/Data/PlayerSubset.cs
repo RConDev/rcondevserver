@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class PlayerSubset
@@ -20,7 +19,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         public IList<string> ToWords()
         {
             var words = new List<string>();
-            switch (Type)
+            switch (this.Type)
             {
                 case PlayerSubsetType.All:
                     words.Add("all");
@@ -28,18 +27,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
                 case PlayerSubsetType.Team:
                     words.Add("team");
-                    words.Add(Convert.ToString(TeamId));
+                    words.Add(Convert.ToString(this.TeamId));
                     break;
 
                 case PlayerSubsetType.Squad:
                     words.Add("squad");
-                    words.Add(Convert.ToString(TeamId));
-                    words.Add(Convert.ToString(SquadId));
+                    words.Add(Convert.ToString(this.TeamId));
+                    words.Add(Convert.ToString(this.SquadId));
                     break;
 
                 case PlayerSubsetType.Player:
                     words.Add("player");
-                    words.Add(PlayerName);
+                    words.Add(this.PlayerName);
                     break;
             }
             return words;
@@ -51,7 +50,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public static PlayerSubset FromWords(IEnumerable<string> subsetWords)
         {
-            var words = subsetWords.ToList();
+            List<string> words = subsetWords.ToList();
             var playerSubset = new PlayerSubset();
             if (words.Count == 1 && words[0] == "all")
             {

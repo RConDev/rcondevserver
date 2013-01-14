@@ -1,4 +1,4 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3
+namespace RConDevServer.Protocol.Dice.Common
 {
     /// <summary>
     /// Enum for the different origins for a rcon packet

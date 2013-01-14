@@ -1,8 +1,8 @@
 namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
     /// <summary>
-    /// This class represents the type IpPortPair from the RCon protocol of
-    /// Battlefield 3
+    ///     This class represents the type IpPortPair from the RCon protocol of
+    ///     Battlefield 3
     /// </summary>
     public class IpPortPair
     {

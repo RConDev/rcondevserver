@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 {
+    using System.Collections.Generic;
+    using Data;
+
     /// <summary>
     ///     The <see cref="PlayerOnChatEvent" /> is send, after a "a"
     /// </summary>
@@ -16,9 +16,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
         /// <param name="receivers"></param>
         public PlayerOnChatEvent(string senderName, string message, PlayerSubset receivers)
         {
-            Receivers = receivers;
-            Message = message;
-            SenderName = senderName;
+            this.Receivers = receivers;
+            this.Message = message;
+            this.SenderName = senderName;
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            var words = new List<string> {Event, SenderName, Message};
-            words.AddRange(Receivers.ToWords());
+            var words = new List<string> {this.Event, this.SenderName, this.Message};
+            words.AddRange(this.Receivers.ToWords());
             return words;
         }
 

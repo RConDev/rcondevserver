@@ -3,17 +3,17 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// This interface describes an event which can be send to a connected client
+    ///     This interface describes an event which can be send to a connected client
     /// </summary>
     public interface IEvent
     {
         /// <summary>
-        /// Returns the event name
+        ///     Returns the event name
         /// </summary>
         string Event { get; }
 
         /// <summary>
-        /// Creates a words representation for sending a packet to the client
+        ///     Creates a words representation for sending a packet to the client
         /// </summary>
         /// <returns></returns>
         IEnumerable<string> ToWords();

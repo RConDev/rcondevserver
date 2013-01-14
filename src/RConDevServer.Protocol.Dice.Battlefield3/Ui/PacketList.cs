@@ -1,12 +1,13 @@
-﻿using System.Collections.ObjectModel;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System.Collections.ObjectModel;
+    using Common;
+
     public class PacketList : ObservableCollection<Packet>
     {
         public PacketList(int maxElements = 100)
         {
-            MaxElements = maxElements;
+            this.MaxElements = maxElements;
         }
 
         public int MaxElements { get; private set; }

@@ -20,10 +20,10 @@
 
         public IEnumerable<string> CommandWords()
         {
-            var parts = this.commandString.Split(SplitChar.ToCharArray(),
-                                           StringSplitOptions.RemoveEmptyEntries);
-            
-            return EnsureQuoted(parts);
+            string[] parts = this.commandString.Split(SplitChar.ToCharArray(),
+                                                      StringSplitOptions.RemoveEmptyEntries);
+
+            return this.EnsureQuoted(parts);
         }
 
         private IEnumerable<string> EnsureQuoted(IEnumerable<string> parts)
@@ -33,15 +33,15 @@
                 return parts;
             }
 
-            var partsList = parts.ToList();
+            List<string> partsList = parts.ToList();
             var resultParts = new List<string>();
             var currentPart = new StringBuilder();
-            foreach (var part in partsList)
+            foreach (string part in partsList)
             {
                 if (part.StartsWith(Quote))
                 {
                     currentPart.Append(part.Replace(Quote, string.Empty))
-                        .Append(SplitChar);
+                               .Append(SplitChar);
                 }
                 else if (part.EndsWith(Quote))
                 {
@@ -56,7 +56,7 @@
                 else if (currentPart.Length > 0)
                 {
                     currentPart.Append(part)
-                        .Append(SplitChar);
+                               .Append(SplitChar);
                 }
             }
 

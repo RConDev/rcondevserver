@@ -1,28 +1,28 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System.Collections.Generic;
+
     public class BanTypes : List<BanType>
     {
         #region Direct Access
 
         public static BanType Perm = new BanType
-                                         {
-                                             Code = "perm",
-                                             Display = "Permanent"
-                                         };
+            {
+                Code = "perm",
+                Display = "Permanent"
+            };
 
         public static BanType Rounds = new BanType
-                                           {
-                                               Code = "rounds",
-                                               Display = "Rounds"
-                                           };
+            {
+                Code = "rounds",
+                Display = "Rounds"
+            };
 
         public static BanType Seconds = new BanType
-                                            {
-                                                Code = "seconds",
-                                                Display = "Seconds"
-                                            };
+            {
+                Code = "seconds",
+                Display = "Seconds"
+            };
 
         #endregion
 
@@ -30,12 +30,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public BanTypes()
         {
-            Add(Perm);
-            Add(Rounds);
-            Add(Seconds);
+            this.Add(Perm);
+            this.Add(Rounds);
+            this.Add(Seconds);
         }
 
         #endregion
-
     }
 }

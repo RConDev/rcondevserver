@@ -1,18 +1,19 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
+    using Common;
+
     public class VarsRankedCommandHandler : VarsCommandHandlerBase
     {
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_RANKED; }
+            get { return Constants.COMMAND_VARS_RANKED; }
         }
 
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {
             bool isRanked = session.Server.ServerInfo.IsRanked;
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             responsePacket.Words.Add(Convert.ToString(isRanked));
             return true;
         }
@@ -24,10 +25,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
             if (bool.TryParse(stringValue, out isRanked))
             {
                 session.Server.ServerInfo.IsRanked = isRanked;
-                responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+                responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                 return true;
             }
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_INVALID_ARGUMENTS);
+            responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
             return true;
         }
     }

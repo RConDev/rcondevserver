@@ -6,12 +6,12 @@
     {
         public AdminCommandHandlers(IServiceLocator serviceLocator)
         {
-            RegisterCommandHandler(new AdminHelpCommandHandler());
-            RegisterCommandHandler(new AdminEventsEnabledCommandHandler());
-            RegisterCommandHandler(new AdminListPlayersCommandHandler());
-            RegisterCommandHandler(new AdminSayCommandHandler());
-            RegisterCommandHandler(new AdminYellCommandHandler());
-            RegisterCommandHandler(new AdminKickPlayerCommandHandler(serviceLocator));
+            this.RegisterCommandHandler(new AdminHelpCommandHandler());
+            this.RegisterCommandHandler(new AdminEventsEnabledCommandHandler());
+            this.RegisterCommandHandler(new AdminListPlayersCommandHandler());
+            this.RegisterCommandHandler(new AdminSayCommandHandler());
+            this.RegisterCommandHandler(new AdminYellCommandHandler());
+            this.RegisterCommandHandler(new AdminKickPlayerCommandHandler(serviceLocator));
             this.RegisterCommandHandler(new AdminEffectiveMaxPlayers());
             this.RegisterCommandHandler(new AdminMovePlayerCommandHandler());
         }

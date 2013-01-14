@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 {
+    using System;
+    using System.Collections.Generic;
+
     public class PlayerOnKillEvent : IEvent
     {
         public PlayerOnKillEvent(string soldierName, string killedSoldier, string weapon, bool isHeadshot)
         {
-            SoldierName = soldierName;
-            KilledSoldier = killedSoldier;
-            Weapon = weapon;
-            IsHeadshot = isHeadshot;
+            this.SoldierName = soldierName;
+            this.KilledSoldier = killedSoldier;
+            this.Weapon = weapon;
+            this.IsHeadshot = isHeadshot;
         }
 
         public string SoldierName { get; private set; }
@@ -28,7 +28,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 
         public IEnumerable<string> ToWords()
         {
-            return new[] {Event, SoldierName, KilledSoldier, Weapon, Convert.ToString(IsHeadshot)};
+            return new[]
+                {this.Event, this.SoldierName, this.KilledSoldier, this.Weapon, Convert.ToString(this.IsHeadshot)};
         }
     }
 }

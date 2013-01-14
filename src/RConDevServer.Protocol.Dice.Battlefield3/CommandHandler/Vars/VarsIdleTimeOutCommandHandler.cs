@@ -1,22 +1,23 @@
-﻿using System;
-using RConDevServer.Protocol.Dice.Battlefield3.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
+    using Common;
+    using Util;
+
     public class VarsIdleTimeOutCommandHandler : VarsCommandHandlerBase
     {
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_IDLE_TIMEOUT; }
+            get { return Constants.COMMAND_VARS_IDLE_TIMEOUT; }
         }
 
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {
             var response = new[]
-                               {
-                                   RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS,
-                                   Convert.ToString(session.Server.Vars[Command])
-                               };
+                {
+                    Constants.RESPONSE_SUCCESS,
+                    Convert.ToString(session.Server.Vars[this.Command])
+                };
             StringListExtensions.AddRange(responsePacket.Words, response);
             return true;
         }

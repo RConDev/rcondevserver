@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.Windows.Forms;
+    using Ui;
     using Util;
 
     public partial class ConsoleControl : UserControl
@@ -13,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         public ConsoleControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         #endregion
@@ -22,14 +22,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         public ServerViewModel DataContext
         {
-            get { return dataContext; }
+            get { return this.dataContext; }
             set
             {
-                dataContext = value;
-                if (dataContext != null)
+                this.dataContext = value;
+                if (this.dataContext != null)
                 {
-                    dbsServer.DataSource = dataContext;
-                    dbsServer.ResetBindings(false);
+                    this.dbsServer.DataSource = this.dataContext;
+                    this.dbsServer.ResetBindings(false);
                 }
             }
         }
@@ -53,10 +53,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                             MessageBoxIcon.Information);
         }
 
-        private void MitCloseSessionClick(object sender, System.EventArgs e)
+        private void MitCloseSessionClick(object sender, EventArgs e)
         {
-            var isDeleteResult = MessageBox.Show("Do you really want to close the selected session?", "Are you sure?",
-                                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult isDeleteResult = MessageBox.Show("Do you really want to close the selected session?",
+                                                          "Are you sure?",
+                                                          MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (isDeleteResult == DialogResult.Yes)
             {
                 var currentSession = this.dbsSessions.Current as SessionViewModel;
@@ -69,7 +70,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         private void DgwPacketsRowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            dgwPackets.FirstDisplayedScrollingRowIndex = dgwPackets.RowCount - 1;
+            this.dgwPackets.FirstDisplayedScrollingRowIndex = this.dgwPackets.RowCount - 1;
         }
 
         #endregion

@@ -1,9 +1,10 @@
-﻿using System;
-using RConDevServer.Protocol.Dice.Battlefield3.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
+    using System;
     using Command;
+    using Common;
+    using Data;
+    using Util;
 
     public class BanListListCommandHandler : CommandHandlerBase
     {
@@ -12,12 +13,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
             get { return Constants.COMMAND_BAN_LIST_LIST; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            var banList = session.Server.BanList;
+            BanList banList = session.Server.BanList;
 
-            if (requestPacket.Words.Count == 2 
-                && !string.IsNullOrEmpty(requestPacket.Words[1]) )
+            if (requestPacket.Words.Count == 2
+                && !string.IsNullOrEmpty(requestPacket.Words[1]))
             {
                 var index = Convert.ToInt32(requestPacket.Words[1]);
                 responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);

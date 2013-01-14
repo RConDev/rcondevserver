@@ -1,33 +1,36 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Data;
+    using Ui;
+
     public partial class PlayerListControl : UserControl
     {
         private PlayersViewModel dataContext;
 
         public PlayerListControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         #region Pubic Properties
 
         public PlayersViewModel DataContext
         {
-            get { return dataContext; }
+            get { return this.dataContext; }
             set
             {
-                dataContext = value;
-                if (dataContext == null) return;
+                this.dataContext = value;
+                if (this.dataContext == null)
+                {
+                    return;
+                }
 
-                dbsPlayers.DataSource = dataContext.Players;
-                dbsNewPlayer.DataSource = dataContext.NewPlayerInfo;
-                dbsPlayers.ResetBindings(false);
+                this.dbsPlayers.DataSource = this.dataContext.Players;
+                this.dbsNewPlayer.DataSource = this.dataContext.NewPlayerInfo;
+                this.dbsPlayers.ResetBindings(false);
 
                 this.dataContext.Initialize();
                 this.dbsPlayerListStore.DataSource = this.dataContext.PlayerListStore;
@@ -59,27 +62,30 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         private void BtnAddClick(object sender, EventArgs e)
         {
             if (!this.AreFieldsValid())
+            {
                 return;
+            }
 
             this.errProvider.Clear();
-            dataContext.Players.Add(dataContext.NewPlayerInfo);
-            dbsPlayers.ResetBindings(false);
-            dataContext.NewPlayerInfo = new PlayerInfo();
-            dbsNewPlayer.DataSource = dataContext.NewPlayerInfo;
+            this.dataContext.Players.Add(this.dataContext.NewPlayerInfo);
+            this.dbsPlayers.ResetBindings(false);
+            this.dataContext.NewPlayerInfo = new PlayerInfo();
+            this.dbsNewPlayer.DataSource = this.dataContext.NewPlayerInfo;
             this.dbsPlayers.ResetBindings(false);
         }
 
         private bool AreFieldsValid()
         {
-            var playerName = dataContext.NewPlayerInfo.Name;
-            var teamId = dataContext.NewPlayerInfo.TeamId;
-            var squadId = dataContext.NewPlayerInfo.SquadId;
-            var kills = dataContext.NewPlayerInfo.Kills;
-            var deaths = dataContext.NewPlayerInfo.Deaths;
-            var score = dataContext.NewPlayerInfo.Score;
-            var isValid = true;
+            string playerName = this.dataContext.NewPlayerInfo.Name;
+            int teamId = this.dataContext.NewPlayerInfo.TeamId;
+            int squadId = this.dataContext.NewPlayerInfo.SquadId;
+            int kills = this.dataContext.NewPlayerInfo.Kills;
+            int deaths = this.dataContext.NewPlayerInfo.Deaths;
+            int score = this.dataContext.NewPlayerInfo.Score;
+            bool isValid = true;
 
             #region Name
+
             if (string.IsNullOrEmpty(playerName))
             {
                 this.errProvider.SetError(this.nameTextBox, "Value may not be null or empty");
@@ -90,6 +96,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 this.errProvider.SetError(this.nameTextBox, "PlayerInfo allready exists");
                 isValid = false;
             }
+
             #endregion
 
             #region TeamID
@@ -147,7 +154,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         private void btnSavePlayerList_Click(object sender, EventArgs e)
         {
-            var listName = this.tbxNewSavedPlayerList.Text;
+            string listName = this.tbxNewSavedPlayerList.Text;
             if (string.IsNullOrEmpty(listName))
             {
                 MessageBox.Show("A list cannot be saved without a unique name.");
@@ -157,8 +164,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             bool overrideExisting = false;
             if (this.dataContext.PlayerListStore.Any(x => x.Label == listName))
             {
-                var dialogResult = MessageBox.Show("The List already exists. Override it?", "",
-                                                   MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show("The List already exists. Override it?", "",
+                                                            MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Cancel)
                 {
                     return;
@@ -183,7 +190,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 this.dbsPlayers.ResetBindings(false);
             }
         }
-
 
         #endregion
     }

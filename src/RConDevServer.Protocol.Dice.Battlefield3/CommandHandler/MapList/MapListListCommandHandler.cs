@@ -1,8 +1,8 @@
-﻿using RConDevServer.Protocol.Dice.Battlefield3.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Common;
+    using Util;
 
     public class MapListListCommandHandler : CommandHandlerBase
     {
@@ -13,9 +13,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_LIST; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            var startIndex = 0;
+            int startIndex = 0;
             if (requestPacket.Words.Count == 2)
             {
                 if (!int.TryParse(requestPacket.Words[1], out startIndex))

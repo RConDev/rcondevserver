@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Event;
-using RConDevServer.Protocol.Dice.Battlefield3.Event.Player;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+    using Event;
+    using Event.Player;
+
     public class PlayerOnAuthenticatedEventSender : EventSenderBase
     {
         private IEvent _event;
@@ -18,21 +19,21 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
         {
             get
             {
-                if (_event == null)
+                if (this._event == null)
                 {
                     return null;
                 }
 
-                return new Packet(PacketOrigin.Server, false, 0, _event.ToWords());
+                return new Packet(PacketOrigin.Server, false, 0, this._event.ToWords());
             }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToArray();
+            string[] parameters = commandParameterList.ToArray();
             if (parameters.Length == 1)
             {
-                _event = new PlayerOnAuthenticatedEvent(parameters[0]);
+                this._event = new PlayerOnAuthenticatedEvent(parameters[0]);
                 return true;
             }
             return false;

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+
     public class PlayerOnJoinEventSender : EventSenderBase
     {
         public string SoldierName { get; private set; }
@@ -16,12 +17,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 
         public override Packet EventPacket
         {
-            get { return new Packet(PacketOrigin.Server, false, 0, new List<string>() {EventCommand, SoldierName, Guid}); }
+            get
+            {
+                return new Packet(PacketOrigin.Server, false, 0,
+                                  new List<string> {this.EventCommand, this.SoldierName, this.Guid});
+            }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToList();
+            List<string> parameters = commandParameterList.ToList();
             if (parameters.Count == 2)
             {
                 this.SoldierName = parameters[0];

@@ -71,6 +71,10 @@
       <Project>{25F85AC2-D6E2-48A2-B889-1582F9508E46}</Project>
       <Name>RConDevServer.Protocol.Dice.Battlefield3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RConDevServer.Protocol.Dice.Common\RConDevServer.Protocol.Dice.Common.csproj">
+      <Project>{BB8606D4-DADF-4031-901F-D0991B8FE418}</Project>
+      <Name>RConDevServer.Protocol.Dice.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

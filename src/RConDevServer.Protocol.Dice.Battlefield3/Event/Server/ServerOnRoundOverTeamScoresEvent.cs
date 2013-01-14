@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 {
+    using System.Collections.Generic;
+    using Data;
+
     public class ServerOnRoundOverTeamScoresEvent : IEvent
     {
         public ServerOnRoundOverTeamScoresEvent(TeamScores teamScores)
         {
-            TeamScores = teamScores;
+            this.TeamScores = teamScores;
         }
 
         public TeamScores TeamScores { get; private set; }
@@ -21,9 +21,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
         {
             var words = new List<string>
                 {
-                    Event
+                    this.Event
                 };
-            words.AddRange(TeamScores.ToWords());
+            words.AddRange(this.TeamScores.ToWords());
             return words;
         }
     }

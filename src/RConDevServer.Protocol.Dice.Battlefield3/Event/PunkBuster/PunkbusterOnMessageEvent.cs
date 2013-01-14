@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.PunkBuster
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.PunkBuster
 {
+    using System.Collections.Generic;
+
     public class PunkBusterOnMessageEvent : IEvent
     {
         public PunkBusterOnMessageEvent(string message)
         {
-            Message = message;
+            this.Message = message;
         }
 
         public string Message { get; private set; }
@@ -18,7 +18,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.PunkBuster
 
         public IEnumerable<string> ToWords()
         {
-            return new[] {Event, Message};
+            return new[] {this.Event, this.Message};
         }
     }
 }

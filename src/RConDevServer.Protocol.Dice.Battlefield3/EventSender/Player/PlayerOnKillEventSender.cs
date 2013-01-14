@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
- 
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+
     public class PlayerOnKillEventSender : EventSenderBase
     {
         public string KillingSoldierName { get; set; }
@@ -25,25 +25,25 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender.Player
             get
             {
                 return new Packet(PacketOrigin.Server, false, 0, new List<string>
-                                                                     {
-                                                                         EventCommand,
-                                                                         KillingSoldierName,
-                                                                         KilledSoldierName,
-                                                                         Weapon,
-                                                                         Convert.ToString(IsHeadShot)
-                                                                     });
+                    {
+                        this.EventCommand,
+                        this.KillingSoldierName,
+                        this.KilledSoldierName,
+                        this.Weapon,
+                        Convert.ToString(this.IsHeadShot)
+                    });
             }
         }
 
         public override bool SetParameters(IEnumerable<string> commandParameterList)
         {
-            var parameters = commandParameterList.ToList();
+            List<string> parameters = commandParameterList.ToList();
             if (parameters.Count == 4)
             {
-                KillingSoldierName = parameters[0];
-                KilledSoldierName = parameters[1];
-                Weapon = parameters[2];
-                IsHeadShot = Convert.ToBoolean(parameters[3]);
+                this.KillingSoldierName = parameters[0];
+                this.KilledSoldierName = parameters[1];
+                this.Weapon = parameters[2];
+                this.IsHeadShot = Convert.ToBoolean(parameters[3]);
                 return true;
             }
 

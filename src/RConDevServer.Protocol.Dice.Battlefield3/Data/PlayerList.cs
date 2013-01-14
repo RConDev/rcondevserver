@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
-    /// this class encapsulates the current list of PlayerInfo on the server
+    ///     this class encapsulates the current list of PlayerInfo on the server
     /// </summary>
     public class PlayerList
     {
+        private readonly IList<PlayerInfo> players = new List<PlayerInfo>();
         private readonly object syncRoot = new object();
 
-        private readonly IList<PlayerInfo> players = new List<PlayerInfo>();
-
         /// <summary>
-        /// Creates a new instance of the <see cref="PlayerList"/>
+        ///     Creates a new instance of the <see cref="PlayerList" />
         /// </summary>
         public PlayerList()
         {
@@ -22,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         public PlayerList(IEnumerable<PlayerInfo> initialPlayers)
         {
-            foreach (var initialPlayer in initialPlayers)
+            foreach (PlayerInfo initialPlayer in initialPlayers)
             {
                 this.AddPlayer(initialPlayer);
             }
@@ -31,15 +30,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         #region Public Properties
 
         /// <summary>
-        /// Gets the current set of players on the server
+        ///     Gets the current set of players on the server
         /// </summary>
         public IList<PlayerInfo> Players
         {
             get
             {
-                lock (syncRoot)
+                lock (this.syncRoot)
                 {
-                    return players.ToList();
+                    return this.players.ToList();
                 }
             }
         }
@@ -49,52 +48,54 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         #region Public Methods
 
         /// <summary>
-        /// adds a PlayerInfo to the collection
+        ///     adds a PlayerInfo to the collection
         /// </summary>
         /// <param name="playerInfo"></param>
         public void AddPlayer(PlayerInfo playerInfo)
         {
-            lock (syncRoot)
+            lock (this.syncRoot)
             {
-                players.Add(playerInfo);
+                this.players.Add(playerInfo);
             }
         }
 
         /// <summary>
-        /// Removes a PlayerInfo from the collection
+        ///     Removes a PlayerInfo from the collection
         /// </summary>
         /// <param name="playerInfo"></param>
         public void RemovePlayer(PlayerInfo playerInfo)
         {
-            lock (syncRoot)
+            lock (this.syncRoot)
             {
-                if (players.Contains(playerInfo))
-                    players.Remove(playerInfo);
+                if (this.players.Contains(playerInfo))
+                {
+                    this.players.Remove(playerInfo);
+                }
             }
         }
 
         /// <summary>
-        /// converts the current PlayerInfo collection to the players list words 
-        /// which can be send over the wire to the clients
+        ///     converts the current PlayerInfo collection to the players list words
+        ///     which can be send over the wire to the clients
         /// </summary>
         /// <returns></returns>
         public IList<string> ToWords(bool showGuid = true)
         {
             var playersWords = new List<string>
-                              {
-                                  "7",
-                                  "name",
-                                  "guid",
-                                  "teamId",
-                                  "squadId",
-                                  "kills",
-                                  "deaths",
-                                  "score",
-                              };
-            lock (syncRoot)
+                {
+                    "7",
+                    "name",
+                    "guid",
+                    "teamId",
+                    "squadId",
+                    "kills",
+                    "deaths",
+                    "score",
+                };
+            lock (this.syncRoot)
             {
-                playersWords.Add(Convert.ToString(players.Count));
-                foreach (var player in players)
+                playersWords.Add(Convert.ToString(this.players.Count));
+                foreach (PlayerInfo player in this.players)
                 {
                     playersWords.AddRange(player.ToWords(showGuid));
                 }
@@ -104,7 +105,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 
         #endregion
 
-        public void Clear ()
+        public void Clear()
         {
             this.players.Clear();
         }

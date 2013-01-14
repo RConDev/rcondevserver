@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
+    using Data;
+
     public class ReservedSlotsViewModel : ViewModelBase
     {
         private readonly ReservedSlots slots;
@@ -12,23 +12,22 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         public ReservedSlotsViewModel(ReservedSlots slots, Action<Action> invoker) : base(invoker)
         {
             this.slots = slots;
-            this.slots.Updated += SlotsOnUpdated;
-            ReservedSlots = new ObservableCollection<ReservedSlot>(slots);
-            ReservedSlots.CollectionChanged += PlayersOnCollectionChanged;
+            this.slots.Updated += this.SlotsOnUpdated;
+            this.ReservedSlots = new ObservableCollection<ReservedSlot>(slots);
+            this.ReservedSlots.CollectionChanged += this.PlayersOnCollectionChanged;
         }
 
-        
         #region Public Properties
 
         /// <summary>
-        /// Gets / Sets the Option for aggressive Join of VIP-Players
+        ///     Gets / Sets the Option for aggressive Join of VIP-Players
         /// </summary>
-        public bool IsAggressiveJoin    
+        public bool IsAggressiveJoin
         {
-            get { return slots.IsAggressiveJoin; }
+            get { return this.slots.IsAggressiveJoin; }
             set
             {
-                slots.IsAggressiveJoin = value;
+                this.slots.IsAggressiveJoin = value;
                 this.InvokePropertyChanged("IsAggressiveJoin");
             }
         }
@@ -36,7 +35,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         public ObservableCollection<ReservedSlot> ReservedSlots { get; private set; }
 
         #endregion
-        
+
         #region Event Handler
 
         private void PlayersOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -44,20 +43,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    AddItemToSourceCollection(e);
+                    this.AddItemToSourceCollection(e);
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    RemoveItemFromSourceCollection(e);
+                    this.RemoveItemFromSourceCollection(e);
                     break;
             }
         }
 
         private void SlotsOnUpdated(object sender, EventArgs eventArgs)
         {
-            this.ReservedSlots.CollectionChanged -= PlayersOnCollectionChanged;
+            this.ReservedSlots.CollectionChanged -= this.PlayersOnCollectionChanged;
             this.ReservedSlots = new ObservableCollection<ReservedSlot>(this.slots);
-            this.ReservedSlots.CollectionChanged += PlayersOnCollectionChanged;
+            this.ReservedSlots.CollectionChanged += this.PlayersOnCollectionChanged;
             this.InvokePropertyChanged(null);
         }
 
@@ -72,7 +71,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 var playerName = oldItem as ReservedSlot;
                 if (playerName != null)
                 {
-                    slots.Remove(playerName.PlayerName);
+                    this.slots.Remove(playerName.PlayerName);
                 }
             }
         }
@@ -84,7 +83,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 var playerName = item as ReservedSlot;
                 if (playerName != null)
                 {
-                    slots.Add(playerName.PlayerName);
+                    this.slots.Add(playerName.PlayerName);
                 }
             }
         }

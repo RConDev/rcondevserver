@@ -9,6 +9,7 @@ namespace BF3DevServer.Core.Tests
     using System.Collections.Generic;
     using System.Threading;
     using NUnit.Framework;
+    using RConDevServer.Protocol.Dice.Common;
 
     [TestFixture]
     public class PacketSessionTest

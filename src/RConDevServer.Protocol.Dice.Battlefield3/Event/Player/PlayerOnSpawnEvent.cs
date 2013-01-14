@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 {
+    using System;
+    using System.Collections.Generic;
+
     public class PlayerOnSpawnEvent : IEvent
     {
         public PlayerOnSpawnEvent(string soldierName, int teamId)
         {
-            SoldierName = soldierName;
-            TeamId = teamId;
+            this.SoldierName = soldierName;
+            this.TeamId = teamId;
         }
 
         public string SoldierName { get; private set; }
@@ -22,7 +22,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 
         public IEnumerable<string> ToWords()
         {
-            return new[] {Event, SoldierName, Convert.ToString(TeamId)};
+            return new[] {this.Event, this.SoldierName, Convert.ToString(this.TeamId)};
         }
     }
 }

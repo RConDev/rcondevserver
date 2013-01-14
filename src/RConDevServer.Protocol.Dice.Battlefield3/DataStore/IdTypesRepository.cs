@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using NHibernate;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Collections.Generic;
+    using Data;
+    using Interface;
+    using NHibernate;
+
     public class IdTypesRepository : IIdTypeRepository
     {
-        public IServiceLocator ServiceLocator { get; private set; }
-
         public IdTypesRepository(IServiceLocator serviceLocator)
         {
-            ServiceLocator = serviceLocator;
+            this.ServiceLocator = serviceLocator;
         }
+
+        public IServiceLocator ServiceLocator { get; private set; }
 
         public IEnumerable<IdType> GetAll()
         {
-            var sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
-            using (var session = sessionFactory.OpenSession())
+            ISessionFactory sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
+            using (ISession session = sessionFactory.OpenSession())
             {
                 return session.CreateCriteria<IdType>().List<IdType>();
             }

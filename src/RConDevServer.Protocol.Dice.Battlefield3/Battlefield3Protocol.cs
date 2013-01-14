@@ -1,14 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Controls;
-using RConDevServer.Protocol.Dice.Battlefield3.DataStore;
-using RConDevServer.Protocol.Dice.Battlefield3.Properties;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+    using Controls;
+    using Interface;
+    using Properties;
+    using Ui;
+
     public class Battlefield3Protocol : IRconProtocol
     {
         public Battlefield3Server Bf3Server { get; private set; }

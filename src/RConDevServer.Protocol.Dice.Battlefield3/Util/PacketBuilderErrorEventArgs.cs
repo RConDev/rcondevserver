@@ -4,11 +4,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Util
 
     public class PacketBuilderErrorEventArgs : EventArgs
     {
-        public Exception ExceptionInfo { get; private set; }
-
         public PacketBuilderErrorEventArgs(Exception exception)
         {
             this.ExceptionInfo = exception;
         }
+
+        public Exception ExceptionInfo { get; private set; }
     }
 }

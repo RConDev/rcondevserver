@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
+    using System;
+    using System.Linq;
     using Command;
+    using Common;
+    using Data;
 
     public class MapListAddCommandHandler : CommandHandlerBase
     {
@@ -13,10 +13,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_ADD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             // Check the given map code
-            var map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
+            Map map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
             if (map == null)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_MAP);
@@ -24,7 +25,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             }
 
             // check the given game mode code
-            var gameMode = session.Server.AvailableModes.FirstOrDefault(x => x.Code == requestPacket.Words[2]);
+            GameMode gameMode = session.Server.AvailableModes.FirstOrDefault(x => x.Code == requestPacket.Words[2]);
             if (gameMode == null)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_GAME_MODE_ON_MAP);
@@ -46,14 +47,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
                 return true;
             }
 
-            var mapListItem = new MapListItem()
-                                  {
-                                      Map = map,
-                                      Mode = gameMode,
-                                      Rounds = rounds,
-                                  };
+            var mapListItem = new MapListItem
+                {
+                    Map = map,
+                    Mode = gameMode,
+                    Rounds = rounds,
+                };
 
-            var mapList = session.Server.MapList;
+            MapList mapList = session.Server.MapList;
             if (requestPacket.Words.Count <= 4)
             {
                 mapList.Add(mapListItem);

@@ -1,10 +1,10 @@
-﻿
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
     using Command;
+    using Common;
 
     /// <summary>
-    /// Handles the Command "listPlayers"
+    ///     Handles the Command "listPlayers"
     /// </summary>
     public class ListPlayersCommandHandler : CommandHandlerBase
     {
@@ -12,10 +12,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
 
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_LIST_PLAYERS; }
+            get { return Constants.COMMAND_LIST_PLAYERS; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             // create a default list not regarding the player subset
             foreach (string word in session.Server.PlayerList.ToWords(false))

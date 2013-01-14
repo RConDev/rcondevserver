@@ -1,15 +1,19 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
+    using System;
     using Command;
+    using Common;
     using Util;
 
     public class ReserverdSlotsListAggressiveJoinCommandHandler : CommandHandlerBase
     {
-        public override string Command { get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_AGGRESSIVE_JOIN; } }
+        public override string Command
+        {
+            get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_AGGRESSIVE_JOIN; }
+        }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.WordCount == 2)
             {
@@ -26,8 +30,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             }
             else if (requestPacket.WordCount == 1)
             {
-                var enabled = session.Server.ReservedSlots.IsAggressiveJoin;
-                responsePacket.Words.AddRange(new string[] { Constants.RESPONSE_SUCCESS, Convert.ToString(enabled) });
+                bool enabled = session.Server.ReservedSlots.IsAggressiveJoin;
+                responsePacket.Words.AddRange(new[] {Constants.RESPONSE_SUCCESS, Convert.ToString(enabled)});
                 return true;
             }
             else

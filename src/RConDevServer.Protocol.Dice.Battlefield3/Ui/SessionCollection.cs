@@ -1,14 +1,14 @@
-﻿using System.Collections.ObjectModel;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System.Collections.ObjectModel;
+
     public class SessionCollection : ObservableCollection<SessionViewModel>
     {
         private volatile object syncRoot = new object();
 
         public new void Add(SessionViewModel viewModel)
         {
-            lock (syncRoot)
+            lock (this.syncRoot)
             {
                 base.Add(viewModel);
             }
@@ -16,7 +16,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         public new void Remove(SessionViewModel viewModel)
         {
-            lock(syncRoot)
+            lock (this.syncRoot)
             {
                 base.Remove(viewModel);
             }

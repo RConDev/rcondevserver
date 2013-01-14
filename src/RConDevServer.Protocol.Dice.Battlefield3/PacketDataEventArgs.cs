@@ -1,6 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3
 {
     using System;
+    using Common;
 
     public class PacketDataEventArgs : EventArgs
     {

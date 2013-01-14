@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Collections.Generic;
+    using Data;
+    using Interface;
+    using NHibernate;
+
     public class CountryRepository : ICountryRepository
     {
         public CountryRepository(IServiceLocator serviceLocator)
@@ -18,8 +16,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
         public IEnumerable<Country> GetAll()
         {
-            var sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
-            using (var session = sessionFactory.OpenSession())
+            ISessionFactory sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
+            using (ISession session = sessionFactory.OpenSession())
             {
                 return session.CreateCriteria<Country>().List<Country>();
             }

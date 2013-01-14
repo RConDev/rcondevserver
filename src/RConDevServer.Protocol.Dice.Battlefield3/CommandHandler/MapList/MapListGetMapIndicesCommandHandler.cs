@@ -1,8 +1,9 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
+    using System;
     using Command;
+    using Common;
+    using Data;
 
     public class MapListGetMapIndicesCommandHandler : CommandHandlerBase
     {
@@ -11,11 +12,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_GET_MAP_INDICES; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.Words.Count == 1)
             {
-                var mapList = session.Server.MapList;
+                MapList mapList = session.Server.MapList;
 
                 responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                 responsePacket.Words.Add(Convert.ToString(mapList.CurrentIndex));
@@ -23,7 +25,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             }
             else
             {
-                ResponseInvalidArguments(responsePacket);
+                this.ResponseInvalidArguments(responsePacket);
             }
             return true;
         }

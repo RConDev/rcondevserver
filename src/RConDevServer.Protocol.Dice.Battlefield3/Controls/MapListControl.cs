@@ -1,15 +1,13 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
-    using Remotion.Linq.Collections;
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms;
     using Resource.Properties;
+    using Ui;
 
     /// <summary>
-    /// This control enables the features of editing the map list of the server instance
+    ///     This control enables the features of editing the map list of the server instance
     /// </summary>
     public partial class MapListControl : UserControl
     {
@@ -18,30 +16,30 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets the data context for this control
+        ///     Gets or sets the data context for this control
         /// </summary>
         public MapListViewModel DataContext
         {
-            get { return dataContext; }
+            get { return this.dataContext; }
             set
             {
-                if (dataContext != null)
+                if (this.dataContext != null)
                 {
-                    dataContext.PropertyChanged -= DataContextOnPropertyChanged;
+                    this.dataContext.PropertyChanged -= this.DataContextOnPropertyChanged;
                 }
 
-                dataContext = value;
-                if (dataContext != null)
+                this.dataContext = value;
+                if (this.dataContext != null)
                 {
-                    dbsMapList.DataSource = this.dataContext;
-                    dataContext.PropertyChanged += DataContextOnPropertyChanged;
-                    dbsMapList.ResetBindings(false);
+                    this.dbsMapList.DataSource = this.dataContext;
+                    this.dataContext.PropertyChanged += this.DataContextOnPropertyChanged;
+                    this.dbsMapList.ResetBindings(false);
 
-                    dbsAvailableMaps.DataSource = dataContext.AvailableMaps;
-                    dbsAvailableMaps.ResetBindings(false);
+                    this.dbsAvailableMaps.DataSource = this.dataContext.AvailableMaps;
+                    this.dbsAvailableMaps.ResetBindings(false);
 
-                    dbsAvailableModes.DataSource = dataContext.AvailableModes;
-                    dbsAvailableModes.ResetBindings(false);
+                    this.dbsAvailableModes.DataSource = this.dataContext.AvailableModes;
+                    this.dbsAvailableModes.ResetBindings(false);
                 }
             }
         }
@@ -51,12 +49,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #region Constructors
 
         /// <summary>
-        /// Creates a new instance from <see cref="MapListControl"/>
+        ///     Creates a new instance from <see cref="MapListControl" />
         /// </summary>
         public MapListControl()
         {
-            InitializeComponent();
-            dbsNewItem.DataSource = CreateNewItem();
+            this.InitializeComponent();
+            this.dbsNewItem.DataSource = this.CreateNewItem();
 
             this.btnUp.Image = Resources.gnome_web_up16;
             this.btnDown.Image = Resources.gnome_web_down16;
@@ -67,7 +65,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #region Private Methods
 
         /// <summary>
-        /// Creates an empty item for creating new list items
+        ///     Creates an empty item for creating new list items
         /// </summary>
         /// <returns></returns>
         private MapListItemViewModel CreateNewItem()
@@ -78,18 +76,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #endregion
 
         #region Event Handler
-        
+
         private void BtnAddClick(object sender, EventArgs e)
         {
-            var item = dbsNewItem.Current as MapListItemViewModel;
+            var item = this.dbsNewItem.Current as MapListItemViewModel;
             this.dataContext.MapListItems.Add(item);
             this.dbsMapList.ResetBindings(false);
-            this.dbsNewItem.DataSource = CreateNewItem();
+            this.dbsNewItem.DataSource = this.CreateNewItem();
         }
 
         private void MitRemoveItemClick(object sender, EventArgs e)
         {
-            var item = dbsMapListItems.Current as MapListItemViewModel;
+            var item = this.dbsMapListItems.Current as MapListItemViewModel;
             if (item != null)
             {
                 this.dataContext.MapListItems.Remove(item);
@@ -102,7 +100,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             var currentMapListItem = this.dbsMapListItems.Current as MapListItemViewModel;
             if (currentMapListItem != null && this.dataContext != null)
             {
-                dataContext.Server.MapList.CurrentItem = currentMapListItem.Item;
+                this.dataContext.Server.MapList.CurrentItem = currentMapListItem.Item;
             }
         }
 

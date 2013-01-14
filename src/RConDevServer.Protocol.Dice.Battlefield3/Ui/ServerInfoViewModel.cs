@@ -1,12 +1,12 @@
-using System;
-using System.Collections.ObjectModel;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
 namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using Data;
+
     /// <summary>
-    /// ViewModel für die Anzeige der <see cref="ServerInfo"/> Informationen in der Ui, sowie der Editiermöglichkeit dieser
-    /// Informationen
+    ///     ViewModel für die Anzeige der <see cref="ServerInfo" /> Informationen in der Ui, sowie der Editiermöglichkeit dieser
+    ///     Informationen
     /// </summary>
     public class ServerInfoViewModel : ViewModelBase
     {
@@ -22,7 +22,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 {
                     this.Server.Vars[Constants.COMMAND_VARS_SERVERNAME] = this.ServerInfo.ServerName;
                 }
-                InvokePropertyChanged("ServerName");
+                this.InvokePropertyChanged("ServerName");
             }
         }
 
@@ -55,7 +55,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 this.ServerInfo.MaxPlayerCount = value;
                 this.InvokePropertyChanged("MaxPlayerCount");
             }
-
         }
 
         public decimal RoundsPlayed
@@ -66,7 +65,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 this.ServerInfo.RoundsPlayed = value;
                 this.InvokePropertyChanged("RoundsPlayed");
             }
-
         }
 
         public decimal RoundsTotal
@@ -80,7 +78,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             set
             {
                 this.ServerInfo.IsRanked = value;
-                InvokePropertyChanged("IsRanked");
+                this.InvokePropertyChanged("IsRanked");
             }
         }
 
@@ -90,7 +88,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             set
             {
                 this.ServerInfo.IsPunkbuster = value;
-                InvokePropertyChanged("IsPunkbuster");
+                this.InvokePropertyChanged("IsPunkbuster");
             }
         }
 
@@ -109,9 +107,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         {
             get
             {
-                var seconds = this.ServerInfo.ServerUpTime;
-                var date = DateTime.Now;
-                var nextDate = date.AddSeconds(Convert.ToDouble(seconds));
+                decimal seconds = this.ServerInfo.ServerUpTime;
+                DateTime date = DateTime.Now;
+                DateTime nextDate = date.AddSeconds(Convert.ToDouble(seconds));
                 return nextDate - date;
             }
         }
@@ -131,9 +129,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         {
             get
             {
-                var seconds = this.ServerInfo.RoundTime;
-                var date = DateTime.Now;
-                var nextDate = date.AddSeconds(Convert.ToDouble(seconds));
+                decimal seconds = this.ServerInfo.RoundTime;
+                DateTime date = DateTime.Now;
+                DateTime nextDate = date.AddSeconds(Convert.ToDouble(seconds));
                 return nextDate - date;
             }
         }
@@ -146,7 +144,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 this.ServerInfo.HasGamePassword = value;
                 this.InvokePropertyChanged("HasGamePassword");
             }
-
         }
 
         public string Ip
@@ -171,7 +168,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         public TeamScoresViewModel TeamScores
         {
-            get { return new TeamScoresViewModel(Server.TeamScores, SynchronousInvoker); }
+            get { return new TeamScoresViewModel(this.Server.TeamScores, this.SynchronousInvoker); }
         }
 
         public Country Country
@@ -180,7 +177,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             set
             {
                 this.ServerInfo.Country = value;
-                InvokePropertyChanged("Country");
+                this.InvokePropertyChanged("Country");
             }
         }
 
@@ -218,8 +215,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             this.AvailableMaps = new ObservableCollection<Map>(server.AvailableMaps);
             this.AvailableGameModes = new ObservableCollection<GameMode>(server.AvailableModes);
         }
-
-        
 
         #endregion
     }

@@ -1,17 +1,14 @@
-﻿
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
     using Command;
+    using Common;
+    using Interface;
 
     public class ServerInfoCommandHandler : CommandHandlerBase
     {
-        public IServiceLocator ServiceLocator { get; set; }
-
         public ServerInfoCommandHandler(IServiceLocator serviceLocator)
         {
-            ServiceLocator = serviceLocator;
+            this.ServiceLocator = serviceLocator;
         }
 
         #region ICanHandleClientCommands Members
@@ -21,7 +18,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             get { return Constants.COMMAND_SERVER_INFO; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.Words.Count == 1)
             {
@@ -39,5 +37,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
         }
 
         #endregion
+
+        public IServiceLocator ServiceLocator { get; set; }
     }
 }

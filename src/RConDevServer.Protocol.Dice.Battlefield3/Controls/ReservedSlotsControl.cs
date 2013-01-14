@@ -1,32 +1,31 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Data;
+    using Ui;
+
     public partial class ReservedSlotsControl : UserControl
     {
         private ReservedSlotsViewModel dataContext;
 
         public ReservedSlotsControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public ReservedSlotsViewModel DataContext
         {
-            get {
-                return dataContext;
-            }
-            set {
-                dataContext = value;
-                if (dataContext != null)
+            get { return this.dataContext; }
+            set
+            {
+                this.dataContext = value;
+                if (this.dataContext != null)
                 {
-                    this.dataContext.PropertyChanged += DataContextOnPropertyChanged;
-                    this.dbsReservedSlots.DataSource = dataContext;
+                    this.dataContext.PropertyChanged += this.DataContextOnPropertyChanged;
+                    this.dbsReservedSlots.DataSource = this.dataContext;
                     this.dbsReservedSlots.ResetBindings(false);
                 }
             }
@@ -36,18 +35,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            var selectedPlayer = dbsPlayers.Current as ReservedSlot;
+            var selectedPlayer = this.dbsPlayers.Current as ReservedSlot;
             if (selectedPlayer != null)
             {
-                dataContext.ReservedSlots.Remove(selectedPlayer);
+                this.dataContext.ReservedSlots.Remove(selectedPlayer);
                 this.dbsReservedSlots.ResetBindings(false);
             }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var playerName = this.tbxPlayerName.Text;
-            var hasError = false;
+            string playerName = this.tbxPlayerName.Text;
+            bool hasError = false;
             if (string.IsNullOrEmpty(playerName))
             {
                 this.errProvider.SetError(this.tbxPlayerName, "Please state a player Name.");
@@ -60,7 +59,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             }
             if (!hasError)
             {
-                this.DataContext.ReservedSlots.Add(new ReservedSlot() {PlayerName = playerName});
+                this.DataContext.ReservedSlots.Add(new ReservedSlot {PlayerName = playerName});
                 this.dbsReservedSlots.ResetBindings(false);
                 this.tbxPlayerName.Clear();
                 this.errProvider.Clear();

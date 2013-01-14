@@ -26,7 +26,10 @@
         }
 
         /// <summary>
-        /// ensures the <param name="value"/> starts with <param name="expectedStart"/> 
+        ///     ensures the
+        ///     <param name="value" />
+        ///     starts with
+        ///     <param name="expectedStart" />
         /// </summary>
         /// <param name="value"></param>
         /// <param name="expectedStart"></param>
@@ -38,41 +41,41 @@
                 return;
             }
 
-            var message = string.Format(Resources.EXC_MSG_NOT_STARTS_WITH, expectedStart);
+            string message = string.Format(Resources.EXC_MSG_NOT_STARTS_WITH, expectedStart);
             throw new ArgumentOutOfRangeException(parameterName, value, message);
         }
 
         /// <summary>
-        /// ensures the sequence has at minimum the sequence lenth expected
+        ///     ensures the sequence has at minimum the sequence lenth expected
         /// </summary>
         /// <param name="sequence"></param>
         /// <param name="sequenceLength"></param>
         /// <param name="sequenceName"></param>
         public static void MinSequenceLength<T>(IEnumerable<T> sequence, int sequenceLength, string sequenceName)
         {
-            var sequenceArray = sequence.ToArray();
+            T[] sequenceArray = sequence.ToArray();
             if (sequenceArray.Length >= sequenceLength)
             {
                 return;
             }
-            var message = string.Format(Resources.EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
+            string message = string.Format(Resources.EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
             throw new ArgumentException(message, sequenceName);
         }
 
         /// <summary>
-        /// ensures the sequence has the lenth expected
+        ///     ensures the sequence has the lenth expected
         /// </summary>
         /// <param name="sequence"></param>
         /// <param name="sequenceLength"></param>
         /// <param name="sequenceName"></param>
         public static void SequenceLength<T>(IEnumerable<T> sequence, int sequenceLength, string sequenceName)
         {
-            var sequenceArray = sequence.ToArray();
+            T[] sequenceArray = sequence.ToArray();
             if (sequenceArray.Length == sequenceLength)
             {
                 return;
             }
-            var message = string.Format(Resources.EXC_MSG_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
+            string message = string.Format(Resources.EXC_MSG_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
             throw new ArgumentException(message, sequenceName);
         }
     }

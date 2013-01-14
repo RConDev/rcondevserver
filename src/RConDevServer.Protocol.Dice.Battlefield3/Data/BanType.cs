@@ -6,6 +6,9 @@
 
         public string Display { get; set; }
 
-        public BanType Instance { get { return this; } }
+        public BanType Instance
+        {
+            get { return this; }
+        }
     }
 }

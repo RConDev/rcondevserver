@@ -1,8 +1,8 @@
-﻿using System.Linq;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
+    using System.Linq;
     using Command;
+    using Common;
 
     public class ReservedSlotsListRemoveCommandHandler : CommandHandlerBase
     {
@@ -11,7 +11,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_REMOVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             // incorrect number of parameters
             if (requestPacket.Words.Count != 2)

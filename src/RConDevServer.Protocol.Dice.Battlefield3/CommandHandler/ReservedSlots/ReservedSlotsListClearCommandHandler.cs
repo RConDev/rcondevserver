@@ -1,8 +1,8 @@
-﻿using RConDevServer.Protocol.Dice.Battlefield3.Event;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
     using Command;
+    using Common;
+    using Event;
 
     public class ReservedSlotsListClearCommandHandler : CommandHandlerBase
     {
@@ -11,7 +11,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_CLEAR; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             // invalid number of words
             if (requestPacket.Words.Count != 1)

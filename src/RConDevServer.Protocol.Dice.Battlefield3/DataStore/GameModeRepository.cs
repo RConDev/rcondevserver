@@ -1,25 +1,24 @@
-﻿using System.Collections.Generic;
-using NHibernate;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Collections.Generic;
+    using Data;
+    using Interface;
+    using NHibernate;
     using NHibernate.Criterion;
 
     public class GameModeRepository : IGameModeRepository
     {
-        public IServiceLocator ServiceLocator { get; private set; }
-
         public GameModeRepository(IServiceLocator serviceLocator)
         {
-            ServiceLocator = serviceLocator;
+            this.ServiceLocator = serviceLocator;
         }
+
+        public IServiceLocator ServiceLocator { get; private set; }
 
         public IList<GameMode> GetAll()
         {
-            var sessionFactory = ServiceLocator.GetService<IDataContext>().SessionFactory;
-            using (var session = sessionFactory.OpenSession())
+            ISessionFactory sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
+            using (ISession session = sessionFactory.OpenSession())
             {
                 return session.CreateCriteria<GameMode>().List<GameMode>();
             }
@@ -27,13 +26,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 
         public GameMode FindByCode(string code)
         {
-            var sessionFactory = ServiceLocator.GetService<IDataContext>().SessionFactory;
-            using (var session = sessionFactory.OpenSession())
+            ISessionFactory sessionFactory = this.ServiceLocator.GetService<IDataContext>().SessionFactory;
+            using (ISession session = sessionFactory.OpenSession())
             {
                 return session.CreateCriteria<GameMode>()
-                    .Add(Restrictions.Eq("Code", code))
-                    .SetMaxResults(1)
-                    .UniqueResult<GameMode>();
+                              .Add(Restrictions.Eq("Code", code))
+                              .SetMaxResults(1)
+                              .UniqueResult<GameMode>();
             }
         }
     }

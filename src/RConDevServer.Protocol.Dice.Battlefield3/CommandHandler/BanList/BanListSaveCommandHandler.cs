@@ -1,8 +1,7 @@
-﻿using RConDevServer.Protocol.Dice.Battlefield3.Event;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
     using Command;
+    using Common;
 
     public class BanListSaveCommandHandler : CommandHandlerBase
     {
@@ -11,7 +10,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
             get { return Constants.COMMAND_BAN_LIST_SAVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             return true;

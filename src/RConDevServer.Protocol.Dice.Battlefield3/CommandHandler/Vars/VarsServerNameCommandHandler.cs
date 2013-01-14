@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
     using Command;
+    using Common;
     using Data;
 
     public class VarsServerNameCommandHandler : CommandHandlerBase
@@ -14,15 +14,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
             get { return Constants.COMMAND_VARS_SERVERNAME; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (requestPacket.WordCount == 1)
             {
                 // get the server name
                 Vars vars = session.Server.Vars;
-                if (vars.ContainsKey(Command))
+                if (vars.ContainsKey(this.Command))
                 {
-                    object value = vars[Command];
+                    object value = vars[this.Command];
                     responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
                     responsePacket.Words.Add(Convert.ToString(value));
                 }

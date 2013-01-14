@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FluentNHibernate.Mapping;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataMapping
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataMapping
 {
+    using Data;
+    using FluentNHibernate.Mapping;
+
     public class IdTypeMapping : ClassMap<IdType>
     {
         public IdTypeMapping()

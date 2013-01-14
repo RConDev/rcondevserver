@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui.Util
+namespace RConDevServer.Protocol.Dice.Common
 {
+    using System.Collections.Generic;
+    using System.Text;
+
     /// <summary>
     /// Extension Methods for <see>
     ///                         <cref>IEnumerable{string}</cref>

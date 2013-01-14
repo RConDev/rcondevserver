@@ -7,6 +7,5 @@
         public static readonly string ServerOnRoundOverTeamScores = "server.onRoundOverTeamScores";
 
         public static readonly string PunkBusterOnMessage = "punkBuster.onMessage";
-    
     }
 }

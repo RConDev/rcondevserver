@@ -1,8 +1,9 @@
-﻿
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using Command;
+    using Common;
+    using Data;
 
     public class MapListLoadCommandHandler : CommandHandlerBase
     {
@@ -11,10 +12,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_LOAD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            var mapListItemsFromStore = session.Server.MapListStore.GetAll();
-            foreach (var mapListItem in mapListItemsFromStore)
+            IList<MapListItem> mapListItemsFromStore = session.Server.MapListStore.GetAll();
+            foreach (MapListItem mapListItem in mapListItemsFromStore)
             {
                 ////if (session.Server.ReservedSlots.Any(x => x.PlayerName == reservedSlot.PlayerName))
                 ////{

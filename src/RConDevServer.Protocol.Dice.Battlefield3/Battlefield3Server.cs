@@ -1,24 +1,22 @@
-﻿using System.Linq;
-
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Dice.Battlefield3.DataStore;
-using RConDevServer.Protocol.Dice.Battlefield3.Injection;
-using RConDevServer.Protocol.Dice.Battlefield3.Properties;
-using RConDevServer.Protocol.Interface;
-using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Common;
+    using Data;
+    using DataStore;
     using Event;
+    using Injection;
+    using Interface;
+    using Properties;
 
     public class Battlefield3Server
     {
+        private readonly object syncRoot = new object();
         public IServiceLocator ServiceLocator { get; set; }
 
         public Battlefield3Protocol Battlefield3Protocol { get; set; }
-
-        private readonly object syncRoot = new object();
 
         public IReservedSlotsDataFile ReservedSlotsStore { get; private set; }
 
@@ -37,17 +35,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         public IList<PacketSession> PacketSessions { get; private set; }
 
         /// <summary>
-        /// the rcon password for the server
+        ///     the rcon password for the server
         /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// the data for serverInfo Command
+        ///     the data for serverInfo Command
         /// </summary>
         public ServerInfo ServerInfo { get; set; }
 
         /// <summary>
-        /// gets or sets the value for active automatic responses to client commands
+        ///     gets or sets the value for active automatic responses to client commands
         /// </summary>
         public bool IsAutomaticResponse { get; set; }
 
@@ -59,7 +57,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public Vars Vars { get; private set; }
 
-        public MapListItem CurrentMapListItem { get { return this.MapList.CurrentItem; } }
+        public MapListItem CurrentMapListItem
+        {
+            get { return this.MapList.CurrentItem; }
+        }
 
         public PlayerList PlayerList { get; private set; }
 
@@ -85,7 +86,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public Battlefield3Server(IServiceLocator serviceLocator)
         {
-            ServiceLocator = serviceLocator;
+            this.ServiceLocator = serviceLocator;
             this.Battlefield3Module = new Battlefield3Module(serviceLocator);
         }
 
@@ -95,8 +96,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         public void Initialize()
         {
-            this.AvailableMaps = new Maps(ServiceLocator.GetService<IMapRepository>().GetAll());
-            this.AvailableModes = new GameModes(ServiceLocator.GetService<IGameModeRepository>().GetAll());
+            this.AvailableMaps = new Maps(this.ServiceLocator.GetService<IMapRepository>().GetAll());
+            this.AvailableModes = new GameModes(this.ServiceLocator.GetService<IGameModeRepository>().GetAll());
 
             this.IsAutomaticResponse = true;
             this.PacketSessions = new List<PacketSession>();
@@ -112,24 +113,22 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             this.InitializeVars();
         }
 
-
-
         #endregion
 
         #region Event Handler
 
         public void PublishEvents(IEnumerable<IEvent> events)
         {
-            foreach (var anEvent in events)
+            foreach (IEvent anEvent in events)
             {
-                PublishEvent(anEvent);
+                this.PublishEvent(anEvent);
             }
         }
 
         public void PublishEvent(IEvent anEvent)
         {
             var packet = new Packet(PacketOrigin.Server, false, 0, anEvent.ToWords());
-            foreach (var session in this.PacketSessions)
+            foreach (PacketSession session in this.PacketSessions)
             {
                 session.SendToClient(packet);
             }
@@ -138,16 +137,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         public void OnClientConnected(object sender, ClientEventArgs e)
         {
             var packetSession = new PacketSession(e.Session, this);
-            lock (syncRoot)
+            lock (this.syncRoot)
             {
-                PacketSessions.Add(packetSession);
+                this.PacketSessions.Add(packetSession);
             }
-            InvokeClientConnected(packetSession);
+            this.InvokeClientConnected(packetSession);
         }
 
         public void OnStopped(object sender, EventArgs e)
         {
-            InvokeStopped();
+            this.InvokeStopped();
         }
 
         #endregion
@@ -159,42 +158,42 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
             this.Countries = this.ServiceLocator.GetService<ICountryRepository>().GetAll().ToList();
 
             this.ServerInfo = new ServerInfo(this)
-            {
-                ServerName = "My Test Server",
-                HasGamePassword = false,
-                MaxPlayerCount = 16,
-                IsJoinQueueEnabled = true,
-                RoundsPlayed = 1,
-                IpPortPair = new IpPortPair
                 {
-                    Ip = "127.0.0.1",
-                    Port = 25200
-                },
-                ClosestPingSite = string.Empty,
-                Country = this.Countries.FirstOrDefault(x => x.CodeAlpha2 == "DE"),
-                IsPunkbuster = true,
-                IsRanked = true,
-                OnlineState = string.Empty,
-                PunkbusterVersion = string.Empty,
-                Region = string.Empty,
-                RoundTime = Convert.ToDecimal(new TimeSpan(0, 0, 15, 0).TotalSeconds),
-                ServerUpTime = Convert.ToDecimal(new TimeSpan(15, 16, 15, 0).TotalSeconds),
-            };
+                    ServerName = "My Test Server",
+                    HasGamePassword = false,
+                    MaxPlayerCount = 16,
+                    IsJoinQueueEnabled = true,
+                    RoundsPlayed = 1,
+                    IpPortPair = new IpPortPair
+                        {
+                            Ip = "127.0.0.1",
+                            Port = 25200
+                        },
+                    ClosestPingSite = string.Empty,
+                    Country = this.Countries.FirstOrDefault(x => x.CodeAlpha2 == "DE"),
+                    IsPunkbuster = true,
+                    IsRanked = true,
+                    OnlineState = string.Empty,
+                    PunkbusterVersion = string.Empty,
+                    Region = string.Empty,
+                    RoundTime = Convert.ToDecimal(new TimeSpan(0, 0, 15, 0).TotalSeconds),
+                    ServerUpTime = Convert.ToDecimal(new TimeSpan(15, 16, 15, 0).TotalSeconds),
+                };
         }
 
         private void InitializeTeamScores()
         {
             this.TeamScores = new TeamScores
-            {
-                TargetScore = 500,
-            };
-            this.TeamScores.Scores.Add(new Score { TeamId = 1, Value = 100 });
-            this.TeamScores.Scores.Add(new Score { TeamId = 2, Value = 100 });
+                {
+                    TargetScore = 500,
+                };
+            this.TeamScores.Scores.Add(new Score {TeamId = 1, Value = 100});
+            this.TeamScores.Scores.Add(new Score {TeamId = 2, Value = 100});
         }
 
         private void InitializeReservedSlots()
         {
-            this.ReservedSlots = new ReservedSlots { "TestPlayer" };
+            this.ReservedSlots = new ReservedSlots {"TestPlayer"};
             this.ReservedSlots.IsAggressiveJoin = true;
             this.ReservedSlotsStore = new ReservedSlotsDataFile(new DataFile(Settings.Default.ReservedSlotsDataFile));
         }
@@ -202,20 +201,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         private void InitializePlayerList()
         {
             this.PlayerList = new PlayerList();
-            this.PlayerList.AddPlayer(new PlayerInfo()
-            {
-                Name = "JohnDoe21",
-                Deaths = 5,
-                Kills = 10,
-                Score = 150,
-                SquadId = 0,
-                TeamId = 1
-            });
+            this.PlayerList.AddPlayer(new PlayerInfo
+                {
+                    Name = "JohnDoe21",
+                    Deaths = 5,
+                    Kills = 10,
+                    Score = 150,
+                    SquadId = 0,
+                    TeamId = 1
+                });
         }
 
         private void InitializeBanList()
         {
-            var idTypeRepository = ServiceLocator.GetService<IIdTypeRepository>();
+            var idTypeRepository = this.ServiceLocator.GetService<IIdTypeRepository>();
             this.IdTypes = new IdTypes(idTypeRepository.GetAll());
             this.BanTypes = new BanTypes();
             this.BanList = new BanList
@@ -236,16 +235,17 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
         {
             this.MapList = new MapList();
             this.MapList.Add(new MapListItem
-            {
-                Map = this.AvailableMaps[1],
-                Mode = this.AvailableModes[1],
-                Rounds = 2
-            });
+                {
+                    Map = this.AvailableMaps[1],
+                    Mode = this.AvailableModes[1],
+                    Rounds = 2
+                });
             this.MapList.CurrentIndex = -1;
             this.MapList.NextMap();
-            var mapRepository = ServiceLocator.GetService<IMapRepository>();
-            var gameModeRepository = ServiceLocator.GetService<IGameModeRepository>();
-            this.MapListStore = new MapListDataFile(new DataFile(Settings.Default.MapListDataFile), mapRepository, gameModeRepository);
+            var mapRepository = this.ServiceLocator.GetService<IMapRepository>();
+            var gameModeRepository = this.ServiceLocator.GetService<IGameModeRepository>();
+            this.MapListStore = new MapListDataFile(new DataFile(Settings.Default.MapListDataFile), mapRepository,
+                                                    gameModeRepository);
         }
 
         private void InitializeVars()
@@ -291,10 +291,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         private void InvokeClientConnected(PacketSession packetSession)
         {
-            if (ClientConnected != null)
+            if (this.ClientConnected != null)
             {
-                var invList = ClientConnected.GetInvocationList();
-                foreach (var invDelegate in invList)
+                Delegate[] invList = this.ClientConnected.GetInvocationList();
+                foreach (Delegate invDelegate in invList)
                 {
                     invDelegate.DynamicInvoke(this, new PacketSessionEventArgs(packetSession));
                 }
@@ -303,9 +303,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
         private void InvokeStopped()
         {
-            if (Stopped != null)
+            if (this.Stopped != null)
             {
-                Stopped.BeginInvoke(this, new EventArgs(), Stopped.EndInvoke, null);
+                this.Stopped.BeginInvoke(this, new EventArgs(), this.Stopped.EndInvoke, null);
             }
         }
 

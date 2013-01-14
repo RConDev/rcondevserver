@@ -1,9 +1,9 @@
-﻿using RConDevServer.Protocol.Dice.Battlefield3.Event;
-using RConDevServer.Protocol.Dice.Battlefield3.Util;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
     using Command;
+    using Common;
+    using Event;
+    using Util;
 
     public class ReservedSlotsListListCommandHandler : CommandHandlerBase
     {
@@ -14,7 +14,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
             get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_LIST; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             int offset = 0;
             if (requestPacket.Words.Count == 2)
@@ -28,8 +29,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 
         public override void AddEvent(IEvent anEvent)
         {
-
-
         }
 
         #endregion

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using RConDevServer.Protocol.Dice.Battlefield3.DataStore;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using DataStore;
+
     public class ReservedSlot : IDataFileItem
     {
         public string PlayerName { get; set; }
 
         public string ToDataString()
         {
-            return PlayerName;
+            return this.PlayerName;
         }
 
         public static ReservedSlot FromDataString(string dataString)

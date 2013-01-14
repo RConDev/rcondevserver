@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
 {
+    using System;
+    using System.Collections.Generic;
+    using Data;
+
     public class ServerOnLevelLoadedEvent : IEvent
     {
         public ServerOnLevelLoadedEvent(Map map, GameMode gameMode, int roundsPlayed, int totalRounds)
         {
-            Map = map;
-            GameMode = gameMode;
-            RoundsPlayed = roundsPlayed;
-            TotalRounds = totalRounds;
+            this.Map = map;
+            this.GameMode = gameMode;
+            this.RoundsPlayed = roundsPlayed;
+            this.TotalRounds = totalRounds;
         }
 
         public Map Map { get; private set; }
@@ -31,11 +31,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Server
         {
             return new List<string>
                 {
-                    Event,
-                    Map.ToWord(),
-                    GameMode.ToWord(),
-                    Convert.ToString(RoundsPlayed),
-                    Convert.ToString(TotalRounds)
+                    this.Event,
+                    this.Map.ToWord(),
+                    this.GameMode.ToWord(),
+                    Convert.ToString(this.RoundsPlayed),
+                    Convert.ToString(this.TotalRounds)
                 };
         }
     }

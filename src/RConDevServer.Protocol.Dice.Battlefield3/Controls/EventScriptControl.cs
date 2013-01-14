@@ -1,13 +1,13 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-using RConDevServer.Resource.Properties;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms;
+    using Resource.Properties;
+    using Ui;
+
     /// <summary>
-    /// This user control is responsible for the user interface for scripting server events
+    ///     This user control is responsible for the user interface for scripting server events
     /// </summary>
     public partial class EventScriptControl : UserControl
     {
@@ -17,7 +17,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 
         public EventScriptControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.pbRunScript.Image = Resources.gnome_web_start;
         }
@@ -34,7 +34,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 this.dataContext = value;
                 if (this.dataContext != null)
                 {
-                    this.dbsEventScript.DataSource = dataContext;
+                    this.dbsEventScript.DataSource = this.dataContext;
                     this.dbsEventScript.ResetBindings(false);
                 }
             }
@@ -47,14 +47,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         private void PbRunScriptClick(object sender, EventArgs e)
         {
             var backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += BackgroundWorkerOnDoWork;
-            backgroundWorker.RunWorkerCompleted += BackgroundWorkerOnRunWorkerCompleted;
+            backgroundWorker.DoWork += this.BackgroundWorkerOnDoWork;
+            backgroundWorker.RunWorkerCompleted += this.BackgroundWorkerOnRunWorkerCompleted;
             this.pbRunScript.Image = Resources.gnome_web_pause;
             this.rtbScript.Enabled = false;
             backgroundWorker.RunWorkerAsync(this.dataContext);
         }
 
-        private void BackgroundWorkerOnRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
+        private void BackgroundWorkerOnRunWorkerCompleted(object sender,
+                                                          RunWorkerCompletedEventArgs runWorkerCompletedEventArgs)
         {
             this.pbRunScript.Image = Resources.gnome_web_start;
             this.rtbScript.Enabled = true;
@@ -72,8 +73,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
         #endregion
 
         #region Private Methods
-
-
 
         #endregion
     }

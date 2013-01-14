@@ -7,7 +7,7 @@
     using log4net;
 
     /// <summary>
-    /// abstract base implementation for <see cref="ICommandFactory{TCommand}"/>
+    ///     abstract base implementation for <see cref="ICommandFactory{TCommand}" />
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
     public abstract class CommandFactoryBase<TCommand> : ICommandFactory<TCommand>
@@ -16,25 +16,27 @@
         private static readonly ILog logger = LogManager.GetLogger(typeof (KickPlayerCommandFactory));
 
         /// <summary>
-        /// creates a command from the DICE <see cref="Packet"/> words
+        ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
         public abstract TCommand FromWords(IEnumerable<string> commandWords);
 
         /// <summary>
-        /// parses the command out of a <see cref="string"/>
+        ///     parses the command out of a <see cref="string" />
         /// </summary>
         /// <param name="commandString"></param>
-        /// <returns>the <see cref="ICommand"/> implementation if found</returns>
+        /// <returns>
+        ///     the <see cref="ICommand" /> implementation if found
+        /// </returns>
         public TCommand Parse(string commandString)
         {
-            var words = this.ExtractCommandWords(commandString);
+            IEnumerable<string> words = this.ExtractCommandWords(commandString);
             return this.FromWords(words);
         }
 
         /// <summary>
-        /// tries to parse the command string 
+        ///     tries to parse the command string
         /// </summary>
         /// <param name="commandString">the command string</param>
         /// <param name="command">the command parsed from string</param>
@@ -55,7 +57,7 @@
         }
 
         /// <summary>
-        /// extracts the words from the command string
+        ///     extracts the words from the command string
         /// </summary>
         /// <param name="commandString"></param>
         /// <returns></returns>

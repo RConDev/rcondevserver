@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
 {
+    using System;
+    using System.Collections.Generic;
+
     public class PlayerOnTeamChangeEvent : IEvent
     {
         public PlayerOnTeamChangeEvent(string soldierName, int teamId, int squadId)
         {
-            SoldierName = soldierName;
-            TeamId = teamId;
-            SquadId = squadId;
+            this.SoldierName = soldierName;
+            this.TeamId = teamId;
+            this.SquadId = squadId;
         }
 
         public string SoldierName { get; set; }
@@ -27,10 +27,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Event.Player
         {
             return new[]
                 {
-                    Event,
-                    SoldierName,
-                    Convert.ToString(TeamId),
-                    Convert.ToString(SquadId)
+                    this.Event,
+                    this.SoldierName,
+                    Convert.ToString(this.TeamId),
+                    Convert.ToString(this.SquadId)
                 };
         }
     }

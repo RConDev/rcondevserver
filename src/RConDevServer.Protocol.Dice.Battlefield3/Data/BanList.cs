@@ -1,40 +1,42 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Data
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System.Collections.Generic;
+
     public class BanList : List<BanListItem>
     {
         public const int MAX_ITEMS = 100;
 
+        public BanList()
+        {
+        }
+
+        public BanList(IEnumerable<BanListItem> items)
+        {
+            this.AddRange(items);
+        }
+
         public IList<string> ToWords(int offset)
         {
             var words = new List<string>();
-            if (offset >= Count)
+            if (offset >= this.Count)
             {
                 return words;
             }
-            var startIndex = offset;
+            int startIndex = offset;
 
-            var itemsCount = 0;
+            int itemsCount = 0;
 
-            for (var i = startIndex;(i < Count) ; i++ )
+            for (int i = startIndex; (i < this.Count); i++)
             {
                 if (itemsCount >= MAX_ITEMS)
                 {
                     break;
                 }
-                var currentItem = this[i];
+                BanListItem currentItem = this[i];
                 words.AddRange(currentItem.ToWords());
                 itemsCount++;
             }
             return words;
-        } 
-    
-        public BanList() : base() {}
-
-        public BanList(IEnumerable<BanListItem> items)
-        {
-            this.AddRange(items);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using System;
     using Command;
+    using Common;
 
     public class LoginPlainTextHandler : CommandHandlerBase
     {
@@ -13,7 +13,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticat
             get { return Constants.COMMAND_LOGIN_PLAIN_TEXT; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
             if (string.Equals(requestPacket.Words[0],
                               Constants.COMMAND_LOGIN_PLAIN_TEXT,

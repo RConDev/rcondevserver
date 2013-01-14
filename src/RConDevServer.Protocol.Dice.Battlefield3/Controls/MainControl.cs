@@ -1,33 +1,33 @@
-﻿using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System.Windows.Forms;
+    using Ui;
+
     public partial class MainControl : UserControl
     {
         private ServerViewModel dataContext;
 
         public MainControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public ServerViewModel DataContext
         {
             get { return this.dataContext; }
-            set 
-            { 
+            set
+            {
                 this.dataContext = value;
                 if (this.dataContext != null)
                 {
-                    ucConsole.DataContext = dataContext;
-                    ucServerInfo.DataContext = dataContext;
-                    ucEventScript.DataContext = dataContext.EventScript;
-                    ucPlayers.DataContext = dataContext.Players;
-                    uscReservedSlots.DataContext = dataContext.ReservedSlots;
-                    uscMapList.DataContext = dataContext.MapList;
-                    teamScoresControl1.DataContext = dataContext.TeamScores;
-                    ucBanList.DataContext = dataContext.BanList;
+                    this.ucConsole.DataContext = this.dataContext;
+                    this.ucServerInfo.DataContext = this.dataContext;
+                    this.ucEventScript.DataContext = this.dataContext.EventScript;
+                    this.ucPlayers.DataContext = this.dataContext.Players;
+                    this.uscReservedSlots.DataContext = this.dataContext.ReservedSlots;
+                    this.uscMapList.DataContext = this.dataContext.MapList;
+                    this.teamScoresControl1.DataContext = this.dataContext.TeamScores;
+                    this.ucBanList.DataContext = this.dataContext.BanList;
                 }
             }
         }

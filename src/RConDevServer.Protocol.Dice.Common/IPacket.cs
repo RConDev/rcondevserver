@@ -1,7 +1,6 @@
-namespace RConDevServer.Protocol.Dice.Battlefield3
+namespace RConDevServer.Protocol.Dice.Common
 {
     using System.Collections.Generic;
-     
 
     public interface IPacket
     {

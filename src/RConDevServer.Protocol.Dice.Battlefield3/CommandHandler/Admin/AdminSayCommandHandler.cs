@@ -3,6 +3,7 @@
     using System.Linq;
     using Command;
     using CommandFactory.Admin;
+    using Common;
     using Data;
     using Event.Player;
 
@@ -25,7 +26,7 @@
                                                 ICommand command)
         {
             var message = requestPacket.Words[1];
-            var playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());
+            PlayerSubset playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());
 
             if (message.Length >= 128)
             {

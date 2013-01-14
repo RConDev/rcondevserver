@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.IO;
     using System.Linq;
     using System.Runtime.Serialization;
+    using Data;
     using DataStore;
 
     public class PlayersViewModel : ViewModelBase
     {
-        private readonly DataContractSerializer serializer = new DataContractSerializer(typeof(IEnumerable<PlayerInfo>));
-
         private readonly PlayerList players;
+        private readonly DataContractSerializer serializer = new DataContractSerializer(typeof (IEnumerable<PlayerInfo>));
 
         private readonly Battlefield3Server server;
 
@@ -31,10 +29,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             this.InitializePlayers(this.players.Players);
             this.NewPlayerInfo = new PlayerInfo();
 
-            Initialize();
+            this.Initialize();
         }
 
-        private void InitializePlayers (IEnumerable<PlayerInfo> playersList)
+        private void InitializePlayers(IEnumerable<PlayerInfo> playersList)
         {
             if (this.Players != null)
             {
@@ -47,7 +45,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         #endregion
 
-        public ObservableCollection<PlayerListStoreItem> PlayerListStore { get; private set; } 
+        public ObservableCollection<PlayerListStoreItem> PlayerListStore { get; private set; }
 
         public ObservableCollection<PlayerInfo> Players { get; private set; }
 
@@ -57,8 +55,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         public void Initialize()
         {
-            var playerListRepository = server.ServiceLocator.GetService<IPlayerListStoreRepository>();
-            var playerListStore = playerListRepository.GetAll();
+            var playerListRepository = this.server.ServiceLocator.GetService<IPlayerListStoreRepository>();
+            IEnumerable<PlayerListStoreItem> playerListStore = playerListRepository.GetAll();
 
             this.PlayerListStore = new ObservableCollection<PlayerListStoreItem>(playerListStore);
             this.InvokePropertyChanged("PlayerListStore");
@@ -66,12 +64,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         public void SavePlayerList(string listName, bool overrideExisting)
         {
-            var playerListRepository = server.ServiceLocator.GetService<IPlayerListStoreRepository>();
+            var playerListRepository = this.server.ServiceLocator.GetService<IPlayerListStoreRepository>();
 
             PlayerListStoreItem existingItem = null;
             if (this.PlayerListStore.Any(x => x.Label == listName))
             {
-                if (!overrideExisting) return;
+                if (!overrideExisting)
+                {
+                    return;
+                }
 
                 existingItem = this.PlayerListStore.FirstOrDefault(x => x.Label == listName);
             }
@@ -79,16 +80,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
             byte[] bytes = null;
             using (var memoryStream = new MemoryStream())
             {
-                serializer.WriteObject(memoryStream, this.Players);
+                this.serializer.WriteObject(memoryStream, this.Players);
                 bytes = memoryStream.ToArray();
             }
 
             if (bytes != null)
             {
-                existingItem = existingItem ?? new PlayerListStoreItem()
-                                                   {
-                                                       Label = listName,
-                                                  };
+                existingItem = existingItem ?? new PlayerListStoreItem
+                    {
+                        Label = listName,
+                    };
                 existingItem.Store = bytes;
 
                 playerListRepository.Save(existingItem);
@@ -98,7 +99,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         public void LoadPlayerList(long playerListStoreId)
         {
             var playerStore = this.server.ServiceLocator.GetService<IPlayerListStoreRepository>();
-            var item = playerStore.Get(playerListStoreId);
+            PlayerListStoreItem item = playerStore.Get(playerListStoreId);
 
             LoadPlayerList(item);
         }
@@ -107,11 +108,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         {
             using (var memoryStream = new MemoryStream(storeItem.Store))
             {
-                var players = serializer.ReadObject(memoryStream) as IEnumerable<PlayerInfo>;
+                var players = this.serializer.ReadObject(memoryStream) as IEnumerable<PlayerInfo>;
                 if (players != null)
                 {
                     this.players.Clear();
-                    foreach (var player in players)
+                    foreach (PlayerInfo player in players)
                     {
                         this.players.AddPlayer(player);
                     }
@@ -131,15 +132,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
                 case NotifyCollectionChangedAction.Add:
                     foreach (PlayerInfo item in args.NewItems)
                     {
-                        players.AddPlayer(item);
+                        this.players.AddPlayer(item);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
                     foreach (PlayerInfo item in args.OldItems)
                     {
-                        if (players.Players.Contains(item))
+                        if (this.players.Players.Contains(item))
                         {
-                            players.RemovePlayer(item);
+                            this.players.RemovePlayer(item);
                         }
                     }
                     break;

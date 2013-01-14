@@ -7,6 +7,8 @@ using RConDevServer.Protocol.Dice.Battlefield3;
 
 namespace BF3DevServer.Core.Tests
 {
+    using RConDevServer.Protocol.Dice.Common;
+
     public class ServerInstanceTestBase
     {
         protected ServerInstance SocketServer;

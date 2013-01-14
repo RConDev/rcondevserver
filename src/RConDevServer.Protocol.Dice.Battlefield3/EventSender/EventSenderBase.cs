@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender
 {
+    using System.Collections.Generic;
+    using Common;
+
     public abstract class EventSenderBase : ICanSendEvents
     {
         public abstract string EventCommand { get; }
@@ -10,9 +11,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.EventSender
 
         public void Send(Battlefield3Server server)
         {
-            foreach (var session in server.PacketSessions)
+            foreach (PacketSession session in server.PacketSessions)
             {
-                session.RaiseServerEvent(EventPacket);
+                session.RaiseServerEvent(this.EventPacket);
             }
         }
 

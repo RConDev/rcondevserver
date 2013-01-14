@@ -5,12 +5,12 @@
     using Data;
 
     /// <summary>
-    /// the command "admin.yell"
+    ///     the command "admin.yell"
     /// </summary>
     public class YellCommand : ICommand
     {
         /// <summary>
-        /// creates a new instance of <see cref="YellCommand"/>
+        ///     creates a new instance of <see cref="YellCommand" />
         /// </summary>
         /// <param name="message"></param>
         /// <param name="duration"></param>
@@ -23,17 +23,17 @@
         }
 
         /// <summary>
-        /// the message to be displayed
+        ///     the message to be displayed
         /// </summary>
         public string Message { get; private set; }
 
         /// <summary>
-        /// optional duration in seconds the <see cref="Message"/> is displayed
+        ///     optional duration in seconds the <see cref="Message" /> is displayed
         /// </summary>
         public int? Duration { get; private set; }
 
         /// <summary>
-        /// optional <see cref="PlayerSubset"/> the message is displayed to
+        ///     optional <see cref="PlayerSubset" /> the message is displayed to
         /// </summary>
         public PlayerSubset PlayerSubset { get; private set; }
 
@@ -46,19 +46,19 @@
         }
 
         /// <summary>
-        ///     Generates the words needed to create the <see cref="IPacket" />
+        ///     Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            var words = new List<string> {Command, Message};
-            if (Duration.HasValue)
+            var words = new List<string> {this.Command, this.Message};
+            if (this.Duration.HasValue)
             {
-                words.Add(Convert.ToString(Duration));
+                words.Add(Convert.ToString(this.Duration));
             }
-            if (PlayerSubset != null)
+            if (this.PlayerSubset != null)
             {
-                words.AddRange(PlayerSubset.ToWords());
+                words.AddRange(this.PlayerSubset.ToWords());
             }
             return words;
         }

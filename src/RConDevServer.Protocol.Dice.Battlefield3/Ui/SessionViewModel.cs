@@ -1,27 +1,27 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
+    using System;
+
     public class SessionViewModel : ViewModelBase
     {
         #region Constructors
 
         /// <summary>
-        /// Creates a ViewModel for the <see cref="PacketSession"/>
+        ///     Creates a ViewModel for the <see cref="PacketSession" />
         /// </summary>
         /// <param name="session"></param>
         /// <param name="invoker"> </param>
         public SessionViewModel(PacketSession session, Action<Action> invoker)
             : base(invoker)
         {
-            PacketSession = session;
+            this.PacketSession = session;
             this.Packets = new PacketList();
-            if (PacketSession != null)
+            if (this.PacketSession != null)
             {
-                PacketSession.PacketReceived += PacketSessionOnPacketReceived;
-                PacketSession.PacketSent += PacketSessionOnPacketSent;
-                PacketSession.SessionClosed += PacketSessionOnSessionClosed;
-                PacketSession.ServerUpdated += PacketSessionOnServerUpdated;
+                this.PacketSession.PacketReceived += this.PacketSessionOnPacketReceived;
+                this.PacketSession.PacketSent += this.PacketSessionOnPacketSent;
+                this.PacketSession.SessionClosed += this.PacketSessionOnSessionClosed;
+                this.PacketSession.ServerUpdated += this.PacketSessionOnServerUpdated;
             }
         }
 
@@ -30,28 +30,31 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
         #region Public Properties
 
         /// <summary>
-        /// the <see cref="PacketSession"/> instance
+        ///     the <see cref="PacketSession" /> instance
         /// </summary>
         public PacketSession PacketSession { get; set; }
 
         /// <summary>
-        /// the console content to display
+        ///     the console content to display
         /// </summary>
         public string Console { get; private set; }
 
         /// <summary>
-        /// the packets send accross the wire
+        ///     the packets send accross the wire
         /// </summary>
         public PacketList Packets { get; private set; }
 
-        public string SessionId { get { return this.PacketSession.Session.Uid.ToString(); } }
+        public string SessionId
+        {
+            get { return this.PacketSession.Session.Uid.ToString(); }
+        }
 
         #endregion
 
         #region Events
 
         /// <summary>
-        /// this event is invoked, when the wrapped Session is closed
+        ///     this event is invoked, when the wrapped Session is closed
         /// </summary>
         public event EventHandler<SessionViewModelEventArgs> SessionClosed;
 
@@ -93,7 +96,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 
         private void PacketSessionOnServerUpdated(object sender, EventArgs eventArgs)
         {
-            
         }
 
         #endregion

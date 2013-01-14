@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
+    using Common;
+
     public class VarsPremiumStatusCommandHandler : VarsCommandHandlerBase
     {
         public override string Command
@@ -14,7 +12,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {
-            var varValue = session.Server.Vars[Command];
+            object varValue = session.Server.Vars[this.Command];
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             responsePacket.Words.Add(varValue.ToString());
 

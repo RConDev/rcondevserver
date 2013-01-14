@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-
 namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
+    using System;
+    using System.Collections.Generic;
+
     public class BanListItem
     {
         public IdType IdType { get; set; }
@@ -20,14 +20,14 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         public IList<string> ToWords()
         {
             var words = new List<string>
-                            {
-                                IdType.Code,
-                                IdValue,
-                                BanType.Code,
-                                Convert.ToString(Seconds),
-                                Convert.ToString(Rounds),
-                                Reason
-                            };
+                {
+                    this.IdType.Code,
+                    this.IdValue,
+                    this.BanType.Code,
+                    Convert.ToString(this.Seconds),
+                    Convert.ToString(this.Rounds),
+                    this.Reason
+                };
             return words;
         }
     }

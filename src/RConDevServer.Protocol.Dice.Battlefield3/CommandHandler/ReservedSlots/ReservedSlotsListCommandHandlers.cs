@@ -4,13 +4,13 @@
     {
         public ReservedSlotsListCommandHandlers()
         {
-            RegisterCommandHandler(new ReservedSlotsListListCommandHandler());
-            RegisterCommandHandler(new ReservedSlotsListAddCommandHandler());
-            RegisterCommandHandler(new ReservedSlotsListRemoveCommandHandler());
-            RegisterCommandHandler(new ReservedSlotsListClearCommandHandler());
-            RegisterCommandHandler(new ReserverdSlotsListSaveCommandHandler());
-            RegisterCommandHandler(new ReservedSlotsListLoadCommandHandler());
-            RegisterCommandHandler(new ReserverdSlotsListAggressiveJoinCommandHandler());
+            this.RegisterCommandHandler(new ReservedSlotsListListCommandHandler());
+            this.RegisterCommandHandler(new ReservedSlotsListAddCommandHandler());
+            this.RegisterCommandHandler(new ReservedSlotsListRemoveCommandHandler());
+            this.RegisterCommandHandler(new ReservedSlotsListClearCommandHandler());
+            this.RegisterCommandHandler(new ReserverdSlotsListSaveCommandHandler());
+            this.RegisterCommandHandler(new ReservedSlotsListLoadCommandHandler());
+            this.RegisterCommandHandler(new ReserverdSlotsListAggressiveJoinCommandHandler());
         }
     }
 }

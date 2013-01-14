@@ -1,17 +1,18 @@
-﻿using System;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
+    using Common;
+
     public class VarsServerDescriptionCommandHandler : VarsCommandHandlerBase
     {
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_VARS_SERVER_DESCRIPTION; }
+            get { return Constants.COMMAND_VARS_SERVER_DESCRIPTION; }
         }
 
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {
-            responsePacket.Words.Add(RConDevServer.Protocol.Dice.Battlefield3.Constants.RESPONSE_SUCCESS);
+            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             responsePacket.Words.Add(session.Server.ServerDescription);
             return true;
         }

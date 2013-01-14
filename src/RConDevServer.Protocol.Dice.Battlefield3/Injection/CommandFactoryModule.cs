@@ -5,10 +5,10 @@
     using CommandFactory.Admin;
     using Ninject.Modules;
 
-    public class CommandFactoryModule : NinjectModule 
+    public class CommandFactoryModule : NinjectModule
     {
         /// <summary>
-        /// Loads the module into the kernel.
+        ///     Loads the module into the kernel.
         /// </summary>
         public override void Load()
         {

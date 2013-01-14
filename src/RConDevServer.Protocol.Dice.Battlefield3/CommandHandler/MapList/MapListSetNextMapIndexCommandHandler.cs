@@ -1,9 +1,8 @@
-﻿
-using RConDevServer.Protocol.Dice.Battlefield3.Event;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Common;
+    using Data;
 
     public class MapListSetNextMapIndexCommandHandler : CommandHandlerBase
     {
@@ -12,9 +11,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
             get { return Constants.COMMAND_MAP_LIST_SET_NEXT_MAP_INDEX; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            var mapList = session.Server.MapList;
+            MapList mapList = session.Server.MapList;
             if (requestPacket.Words.Count == 2)
             {
                 int index = 0;

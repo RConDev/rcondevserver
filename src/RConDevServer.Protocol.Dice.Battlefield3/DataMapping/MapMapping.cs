@@ -1,19 +1,19 @@
-﻿using FluentNHibernate.Mapping;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataMapping
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataMapping
 {
+    using Data;
+    using FluentNHibernate.Mapping;
+
     public class MapMapping : ClassMap<Map>
     {
         public MapMapping()
         {
-            ReadOnly();
-            Schema("bf3");
-            Table("map");
+            this.ReadOnly();
+            this.Schema("bf3");
+            this.Table("map");
 
-            Id(x => x.Key, "id").GeneratedBy.Native();
-            Map(x => x.Code, "code");
-            Map(x => x.Display, "label");
+            this.Id(x => x.Key, "id").GeneratedBy.Native();
+            this.Map(x => x.Code, "code");
+            this.Map(x => x.Display, "label");
             HasManyToMany(x => x.SupportedModes)
                 .ParentKeyColumn("map_id")
                 .ChildKeyColumn("mode_id")

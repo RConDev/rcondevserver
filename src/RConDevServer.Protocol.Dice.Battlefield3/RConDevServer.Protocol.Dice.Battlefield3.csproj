@@ -365,14 +365,8 @@
     <Compile Include="Injection\Battlefield3Module.cs" />
     <Compile Include="DataStore\IMapRepository.cs" />
     <Compile Include="Injection\CommandFactoryModule.cs" />
-    <Compile Include="IPacket.cs" />
-    <Compile Include="IPacketSerializer.cs" />
     <Compile Include="DataStore\MapListDataFile.cs" />
-    <Compile Include="Packet.cs" />
     <Compile Include="PacketDataEventArgs.cs" />
-    <Compile Include="PacketOrigin.cs" />
-    <Compile Include="PacketSequence.cs" />
-    <Compile Include="PacketSerializer.cs" />
     <Compile Include="PacketSession.cs" />
     <Compile Include="PacketSessionEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -403,7 +397,6 @@
     <Compile Include="Ui\SessionViewModel.cs" />
     <Compile Include="Ui\SessionViewModelEventArgs.cs" />
     <Compile Include="Ui\TeamScoresViewModel.cs" />
-    <Compile Include="Ui\Util\StringEnumerableExtensions.cs" />
     <Compile Include="Ui\ViewModelBase.cs" />
     <Compile Include="Util\Bool.cs" />
     <Compile Include="Util\ControlExtensions.cs" />
@@ -456,6 +449,14 @@
       <Name>RConDevServer.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\RConDevServer.Protocol.Common\RConDevServer.Protocol.Common.csproj">
+      <Project>{0242465b-024e-420a-b59e-339db4beefd1}</Project>
+      <Name>RConDevServer.Protocol.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RConDevServer.Protocol.Dice.Common\RConDevServer.Protocol.Dice.Common.csproj">
+      <Project>{bb8606d4-dadf-4031-901f-d0991b8fe418}</Project>
+      <Name>RConDevServer.Protocol.Dice.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RConDevServer.Protocol.Interface\RConDevServer.Protocol.Interface.csproj">
       <Project>{BFA65175-1141-4239-8DB0-F5F14ED29E5A}</Project>
       <Name>RConDevServer.Protocol.Interface</Name>
@@ -495,6 +496,9 @@
     <None Include="Resources\bf3-logo.png" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>

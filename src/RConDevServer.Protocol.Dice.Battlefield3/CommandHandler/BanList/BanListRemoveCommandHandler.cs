@@ -1,26 +1,28 @@
-﻿using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
+    using System.Linq;
     using Command;
+    using Common;
+    using Data;
 
     public class BanListRemoveCommandHandler : CommandHandlerBase
     {
         public override string Command
         {
-            get { return RConDevServer.Protocol.Dice.Battlefield3.Constants.COMMAND_BAN_LIST_REMOVE; }
+            get { return Constants.COMMAND_BAN_LIST_REMOVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            var idTypes = session.Server.IdTypes;
-            if (ValidateRequest(requestPacket))
+            IdTypes idTypes = session.Server.IdTypes;
+            if (this.ValidateRequest(requestPacket))
             {
-                var idType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
+                IdType idType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
                 var idValue = requestPacket.Words[2];
 
-                var banListItem = session.Server.BanList.FirstOrDefault(x => x.IdType.Code == idType.Code && x.IdValue == idValue);
+                BanListItem banListItem =
+                    session.Server.BanList.FirstOrDefault(x => x.IdType.Code == idType.Code && x.IdValue == idValue);
                 if (banListItem != null)
                 {
                     session.Server.BanList.Remove(banListItem);

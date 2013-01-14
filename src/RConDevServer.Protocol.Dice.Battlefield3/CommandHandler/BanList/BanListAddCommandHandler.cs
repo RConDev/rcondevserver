@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
+    using System;
+    using System.Linq;
     using Command;
+    using Common;
+    using Data;
 
     public class BanListAddCommandHandler : CommandHandlerBase
     {
@@ -13,19 +13,20 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
             get { return Constants.COMMAND_BAN_LIST_ADD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
+                                                ICommand command)
         {
-            if (ValidateRequestPacket(requestPacket))
+            if (this.ValidateRequestPacket(requestPacket))
             {
-                var idTypes = session.Server.IdTypes;
+                IdTypes idTypes = session.Server.IdTypes;
                 var banTypes = new BanTypes();
-                var itemCreated = false;
+                bool itemCreated = false;
                 var banListItem = new BanListItem
-                                      {
-                                          IdType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]),
-                                          IdValue = requestPacket.Words[2],
-                                          BanType = banTypes.FirstOrDefault(x => x.Code == requestPacket.Words[3]),
-                                      };
+                    {
+                        IdType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]),
+                        IdValue = requestPacket.Words[2],
+                        BanType = banTypes.FirstOrDefault(x => x.Code == requestPacket.Words[3]),
+                    };
                 if (banListItem.BanType.Code == BanTypes.Perm.Code)
                 {
                     banListItem.Reason = requestPacket.Words[4];
@@ -37,7 +38,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
                     banListItem.Reason = requestPacket.Words[5];
                     itemCreated = true;
                 }
-                else if (banListItem.BanType.Code == BanTypes.Rounds.Code )
+                else if (banListItem.BanType.Code == BanTypes.Rounds.Code)
                 {
                     banListItem.Seconds = Convert.ToInt32(requestPacket.Words[4]);
                     banListItem.Reason = requestPacket.Words[5];

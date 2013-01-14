@@ -1,9 +1,9 @@
-﻿using System;
-using RConDevServer.Protocol.Dice.Battlefield3.Util;
-
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
+    using System;
+    using Common;
+    using Util;
+
     public class VarsMaxPlayersCommandHandler : VarsCommandHandlerBase
     {
         public override string Command
@@ -14,10 +14,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {
             var response = new[]
-                               {
-                                   Constants.RESPONSE_SUCCESS,
-                                   Convert.ToString(session.Server.ServerInfo.MaxPlayerCount)
-                               };
+                {
+                    Constants.RESPONSE_SUCCESS,
+                    Convert.ToString(session.Server.ServerInfo.MaxPlayerCount)
+                };
             StringListExtensions.AddRange(responsePacket.Words, response);
             return true;
         }

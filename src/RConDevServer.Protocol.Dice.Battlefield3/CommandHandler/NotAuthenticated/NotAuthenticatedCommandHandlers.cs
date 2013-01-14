@@ -1,20 +1,20 @@
-﻿using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using Interface;
+
     public class NotAuthenticatedCommandHandlers : CommandHandlers
     {
-        public IServiceLocator ServiceLocator { get; set; }
-
         public NotAuthenticatedCommandHandlers(IServiceLocator serviceLocator)
         {
-            ServiceLocator = serviceLocator;
-            RegisterCommandHandler(new VersionCommandHandler());
-            RegisterCommandHandler(new ServerInfoCommandHandler(serviceLocator));
-            RegisterCommandHandler(new LoginPlainTextHandler());
-            RegisterCommandHandler(new LoginHashedHandler());
-            RegisterCommandHandler(new LogoutCommandHandler());
-            RegisterCommandHandler(new ListPlayersCommandHandler());
+            this.ServiceLocator = serviceLocator;
+            this.RegisterCommandHandler(new VersionCommandHandler());
+            this.RegisterCommandHandler(new ServerInfoCommandHandler(serviceLocator));
+            this.RegisterCommandHandler(new LoginPlainTextHandler());
+            this.RegisterCommandHandler(new LoginHashedHandler());
+            this.RegisterCommandHandler(new LogoutCommandHandler());
+            this.RegisterCommandHandler(new ListPlayersCommandHandler());
         }
+
+        public IServiceLocator ServiceLocator { get; set; }
     }
 }

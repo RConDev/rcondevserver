@@ -4,16 +4,16 @@
     {
         public MapListCommandHandlers()
         {
-            RegisterCommandHandler(new MapListListCommandHandler());
-            RegisterCommandHandler(new MapListLoadCommandHandler());
-            RegisterCommandHandler(new MapListSaveCommandHandler());
-            RegisterCommandHandler(new MapListAddCommandHandler());
-            RegisterCommandHandler(new MapListRemoveCommandHandler());
-            RegisterCommandHandler(new MapListClearCommandHandler());
-            RegisterCommandHandler(new MapListSetNextMapIndexCommandHandler());
-            RegisterCommandHandler(new MapListGetMapIndicesCommandHandler());
-            RegisterCommandHandler(new MapListGetRoundsCommandHandler());
-            RegisterCommandHandler(new MapListRunNextRoundCommandHandler());
+            this.RegisterCommandHandler(new MapListListCommandHandler());
+            this.RegisterCommandHandler(new MapListLoadCommandHandler());
+            this.RegisterCommandHandler(new MapListSaveCommandHandler());
+            this.RegisterCommandHandler(new MapListAddCommandHandler());
+            this.RegisterCommandHandler(new MapListRemoveCommandHandler());
+            this.RegisterCommandHandler(new MapListClearCommandHandler());
+            this.RegisterCommandHandler(new MapListSetNextMapIndexCommandHandler());
+            this.RegisterCommandHandler(new MapListGetMapIndicesCommandHandler());
+            this.RegisterCommandHandler(new MapListGetRoundsCommandHandler());
+            this.RegisterCommandHandler(new MapListRunNextRoundCommandHandler());
             this.RegisterCommandHandler(new MapListEndRoundCommandHandler());
         }
     }

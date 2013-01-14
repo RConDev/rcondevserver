@@ -1,10 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Util
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Util
 {
+    using System;
+    using System.Windows.Forms;
+
     /// <summary>
-    /// 
     /// </summary>
     /// <remarks>http://stackoverflow.com/questions/783925/control-invoke-with-input-parameters</remarks>
     public static class ControlExtensions
@@ -14,7 +13,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Util
             where TControl : Control
         {
             return control.InvokeRequired
-                       ? (TResult)control.Invoke(func, control)
+                       ? (TResult) control.Invoke(func, control)
                        : func(control);
         }
 
@@ -23,10 +22,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Util
             where TControl : Control
         {
             InvokeEx(control, c =>
-                                  {
-                                      func(c);
-                                      return c;
-                                  });
+                {
+                    func(c);
+                    return c;
+                });
         }
 
         public static void InvokeEx<TControl>(this TControl control, Action action)

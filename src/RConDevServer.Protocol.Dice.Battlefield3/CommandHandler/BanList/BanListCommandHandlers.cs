@@ -4,12 +4,12 @@
     {
         public BanListCommandHandlers()
         {
-            RegisterCommandHandler(new BanListListCommandHandler());
-            RegisterCommandHandler(new BanListAddCommandHandler());
-            RegisterCommandHandler(new BanListRemoveCommandHandler());
-            RegisterCommandHandler(new BanListClearCommandHandler());
-            RegisterCommandHandler(new BanListLoadCommandHandler());
-            RegisterCommandHandler(new BanListSaveCommandHandler());
+            this.RegisterCommandHandler(new BanListListCommandHandler());
+            this.RegisterCommandHandler(new BanListAddCommandHandler());
+            this.RegisterCommandHandler(new BanListRemoveCommandHandler());
+            this.RegisterCommandHandler(new BanListClearCommandHandler());
+            this.RegisterCommandHandler(new BanListLoadCommandHandler());
+            this.RegisterCommandHandler(new BanListSaveCommandHandler());
         }
     }
 }

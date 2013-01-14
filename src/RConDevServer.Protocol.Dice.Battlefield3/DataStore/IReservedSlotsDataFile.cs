@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.DataStore
 {
+    using System.Collections.Generic;
+    using Data;
+
     public interface IReservedSlotsDataFile
     {
         IDataFile DataFile { get; }

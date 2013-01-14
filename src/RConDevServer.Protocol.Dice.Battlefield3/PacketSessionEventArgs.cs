@@ -4,11 +4,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3
 
     public class PacketSessionEventArgs : EventArgs
     {
-        public PacketSession PacketSession { get; private set; }
-
         public PacketSessionEventArgs(PacketSession session)
         {
             this.PacketSession = session;
         }
+
+        public PacketSession PacketSession { get; private set; }
     }
 }

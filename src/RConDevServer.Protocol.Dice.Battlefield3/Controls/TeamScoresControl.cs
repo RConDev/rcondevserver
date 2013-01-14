@@ -1,16 +1,17 @@
-﻿using System.Windows.Forms;
-using RConDevServer.Protocol.Dice.Battlefield3.Data;
-using RConDevServer.Protocol.Dice.Battlefield3.Ui;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
 {
+    using System;
+    using System.Windows.Forms;
+    using Data;
+    using Ui;
+
     public partial class TeamScoresControl : UserControl
     {
         private TeamScoresViewModel dataContext;
 
         public TeamScoresControl()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
         public TeamScoresViewModel DataContext
@@ -30,12 +31,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
             }
         }
 
-        private void BtnAddClick(object sender, System.EventArgs e)
+        private void BtnAddClick(object sender, EventArgs e)
         {
             this.dbsScoreValues.AddNew();
         }
 
-        private void BtnRemoveClick(object sender, System.EventArgs e)
+        private void BtnRemoveClick(object sender, EventArgs e)
         {
             var currentItem = this.dbsScoreValues.Current as Score;
             if (currentItem != null)
@@ -45,7 +46,5 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Controls
                 this.dbsScoreValues.ResetBindings(false);
             }
         }
-
-        
     }
 }
