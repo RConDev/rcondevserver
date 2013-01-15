@@ -5,17 +5,18 @@
 
     public class CommandHandlersList : List<CommandHandlers>
     {
-        public void OnCommandReceived(object sender, PacketDataEventArgs args)
+        public void OnCommandReceived(object sender, ClientCommandEventArgs args)
         {
             var session = sender as PacketSession;
             if (session == null
-                || (session.Server == null || !session.Server.IsAutomaticResponse))
+                || (session.Server == null 
+                || !session.Server.IsAutomaticResponse))
             {
                 return;
             }
 
             bool handled = false;
-            foreach (CommandHandlers commandHandlers in this)
+            foreach (var commandHandlers in this)
             {
                 handled = commandHandlers.ProcessCommand(sender, args);
                 if (handled)

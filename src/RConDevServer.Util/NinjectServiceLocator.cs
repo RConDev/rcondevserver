@@ -24,7 +24,14 @@ namespace RConDevServer.Util
 
         public T GetService<T>(string name)
         {
-            return Kernel.Get<T>(name);
+            try
+            {
+                return Kernel.Get<T>(name);
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
         }
 
         public bool RegisterService(Type type, object service)

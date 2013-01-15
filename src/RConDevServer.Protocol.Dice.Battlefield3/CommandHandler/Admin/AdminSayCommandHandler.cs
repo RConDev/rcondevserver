@@ -2,17 +2,12 @@
 {
     using System.Linq;
     using Command;
-    using CommandFactory.Admin;
     using Common;
     using Data;
     using Event.Player;
 
     public class AdminSayCommandHandler : CommandHandlerBase
     {
-        public AdminSayCommandHandler() : base(null, new SayCommandFactory())
-        {
-        }
-
         #region ICanHandleClientCommands Members
 
         public override string Command
@@ -25,7 +20,7 @@
                                                 Packet responsePacket,
                                                 ICommand command)
         {
-            var message = requestPacket.Words[1];
+            string message = requestPacket.Words[1];
             PlayerSubset playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());
 
             if (message.Length >= 128)

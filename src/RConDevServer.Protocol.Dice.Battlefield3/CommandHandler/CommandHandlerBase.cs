@@ -10,17 +10,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 
     public abstract class CommandHandlerBase : ICanHandleClientCommands
     {
-        protected CommandHandlerBase(IServiceLocator serviceLocator = null,
-                                     ICommandFactory<ICommand> commandFactory = null)
+        protected CommandHandlerBase(IServiceLocator serviceLocator = null)
         {
             this.CommandEvents = new SynchronizedCollection<IEvent>();
             this.ServiceLocator = serviceLocator;
-            this.CommandFactory = commandFactory;
         }
 
         public IServiceLocator ServiceLocator { get; private set; }
-
-        public ICommandFactory<ICommand> CommandFactory { get; private set; }
 
         public IList<IEvent> CommandEvents { get; private set; }
 

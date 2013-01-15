@@ -2,16 +2,11 @@
 {
     using System;
     using Command;
-    using CommandFactory.NotAuthenticated;
     using Common;
     using Util;
 
     public class LoginHashedHandler : CommandHandlerBase
     {
-        public LoginHashedHandler() : base(null, new LoginHashedCommandFactory())
-        {
-        }
-
         #region ICanHandleClientCommands Members
 
         public override string Command

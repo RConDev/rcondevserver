@@ -1,18 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
     using Command;
-    using CommandFactory.Admin;
     using Common;
 
     public class AdminEventsEnabledCommandHandler : CommandHandlerBase
     {
-        /// <summary>
-        ///     creates a new <see cref="AdminEventsEnabledCommandHandler" />
-        /// </summary>
-        public AdminEventsEnabledCommandHandler() : base(null, new EventsEnabledCommandFactory())
-        {
-        }
-
         #region ICommandHandler Members
 
         public override string Command

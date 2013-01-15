@@ -1,16 +1,11 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
     using Command;
-    using CommandFactory.Admin;
     using Common;
     using Data;
 
     public class AdminHelpCommandHandler : CommandHandlerBase
     {
-        public AdminHelpCommandHandler() : base(null, new HelpCommandFactory())
-        {
-        }
-
         #region ICanHandleClientCommands Members
 
         public override string Command

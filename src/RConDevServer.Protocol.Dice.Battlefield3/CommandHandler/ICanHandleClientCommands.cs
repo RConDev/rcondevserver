@@ -20,12 +20,6 @@
         string Command { get; }
 
         /// <summary>
-        ///     the <see cref="ICommandFactory{TCommand}" /> to create the <see cref="ICommand" /> instances for the
-        ///     current <see cref="ICanHandleClientCommands" /> implementation
-        /// </summary>
-        ICommandFactory<ICommand> CommandFactory { get; }
-
-        /// <summary>
         /// </summary>
         /// <param name="session"></param>
         /// <param name="requestPacket"></param>

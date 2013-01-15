@@ -40,7 +40,7 @@
             return false;
         }
 
-        public bool ProcessCommand(object sender, PacketDataEventArgs args)
+        public bool ProcessCommand(object sender, ClientCommandEventArgs args)
         {
             var session = sender as PacketSession;
 
@@ -77,13 +77,8 @@
                     bool responseCreated = false;
                     try
                     {
-                        ICommand command = null;
-                        if (commandHandler.CommandFactory != null)
-                        {
-                            command = commandHandler.CommandFactory.FromWords(requestPacket.Words);
-                        }
                         responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket,
-                                                                            command);
+                                                                            args.Command);
                     }
                     catch (Exception ex)
                     {

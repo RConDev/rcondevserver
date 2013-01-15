@@ -3,6 +3,8 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Command;
+    using CommandFactory;
     using CommandHandler;
     using CommandHandler.Admin;
     using CommandHandler.BanList;
@@ -29,7 +31,7 @@
         /// <summary>
         ///     this event is invoked, when a packet containing a client command is received
         /// </summary>
-        public event EventHandler<PacketDataEventArgs> ClientCommandReceived;
+        public event EventHandler<ClientCommandEventArgs> ClientCommandReceived;
 
         /// <summary>
         ///     this event is invoked, when a packet containing a client command is received
@@ -54,6 +56,11 @@
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        ///     resolving needed services
+        /// </summary>
+        public IServiceLocator ServiceLocator { get; private set; }
 
         /// <summary>
         ///     the serializer is responsible for convert to / from packet data
@@ -112,6 +119,7 @@
         /// <param name="server"> </param>
         public PacketSession(IRconSession session, Battlefield3Server server)
         {
+            this.ServiceLocator = server.ServiceLocator;
             this.Session = session;
             this.Server = server;
             this.PacketSerializer = new PacketSerializer();
@@ -121,24 +129,27 @@
             // create the hash value for validating crypted password
             this.HashValue = Guid.NewGuid().ToString().Replace("-", string.Empty);
 
-
-            this.CommandHandlersList = new CommandHandlersList();
-            this.CommandHandlersList.Add(new MapListCommandHandlers());
-            this.CommandHandlersList.Add(new BanListCommandHandlers());
-            this.CommandHandlersList.Add(new VarsCommandHandlers());
-            this.CommandHandlersList.Add(new ReservedSlotsListCommandHandlers());
-            this.CommandHandlersList.Add(new AdminCommandHandlers(server.ServiceLocator));
-            this.CommandHandlersList.Add(new NotAuthenticatedCommandHandlers(server.ServiceLocator));
+            this.CommandHandlersList = new CommandHandlersList
+                {
+                    new MapListCommandHandlers(),
+                    new BanListCommandHandlers(),
+                    new VarsCommandHandlers(),
+                    new ReservedSlotsListCommandHandlers(),
+                    new AdminCommandHandlers(server.ServiceLocator),
+                    new NotAuthenticatedCommandHandlers(server.ServiceLocator)
+                };
 
             this.ClientCommandReceived += this.CommandHandlersList.OnCommandReceived;
             this.ServerEventResponseReceived += this.OnServerEventResponseReceived;
 
-            if (session != null)
+            if (session == null)
             {
-                this.Session.DataReceived += this.OnDataReceived;
-                this.Session.DataSent += this.OnDataSent;
-                this.Session.Closed += this.SessionOnClosed;
+                return;
             }
+
+            this.Session.DataReceived += this.OnDataReceived;
+            this.Session.DataSent += this.OnDataSent;
+            this.Session.Closed += this.SessionOnClosed;
         }
 
         #endregion
@@ -163,7 +174,7 @@
             {
                 packetData.SequenceId = Convert.ToUInt32(this.PacketSequence.NextSequenceId);
             }
-            var bytes = this.PacketSerializer.Serialize(packetData);
+            byte[] bytes = this.PacketSerializer.Serialize(packetData);
             this.Session.SendToClient(bytes);
         }
 
@@ -188,11 +199,11 @@
 
         private void OnDataReceived(object sender, ByteDataEventArgs e)
         {
-            var packets = this.PacketSerializer.Deserialize(e.ByteData);
+            IEnumerable<Packet> packets = this.PacketSerializer.Deserialize(e.ByteData);
 
             if (packets != null)
             {
-                foreach (var packet in packets)
+                foreach (Packet packet in packets)
                 {
                     this.PacketSequence.CurrentSequenceId = Convert.ToInt32(packet.SequenceId);
 
@@ -211,10 +222,10 @@
 
         private void OnDataSent(object sender, ByteDataEventArgs e)
         {
-            var packets = this.PacketSerializer.Deserialize(e.ByteData);
+            IEnumerable<Packet> packets = this.PacketSerializer.Deserialize(e.ByteData);
             if (packets != null)
             {
-                foreach (var packet in packets)
+                foreach (Packet packet in packets)
                 {
                     this.InvokePacketSent(packet);
                 }
@@ -230,7 +241,7 @@
         {
             lock (this.syncRoot)
             {
-                var eventPacket =
+                Packet eventPacket =
                     this.EventsSent.FirstOrDefault(x => x.SequenceId == packetDataEventArgs.PacketData.SequenceId);
                 if (eventPacket != null)
                 {
@@ -260,7 +271,16 @@
                 return;
             }
 
-            this.ClientCommandReceived.InvokeAll(this, new PacketDataEventArgs(packet));
+            ICommand command = null;
+            if (packet.Words.Count > 0)
+            {
+                var commandFactory = ServiceLocator.GetService<ICommandFactory<ICommand>>(packet.Words[0]);
+                if (commandFactory != null)
+                {
+                    command = commandFactory.FromWords(packet.Words);
+                }
+            }
+            this.ClientCommandReceived.InvokeAll(this, new ClientCommandEventArgs(packet, command));
         }
 
         internal void InvokeServerEventResponseReceived(Packet packet)

@@ -9,10 +9,6 @@
 
     public class AdminYellCommandHandler : CommandHandlerBase
     {
-        public AdminYellCommandHandler() : base(null, new YellCommandFactory())
-        {
-        }
-
         public override string Command
         {
             get { return CommandNames.AdminYell; }

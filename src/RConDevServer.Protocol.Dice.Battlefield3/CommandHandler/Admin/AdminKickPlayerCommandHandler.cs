@@ -4,7 +4,6 @@
     using System.Linq;
     using Command;
     using Command.Admin;
-    using CommandFactory.Admin;
     using Common;
     using Data;
     using Interface;
@@ -12,7 +11,7 @@
     public class AdminKickPlayerCommandHandler : CommandHandlerBase
     {
         public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator)
-            : base(serviceLocator, new KickPlayerCommandFactory())
+            : base(serviceLocator)
         {
         }
 

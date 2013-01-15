@@ -27,14 +27,16 @@
 
         public const string LoginPlainText = "login.plainText";
 
+        public const string AdminEventsEnabled = "admin.eventsEnabled";
+
         public const string AdminHelp = "admin.help";
 
         public const string AdminKickPlayer = "admin.kickPlayer";
 
+        public const string AdminListPlayers = "admin.listPlayers";
+
         public const string AdminSay = "admin.say";
 
         public const string AdminYell = "admin.yell";
-
-        public const string AdminEventsEnabled = "admin.eventsEnabled";
     }
 }
