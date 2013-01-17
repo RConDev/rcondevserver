@@ -10,7 +10,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_MOVE_PLAYER; }
+            get { return CommandNames.AdminMovePlayer; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

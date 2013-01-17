@@ -2,8 +2,10 @@
 {
     using Command;
     using Command.Admin;
+    using Command.ReservedSlotsList;
     using CommandFactory;
     using CommandFactory.Admin;
+    using CommandFactory.ReservedSlotsList;
     using DataStore;
     using Interface;
 
@@ -32,9 +34,11 @@
         private void RegisterCommandFactories()
         {
             #region Admin Commands
+
             this.ServiceLocator.RegisterNamedService<ICommandFactory<EventsEnabledCommand>, EventsEnabledCommandFactory>
-               (CommandNames.AdminEventsEnabled);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<HelpCommand>, HelpCommandFactory>(CommandNames.AdminHelp);
+                (CommandNames.AdminEventsEnabled);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<HelpCommand>, HelpCommandFactory>(
+                CommandNames.AdminHelp);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, KickPlayerCommandFactory>(
                 CommandNames.AdminKickPlayer);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ListPlayersCommand>, ListPlayersCommandFactory>(
@@ -43,10 +47,38 @@
                 CommandNames.AdminSay);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<YellCommand>, YellCommandFactory>(
                 CommandNames.AdminYell);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<EffectiveMaxPlayersCommand>, EffectiveMaxPlayersCommandFactory>(
+                    CommandNames.AdminEffectiveMaxPlayers);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<MovePlayerCommand>, MovePlayerCommandFactory>(
+                CommandNames.AdminMovePlayer);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<KillPlayerCommand>, KillPlayerCommandFactory>(
+                CommandNames.AdminKillPlayer);
+
+            #endregion
+
+            #region Reserved Slots
+
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<LoadCommand>, LoadCommandFactory>(
+                CommandNames.ReservedSlotsListLoad);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<SaveCommand>, SaveCommandFactory>(
+                CommandNames.ReservedSlotsListSave);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<AddCommand>, AddCommandFactory>(
+                CommandNames.ReservedSlotsListAdd);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<RemoveCommand>, RemoveCommandFactory>(
+                CommandNames.ReservedSlotsListRemove);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ClearCommand>, ClearCommandFactory>(
+                CommandNames.ReservedSlotsListClear);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ListCommand>, ListCommandFactory>(
+                CommandNames.ReservedSlotsListList);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<AggressiveJoinCommand>, AggressiveJoinCommandFactory>(
+                    CommandNames.ReservedSlotsListAggressiveJoin);
 
             #endregion
 
             #region Not Authenticated Commands
+
             #endregion
         }
     }

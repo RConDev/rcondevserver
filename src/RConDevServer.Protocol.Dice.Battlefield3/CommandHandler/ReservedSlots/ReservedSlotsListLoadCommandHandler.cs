@@ -10,7 +10,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_RESERVED_SLOTS_LIST_LOAD; }
+            get { return CommandNames.ReservedSlotsListLoad; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

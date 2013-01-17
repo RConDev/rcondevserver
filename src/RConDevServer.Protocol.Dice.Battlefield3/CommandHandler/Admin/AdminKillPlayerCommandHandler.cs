@@ -1,16 +1,14 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    using System.Collections.Generic;
     using System.Linq;
     using Command;
     using Common;
-    using Data;
 
     public class AdminKillPlayerCommandHandler : CommandHandlerBase
     {
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_KILL_PLAYER; }
+            get { return CommandNames.AdminKillPlayer; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
@@ -23,7 +21,7 @@
             }
 
             var playerName = requestPacket.Words[1];
-            IList<PlayerInfo> playerList = session.Server.PlayerList.Players;
+            var playerList = session.Server.PlayerList.Players;
             if (playerList.All(x => x.Name != playerName))
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_PLAYER_NAME);

@@ -78,5 +78,13 @@
             string message = string.Format(Resources.EXC_MSG_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
             throw new ArgumentException(message, sequenceName);
         }
+
+        public static void NotNull<T>(T? parameterValue, string parameterName) where T : struct
+        {
+            if (parameterValue == null)
+            {
+                throw new ArgumentNullException(parameterName);
+            }
+        }
     }
 }

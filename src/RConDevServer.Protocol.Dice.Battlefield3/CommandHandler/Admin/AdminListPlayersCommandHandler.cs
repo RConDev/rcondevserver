@@ -9,7 +9,7 @@
 
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_LIST_PLAYERS; }
+            get { return CommandNames.AdminListPlayers; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

@@ -8,7 +8,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_SAVE; }
+            get { return CommandNames.ReservedSlotsListSave; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

@@ -9,7 +9,7 @@
 
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_EVENTS_ENABLED; }
+            get { return CommandNames.AdminEventsEnabled; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

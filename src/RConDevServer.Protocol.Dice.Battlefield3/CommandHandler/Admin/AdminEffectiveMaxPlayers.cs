@@ -8,7 +8,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_EFFECTIVE_MAX_PLAYERS; }
+            get { return CommandNames.AdminEffectiveMaxPlayers; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

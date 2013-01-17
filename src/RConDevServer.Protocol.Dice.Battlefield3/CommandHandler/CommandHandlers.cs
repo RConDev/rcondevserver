@@ -10,13 +10,13 @@
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlers));
 
-        protected readonly IDictionary<string, ICanHandleClientCommands> CommandReveiverAccess;
+        protected readonly IDictionary<string, ICanHandleClientCommands> RegisteredCommandHandlers;
 
         #region Constructor
 
         public CommandHandlers()
         {
-            this.CommandReveiverAccess = new Dictionary<string, ICanHandleClientCommands>();
+            this.RegisteredCommandHandlers = new Dictionary<string, ICanHandleClientCommands>();
         }
 
         #endregion
@@ -31,10 +31,10 @@
         public bool RegisterCommandHandler(ICanHandleClientCommands handler)
         {
             string commandName = handler.Command.ToLower();
-            bool isAlreadyRegistered = this.CommandReveiverAccess.ContainsKey(commandName);
+            bool isAlreadyRegistered = this.RegisteredCommandHandlers.ContainsKey(commandName);
             if (!isAlreadyRegistered)
             {
-                this.CommandReveiverAccess.Add(commandName, handler);
+                this.RegisteredCommandHandlers.Add(commandName, handler);
                 return true;
             }
             return false;
@@ -67,9 +67,9 @@
             if (requestPacket.SequenceId != null && requestPacket.Words.Count > 0)
             {
                 string currentCommand = requestPacket.Words[0];
-                if (this.CommandReveiverAccess.ContainsKey(currentCommand.ToLower()))
+                if (this.RegisteredCommandHandlers.ContainsKey(currentCommand.ToLower()))
                 {
-                    ICanHandleClientCommands commandHandler = this.CommandReveiverAccess[currentCommand.ToLower()];
+                    ICanHandleClientCommands commandHandler = this.RegisteredCommandHandlers[currentCommand.ToLower()];
                     var responsePacket = new Packet(requestPacket.Origin,
                                                     true,
                                                     requestPacket.SequenceId.Value);

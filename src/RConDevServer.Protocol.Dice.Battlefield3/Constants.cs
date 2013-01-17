@@ -45,32 +45,6 @@
 
         #endregion
 
-        #region Admin Commands
-
-        public const string COMMAND_ADMIN_HELP = "admin.help";
-        public const string COMMAND_ADMIN_EVENTS_ENABLED = "admin.eventsEnabled";
-        public const string COMMAND_ADMIN_LIST_PLAYERS = "admin.listPlayers";
-        public const string COMMAND_ADMIN_SAY = "admin.say";
-        public const string COMMAND_ADMIN_YELL = "admin.yell";
-        public const string COMMAND_ADMIN_KICK_PLAYER = "admin.kickPlayer";
-        public const string COMMAND_ADMIN_KILL_PLAYER = "admin.killPlayer";
-        public const string COMMAND_ADMIN_EFFECTIVE_MAX_PLAYERS = "admin.effectiveMaxPlayers";
-        public const string COMMAND_ADMIN_MOVE_PLAYER = "admin.movePlayer";
-
-        #endregion
-
-        #region Reserved Slot Lists Commands
-
-        public const string COMMAND_RESERVED_SLOTS_LISTS_LIST = "reservedSlotsList.list";
-        public const string COMMAND_RESERVED_SLOTS_LISTS_ADD = "reservedSlotsList.add";
-        public const string COMMAND_RESERVED_SLOTS_LISTS_REMOVE = "reservedSlotsList.remove";
-        public const string COMMAND_RESERVED_SLOTS_LISTS_CLEAR = "reservedSlotsList.clear";
-        public const string COMMAND_RESERVED_SLOTS_LISTS_SAVE = "reservedSlotsList.save";
-        public const string COMMAND_RESERVED_SLOTS_LIST_LOAD = "reservedSlotsList.load";
-        public const string COMMAND_RESERVED_SLOTS_LISTS_AGGRESSIVE_JOIN = "reservedSlotsList.aggressiveJoin";
-
-        #endregion
-
         #region Map List Commands
 
         public const string COMMAND_MAP_LIST_LIST = "mapList.list";

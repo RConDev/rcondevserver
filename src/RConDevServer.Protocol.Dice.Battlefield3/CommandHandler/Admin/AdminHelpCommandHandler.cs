@@ -10,7 +10,7 @@
 
         public override string Command
         {
-            get { return Constants.COMMAND_ADMIN_HELP; }
+            get { return CommandNames.AdminHelp; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

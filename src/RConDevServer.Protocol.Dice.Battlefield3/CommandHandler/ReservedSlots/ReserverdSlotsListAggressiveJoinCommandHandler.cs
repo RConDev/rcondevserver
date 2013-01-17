@@ -9,7 +9,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_RESERVED_SLOTS_LISTS_AGGRESSIVE_JOIN; }
+            get { return CommandNames.ReservedSlotsListAggressiveJoin; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
