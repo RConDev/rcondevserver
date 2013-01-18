@@ -26,7 +26,12 @@
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            throw new NotImplementedException();
+            var words = new List<string> {this.Command};
+            if (this.IsEnabled.HasValue)
+            {
+                words.Add(Convert.ToString(this.IsEnabled).ToLower());
+            }
+            return words;
         }
     }
 }

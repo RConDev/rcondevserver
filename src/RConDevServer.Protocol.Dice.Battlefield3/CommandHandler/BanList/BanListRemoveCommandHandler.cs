@@ -3,7 +3,6 @@
     using System.Linq;
     using Command;
     using Common;
-    using Data;
 
     public class BanListRemoveCommandHandler : CommandHandlerBase
     {
@@ -15,13 +14,13 @@
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
                                                 ICommand command)
         {
-            IdTypes idTypes = session.Server.IdTypes;
+            var idTypes = session.Server.IdTypes;
             if (this.ValidateRequest(requestPacket))
             {
-                IdType idType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
+                var idType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
                 var idValue = requestPacket.Words[2];
 
-                BanListItem banListItem =
+                var banListItem =
                     session.Server.BanList.FirstOrDefault(x => x.IdType.Code == idType.Code && x.IdValue == idValue);
                 if (banListItem != null)
                 {

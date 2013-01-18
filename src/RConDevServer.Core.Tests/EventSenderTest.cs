@@ -24,7 +24,7 @@ namespace RConDevServer.Core.Tests
         private Battlefield3Server server;
         private Session session;
 
-        [TestFixtureSetUp]
+        //[TestFixtureSetUp]
         public void LoadEventSenders()
         {
             this.serviceLocatorMock = new Mock<IServiceLocator>();
@@ -106,7 +106,7 @@ namespace RConDevServer.Core.Tests
             return parameters;
         }
 
-        [Test]
+        //[Test]
         public void ServerEventRaised()
         {
             int counter = 0;
@@ -134,7 +134,7 @@ namespace RConDevServer.Core.Tests
             Assert.AreEqual(this.eventSenders.Count, counter);
         }
 
-        [Test]
+        //[Test]
         public void SetParameters()
         {
             foreach (ICanSendEvents canSendEvents in this.eventSenders)
@@ -144,7 +144,7 @@ namespace RConDevServer.Core.Tests
             }
         }
 
-        [Test]
+        //[Test]
         public void SetParametersFail()
         {
             foreach (ICanSendEvents canSendEvents in this.eventSenders)
@@ -154,7 +154,7 @@ namespace RConDevServer.Core.Tests
             }
         }
 
-        [Test]
+        //[Test]
         public void PlayerSendMessageToTeam()
         {
             var playerOnChatEventSender = new PlayerOnChatEventSender();
@@ -164,7 +164,7 @@ namespace RConDevServer.Core.Tests
             Assert.AreEqual(playerOnChatEventSender.PlayerSubset.Type, PlayerSubsetType.Team);
         }
 
-        [Test]
+        //[Test]
         public void PlayerSendMessageToPlayer()
         {
             var playerOnChatEventSender = new PlayerOnChatEventSender();
@@ -174,7 +174,7 @@ namespace RConDevServer.Core.Tests
             Assert.AreEqual(playerOnChatEventSender.PlayerSubset.Type, PlayerSubsetType.Player);
         }
 
-        [Test]
+        //[Test]
         public void PlayerSendMessageToAll()
         {
             var playerOnChatEventSender = new PlayerOnChatEventSender();
@@ -184,7 +184,7 @@ namespace RConDevServer.Core.Tests
             Assert.AreEqual(playerOnChatEventSender.PlayerSubset.Type, PlayerSubsetType.All);
         }
 
-        [Test]
+        //[Test]
         public void PlayerSendMessageToSquad()
         {
             var playerOnChatEventSender = new PlayerOnChatEventSender();

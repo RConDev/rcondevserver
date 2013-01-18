@@ -5,6 +5,19 @@
     /// </summary>
     public static class CommandNames
     {
+        
+        public const string BanListAdd = "banList.add";
+
+        public const string BanListClear = "banList.clear";
+
+        public const string BanListList = "banList.list";
+
+        public const string BanListLoad = "banList.load";
+
+        public const string BanListRemove = "banList.remove";
+
+        public const string BanListSave = "banList.save";
+
         public const string VarsRanked = "vars.ranked";
 
         public const string PunkBusterPbSvCommand = "punkBuster.pb_sv_command";

@@ -11,6 +11,7 @@ namespace RConDevServer.Protocol.Interface
         bool RegisterService(Type type, object service);
 
         bool UnregisterService(Type type);
+
         bool RegisterNamedService<TInterface, TImplementation>(string name) where TImplementation : TInterface;
     }
 }

@@ -59,8 +59,8 @@
 
             #region Reserved Slots
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<LoadCommand>, LoadCommandFactory>(
-                CommandNames.ReservedSlotsListLoad);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<LoadCommand>, LoadCommandFactory>(CommandNames.ReservedSlotsListLoad);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<SaveCommand>, SaveCommandFactory>(
                 CommandNames.ReservedSlotsListSave);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<AddCommand>, AddCommandFactory>(
@@ -74,6 +74,34 @@
             this.ServiceLocator
                 .RegisterNamedService<ICommandFactory<AggressiveJoinCommand>, AggressiveJoinCommandFactory>(
                     CommandNames.ReservedSlotsListAggressiveJoin);
+
+            #endregion
+
+            #region Ban List
+
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<Command.BanList.LoadCommand>,
+                    CommandFactory.BanList.LoadCommandFactory>(CommandNames.BanListLoad);
+            this.ServiceLocator
+                .RegisterNamedService
+                <ICommandFactory<Command.BanList.SaveCommand>, CommandFactory.BanList.SaveCommandFactory>(
+                    CommandNames.BanListSave);
+            this.ServiceLocator
+                .RegisterNamedService
+                <ICommandFactory<Command.BanList.AddCommand>, CommandFactory.BanList.AddCommandFactory>(
+                    CommandNames.BanListAdd);
+            this.ServiceLocator
+                .RegisterNamedService
+                <ICommandFactory<Command.BanList.RemoveCommand>, CommandFactory.BanList.RemoveCommandFactory>(
+                    CommandNames.BanListRemove);
+            this.ServiceLocator
+                .RegisterNamedService
+                <ICommandFactory<Command.BanList.ClearCommand>, CommandFactory.BanList.ClearCommandFactory>(
+                    CommandNames.BanListClear);
+            this.ServiceLocator
+                .RegisterNamedService
+                <ICommandFactory<Command.BanList.ListCommand>, CommandFactory.BanList.ListCommandFactory>(
+                    CommandNames.BanListClear);
 
             #endregion
 

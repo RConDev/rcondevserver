@@ -89,6 +89,12 @@
     <Compile Include="CommandFactory\Admin\MovePlayerCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\SayCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\YellCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\AddCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\ClearCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\ListCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\LoadCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\RemoveCommandFactory.cs" />
+    <Compile Include="CommandFactory\BanList\SaveCommandFactory.cs" />
     <Compile Include="CommandFactory\CommandFactoryBase.cs" />
     <Compile Include="CommandFactory\ICommandFactory.cs" />
     <Compile Include="CommandFactory\NotAuthenticated\ListPlayersCommandFactory.cs" />
@@ -209,6 +215,12 @@
     <Compile Include="Command\Admin\MovePlayerCommand.cs" />
     <Compile Include="Command\Admin\SayCommand.cs" />
     <Compile Include="Command\Admin\YellCommand.cs" />
+    <Compile Include="Command\BanList\AddCommand.cs" />
+    <Compile Include="Command\BanList\ClearCommand.cs" />
+    <Compile Include="Command\BanList\ListCommand.cs" />
+    <Compile Include="Command\BanList\LoadCommand.cs" />
+    <Compile Include="Command\BanList\RemoveCommand.cs" />
+    <Compile Include="Command\BanList\SaveCommand.cs" />
     <Compile Include="Command\CommandNames.cs" />
     <Compile Include="Command\CommandString.cs" />
     <Compile Include="Command\ICommand.cs" />
@@ -352,6 +364,7 @@
     <Compile Include="Data\ServerInfo.cs" />
     <Compile Include="Data\TeamScores.cs" />
     <Compile Include="Data\Timeout.cs" />
+    <Compile Include="Data\TimeoutType.cs" />
     <Compile Include="Data\Vars.cs" />
     <Compile Include="EventSender\EventSenderBase.cs" />
     <Compile Include="EventSender\ICanSendEvents.cs" />
