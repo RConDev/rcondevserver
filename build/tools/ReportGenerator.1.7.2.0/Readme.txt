@@ -51,6 +51,26 @@ For further details take a look at LICENSE.txt.
 
 CHANGELOG
 
+1.7.2.0
+
+    * Fix: Issue #9736: NCover 1.5.8 Exclude attribute is not handled
+    * Fix: Issue #9773: Ignored casing in directory search
+
+1.7.1.0
+
+    * Fix: Issue #9706: Trailing slashes in command line arguments
+
+1.7.0.0
+
+    * New: Issue #9698: Added "coverbytest" support of OpenCover
+    * Fix: Issue #9671: Reduced length of report filenames
+    * Fix: Reports can now be located in an UNC path
+
+1.6.1.0
+
+    * Fix: Issue #9646: Unhandled IO-Exception when source directories
+           are supplied
+
 1.6.0.0
 
     * New: Added support for Visual Studio coverage reports
