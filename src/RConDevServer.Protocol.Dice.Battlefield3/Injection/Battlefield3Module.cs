@@ -6,6 +6,7 @@
     using CommandFactory.BanList;
     using CommandFactory.MapList;
     using CommandFactory.ReservedSlotsList;
+    using CommandFactory.Vars;
     using DataStore;
     using Interface;
 
@@ -123,6 +124,17 @@
                 CommandNames.MapListEndRound);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListAvailableMapsCommandFactory>(
                 CommandNames.MapListAvailableMaps);
+
+            #endregion
+
+            #region Vars
+
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRankedCommandFactory>(
+                CommandNames.VarsRanked);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerNameCommandFactory>(
+                CommandNames.VarsServerName);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsGamePasswordCommandFactory>(
+                CommandNames.VarsGamePassword);
 
             #endregion
 

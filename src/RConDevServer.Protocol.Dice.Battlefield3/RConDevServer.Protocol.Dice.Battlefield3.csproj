@@ -125,7 +125,9 @@
     <Compile Include="CommandFactory\ReservedSlotsList\ReservedSlotsListRemoveCommandFactory.cs" />
     <Compile Include="CommandFactory\ReservedSlotsList\ReservedSlotsListSaveCommandFactory.cs" />
     <Compile Include="CommandFactory\SimpleCommandFactory.cs" />
+    <Compile Include="CommandFactory\Vars\VarsGamePasswordCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsRankedCommandFactory.cs" />
+    <Compile Include="CommandFactory\Vars\VarsServerNameCommandFactory.cs" />
     <Compile Include="CommandHandler\Admin\AdminCommandHandlers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEffectiveMaxPlayers.cs" />
     <Compile Include="CommandHandler\Admin\AdminEventsEnabledCommandHandler.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Command\CommandNames.cs" />
     <Compile Include="Command\CommandString.cs" />
     <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\IVarsCommand.cs" />
     <Compile Include="Command\MapList\MapListAddCommand.cs" />
     <Compile Include="Command\MapList\MapListAvailableMapsCommand.cs" />
     <Compile Include="Command\MapList\MapListClearCommand.cs" />
@@ -266,9 +269,10 @@
     <Compile Include="Command\ReservedSlotsList\ReservedSlotsListRemoveCommand.cs" />
     <Compile Include="Command\ReservedSlotsList\ReservedSlotsListSaveCommand.cs" />
     <Compile Include="Command\SimpleCommand.cs" />
-    <Compile Include="Command\Vars\IVarsCommand.cs" />
-    <Compile Include="Command\Vars\VarsCommandBase.cs" />
+    <Compile Include="Command\VarsCommandBase.cs" />
+    <Compile Include="Command\Vars\VarsGamePasswordCommand.cs" />
     <Compile Include="Command\Vars\VarsRankedCommand.cs" />
+    <Compile Include="Command\Vars\VarsServerNameCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controls\BanListControl.cs">
       <SubType>UserControl</SubType>

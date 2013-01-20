@@ -8,7 +8,7 @@
     ///     It can only be used to switch the server from ranked to unranked mode;
     ///     the server can never switch back to ranked mode again.
     /// </remarks>
-    public class VarsRankedCommand : VarsCommandBase<bool>
+    public class VarsRankedCommand : VarsCommandBase<bool?>
     {
         /// <summary>
         ///     create a new <see cref="VarsRankedCommand" /> instance

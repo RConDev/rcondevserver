@@ -1,4 +1,4 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Vars
+namespace RConDevServer.Protocol.Dice.Battlefield3.Command
 {
     using System;
     using System.Collections.Generic;
@@ -6,8 +6,8 @@
     /// <summary>
     ///     base class for all vars commands
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public abstract class VarsCommandBase<T> : IVarsCommand<T> where T : struct
+    /// <typeparam name="T">the type the value of var is of</typeparam>
+    public abstract class VarsCommandBase<T> : IVarsCommand<T>
     {
         /// <summary>
         ///     The command name
@@ -31,6 +31,6 @@
         /// <summary>
         ///     get or set the value
         /// </summary>
-        public T? Value { get; set; }
+        public T Value { get; set; }
     }
 }

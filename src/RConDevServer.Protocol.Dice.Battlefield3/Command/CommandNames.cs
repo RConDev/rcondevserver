@@ -5,6 +5,10 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsGamePassword = "vars.gamePassword";
+
+        public const string VarsServerName = "vars.serverName";
+
         public const string MapListAvailableMaps = "mapList.availableMaps";
     
         public const string MapListEndRound = "mapList.endRound";
