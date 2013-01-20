@@ -9,7 +9,7 @@
     /// <summary>
     ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="BanListListCommand" />
     /// </summary>
-    public class ListCommandFactory : CommandFactoryBase<BanListListCommand>
+    public class BanListListCommandFactory : CommandFactoryBase<BanListListCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

@@ -6,7 +6,7 @@
     using Command.BanList;
     using Util;
 
-    public class SaveCommandFactory : CommandFactoryBase<BanListSaveCommand>
+    public class BanListSaveCommandFactory : CommandFactoryBase<BanListSaveCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

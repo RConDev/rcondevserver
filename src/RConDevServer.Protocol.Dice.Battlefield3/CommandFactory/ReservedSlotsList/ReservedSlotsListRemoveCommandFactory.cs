@@ -7,21 +7,25 @@
     using Util;
 
     /// <summary>
-    /// Implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="ReservedSlotsListSaveCommand"/>
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="ReservedSlotsListRemoveCommand" />
     /// </summary>
-    public class SaveCommandFactory : CommandFactoryBase<ReservedSlotsListSaveCommand>
+    public class ReservedSlotsListRemoveCommandFactory : CommandFactoryBase<ReservedSlotsListRemoveCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override ReservedSlotsListSaveCommand FromWords(IEnumerable<string> commandWords)
+        public override ReservedSlotsListRemoveCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.SequenceLength(words, 1, "words");
-            Requires.Equal(words[0], CommandNames.ReservedSlotsListSave, "commandName");
-            return new ReservedSlotsListSaveCommand();
+            Requires.Equal(words[0], CommandNames.ReservedSlotsListAdd, "commandName");
+
+            string id = words[1];
+            Requires.NotNullOrEmpty(id, "id");
+
+            return new ReservedSlotsListRemoveCommand(id);
         }
     }
 }

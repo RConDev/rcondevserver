@@ -13,7 +13,7 @@
         public void FromWords_WithPermanentBanWithReason_ReturnsCommand()
         {
             var words = new[] {CommandNames.BanListAdd, "name", "soldier", "perm", "the reason"};
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
@@ -27,7 +27,7 @@
         public void FromWords_WithPermanentBanWithoutReason_ReturnsCommand()
         {
             var words = new[] {CommandNames.BanListAdd, "name", "soldier", "perm"};
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
@@ -42,7 +42,7 @@
         public void FromWords_WithRoundBanWithoutReason_ReturnsCommand()
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "rounds", "1" };
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
@@ -57,7 +57,7 @@
         public void FromWords_WithRoundBanWithoReason_ReturnsCommand()
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "rounds", "1", "the reason" };
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
@@ -72,7 +72,7 @@
         public void FromWords_WithSeconddBanWithoutReason_ReturnsCommand()
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "seconds", "1" };
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
@@ -87,7 +87,7 @@
         public void FromWords_WithSecondBanWithoReason_ReturnsCommand()
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "seconds", "1", "the reason" };
-            var commandFactory = new AddCommandFactory();
+            var commandFactory = new BanListAddCommandFactory();
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);

@@ -5,6 +5,32 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string MapListAvailableMaps = "mapList.availableMaps";
+    
+        public const string MapListEndRound = "mapList.endRound";
+
+        public const string MapListRestartRound = "mapList.restartRound";
+
+        public const string MapListRunNextRound = "mapList.runNextRound";
+
+        public const string MapListGetRounds = "mapList.getRounds";
+
+        public const string MapListGetMapIndices = "mapList.getMapIndices";
+
+        public const string MapListSetNextMapIndex = "mapList.setNextMapIndex";
+
+        public const string MapListList = "mapList.list";
+
+        public const string MapListClear = "mapList.clear";
+
+        public const string MapListRemove = "mapList.remove";
+
+        public const string MapListAdd = "mapList.add";
+
+        public const string MapListSave = "mapList.save";
+
+        public const string MapListLoad = "mapList.load";
+
         #region Admin
 
         /// <summary>
@@ -81,5 +107,8 @@
         public const string ReservedSlotsListRemove = "reservedSlotsList.remove";
         
         public const string ReservedSlotsListSave = "reservedSlotsList.save";
+
+
+    
     }
 }

@@ -9,7 +9,7 @@
     /// <summary>
     ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="ReservedSlotsListAddCommand" />
     /// </summary>
-    public class AddCommandFactory : CommandFactoryBase<ReservedSlotsListAddCommand>
+    public class ReservedSlotsListAddCommandFactory : CommandFactoryBase<ReservedSlotsListAddCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

@@ -7,7 +7,7 @@
     ///     description of the interface for creating <see cref="ICommand" /> implementations
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
-    public interface ICommandFactory<out TCommand> where TCommand : class, ICommand
+    public interface ICommandFactory<out TCommand> where TCommand : class
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

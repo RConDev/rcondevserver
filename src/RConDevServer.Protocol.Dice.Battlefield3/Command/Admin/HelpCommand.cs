@@ -1,24 +1,13 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Admin
 {
-    using System.Collections.Generic;
-
-    public class HelpCommand : ICommand
+    public class HelpCommand : SimpleCommand
     {
         /// <summary>
         ///     The command name
         /// </summary>
-        public string Command
+        public override string Command
         {
             get { return CommandNames.AdminHelp; }
-        }
-
-        /// <summary>
-        ///     Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<string> ToWords()
-        {
-            return new[] {this.Command};
         }
     }
 }

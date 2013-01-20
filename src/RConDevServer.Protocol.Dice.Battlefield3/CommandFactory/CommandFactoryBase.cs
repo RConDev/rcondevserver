@@ -11,9 +11,9 @@
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
     public abstract class CommandFactoryBase<TCommand> : ICommandFactory<TCommand>
-        where TCommand : class, ICommand
+        where TCommand : class
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof (KickPlayerCommandFactory));
+        private static readonly ILog logger = LogManager.GetLogger(typeof (CommandFactoryBase<TCommand>));
 
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
