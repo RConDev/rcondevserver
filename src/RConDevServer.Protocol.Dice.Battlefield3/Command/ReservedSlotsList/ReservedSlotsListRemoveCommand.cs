@@ -5,13 +5,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Command.ReservedSlotsList
     /// <summary>
     ///     Remove a player from the VIP list
     /// </summary>
-    public class RemoveCommand : ICommand
+    public class ReservedSlotsListRemoveCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="RemoveCommand" /> instance
+        ///     create a new <see cref="ReservedSlotsListRemoveCommand" /> instance
         /// </summary>
         /// <param name="id"></param>
-        public RemoveCommand(string id)
+        public ReservedSlotsListRemoveCommand(string id)
         {
             this.Id = id;
         }

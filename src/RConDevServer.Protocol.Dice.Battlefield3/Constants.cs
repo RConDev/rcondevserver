@@ -63,12 +63,12 @@
 
         #region Ban List Commands
 
-        public const string COMMAND_BAN_LIST_LIST = "banList.list";
-        public const string COMMAND_BAN_LIST_ADD = "banList.add";
-        public const string COMMAND_BAN_LIST_REMOVE = "banList.remove";
-        public const string COMMAND_BAN_LIST_CLEAR = "banList.clear";
-        public const string COMMAND_BAN_LIST_LOAD = "banList.load";
-        public const string COMMAND_BAN_LIST_SAVE = "banList.save";
+        //public const string COMMAND_BAN_LIST_LIST = "banList.list";
+        //public const string COMMAND_BAN_LIST_ADD = "banList.add";
+        //public const string COMMAND_BAN_LIST_REMOVE = "banList.remove";
+        //public const string COMMAND_BAN_LIST_CLEAR = "banList.clear";
+        //public const string COMMAND_BAN_LIST_LOAD = "banList.load";
+        //public const string COMMAND_BAN_LIST_SAVE = "banList.save";
 
         #endregion
 

@@ -37,9 +37,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,6 +57,11 @@
     <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactoryTest.cs" />
     <Compile Include="Command\Admin\EffectiveMaxPlayersCommandTest.cs" />
     <Compile Include="Command\Admin\EventsEnabledCommandTest.cs" />
+    <Compile Include="Command\Admin\HelpCommandTest.cs" />
+    <Compile Include="Command\Admin\KickPlayerCommandTest.cs" />
+    <Compile Include="Command\Admin\KillPlayerCommandTest.cs" />
+    <Compile Include="Command\Admin\ListPlayersCommandTest.cs" />
+    <Compile Include="Command\Admin\MovePlayerCommandTest.cs" />
     <Compile Include="Command\CommandStringTest.cs" />
     <Compile Include="Command\NotAuthenticated\LoginHashedCommandTest.cs" />
     <Compile Include="Data\MapListItemTest.cs" />
@@ -69,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CommandHandler\" />
+    <Folder Include="Command\BanList\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RConDevServer.Protocol.Dice.Battlefield3\RConDevServer.Protocol.Dice.Battlefield3.csproj">

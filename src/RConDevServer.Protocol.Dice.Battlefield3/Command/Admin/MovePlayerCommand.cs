@@ -66,7 +66,7 @@
                     this.SoldierName,
                     Convert.ToString(this.TeamId),
                     Convert.ToString(this.SquadId),
-                    Convert.ToString(this.Force)
+                    Convert.ToString(this.Force).ToLower()
                 };
         }
     }

@@ -7,16 +7,16 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="RemoveCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="BanListRemoveCommand" />
     /// </summary>
-    public class RemoveCommandFactory : CommandFactoryBase<RemoveCommand>
+    public class RemoveCommandFactory : CommandFactoryBase<BanListRemoveCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override RemoveCommand FromWords(IEnumerable<string> commandWords)
+        public override BanListRemoveCommand FromWords(IEnumerable<string> commandWords)
         {
             var words = commandWords.ToArray();
             Requires.SequenceLength(words, 3, "words");
@@ -28,7 +28,7 @@
             var id = words[2];
             Requires.NotNullOrEmpty(id, "id");
 
-            return new RemoveCommand(idType, id);
+            return new BanListRemoveCommand(idType, id);
         }
     }
 }

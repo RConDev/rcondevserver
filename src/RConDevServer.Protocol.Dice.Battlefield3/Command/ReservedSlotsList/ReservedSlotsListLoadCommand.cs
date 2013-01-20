@@ -8,7 +8,7 @@
     /// <remarks>
     ///     1 line for each entry with player name
     /// </remarks>
-    public class LoadCommand : ICommand
+    public class ReservedSlotsListLoadCommand : ICommand
     {
         /// <summary>
         ///     The command name

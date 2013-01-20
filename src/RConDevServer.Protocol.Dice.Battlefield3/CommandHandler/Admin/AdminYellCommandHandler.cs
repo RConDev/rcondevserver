@@ -21,7 +21,7 @@
             int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;
             PlayerSubset playerSubset = (requestPacket.Words.Count > 3)
                                             ? PlayerSubset.FromWords(requestPacket.Words.Skip(3).ToList())
-                                            : new PlayerSubset {Type = PlayerSubsetType.All};
+                                            : new PlayerSubset(PlayerSubsetType.All);
 
             if (message.Length >= 256)
             {

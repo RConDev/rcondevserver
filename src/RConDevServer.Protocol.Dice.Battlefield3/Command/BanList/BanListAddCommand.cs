@@ -19,16 +19,16 @@
     ///     Id could be either a soldier name, ip address or guid depending on id-type.
     ///     Reason is optional and defaults to “Banned by admin”; max length 80 chars.
     /// </remarks>
-    public class AddCommand : ICommand
+    public class BanListAddCommand : ICommand
     {
         /// <summary>
-        /// Create a new <see cref="AddCommand"/> instance
+        /// Create a new <see cref="BanListAddCommand"/> instance
         /// </summary>
         /// <param name="idType"></param>
         /// <param name="id"></param>
         /// <param name="timeout"></param>
         /// <param name="reason"></param>
-        public AddCommand(IdTypeType idType, string id, Timeout timeout, string reason = null)
+        public BanListAddCommand(IdTypeType idType, string id, Timeout timeout, string reason = null)
         {
             this.IdType = idType;
             this.Id = id;

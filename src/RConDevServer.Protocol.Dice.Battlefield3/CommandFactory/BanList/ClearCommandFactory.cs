@@ -7,21 +7,21 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="ClearCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="BanListClearCommand" />
     /// </summary>
-    public class ClearCommandFactory : CommandFactoryBase<ClearCommand>
+    public class ClearCommandFactory : CommandFactoryBase<BanListClearCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override ClearCommand FromWords(IEnumerable<string> commandWords)
+        public override BanListClearCommand FromWords(IEnumerable<string> commandWords)
         {
             var words = commandWords.ToArray();
             Requires.SequenceLength(words, 1, "words");
             Requires.Equal(words[0], CommandNames.BanListClear, "commandName");
-            return new ClearCommand();
+            return new BanListClearCommand();
         }
     }
 }

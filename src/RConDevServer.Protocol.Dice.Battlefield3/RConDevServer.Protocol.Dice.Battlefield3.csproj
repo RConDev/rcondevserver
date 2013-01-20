@@ -45,8 +45,9 @@
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\packages\NHibernate.3.3.1.4000\lib\Net35\NHibernate.dll</HintPath>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.0.1.10\lib\net40\Ninject.dll</HintPath>
@@ -56,15 +57,11 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.82.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.Data.SQLite.x86.1.0.82.0\lib\net40\System.Data.SQLite.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\packages\System.Data.SQLite.x86.1.0.84.0\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.82.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\System.Data.SQLite.x86.1.0.82.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>..\packages\System.Data.SQLite.x86.1.0.84.0\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -215,12 +212,12 @@
     <Compile Include="Command\Admin\MovePlayerCommand.cs" />
     <Compile Include="Command\Admin\SayCommand.cs" />
     <Compile Include="Command\Admin\YellCommand.cs" />
-    <Compile Include="Command\BanList\AddCommand.cs" />
-    <Compile Include="Command\BanList\ClearCommand.cs" />
-    <Compile Include="Command\BanList\ListCommand.cs" />
-    <Compile Include="Command\BanList\LoadCommand.cs" />
-    <Compile Include="Command\BanList\RemoveCommand.cs" />
-    <Compile Include="Command\BanList\SaveCommand.cs" />
+    <Compile Include="Command\BanList\BanListAddCommand.cs" />
+    <Compile Include="Command\BanList\BanListClearCommand.cs" />
+    <Compile Include="Command\BanList\BanListListCommand.cs" />
+    <Compile Include="Command\BanList\BanListLoadCommand.cs" />
+    <Compile Include="Command\BanList\BanListRemoveCommand.cs" />
+    <Compile Include="Command\BanList\BanListSaveCommand.cs" />
     <Compile Include="Command\CommandNames.cs" />
     <Compile Include="Command\CommandString.cs" />
     <Compile Include="Command\ICommand.cs" />
@@ -234,13 +231,13 @@
     <Compile Include="Command\PunkBuster\PunkBusterActivateCommand.cs" />
     <Compile Include="Command\PunkBuster\PunkBusterIsActiveCommand.cs" />
     <Compile Include="Command\PunkBuster\PunkBusterPbSvCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\AddCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\AggressiveJoinCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\ClearCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\ListCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\LoadCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\RemoveCommand.cs" />
-    <Compile Include="Command\ReservedSlotsList\SaveCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListAddCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListAggressiveJoinCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListClearCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListListCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListLoadCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListRemoveCommand.cs" />
+    <Compile Include="Command\ReservedSlotsList\ReservedSlotsListSaveCommand.cs" />
     <Compile Include="Command\Vars\IVarsCommand.cs" />
     <Compile Include="Command\Vars\VarsCommandBase.cs" />
     <Compile Include="Command\Vars\VarsRankedCommand.cs" />
@@ -530,7 +527,9 @@
     </None>
     <None Include="Resources\bf3-logo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Command\MapList\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <PropertyGroup>

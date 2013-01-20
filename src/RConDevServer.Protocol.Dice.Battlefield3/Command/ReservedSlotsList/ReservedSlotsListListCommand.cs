@@ -12,13 +12,13 @@
     ///     perform several reservedSlots.list calls with increasing offset until the
     ///     server returns 0 entries.
     /// </remarks>
-    public class ListCommand : ICommand
+    public class ReservedSlotsListListCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="ListCommand" /> instance
+        ///     create a new <see cref="ReservedSlotsListListCommand" /> instance
         /// </summary>
         /// <param name="offset"></param>
-        public ListCommand(int? offset = null)
+        public ReservedSlotsListListCommand(int? offset = null)
         {
             this.Offset = offset;
         }

@@ -8,16 +8,16 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AddCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="BanListAddCommand" />
     /// </summary>
-    public class AddCommandFactory : CommandFactoryBase<AddCommand>
+    public class AddCommandFactory : CommandFactoryBase<BanListAddCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override AddCommand FromWords(IEnumerable<string> commandWords)
+        public override BanListAddCommand FromWords(IEnumerable<string> commandWords)
         {
             var words = commandWords.ToArray();
             Requires.MinSequenceLength(words, 4, "words");
@@ -32,7 +32,7 @@
                              ? ((words.Length == 5) ? words[4] : null)
                              : ((words.Length == 6) ? words[5] : null);
 
-            return new AddCommand(idTypeType.Value, id, timeout, reason);
+            return new BanListAddCommand(idTypeType.Value, id, timeout, reason);
         }
     }
 }

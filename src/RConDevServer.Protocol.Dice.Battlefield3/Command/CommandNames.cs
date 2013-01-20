@@ -5,7 +5,33 @@
     /// </summary>
     public static class CommandNames
     {
-        
+        #region Admin
+
+        /// <summary>
+        ///     Query the effective maximum number of players
+        /// </summary>
+        public const string AdminEffectiveMaxPlayers = "admin.effectiveMaxPlayers";
+
+        public const string AdminEventsEnabled = "admin.eventsEnabled";
+
+        public const string AdminHelp = "admin.help";
+
+        public const string AdminKickPlayer = "admin.kickPlayer";
+
+        public const string AdminKillPlayer = "admin.killPlayer";
+
+        public const string AdminListPlayers = "admin.listPlayers";
+
+        public const string AdminMovePlayer = "admin.movePlayer";
+
+        public const string AdminSay = "admin.say";
+
+        public const string AdminYell = "admin.yell";
+
+        #endregion
+
+        #region Ban List
+
         public const string BanListAdd = "banList.add";
 
         public const string BanListClear = "banList.clear";
@@ -18,6 +44,8 @@
 
         public const string BanListSave = "banList.save";
 
+        #endregion
+       
         public const string VarsRanked = "vars.ranked";
 
         public const string PunkBusterPbSvCommand = "punkBuster.pb_sv_command";
@@ -40,27 +68,6 @@
 
         public const string LoginPlainText = "login.plainText";
 
-        /// <summary>
-        ///     Query the effective maximum number of players
-        /// </summary>
-        public const string AdminEffectiveMaxPlayers = "admin.effectiveMaxPlayers";
-
-        public const string AdminEventsEnabled = "admin.eventsEnabled";
-
-        public const string AdminHelp = "admin.help";
-
-        public const string AdminKickPlayer = "admin.kickPlayer";
-
-        public const string AdminKillPlayer = "admin.killPlayer";
-
-        public const string AdminListPlayers = "admin.listPlayers";
-
-        public const string AdminMovePlayer = "admin.movePlayer";
-
-        public const string AdminSay = "admin.say";
-
-        public const string AdminYell = "admin.yell";
-        
         public const string ReservedSlotsListAdd = "reservedSlotsList.add";
 
         public const string ReservedSlotsListAggressiveJoin = "reservedSlotsList.aggressiveJoin";

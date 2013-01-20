@@ -7,16 +7,16 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="ListCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="BanListListCommand" />
     /// </summary>
-    public class ListCommandFactory : CommandFactoryBase<ListCommand>
+    public class ListCommandFactory : CommandFactoryBase<BanListListCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override ListCommand FromWords(IEnumerable<string> commandWords)
+        public override BanListListCommand FromWords(IEnumerable<string> commandWords)
         {
             var words = commandWords.ToArray();
             Requires.MinSequenceLength(words, 1, "words");
@@ -26,7 +26,7 @@
             {
                 offset = Int.SafeParse(words[1]);
             }
-            return new ListCommand(offset);
+            return new BanListListCommand(offset);
         }
     }
 }

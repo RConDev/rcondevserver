@@ -1,18 +1,21 @@
-namespace RConDevServer.Protocol.Dice.Battlefield3.Command.BanList
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.ReservedSlotsList
 {
     using System.Collections.Generic;
 
     /// <summary>
-    ///     Clears ban list
+    ///     Save list of VIP player names to file
     /// </summary>
-    public class ClearCommand : ICommand
+    /// <remarks>
+    ///     1 line for each player name Every line break has windows “\r\n” characters.
+    /// </remarks>
+    public class ReservedSlotsListSaveCommand : ICommand
     {
         /// <summary>
         ///     The command name
         /// </summary>
         public string Command
         {
-            get { return CommandNames.BanListClear; }
+            get { return CommandNames.ReservedSlotsListSave; }
         }
 
         /// <summary>

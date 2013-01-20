@@ -1,6 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Admin
 {
     using System.Collections.Generic;
+    using Util;
 
     /// <summary>
     ///     the command for kicking a player from the server
@@ -14,6 +15,9 @@
         /// <param name="reason">The reason for kicking the soldier</param>
         public KickPlayerCommand(string soldierName, string reason)
         {
+            Requires.NotNullOrEmpty(soldierName, "soldierName");
+            Requires.NotNullOrEmpty(reason, "reason");
+
             this.SoldierName = soldierName;
             this.Reason = reason;
         }

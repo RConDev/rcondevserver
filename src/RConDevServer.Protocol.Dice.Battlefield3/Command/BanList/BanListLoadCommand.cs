@@ -3,20 +3,22 @@
     using System.Collections.Generic;
 
     /// <summary>
-    ///     Save list of banned players/IPs/GUIDs to file
+    ///     Load list of banned players/IPs/GUIDs from file
     /// </summary>
     /// <remarks>
-    ///     6 lines (Id-type, id, ban-type, seconds left, rounds left, and reason) are stored for every ban in the list.
-    ///     Every line break has windows “\r\n” characters.
+    ///     6 lines (Id-type, id, ban-type, seconds left, rounds left, and reason)
+    ///     are retrieved for every ban in the list.
+    ///     Entries read before getting InvalidIdType, InvalidBanType, InvalidTimeStamp and
+    ///     IncompleteBan is still loaded.
     /// </remarks>
-    public class SaveCommand : ICommand
+    public class BanListLoadCommand : ICommand
     {
         /// <summary>
         ///     The command name
         /// </summary>
         public string Command
         {
-            get { return CommandNames.BanListSave; }
+            get { return CommandNames.BanListLoad; }
         }
 
         /// <summary>

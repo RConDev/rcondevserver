@@ -5,14 +5,14 @@
     /// <summary>
     ///     Remove name/ip/guid from banlist
     /// </summary>
-    public class RemoveCommand : ICommand
+    public class BanListRemoveCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="RemoveCommand" /> instance
+        ///     create a new <see cref="BanListRemoveCommand" /> instance
         /// </summary>
         /// <param name="idType"></param>
         /// <param name="id"></param>
-        public RemoveCommand(string idType, string id)
+        public BanListRemoveCommand(string idType, string id)
         {
             this.IdType = idType;
             this.Id = id;

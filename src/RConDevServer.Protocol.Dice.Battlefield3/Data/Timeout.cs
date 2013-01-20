@@ -6,19 +6,19 @@
     using Util;
 
     /// <summary>
-    /// the ban duration the ban is valid
+    ///     the ban duration the ban is valid
     /// </summary>
     public class Timeout
     {
         /// <summary>
-        /// Create a new <see cref="Timeout"/> instance
+        ///     Create a new <see cref="Timeout" /> instance
         /// </summary>
         /// <param name="type"></param>
         /// <param name="value"></param>
         public Timeout(TimeoutType type, int? value = null)
         {
-            Type = type;
-            Value = value;
+            this.Type = type;
+            this.Value = value;
         }
 
         private const string TimeoutTypePermanent = "perm";
@@ -28,23 +28,37 @@
         private const string TimeoutTypeSeconds = "seconds";
 
         /// <summary>
-        /// identifies the type of the ban timeout
+        ///     identifies the type of the ban timeout
         /// </summary>
         public TimeoutType Type { get; private set; }
 
         /// <summary>
-        /// if not permanent, the value is set
+        ///     if not permanent, the value is set
         /// </summary>
         public int? Value { get; set; }
 
         public IEnumerable<string> ToWords()
         {
             var words = new List<string>();
+            switch (this.Type)
+            {
+                case TimeoutType.Permanent:
+                    words.Add(TimeoutTypePermanent);
+                    break;
+                case TimeoutType.Rounds:
+                    words.Add(TimeoutTypeRounds);
+                    words.Add(Convert.ToString(this.Value));
+                    break;
+                case TimeoutType.Seconds:
+                    words.Add(TimeoutTypeSeconds);
+                    words.Add(Convert.ToString(this.Value));
+                    break;
+            }
             return words;
-        } 
+        }
 
         /// <summary>
-        /// create a new <see cref="Timeout"/> instance based on words
+        ///     create a new <see cref="Timeout" /> instance based on words
         /// </summary>
         /// <param name="words"></param>
         /// <returns></returns>
@@ -63,7 +77,7 @@
                     Requires.MinSequenceLength(wordArray, 2, "timeoutWords");
                     return CreateTimeout(TimeoutType.Rounds, wordArray[1]);
 
-                case TimeoutTypeSeconds :
+                case TimeoutTypeSeconds:
                     Requires.MinSequenceLength(wordArray, 2, "timeoutWords");
                     return CreateTimeout(TimeoutType.Seconds, wordArray[1]);
             }
@@ -75,7 +89,7 @@
         {
             var value = Int.SafeParse(countValue);
             Requires.NotNull(value, "count");
-            
+
             return new Timeout(type, value);
         }
     }

@@ -48,10 +48,7 @@
             this.Text = parameters[1];
             if (parameters.Count == 3 && parameters[2].ToLower() == "all")
             {
-                this.PlayerSubset = new PlayerSubset
-                    {
-                        Type = PlayerSubsetType.All
-                    };
+                this.PlayerSubset = new PlayerSubset(PlayerSubsetType.All);
                 return true;
             }
 
@@ -59,19 +56,18 @@
             {
                 if (parameters[2].ToLower() == "player")
                 {
-                    this.PlayerSubset = new PlayerSubset
-                        {
-                            Type = PlayerSubsetType.Player,
-                            PlayerName = parameters[3]
-                        };
+                    this.PlayerSubset = new PlayerSubset(
+
+                        type: PlayerSubsetType.Player,
+                        playerName: parameters[3]
+                        );
                 }
                 if (parameters[2].ToLower() == "team")
                 {
                     this.PlayerSubset = new PlayerSubset
-                        {
-                            Type = PlayerSubsetType.Team,
-                            TeamId = Convert.ToInt32(parameters[3])
-                        };
+                        (PlayerSubsetType.Team,
+                            teamId : Convert.ToInt32(parameters[3])
+                        );
                 }
                 return true;
             }
@@ -79,11 +75,10 @@
             if (parameters.Count == 5 && parameters[2].ToLower() == "squad")
             {
                 this.PlayerSubset = new PlayerSubset
-                    {
-                        Type = PlayerSubsetType.Squad,
-                        TeamId = Convert.ToInt32(parameters[3]),
-                        SquadId = Convert.ToInt32(parameters[4])
-                    };
+                    (PlayerSubsetType.Squad,
+                        teamId: Convert.ToInt32(parameters[3]),
+                        squadId: Convert.ToInt32(parameters[4])
+                    );
                 return true;
             }
             return false;

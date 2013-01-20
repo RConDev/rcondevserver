@@ -14,7 +14,7 @@
         {
             var words = new[] {CommandNames.BanListAdd, "name", "soldier", "perm", "the reason"};
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);
@@ -28,7 +28,7 @@
         {
             var words = new[] {CommandNames.BanListAdd, "name", "soldier", "perm"};
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);
@@ -43,7 +43,7 @@
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "rounds", "1" };
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);
@@ -58,7 +58,7 @@
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "rounds", "1", "the reason" };
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);
@@ -73,7 +73,7 @@
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "seconds", "1" };
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);
@@ -88,7 +88,7 @@
         {
             var words = new[] { CommandNames.BanListAdd, "name", "soldier", "seconds", "1", "the reason" };
             var commandFactory = new AddCommandFactory();
-            AddCommand command = commandFactory.FromWords(words);
+            BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
             Assert.AreEqual(IdTypeType.Name, command.IdType);

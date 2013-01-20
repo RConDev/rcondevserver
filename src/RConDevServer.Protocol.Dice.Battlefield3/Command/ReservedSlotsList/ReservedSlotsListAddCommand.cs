@@ -5,13 +5,13 @@
     /// <summary>
     ///     Add player to VIP list
     /// </summary>
-    public class AddCommand : ICommand
+    public class ReservedSlotsListAddCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="AddCommand" /> instance
+        ///     create a new <see cref="ReservedSlotsListAddCommand" /> instance
         /// </summary>
         /// <param name="id"></param>
-        public AddCommand(string id)
+        public ReservedSlotsListAddCommand(string id)
         {
             this.Id = id;
         }

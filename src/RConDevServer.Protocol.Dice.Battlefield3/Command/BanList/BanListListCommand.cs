@@ -14,7 +14,7 @@
     ///     (There is an unsolved synchronization problem hidden there: if a ban expires during this process,
     ///     then one other entry will be skipped during retrieval. There is no known workaround for this.)
     /// </remarks>
-    public class ListCommand : ICommand
+    public class BanListListCommand : ICommand
     {
         /// <summary>
         ///     the offset to skip at the beginning
@@ -22,10 +22,10 @@
         public int? Offset { get; private set; }
 
         /// <summary>
-        ///     create a new <see cref="ListCommand" /> instance
+        ///     create a new <see cref="BanListListCommand" /> instance
         /// </summary>
         /// <param name="offset"></param>
-        public ListCommand(int? offset)
+        public BanListListCommand(int? offset)
         {
             this.Offset = offset;
         }

@@ -10,16 +10,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.ReservedSlotsL
     using Util;
 
     /// <summary>
-    /// implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="AggressiveJoinCommand"/>
+    /// implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="ReservedSlotsListAggressiveJoinCommand"/>
     /// </summary>
-    public class AggressiveJoinCommandFactory : CommandFactoryBase<AggressiveJoinCommand>
+    public class AggressiveJoinCommandFactory : CommandFactoryBase<ReservedSlotsListAggressiveJoinCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override AggressiveJoinCommand FromWords(IEnumerable<string> commandWords)
+        public override ReservedSlotsListAggressiveJoinCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.MinSequenceLength(words, 1, "words");
@@ -29,7 +29,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.ReservedSlotsL
             if (words.Length > 1)
                 enabled = Bool.SafeParse(words[1]);
 
-            return new AggressiveJoinCommand(enabled);
+            return new ReservedSlotsListAggressiveJoinCommand(enabled);
         }
     }
 }

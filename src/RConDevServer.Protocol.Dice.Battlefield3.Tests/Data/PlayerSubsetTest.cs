@@ -14,9 +14,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
             var subset = PlayerSubset.FromWords(words);
 
             Assert.AreEqual(PlayerSubsetType.All ,subset.Type);
-            Assert.AreEqual(0, subset.TeamId);
-            Assert.AreEqual(0, subset.SquadId);
-            Assert.AreEqual(null, subset.PlayerName);
+            Assert.IsNull(subset.TeamId);
+            Assert.IsNull(subset.SquadId);
+            Assert.IsNull(subset.PlayerName);
         }
 
         [Test]
@@ -27,8 +27,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
 
             Assert.AreEqual(PlayerSubsetType.Team, subset.Type);
             Assert.AreEqual(1, subset.TeamId);
-            Assert.AreEqual(0, subset.SquadId);
-            Assert.AreEqual(null, subset.PlayerName);
+            Assert.IsNull(subset.SquadId);
+            Assert.IsNull(subset.PlayerName);
         }
 
         [Test]
@@ -50,8 +50,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
             var subset = PlayerSubset.FromWords(words);
 
             Assert.AreEqual(PlayerSubsetType.Player, subset.Type);
-            Assert.AreEqual(0, subset.TeamId);
-            Assert.AreEqual(0, subset.SquadId);
+            Assert.IsNull(subset.TeamId);
+            Assert.IsNull(subset.SquadId);
             Assert.AreEqual("TestPlayer", subset.PlayerName);
         }
 

@@ -6,13 +6,13 @@
     /// <summary>
     ///     If set to true, a non-VIP player will be kicked to give room when a VIP enters the queue.
     /// </summary>
-    public class AggressiveJoinCommand : ICommand
+    public class ReservedSlotsListAggressiveJoinCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="AggressiveJoinCommand" /> instance
+        ///     create a new <see cref="ReservedSlotsListAggressiveJoinCommand" /> instance
         /// </summary>
         /// <param name="enabled"></param>
-        public AggressiveJoinCommand(bool? enabled)
+        public ReservedSlotsListAggressiveJoinCommand(bool? enabled)
         {
             this.Enabled = enabled;
         }

@@ -7,7 +7,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_BAN_LIST_CLEAR; }
+            get { return CommandNames.BanListClear; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,

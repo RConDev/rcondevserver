@@ -1,15 +1,18 @@
-﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.ReservedSlotsList
+namespace RConDevServer.Protocol.Dice.Battlefield3.Command.BanList
 {
     using System.Collections.Generic;
 
-    public class ClearCommand : ICommand
+    /// <summary>
+    ///     Clears ban list
+    /// </summary>
+    public class BanListClearCommand : ICommand
     {
         /// <summary>
         ///     The command name
         /// </summary>
         public string Command
         {
-            get { return CommandNames.ReservedSlotsListClear; }
+            get { return CommandNames.BanListClear; }
         }
 
         /// <summary>

@@ -4,15 +4,29 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// selection of players / groups to be addressed in messagíng
+    /// </summary>
     public class PlayerSubset
     {
-        public PlayerSubsetType Type { get; set; }
+        public PlayerSubset(PlayerSubsetType type, string playerName = null, int? teamId = null, int? squadId = null)
+        {
+            this.Type = type;
+            this.PlayerName = playerName;
+            this.TeamId = teamId;
+            this.SquadId = squadId;
+        }
 
-        public string PlayerName { get; set; }
+        /// <summary>
+        /// the type the selection is of
+        /// </summary>
+        public PlayerSubsetType Type { get; private set; }
 
-        public int TeamId { get; set; }
+        public string PlayerName { get; private set; }
 
-        public int SquadId { get; set; }
+        public int? TeamId { get; private set; }
+
+        public int? SquadId { get; private set; }
 
         #region Public Methods
 
@@ -50,36 +64,37 @@
 
         public static PlayerSubset FromWords(IEnumerable<string> subsetWords)
         {
-            List<string> words = subsetWords.ToList();
-            var playerSubset = new PlayerSubset();
+            var words = subsetWords.ToList();
+            PlayerSubset playerSubset = null;
             if (words.Count == 1 && words[0] == "all")
             {
-                playerSubset.Type = PlayerSubsetType.All;
+                playerSubset = new PlayerSubset(PlayerSubsetType.All);
+
             }
 
             if (words.Count == 2)
             {
                 if (words[0] == "player")
                 {
-                    playerSubset.Type = PlayerSubsetType.Player;
+                    playerSubset= new PlayerSubset( PlayerSubsetType.Player);
                     playerSubset.PlayerName = words[1];
                 }
 
                 if (words[0] == "team")
                 {
-                    playerSubset.Type = PlayerSubsetType.Team;
+                    playerSubset=new PlayerSubset( PlayerSubsetType.Team);
                     playerSubset.TeamId = Convert.ToInt32(words[1]);
                 }
             }
 
             if (words.Count == 3 && words[0] == "squad")
             {
-                playerSubset.Type = PlayerSubsetType.Squad;
+                playerSubset = new PlayerSubset(PlayerSubsetType.Squad);
                 playerSubset.TeamId = Convert.ToInt32(words[1]);
                 playerSubset.SquadId = Convert.ToInt32(words[2]);
             }
 
-            return playerSubset.Type == PlayerSubsetType.None ? null : playerSubset;
+            return  playerSubset;
         }
 
         #endregion
