@@ -4,19 +4,16 @@
     using Command;
     using Command.Vars;
 
-    /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="VarsServerNameCommand" />
-    /// </summary>
-    public class VarsServerNameCommandFactory : VarsCommandFactoryBase<VarsServerNameCommand, string>
+    public class VarsMiniMapSpottingCommandFactory : VarsCommandFactoryBase<VarsMiniMapSpottingCommand, bool?>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override VarsServerNameCommand FromWords(IEnumerable<string> commandWords)
+        public override VarsMiniMapSpottingCommand FromWords(IEnumerable<string> commandWords)
         {
-            return this.StringFromWords(commandWords, CommandNames.VarsServerName);
+            return this.BoolFromWords(commandWords, CommandNames.VarsMiniMapSpotting);
         }
     }
 }

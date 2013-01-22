@@ -55,6 +55,7 @@
     </Compile>
     <Compile Include="CommandFactory\BanList\AddCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactoryTest.cs" />
+    <Compile Include="CommandFactory\Vars\VarsServerNameCommandFactoryTest.cs" />
     <Compile Include="Command\Admin\EffectiveMaxPlayersCommandTest.cs" />
     <Compile Include="Command\Admin\EventsEnabledCommandTest.cs" />
     <Compile Include="Command\Admin\HelpCommandTest.cs" />

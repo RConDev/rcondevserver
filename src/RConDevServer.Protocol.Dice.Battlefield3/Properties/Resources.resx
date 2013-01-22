@@ -130,4 +130,7 @@
   <data name="EXC_MSG_SEQUENCE_LENGTH_NOT_SET" xml:space="preserve">
     <value>The sequence '{0}' has not the expected length of {1}.</value>
   </data>
+  <data name="EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET" xml:space="preserve">
+    <value>The sequence '{0}' has not the expected length of {1} at maximum.</value>
+  </data>
 </root>

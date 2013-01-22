@@ -135,6 +135,28 @@
                 CommandNames.VarsServerName);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsGamePasswordCommandFactory>(
                 CommandNames.VarsGamePassword);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsAutoBalanceCommandFactory>(
+                CommandNames.VarsAutoBalance);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsFriendlyFireCommandFactory>(
+                CommandNames.VarsFriendlyFire);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMaxPlayersCommandFactory>(
+                CommandNames.VarsMaxPlayers);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerDescriptionCommandFactory>(
+                CommandNames.VarsServerDescription);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerMessageCommandFactory>(
+                CommandNames.VarsServerMessage);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsKillCamCommandFactory>(
+                CommandNames.VarsKillCam);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMiniMapCommandFactory>(
+                CommandNames.VarsMiniMap);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsHudCommandFactory>(
+                CommandNames.VarsHud);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsCrossHairCommandFactory>(
+                CommandNames.VarsCrossHair);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, Vars3DSpottingCommandFactory>(
+                CommandNames.Vars3DSpotting);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMiniMapSpottingCommandFactory>(
+                CommandNames.VarsMiniMapSpotting);
 
             #endregion
 

@@ -5,6 +5,26 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsMiniMapSpotting = "vars.miniMapSpotting";
+
+        public const string Vars3DSpotting = "vars.3dSpotting";
+
+        public const string VarsCrossHair = "vars.crossHair";
+
+        public const string VarsHud = "vars.hud";
+
+        public const string VarsMiniMap = "vars.miniMap";
+
+        public const string VarsServerMessage = "vars.serverMessage";
+
+        public const string VarsServerDescription = "vars.serverDescription";
+
+        public const string VarsMaxPlayers = "vars.maxPlayers";
+
+        public const string VarsFriendlyFire = "vars.friendlyFire";
+
+        public const string VarsAutoBalance = "vars.autoBalance";
+
         public const string VarsGamePassword = "vars.gamePassword";
 
         public const string VarsServerName = "vars.serverName";
@@ -112,7 +132,6 @@
         
         public const string ReservedSlotsListSave = "reservedSlotsList.save";
 
-
-    
+        public const string VarsKillCam = "vars.killCam";
     }
 }

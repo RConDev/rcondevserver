@@ -59,7 +59,7 @@
                 return;
             }
             string message = string.Format(Resources.EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET, sequenceName, sequenceLength);
-            throw new ArgumentException(message, sequenceName);
+            throw new ArgumentOutOfRangeException(sequenceName, message);
         }
 
         /// <summary>
@@ -85,6 +85,24 @@
             {
                 throw new ArgumentNullException(parameterName);
             }
+        }
+
+        /// <summary>
+        /// ensures the sequence has at maximum the length expected
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sequence"></param>
+        /// <param name="maxLength"></param>
+        /// <param name="sequenceName"></param>
+        public static void MaxSequenceLength<T>(IEnumerable<T> sequence, int maxLength, string sequenceName)
+        {
+            T[] sequenceArray = sequence.ToArray();
+            if (sequenceArray.Length <= maxLength)
+            {
+                return;
+            }
+            string message = string.Format(Resources.EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET, sequenceName, maxLength);
+            throw new ArgumentOutOfRangeException(sequenceName, message);
         }
     }
 }

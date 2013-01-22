@@ -71,6 +71,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The sequence &apos;{0}&apos; has not the expected length of {1} at maximum..
+        /// </summary>
+        internal static string EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET {
+            get {
+                return ResourceManager.GetString("EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The sequence &apos;{0}&apos; has not the expected length of {1} at minimum..
         /// </summary>
         internal static string EXC_MSG_MIN_SEQUENCE_LENGTH_NOT_SET {
