@@ -10,7 +10,7 @@
         ///     creates a new <see cref="Vars3DSpottingCommand" /> instance
         /// </summary>
         /// <param name="isEnabled"></param>
-        public Vars3DSpottingCommand(bool? isEnabled)
+        public Vars3DSpottingCommand(bool? isEnabled = null)
         {
             this.Value = isEnabled;
         }

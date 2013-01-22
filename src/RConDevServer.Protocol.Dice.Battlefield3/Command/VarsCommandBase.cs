@@ -23,7 +23,12 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Command
             var words = new List<string> {this.Command};
             if (this.Value != null)
             {
-                words.Add(Convert.ToString(this.Value));
+                var value = Convert.ToString(this.Value);
+                if (this.Value is bool?)
+                {
+                    value = value.ToLower();
+                }
+                words.Add(value);
             }
             return words;
         }

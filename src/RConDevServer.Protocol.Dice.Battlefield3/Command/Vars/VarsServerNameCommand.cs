@@ -9,7 +9,7 @@
         /// creates a new <see cref="VarsServerNameCommand"/> instance
         /// </summary>
         /// <param name="serverName"></param>
-        public VarsServerNameCommand(string serverName)
+        public VarsServerNameCommand(string serverName = null)
         {
             this.Value = serverName;
         }

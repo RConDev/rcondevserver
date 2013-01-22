@@ -10,7 +10,7 @@
         ///     creates a new <see cref="VarsCrossHairCommand" /> instance
         /// </summary>
         /// <param name="isEnabled"></param>
-        public VarsCrossHairCommand(bool? isEnabled)
+        public VarsCrossHairCommand(bool? isEnabled = null)
         {
             this.Value = isEnabled;
         }

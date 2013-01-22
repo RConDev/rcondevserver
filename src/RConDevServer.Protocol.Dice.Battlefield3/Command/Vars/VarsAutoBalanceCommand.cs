@@ -9,7 +9,7 @@
         /// create a new <see cref="VarsAutoBalanceCommand"/> instance
         /// </summary>
         /// <param name="isAutoBalance"></param>
-        public VarsAutoBalanceCommand(bool? isAutoBalance)
+        public VarsAutoBalanceCommand(bool? isAutoBalance = null)
         {
             this.Value = isAutoBalance;
         }

@@ -65,6 +65,11 @@
     <Compile Include="Command\Admin\MovePlayerCommandTest.cs" />
     <Compile Include="Command\CommandStringTest.cs" />
     <Compile Include="Command\NotAuthenticated\LoginHashedCommandTest.cs" />
+    <Compile Include="Command\Vars\Vars3DSpottingCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsAutoBalanceCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsCrossHairCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsServerNameCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsTestBase.cs" />
     <Compile Include="Data\MapListItemTest.cs" />
     <Compile Include="Data\PlayerSubsetTest.cs" />
     <Compile Include="Data\TimeoutTest.cs" />
