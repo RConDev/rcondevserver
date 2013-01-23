@@ -11,7 +11,7 @@
         /// creates a new <see cref="VarsServerMessageCommand"/> instance
         /// </summary>
         /// <param name="serverMessage"></param>
-        public VarsServerMessageCommand(string serverMessage)
+        public VarsServerMessageCommand(string serverMessage = null)
         {
             this.Value = serverMessage;
         }

@@ -10,7 +10,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.Vars
     using NUnit.Framework;
 
     [TestFixture]
-    public class VarsAutoBalanceCommandTest : VarsTestBase<VarsAutoBalanceCommand, bool?>
+    public class VarsAutoBalanceCommandTest : VarsCommandTestBase<VarsAutoBalanceCommand, bool?>
     {
         public override string CommandName
         {

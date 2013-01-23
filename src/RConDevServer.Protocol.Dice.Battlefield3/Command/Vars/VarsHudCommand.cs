@@ -10,7 +10,7 @@
         ///     create a new <see cref="VarsHudCommand" /> instance
         /// </summary>
         /// <param name="isEnabled"></param>
-        public VarsHudCommand(bool? isEnabled)
+        public VarsHudCommand(bool? isEnabled = null)
         {
             this.Value = isEnabled;
         }

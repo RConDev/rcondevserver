@@ -6,7 +6,7 @@
     /// </summary>
     public class VarsMiniMapCommand : VarsCommandBase<bool?>
     {
-        public VarsMiniMapCommand(bool? isEnabled)
+        public VarsMiniMapCommand(bool? isEnabled = null)
         {
             this.Value = isEnabled;
         }

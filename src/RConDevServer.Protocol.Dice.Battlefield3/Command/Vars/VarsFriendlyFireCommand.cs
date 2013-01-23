@@ -13,7 +13,7 @@
         ///     creates a new <see cref="VarsFriendlyFireCommand" /> instance
         /// </summary>
         /// <param name="isFriendlyFire"></param>
-        public VarsFriendlyFireCommand(bool? isFriendlyFire)
+        public VarsFriendlyFireCommand(bool? isFriendlyFire = null)
         {
             this.Value = isFriendlyFire;
         }

@@ -9,7 +9,7 @@
         ///     creates a new <see cref="VarsGamePasswordCommand" /> instance
         /// </summary>
         /// <param name="password"></param>
-        public VarsGamePasswordCommand(string password)
+        public VarsGamePasswordCommand(string password = null)
         {
             this.Value = password;
         }

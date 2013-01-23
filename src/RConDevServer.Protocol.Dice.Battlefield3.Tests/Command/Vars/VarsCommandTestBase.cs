@@ -4,7 +4,7 @@
     using Battlefield3.Command;
     using NUnit.Framework;
 
-    public abstract class VarsTestBase<TCommand, TValue> where TCommand : class, IVarsCommand<TValue>
+    public abstract class VarsCommandTestBase<TCommand, TValue> where TCommand : class, IVarsCommand<TValue>
     {
         public abstract string CommandName { get; }
 

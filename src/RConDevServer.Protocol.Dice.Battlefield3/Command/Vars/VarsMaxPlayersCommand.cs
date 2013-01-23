@@ -17,7 +17,7 @@
         /// creates a new <see cref="VarsMaxPlayersCommand"/> instance
         /// </summary>
         /// <param name="maxPlayers"></param>
-        public VarsMaxPlayersCommand(int? maxPlayers)
+        public VarsMaxPlayersCommand(int? maxPlayers = null)
         {
             this.Value = maxPlayers;
         }

@@ -10,21 +10,21 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.Vars
     using NUnit.Framework;
 
     [TestFixture]
-    public class Vars3DSpottingCommandTest : VarsCommandTestBase<Vars3DSpottingCommand, bool?>
+    public class VarsKillCamCommandTest : VarsCommandTestBase<VarsKillCamCommand, bool?>
     {
         public override string CommandName
         {
-            get { return CommandNames.Vars3DSpotting; }
+            get { return CommandNames.VarsKillCam; }
         }
 
-        public override Vars3DSpottingCommand CreateCommandWithValue()
+        public override VarsKillCamCommand CreateCommandWithValue()
         {
-            return new Vars3DSpottingCommand(true);
+            return new VarsKillCamCommand(true);
         }
 
-        public override Vars3DSpottingCommand CreateCommandWithoutValue()
+        public override VarsKillCamCommand CreateCommandWithoutValue()
         {
-            return new Vars3DSpottingCommand();
+            return new VarsKillCamCommand();
         }
 
         public override bool? GetValue()

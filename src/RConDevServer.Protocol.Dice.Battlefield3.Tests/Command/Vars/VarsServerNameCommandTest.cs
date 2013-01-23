@@ -5,7 +5,7 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class VarsServerNameCommandTest : VarsTestBase<VarsServerNameCommand, string>
+    public class VarsServerNameCommandTest : VarsCommandTestBase<VarsServerNameCommand, string>
     {
         public override string CommandName
         {

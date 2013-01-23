@@ -10,7 +10,7 @@
         ///     creates a new instance of <see cref="VarsKillCamCommand" />
         /// </summary>
         /// <param name="isEnabled"></param>
-        public VarsKillCamCommand(bool? isEnabled)
+        public VarsKillCamCommand(bool? isEnabled = null)
         {
             this.Value = isEnabled;
         }

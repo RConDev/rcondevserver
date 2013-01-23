@@ -5,21 +5,21 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class VarsCrossHairCommandTest : VarsCommandTestBase<VarsCrossHairCommand, bool?>
+    public class VarsMiniMapSpottingCommandTest : VarsCommandTestBase<VarsMiniMapSpottingCommand, bool?>
     {
         public override string CommandName
         {
-            get { return CommandNames.VarsCrossHair; }
+            get { return CommandNames.VarsMiniMapSpotting; }
         }
 
-        public override VarsCrossHairCommand CreateCommandWithValue()
+        public override VarsMiniMapSpottingCommand CreateCommandWithValue()
         {
-            return new VarsCrossHairCommand(true);
+            return new VarsMiniMapSpottingCommand(true);
         }
 
-        public override VarsCrossHairCommand CreateCommandWithoutValue()
+        public override VarsMiniMapSpottingCommand CreateCommandWithoutValue()
         {
-            return new VarsCrossHairCommand();
+            return new VarsMiniMapSpottingCommand();
         }
 
         public override bool? GetValue()
