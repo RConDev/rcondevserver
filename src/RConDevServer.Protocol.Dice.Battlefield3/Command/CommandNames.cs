@@ -5,6 +5,20 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsIdleTimeout = "vars.idleTimeout";
+
+        public const string VarsTeamKillValueDecreasePerSecond = "vars.teamKillValueDecreasePerSecond";
+
+        public const string VarsTeamKillValueIncrease = "vars.teamKillValueIncrease";
+
+        public const string VarsTeamKillValueForKick = "vars.teamKillValueForKick";
+
+        public const string VarsTeamKillCountForKick = "vars.teamKillCountForKick";
+
+        public const string Vars3PCam = "vars.3pCam";
+
+        public const string VarsNameTag = "vars.nameTag";
+
         public const string VarsMiniMapSpotting = "vars.miniMapSpotting";
 
         public const string Vars3DSpotting = "vars.3dSpotting";
@@ -133,5 +147,8 @@
         public const string ReservedSlotsListSave = "reservedSlotsList.save";
 
         public const string VarsKillCam = "vars.killCam";
+
+        public const string VarsRegenerateHealth = "vars.regenerateHealth";
+    
     }
 }

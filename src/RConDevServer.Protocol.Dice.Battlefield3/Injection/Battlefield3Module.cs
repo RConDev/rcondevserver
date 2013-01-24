@@ -157,6 +157,24 @@
                 CommandNames.Vars3DSpotting);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMiniMapSpottingCommandFactory>(
                 CommandNames.VarsMiniMapSpotting);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsNameTagCommandFactory>(
+                CommandNames.VarsNameTag);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, Vars3PCamCommandFactory>(
+                CommandNames.Vars3PCam);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRegenerateHealthCommandFactory>(
+                CommandNames.VarsRegenerateHealth);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillCountForKickCommandFactory>(
+                CommandNames.VarsTeamKillCountForKick);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueForKickCommandFactory>(
+                CommandNames.VarsTeamKillValueForKick);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueIncreaseCommandFactory>
+                (
+                    CommandNames.VarsTeamKillValueIncrease);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueDecreasePerSecondCommandFactory>(
+                    CommandNames.VarsTeamKillValueDecreasePerSecond);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleTimeoutCommandFactory>(
+                CommandNames.VarsIdleTimeout);
 
             #endregion
 
