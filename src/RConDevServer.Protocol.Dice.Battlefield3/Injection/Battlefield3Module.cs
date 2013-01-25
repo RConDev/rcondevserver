@@ -175,6 +175,10 @@
                     CommandNames.VarsTeamKillValueDecreasePerSecond);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleTimeoutCommandFactory>(
                 CommandNames.VarsIdleTimeout);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillKickForBanCommandFactory>(
+                            CommandNames.VarsTeamKillKickForBan);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleBanRoundsCommandFactory>(
+                            CommandNames.VarsIdleBanRounds);
 
             #endregion
 

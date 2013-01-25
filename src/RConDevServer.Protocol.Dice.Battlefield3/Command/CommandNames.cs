@@ -5,6 +5,12 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsRoundStartPlayerCount = "vars.roundStartPlayerCount";
+
+        public const string VarsIdleBanRounds = "vars.idleBanRounds";
+
+        public const string VarsTeamKillKickForBan = "vars.teamKillKickForBan";
+
         public const string VarsIdleTimeout = "vars.idleTimeout";
 
         public const string VarsTeamKillValueDecreasePerSecond = "vars.teamKillValueDecreasePerSecond";

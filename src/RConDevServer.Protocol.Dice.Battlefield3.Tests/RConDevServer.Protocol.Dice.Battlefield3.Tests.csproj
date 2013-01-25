@@ -65,6 +65,7 @@
     <Compile Include="Command\Admin\MovePlayerCommandTest.cs" />
     <Compile Include="Command\CommandStringTest.cs" />
     <Compile Include="Command\NotAuthenticated\LoginHashedCommandTest.cs" />
+    <Compile Include="Command\Vars\IntVarsCommandTestBase.cs" />
     <Compile Include="Command\Vars\Vars3DSpottingCommandTest.cs" />
     <Compile Include="Command\Vars\Vars3PCamCommandTest.cs" />
     <Compile Include="Command\Vars\VarsAutoBalanceCommandTest.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Command\Vars\VarsFriendlyFireCommandTest.cs" />
     <Compile Include="Command\Vars\VarsGamePasswordCommandTest.cs" />
     <Compile Include="Command\Vars\VarsHudCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsIdleBanRoundsCommandTest.cs" />
     <Compile Include="Command\Vars\VarsIdleTimeoutCommandTest.cs" />
     <Compile Include="Command\Vars\VarsKillCamCommandTest.cs" />
     <Compile Include="Command\Vars\VarsMaxPlayersCommandTest.cs" />
@@ -80,11 +82,13 @@
     <Compile Include="Command\Vars\VarsNameTagCommandTest.cs" />
     <Compile Include="Command\Vars\VarsRankedCommandTest.cs" />
     <Compile Include="Command\Vars\VarsRegenerateHealthCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsRoundStartPlayerCountCommandTest.cs" />
     <Compile Include="Command\Vars\VarsServerDescriptionCommandTest.cs" />
     <Compile Include="Command\Vars\VarsServerMessageCommandTest.cs" />
     <Compile Include="Command\Vars\VarsServerNameCommandTest.cs" />
     <Compile Include="Command\Vars\VarsCommandTestBase.cs" />
     <Compile Include="Command\Vars\VarsTeamKillCountForKickCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsTeamKillKickForBanCommandTest.cs" />
     <Compile Include="Command\Vars\VarsTeamKillValueDecreasePerSecondCommandTest.cs" />
     <Compile Include="Command\Vars\VarsTeamKillValueForKickCommandTest.cs" />
     <Compile Include="Command\Vars\VarsTeamKillValueIncreaseCommandTest.cs" />
