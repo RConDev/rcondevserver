@@ -142,6 +142,8 @@
     <Compile Include="CommandFactory\Vars\VarsNameTagCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsRankedCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsRegenerateHealthCommandFactory.cs" />
+    <Compile Include="CommandFactory\Vars\VarsRoundRestartPlayerCountCommandFactory.cs" />
+    <Compile Include="CommandFactory\Vars\VarsRoundStartPlayerCountCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsServerDescriptionCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsServerMessageCommandFactory.cs" />
     <Compile Include="CommandFactory\Vars\VarsServerNameCommandFactory.cs" />
@@ -308,6 +310,8 @@
     <Compile Include="Command\Vars\VarsNameTagCommand.cs" />
     <Compile Include="Command\Vars\VarsRankedCommand.cs" />
     <Compile Include="Command\Vars\VarsRegenerateHealthCommand.cs" />
+    <Compile Include="Command\Vars\VarsRoundLockdownCountdownCommand.cs" />
+    <Compile Include="Command\Vars\VarsRoundRestartPlayerCountCommand.cs" />
     <Compile Include="Command\Vars\VarsRoundStartPlayerCountCommand.cs" />
     <Compile Include="Command\Vars\VarsServerDescriptionCommand.cs" />
     <Compile Include="Command\Vars\VarsServerMessageCommand.cs" />

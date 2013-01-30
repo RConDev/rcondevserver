@@ -82,6 +82,8 @@
     <Compile Include="Command\Vars\VarsNameTagCommandTest.cs" />
     <Compile Include="Command\Vars\VarsRankedCommandTest.cs" />
     <Compile Include="Command\Vars\VarsRegenerateHealthCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsRoundLockdownCountdownCommandTest.cs" />
+    <Compile Include="Command\Vars\VarsRoundRestartPlayerCountCommandTest.cs" />
     <Compile Include="Command\Vars\VarsRoundStartPlayerCountCommandTest.cs" />
     <Compile Include="Command\Vars\VarsServerDescriptionCommandTest.cs" />
     <Compile Include="Command\Vars\VarsServerMessageCommandTest.cs" />

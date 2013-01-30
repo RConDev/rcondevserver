@@ -5,12 +5,11 @@
     using NUnit.Framework;
 
     [TestFixture]
-    public class VarsTeamKillCountForKickCommandTest 
-        : IntVarsCommandTestBase<VarsTeamKillCountForKickCommand>
+    public class VarsRoundRestartPlayerCountCommandTest : IntVarsCommandTestBase<VarsRoundRestartPlayerCountCommand>
     {
         public override string CommandName
         {
-            get { return CommandNames.VarsTeamKillCountForKick; }
+            get { return CommandNames.VarsRoundRestartPlayerCount; }
         }
     }
 }

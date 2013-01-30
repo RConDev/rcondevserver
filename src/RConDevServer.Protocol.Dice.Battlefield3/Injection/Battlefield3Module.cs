@@ -179,6 +179,10 @@
                             CommandNames.VarsTeamKillKickForBan);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleBanRoundsCommandFactory>(
                             CommandNames.VarsIdleBanRounds);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundStartPlayerCountCommandFactory>(
+                            CommandNames.VarsRoundRestartPlayerCount);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundRestartPlayerCountCommandFactory>(
+                            CommandNames.VarsRoundRestartPlayerCount);
 
             #endregion
 

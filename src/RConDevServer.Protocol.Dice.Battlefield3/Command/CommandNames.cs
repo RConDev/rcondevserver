@@ -5,6 +5,10 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsRoundLockdownCountdown = "vars.roundLockdownCountdown";
+
+        public const string VarsRoundRestartPlayerCount = "vars.roundRestartPlayerCount";
+
         public const string VarsRoundStartPlayerCount = "vars.roundStartPlayerCount";
 
         public const string VarsIdleBanRounds = "vars.idleBanRounds";
