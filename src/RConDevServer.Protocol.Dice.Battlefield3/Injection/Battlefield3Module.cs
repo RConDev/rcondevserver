@@ -176,13 +176,38 @@
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleTimeoutCommandFactory>(
                 CommandNames.VarsIdleTimeout);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillKickForBanCommandFactory>(
-                            CommandNames.VarsTeamKillKickForBan);
+                CommandNames.VarsTeamKillKickForBan);
             this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleBanRoundsCommandFactory>(
-                            CommandNames.VarsIdleBanRounds);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundStartPlayerCountCommandFactory>(
-                            CommandNames.VarsRoundRestartPlayerCount);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundRestartPlayerCountCommandFactory>(
-                            CommandNames.VarsRoundRestartPlayerCount);
+                CommandNames.VarsIdleBanRounds);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundStartPlayerCountCommandFactory>
+                (
+                    CommandNames.VarsRoundRestartPlayerCount);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<ICommand>, VarsRoundRestartPlayerCountCommandFactory>(
+                    CommandNames.VarsRoundRestartPlayerCount);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsVehicleSpawnAllowedCommandFactory>(
+                CommandNames.VarsVehicleSpawnAllowed);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsVehicleSpawnDelayCommandFactory>(
+                CommandNames.VarsVehicleSpawnDelay);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsSoldierHealthCommandFactory>(
+                CommandNames.VarsSoldierHealth);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPlayerRespawnTimeCommandFactory>(
+                CommandNames.VarsPlayerRespawnTime);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPlayerManDownTimeCommandFactory>(
+                CommandNames.VarsPlayerManDownTime);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsBulletDamageCommandFactory>(
+                CommandNames.VarsBulletDamage);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsGameModeCounterCommandFactory>(
+                CommandNames.VarsGameModeCounter);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsOnlySquadLeaderSpawnCommandFactory>(
+                CommandNames.VarsOnlySquadLeaderSpawn);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsUnlockModeCommandFactory>(
+                CommandNames.VarsUnlockMode);
+            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPremiumStatusCommandFactory>(
+                CommandNames.VarsPremiumStatus);
+            this.ServiceLocator
+                .RegisterNamedService<ICommandFactory<ICommand>, VarsGunMasterWeaponsPresetCommandFactory>(
+                    CommandNames.VarsGunMasterWeaponsPreset);
 
             #endregion
 

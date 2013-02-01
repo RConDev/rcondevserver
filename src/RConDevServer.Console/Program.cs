@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SQLite;
-using System.Windows.Forms;
-using RConDevServer.Console.Properties;
-using RConDevServer.Core;
-using RConDevServer.Protocol.Interface;
-
-namespace RConDevServer.Console
+﻿namespace RConDevServer.Console
 {
+    using System;
+    using System.Windows.Forms;
+
     public static class Program
     {
         [STAThread]

@@ -18,7 +18,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Command
         ///     Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> ToWords()
+        public virtual IEnumerable<string> ToWords()
         {
             var words = new List<string> {this.Command};
             if (this.Value != null)

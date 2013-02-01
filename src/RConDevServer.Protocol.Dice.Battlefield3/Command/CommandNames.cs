@@ -5,6 +5,26 @@
     /// </summary>
     public static class CommandNames
     {
+        public const string VarsGunMasterWeaponsPreset = "vars.gunMasterWeaponsPreset";
+
+        public const string VarsPremiumStatus = "vars.premiumStatus";
+
+        public const string VarsUnlockMode = "vars.unlockMode";
+
+        public const string VarsOnlySquadLeaderSpawn = "vars.onlySquadLeaderSpawn";
+
+        public const string VarsGameModeCounter = "vars.gameModeCounter";
+
+        public const string VarsPlayerManDownTime = "vars.playerManDownTime";
+
+        public const string VarsPlayerRespawnTime = "vars.playerRespawnTime";
+
+        public const string VarsSoldierHealth = "vars.soldierHealth";
+
+        public const string VarsVehicleSpawnDelay = "vars.vehicleSpawnDelay";
+
+        public const string VarsVehicleSpawnAllowed = "vars.vehicleSpawnAllowed";
+
         public const string VarsRoundLockdownCountdown = "vars.roundLockdownCountdown";
 
         public const string VarsRoundRestartPlayerCount = "vars.roundRestartPlayerCount";
@@ -54,7 +74,7 @@
         public const string VarsServerName = "vars.serverName";
 
         public const string MapListAvailableMaps = "mapList.availableMaps";
-    
+
         public const string MapListEndRound = "mapList.endRound";
 
         public const string MapListRestartRound = "mapList.restartRound";
@@ -119,7 +139,7 @@
         public const string BanListSave = "banList.save";
 
         #endregion
-       
+
         public const string VarsRanked = "vars.ranked";
 
         public const string PunkBusterPbSvCommand = "punkBuster.pb_sv_command";
@@ -153,12 +173,13 @@
         public const string ReservedSlotsListLoad = "reservedSlotsList.load";
 
         public const string ReservedSlotsListRemove = "reservedSlotsList.remove";
-        
+
         public const string ReservedSlotsListSave = "reservedSlotsList.save";
 
         public const string VarsKillCam = "vars.killCam";
 
         public const string VarsRegenerateHealth = "vars.regenerateHealth";
-    
+
+        public const string VarsBulletDamage = "vars.bulletDamage";
     }
 }
