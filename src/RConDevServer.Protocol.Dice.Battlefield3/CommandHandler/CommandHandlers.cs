@@ -77,8 +77,8 @@
                     bool responseCreated = false;
                     try
                     {
-                        responseCreated = commandHandler.OnCreatingResponse(session, requestPacket, responsePacket,
-                                                                            args.Command);
+                        responseCreated = commandHandler.OnCreatingResponse(session,
+                                                                            args.Command, requestPacket, responsePacket);
                     }
                     catch (Exception ex)
                     {

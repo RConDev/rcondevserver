@@ -10,8 +10,7 @@
             get { return CommandNames.BanListSave; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             return true;

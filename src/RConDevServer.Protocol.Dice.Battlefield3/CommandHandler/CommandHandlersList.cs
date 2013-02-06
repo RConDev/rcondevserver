@@ -2,11 +2,19 @@
 {
     using System.Collections.Generic;
     using Common;
+    using log4net;
 
     public class CommandHandlersList : List<CommandHandlers>
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlersList));
+
         public void OnCommandReceived(object sender, ClientCommandEventArgs args)
         {
+            if (args.Command == null)
+            {
+                logger.InfoFormat("Command not recognized: {0}", args.PacketData.Words.DisplayWords());
+            }
+
             var session = sender as PacketSession;
             if (session == null
                 || (session.Server == null 

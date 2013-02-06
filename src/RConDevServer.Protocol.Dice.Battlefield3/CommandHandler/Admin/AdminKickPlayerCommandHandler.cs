@@ -20,8 +20,7 @@
             get { return CommandNames.AdminKickPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command1)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command1, Packet requestPacket, Packet responsePacket)
         {
             var command = command1 as KickPlayerCommand;
             if (requestPacket.Words.Count > 3)

@@ -12,8 +12,7 @@
             get { return Constants.COMMAND_MAP_LIST_REMOVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             var index = Convert.ToInt32(requestPacket.Words[1]);
             MapList mapList = session.Server.MapList;

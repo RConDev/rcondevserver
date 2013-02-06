@@ -15,8 +15,7 @@
             get { return Constants.COMMAND_LOGOUT; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             session.IsAuthenticated = false;
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);

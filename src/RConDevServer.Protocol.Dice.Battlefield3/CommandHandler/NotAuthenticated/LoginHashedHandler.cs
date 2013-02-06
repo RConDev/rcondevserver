@@ -14,8 +14,7 @@
             get { return Constants.COMMAND_LOGIN_HASHED; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             if (string.Equals(requestPacket.Words[0], Constants.COMMAND_LOGIN_HASHED,
                               StringComparison.InvariantCultureIgnoreCase))

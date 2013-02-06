@@ -22,8 +22,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 
         public abstract string Command { get; }
 
-        public abstract bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command);
+        public abstract bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket);
 
         public virtual void AddEvent(IEvent anEvent)
         {

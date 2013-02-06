@@ -18,8 +18,7 @@
             get { return Constants.COMMAND_SERVER_INFO; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

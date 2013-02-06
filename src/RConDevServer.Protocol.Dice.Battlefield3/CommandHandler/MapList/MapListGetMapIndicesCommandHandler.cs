@@ -12,8 +12,7 @@
             get { return Constants.COMMAND_MAP_LIST_GET_MAP_INDICES; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

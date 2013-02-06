@@ -12,8 +12,7 @@
             get { return Constants.COMMAND_MAP_LIST_LOAD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             IList<MapListItem> mapListItemsFromStore = session.Server.MapListStore.GetAll();
             foreach (MapListItem mapListItem in mapListItemsFromStore)

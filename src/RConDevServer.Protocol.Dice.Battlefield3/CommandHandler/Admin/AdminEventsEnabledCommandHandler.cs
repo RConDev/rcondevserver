@@ -12,8 +12,7 @@
             get { return CommandNames.AdminEventsEnabled; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             // decide between get or set option
             if (requestPacket.Words.Count == 1)

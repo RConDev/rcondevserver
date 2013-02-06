@@ -15,8 +15,7 @@
             get { return Constants.COMMAND_LIST_PLAYERS; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             // create a default list not regarding the player subset
             foreach (string word in session.Server.PlayerList.ToWords(false))

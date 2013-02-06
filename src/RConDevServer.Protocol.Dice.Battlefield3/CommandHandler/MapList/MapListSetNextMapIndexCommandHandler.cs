@@ -11,8 +11,7 @@
             get { return Constants.COMMAND_MAP_LIST_SET_NEXT_MAP_INDEX; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             MapList mapList = session.Server.MapList;
             if (requestPacket.Words.Count == 2)

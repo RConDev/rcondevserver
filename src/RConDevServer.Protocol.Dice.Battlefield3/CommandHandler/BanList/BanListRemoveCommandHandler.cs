@@ -11,8 +11,7 @@
             get { return CommandNames.BanListRemove; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             var idTypes = session.Server.IdTypes;
             if (this.ValidateRequest(requestPacket))

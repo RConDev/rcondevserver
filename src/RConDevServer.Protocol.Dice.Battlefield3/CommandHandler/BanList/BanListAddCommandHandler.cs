@@ -13,8 +13,7 @@
             get { return CommandNames.BanListAdd; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             if (this.ValidateRequestPacket(requestPacket))
             {

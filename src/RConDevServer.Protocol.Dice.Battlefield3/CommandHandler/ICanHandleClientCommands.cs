@@ -22,10 +22,10 @@
         /// <summary>
         /// </summary>
         /// <param name="session"></param>
+        /// <param name="command"></param>
         /// <param name="requestPacket"></param>
         /// <param name="responsePacket"></param>
-        /// <param name="command"></param>
-        bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket, ICommand command);
+        bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket);
 
         /// <summary>
         ///     Adds an <see cref="IEvent" /> to the CommandHandlers List,

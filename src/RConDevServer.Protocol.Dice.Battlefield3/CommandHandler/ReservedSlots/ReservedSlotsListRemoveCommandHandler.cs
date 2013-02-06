@@ -11,8 +11,7 @@
             get { return CommandNames.ReservedSlotsListRemove; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
         {
             // incorrect number of parameters
             if (requestPacket.Words.Count != 2)

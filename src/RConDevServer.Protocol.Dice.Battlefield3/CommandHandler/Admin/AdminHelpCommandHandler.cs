@@ -13,8 +13,7 @@
             get { return CommandNames.AdminHelp; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, Packet requestPacket, Packet responsePacket,
-                                                ICommand command1)
+        public override bool OnCreatingResponse(PacketSession session, ICommand command1, Packet requestPacket, Packet responsePacket)
         {
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
             foreach (string command in new Commands())
