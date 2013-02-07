@@ -2,16 +2,17 @@
 {
     using System.Linq;
     using Command;
+    using Command.BanList;
     using Common;
 
-    public class BanListRemoveCommandHandler : CommandHandlerBase
+    public class BanListRemoveCommandHandler : CommandHandlerBase<BanListRemoveCommand>
     {
         public override string Command
         {
             get { return CommandNames.BanListRemove; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, BanListRemoveCommand command, Packet requestPacket, Packet responsePacket)
         {
             var idTypes = session.Server.IdTypes;
             if (this.ValidateRequest(requestPacket))

@@ -7,16 +7,16 @@
     using Util;
 
     /// <summary>
-    ///     implementation for <see cref="YellCommand" />
+    ///     implementation for <see cref="AdminYellCommand" />
     /// </summary>
-    public class YellCommandFactory : CommandFactoryBase<YellCommand>
+    public class YellCommandFactory : CommandFactoryBase<AdminYellCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override YellCommand FromWords(IEnumerable<string> commandWords)
+        public override AdminYellCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.NotNullOrEmpty(words[1], "message");
@@ -30,7 +30,7 @@
             {
                 playerSubset = PlayerSubset.FromWords(words.Skip(3));
             }
-            return new YellCommand(words[1], duration, playerSubset);
+            return new AdminYellCommand(words[1], duration, playerSubset);
         }
     }
 }

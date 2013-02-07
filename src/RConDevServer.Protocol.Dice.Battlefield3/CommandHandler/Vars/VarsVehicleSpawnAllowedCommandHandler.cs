@@ -1,6 +1,9 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsVehicleSpawnAllowedCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsVehicleSpawnAllowedCommandHandler 
+        : VarsDefaultBoolCommandHandler<VarsVehicleSpawnAllowedCommand>
     {
         public override string Command
         {

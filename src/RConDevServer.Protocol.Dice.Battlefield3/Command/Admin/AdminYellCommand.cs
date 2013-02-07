@@ -7,15 +7,15 @@
     /// <summary>
     ///     the command "admin.yell"
     /// </summary>
-    public class YellCommand : ICommand
+    public class AdminYellCommand : ICommand
     {
         /// <summary>
-        ///     creates a new instance of <see cref="YellCommand" />
+        ///     creates a new instance of <see cref="AdminYellCommand" />
         /// </summary>
         /// <param name="message"></param>
         /// <param name="duration"></param>
         /// <param name="playerSubset"></param>
-        public YellCommand(string message, int? duration = null, PlayerSubset playerSubset = null)
+        public AdminYellCommand(string message, int? duration = null, PlayerSubset playerSubset = null)
         {
             this.Message = message;
             this.Duration = duration;

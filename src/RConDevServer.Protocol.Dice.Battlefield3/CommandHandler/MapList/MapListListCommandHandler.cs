@@ -1,10 +1,11 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Command.MapList;
     using Common;
     using Util;
 
-    public class MapListListCommandHandler : CommandHandlerBase
+    public class MapListListCommandHandler : CommandHandlerBase<MapListListCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -13,7 +14,7 @@
             get { return Constants.COMMAND_MAP_LIST_LIST; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListListCommand command, Packet requestPacket, Packet responsePacket)
         {
             int startIndex = 0;
             if (requestPacket.Words.Count == 2)

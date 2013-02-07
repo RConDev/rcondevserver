@@ -11,7 +11,7 @@
         [Test]
         public void Ctor_WithProperties_AllPropertiesSet()
         {
-            var command = new KillPlayerCommand("soldier");
+            var command = new AdminKillPlayerCommand("soldier");
             Assert.IsNotNull(command);
 
             Assert.AreEqual(CommandNames.AdminKillPlayer, command.Command);
@@ -21,7 +21,7 @@
         [Test]
         public void ToWords_ReturnsWords()
         {
-            var command = new KillPlayerCommand("soldier");
+            var command = new AdminKillPlayerCommand("soldier");
             var expectedWords = new[] {CommandNames.AdminKillPlayer, "soldier"};
             Assert.IsTrue(expectedWords.SequenceEqual(command.ToWords()));
         }

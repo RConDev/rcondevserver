@@ -10,16 +10,16 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.Admin
     using Util;
 
     /// <summary>
-    /// implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="MovePlayerCommand"/>
+    /// implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="AdminMovePlayerCommand"/>
     /// </summary>
-    public class MovePlayerCommandFactory : CommandFactoryBase<MovePlayerCommand>
+    public class MovePlayerCommandFactory : CommandFactoryBase<AdminMovePlayerCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override MovePlayerCommand FromWords(IEnumerable<string> commandWords)
+        public override AdminMovePlayerCommand FromWords(IEnumerable<string> commandWords)
         {
             var words = commandWords.ToArray();
             Requires.SequenceLength(words, 5, "words");
@@ -37,7 +37,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.Admin
             var force = Bool.SafeParse(words[4]);
             Requires.NotNull(force, "force");
 
-            return new MovePlayerCommand(soldierName, teamId.Value, squadId.Value, force.Value);
+            return new AdminMovePlayerCommand(soldierName, teamId.Value, squadId.Value, force.Value);
         }
     }
 }

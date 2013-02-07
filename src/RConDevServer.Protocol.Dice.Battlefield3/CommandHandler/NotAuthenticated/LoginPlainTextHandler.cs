@@ -2,9 +2,10 @@
 {
     using System;
     using Command;
+    using Command.NotAuthenticated;
     using Common;
 
-    public class LoginPlainTextHandler : CommandHandlerBase
+    public class LoginPlainTextHandler : CommandHandlerBase<LoginPlainTextCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -13,7 +14,7 @@
             get { return Constants.COMMAND_LOGIN_PLAIN_TEXT; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, LoginPlainTextCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (string.Equals(requestPacket.Words[0],
                               Constants.COMMAND_LOGIN_PLAIN_TEXT,

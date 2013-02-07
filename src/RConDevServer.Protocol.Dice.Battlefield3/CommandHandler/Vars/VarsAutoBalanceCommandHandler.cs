@@ -1,6 +1,8 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsAutoBalanceCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsAutoBalanceCommandHandler : VarsDefaultBoolCommandHandler<VarsAutoBalanceCommand>
     {
         public override string Command
         {

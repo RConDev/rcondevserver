@@ -2,16 +2,17 @@
 {
     using System.Linq;
     using Command;
+    using Command.Admin;
     using Common;
 
-    public class AdminKillPlayerCommandHandler : CommandHandlerBase
+    public class AdminKillPlayerCommandHandler : CommandHandlerBase<AdminKillPlayerCommand>
     {
         public override string Command
         {
             get { return CommandNames.AdminKillPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminKillPlayerCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 2)
             {

@@ -2,18 +2,19 @@
 {
     using System;
     using Command;
+    using Command.BanList;
     using Common;
     using Data;
     using Util;
 
-    public class BanListListCommandHandler : CommandHandlerBase
+    public class BanListListCommandHandler : CommandHandlerBase<BanListListCommand>
     {
         public override string Command
         {
             get { return CommandNames.BanListList; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, BanListListCommand command, Packet requestPacket, Packet responsePacket)
         {
             BanList banList = session.Server.BanList;
 

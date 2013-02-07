@@ -2,17 +2,18 @@
 {
     using System.Collections.Generic;
     using Command;
+    using Command.MapList;
     using Common;
     using Data;
 
-    public class MapListLoadCommandHandler : CommandHandlerBase
+    public class MapListLoadCommandHandler : CommandHandlerBase<MapListLoadCommand>
     {
         public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_LOAD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListLoadCommand command, Packet requestPacket, Packet responsePacket)
         {
             IList<MapListItem> mapListItemsFromStore = session.Server.MapListStore.GetAll();
             foreach (MapListItem mapListItem in mapListItemsFromStore)

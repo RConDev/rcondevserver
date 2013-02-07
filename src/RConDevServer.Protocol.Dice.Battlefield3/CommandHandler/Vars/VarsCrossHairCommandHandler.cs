@@ -1,6 +1,8 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsCrossHairCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsCrossHairCommandHandler : VarsDefaultBoolCommandHandler<VarsCrossHairCommand>
     {
         public override string Command
         {

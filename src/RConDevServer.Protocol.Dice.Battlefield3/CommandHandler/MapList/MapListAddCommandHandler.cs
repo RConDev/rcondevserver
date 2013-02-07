@@ -3,17 +3,18 @@
     using System;
     using System.Linq;
     using Command;
+    using Command.MapList;
     using Common;
     using Data;
 
-    public class MapListAddCommandHandler : CommandHandlerBase
+    public class MapListAddCommandHandler : CommandHandlerBase<MapListAddCommand>
     {
         public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_ADD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListAddCommand command, Packet requestPacket, Packet responsePacket)
         {
             // Check the given map code
             Map map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == requestPacket.Words[1]);

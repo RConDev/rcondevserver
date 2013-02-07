@@ -6,6 +6,8 @@ using log4net;
 
 namespace RConDevServer.Util
 {
+    using Ninject.Planning.Bindings;
+
     public class NinjectServiceLocator : IServiceLocator
     {
         public static readonly ILog logger = LogManager.GetLogger(typeof(NinjectServiceLocator));
@@ -52,7 +54,7 @@ namespace RConDevServer.Util
             }
         }
 
-        public bool RegisterNamedService<TInterface, TImplementation>(string name) where TImplementation : TInterface
+        public bool RegisterNamedService<TInterface, TImplementation>(string name) where TImplementation :  TInterface
         {
             try
             {

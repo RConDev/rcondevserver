@@ -1,6 +1,6 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.Admin
 {
-    public class HelpCommand : SimpleCommand
+    public class AdminHelpCommand : SimpleCommand
     {
         /// <summary>
         ///     The command name

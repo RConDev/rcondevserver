@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsBulletDamageCommandHandler : VarsCommandHandlerBase
+    public class VarsBulletDamageCommandHandler : VarsCommandHandlerBase<VarsBulletDamageCommand, int?>
     {
         public override string Command
         {

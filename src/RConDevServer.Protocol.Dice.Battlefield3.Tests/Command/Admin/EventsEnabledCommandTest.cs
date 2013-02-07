@@ -11,7 +11,7 @@
         [Test]
         public void ToWords_WithIsEnabledSet_ReturnsWords()
         {
-            var command = new EventsEnabledCommand(true);
+            var command = new AdminEventsEnabledCommand(true);
             var expectedWords = new[] {CommandNames.AdminEventsEnabled, "true"};
             var words = command.ToWords();
             Assert.IsTrue(expectedWords.SequenceEqual(words));
@@ -20,7 +20,7 @@
         [Test]
         public void ToWords_WithIsEnabledNotSet_ReturnsWords()
         {
-            var command = new EventsEnabledCommand();
+            var command = new AdminEventsEnabledCommand();
             var expectedWords = new[] {CommandNames.AdminEventsEnabled};
             var words = command.ToWords();
             Assert.IsTrue(expectedWords.SequenceEqual(words));

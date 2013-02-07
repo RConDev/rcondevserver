@@ -3,17 +3,18 @@
     using System.Collections.Generic;
     using System.Linq;
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
     using Data;
 
-    public class ReservedSlotsListLoadCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListLoadCommandHandler : CommandHandlerBase<ReservedSlotsListLoadCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListLoad; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListLoadCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 1)
             {

@@ -8,9 +8,9 @@
     [TestFixture]
     public class MovePlayerCommandTest
     {
-        private static MovePlayerCommand CreateCommand()
+        private static AdminMovePlayerCommand CreateCommand()
         {
-            var command = new MovePlayerCommand("theplayer", 1, 0, true);
+            var command = new AdminMovePlayerCommand("theplayer", 1, 0, true);
             return command;
         }
 

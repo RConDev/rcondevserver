@@ -2,16 +2,17 @@
 {
     using System.Linq;
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
 
-    public class ReservedSlotsListAddCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListAddCommandHandler : CommandHandlerBase<ReservedSlotsListAddCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListAdd; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListAddCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount != 2)
             {

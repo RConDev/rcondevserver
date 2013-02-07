@@ -3,18 +3,18 @@
     using System;
     using System.Linq;
     using Command;
-    using CommandFactory.Admin;
+    using Command.Admin;
     using Common;
     using Data;
 
-    public class AdminYellCommandHandler : CommandHandlerBase
+    public class AdminYellCommandHandler : CommandHandlerBase<AdminYellCommand>
     {
         public override string Command
         {
             get { return CommandNames.AdminYell; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminYellCommand command, Packet requestPacket, Packet responsePacket)
         {
             string message = requestPacket.Words[1];
             int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;

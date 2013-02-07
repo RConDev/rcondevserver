@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsUnlockModeCommandHandler : VarsCommandHandlerBase
+    public class VarsUnlockModeCommandHandler : VarsCommandHandlerBase<VarsUnlockModeCommand, Data.UnlockMode?>
     {
         public override string Command
         {

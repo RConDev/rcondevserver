@@ -1,15 +1,15 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public abstract class VarsDefaultBoolCommandHandler : VarsDefaultCommandHandler
+    using Command;
+    using Util;
+
+    public abstract class VarsDefaultBoolCommandHandler<TVarsCommand> 
+        : VarsDefaultCommandHandler<TVarsCommand, bool?>
+        where TVarsCommand : class, IVarsCommand<bool?>
     {
-        protected override object ConvertToValue(string valueString)
+        protected override bool? ConvertToValue(string valueString)
         {
-            bool boolValue = false;
-            if (bool.TryParse(valueString, out boolValue))
-            {
-                return boolValue;
-            }
-            return null;
+            return Bool.SafeParse(valueString);
         }
     }
 }

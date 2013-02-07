@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsGameModeCounterCommandHandler : VarsCommandHandlerBase
+    public class VarsGameModeCounterCommandHandler : VarsCommandHandlerBase<VarsGameModeCounterCommand, int?>
     {
         public override string Command
         {

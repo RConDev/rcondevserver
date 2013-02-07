@@ -8,7 +8,8 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
     using Interface;
     using Util;
 
-    public abstract class CommandHandlerBase : ICanHandleClientCommands
+    public abstract class CommandHandlerBase<TCommand> : ICanHandleClientCommands<TCommand>
+        where TCommand : class, ICommand
     {
         protected CommandHandlerBase(IServiceLocator serviceLocator = null)
         {
@@ -16,13 +17,24 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
             this.ServiceLocator = serviceLocator;
         }
 
-        public IServiceLocator ServiceLocator { get; private set; }
+        public IServiceLocator ServiceLocator { get; protected set; }
 
         public IList<IEvent> CommandEvents { get; private set; }
 
         public abstract string Command { get; }
 
-        public abstract bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket);
+        public abstract bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket, Packet responsePacket);
+
+        /// <summary>
+        /// </summary>
+        /// <param name="session"></param>
+        /// <param name="command"></param>
+        /// <param name="requestPacket"></param>
+        /// <param name="responsePacket"></param>
+        public bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        {
+            return this.OnCreatingResponse(session, (TCommand) command, requestPacket, responsePacket);
+        }
 
         public virtual void AddEvent(IEvent anEvent)
         {

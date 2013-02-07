@@ -5,13 +5,13 @@
     /// <summary>
     ///     Kill a player without any stats effect
     /// </summary>
-    public class KillPlayerCommand : ICommand
+    public class AdminKillPlayerCommand : ICommand
     {
         /// <summary>
-        ///     creates a new instance of <see cref="KillPlayerCommand" />
+        ///     creates a new instance of <see cref="AdminKillPlayerCommand" />
         /// </summary>
         /// <param name="soldierName"></param>
-        public KillPlayerCommand(string soldierName)
+        public AdminKillPlayerCommand(string soldierName)
         {
             this.SoldierName = soldierName;
         }

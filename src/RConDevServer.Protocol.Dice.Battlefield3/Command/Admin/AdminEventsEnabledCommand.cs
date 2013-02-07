@@ -3,9 +3,9 @@
     using System;
     using System.Collections.Generic;
 
-    public class EventsEnabledCommand : ICommand
+    public class AdminEventsEnabledCommand : ICommand
     {
-        public EventsEnabledCommand(bool? isEnabled = null)
+        public AdminEventsEnabledCommand(bool? isEnabled = null)
         {
             this.IsEnabled = isEnabled;
         }

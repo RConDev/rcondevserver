@@ -1,6 +1,8 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsFriendlyFireCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsFriendlyFireCommandHandler : VarsDefaultBoolCommandHandler<VarsFriendlyFireCommand>
     {
         public override string Command
         {

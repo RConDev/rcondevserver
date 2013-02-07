@@ -1,9 +1,11 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsRoundLockdownCountdownCommandHandler : VarsCommandHandlerBase
+    public class VarsRoundLockdownCountdownCommandHandler
+        : VarsCommandHandlerBase<VarsRoundLockdownCountdownCommand, int?>
     {
         public override string Command
         {

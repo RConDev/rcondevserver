@@ -2,16 +2,17 @@
 {
     using System;
     using Command;
+    using Command.Admin;
     using Common;
 
-    public class AdminEffectiveMaxPlayers : CommandHandlerBase
+    public class AdminEffectiveMaxPlayersCommandHandler : CommandHandlerBase<AdminEffectiveMaxPlayersCommand>
     {
         public override string Command
         {
             get { return CommandNames.AdminEffectiveMaxPlayers; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminEffectiveMaxPlayersCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 1)
             {

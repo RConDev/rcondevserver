@@ -1,10 +1,12 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
     using Util;
 
-    public class VarsIdleTimeOutCommandHandler : VarsCommandHandlerBase
+    public class VarsIdleTimeoutCommandHandler
+        : VarsCommandHandlerBase<VarsIdleTimeoutCommand, int?>
     {
         public override string Command
         {

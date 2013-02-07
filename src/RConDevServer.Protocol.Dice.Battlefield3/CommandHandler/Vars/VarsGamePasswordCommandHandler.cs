@@ -2,10 +2,11 @@
 {
     using System;
     using Command;
+    using Command.Vars;
     using Common;
     using Data;
 
-    public class VarsGamePasswordCommandHandler : CommandHandlerBase
+    public class VarsGamePasswordCommandHandler : CommandHandlerBase<VarsGamePasswordCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -14,7 +15,7 @@
             get { return Constants.COMMAND_VARS_GAMEPASSWORD; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, VarsGamePasswordCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount == 1)
             {

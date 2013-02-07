@@ -1,8 +1,9 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
+    using Command;
     using Interface;
 
-    public class NotAuthenticatedCommandHandlers : CommandHandlers
+    public class NotAuthenticatedCommandHandlers: CommandHandlers
     {
         public NotAuthenticatedCommandHandlers(IServiceLocator serviceLocator)
         {

@@ -7,23 +7,23 @@
     using Util;
 
     /// <summary>
-    ///     Implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="KillPlayerCommand" />
+    ///     Implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminKillPlayerCommand" />
     /// </summary>
-    public class KillPlayerCommandFactory : CommandFactoryBase<KillPlayerCommand>
+    public class KillPlayerCommandFactory : CommandFactoryBase<AdminKillPlayerCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override KillPlayerCommand FromWords(IEnumerable<string> commandWords)
+        public override AdminKillPlayerCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.SequenceLength(words, 2, "words");
             Requires.Equal(words[0], CommandNames.AdminKillPlayer, "commandName");
             string soldierName = words[1];
             Requires.NotNullOrEmpty(soldierName, "soldierName");
-            return new KillPlayerCommand(soldierName);
+            return new AdminKillPlayerCommand(soldierName);
         }
     }
 }

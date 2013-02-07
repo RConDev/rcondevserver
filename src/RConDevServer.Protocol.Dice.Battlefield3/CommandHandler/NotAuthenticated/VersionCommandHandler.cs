@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
     using Command;
+    using Command.NotAuthenticated;
     using Common;
 
-    public class VersionCommandHandler : CommandHandlerBase
+    public class VersionCommandHandler : CommandHandlerBase<VersionCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -12,7 +13,7 @@
             get { return Constants.COMMAND_VERSION; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, VersionCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

@@ -3,9 +3,10 @@
     using Command;
     using Common;
 
-    public abstract class VarsCommandHandlerBase : CommandHandlerBase
+    public abstract class VarsCommandHandlerBase<TVarsCommand, TVarValuee> : CommandHandlerBase<TVarsCommand>
+        where TVarsCommand : class, IVarsCommand<TVarValuee>
     {
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, TVarsCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

@@ -1,5 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.BanList
 {
+    using Command;
+
     public class BanListCommandHandlers : CommandHandlers
     {
         public BanListCommandHandlers()

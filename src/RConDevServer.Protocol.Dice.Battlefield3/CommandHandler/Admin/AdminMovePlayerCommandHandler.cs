@@ -3,17 +3,18 @@
     using System;
     using System.Linq;
     using Command;
+    using Command.Admin;
     using Common;
     using Data;
 
-    public class AdminMovePlayerCommandHandler : CommandHandlerBase
+    public class AdminMovePlayerCommandHandler : CommandHandlerBase<AdminMovePlayerCommand>
     {
         public override string Command
         {
             get { return CommandNames.AdminMovePlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminMovePlayerCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 5)
             {

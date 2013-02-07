@@ -1,11 +1,13 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command;
     using Common;
 
-    public abstract class VarsDefaultCommandHandler : VarsCommandHandlerBase
+    public abstract class VarsDefaultCommandHandler<TVarsCommand, TVarsValue> : VarsCommandHandlerBase<TVarsCommand, TVarsValue>
+        where TVarsCommand : class, IVarsCommand<TVarsValue>
     {
-        protected abstract object ConvertToValue(string valueString);
+        protected abstract TVarsValue ConvertToValue(string valueString);
 
         protected override bool OnGetValue(PacketSession session, Packet responsePacket)
         {

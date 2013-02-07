@@ -2,17 +2,18 @@
 {
     using System;
     using Command;
+    using Command.MapList;
     using Common;
     using Data;
 
-    public class MapListRemoveCommandHandler : CommandHandlerBase
+    public class MapListRemoveCommandHandler : CommandHandlerBase<MapListRemoveCommand>
     {
         public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_REMOVE; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListRemoveCommand command, Packet requestPacket, Packet responsePacket)
         {
             var index = Convert.ToInt32(requestPacket.Words[1]);
             MapList mapList = session.Server.MapList;

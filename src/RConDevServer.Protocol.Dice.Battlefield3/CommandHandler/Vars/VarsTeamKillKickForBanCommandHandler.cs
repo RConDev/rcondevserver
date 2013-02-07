@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsTeamKillKickForBanCommandHandler : VarsCommandHandlerBase
+    public class VarsTeamKillKickForBanCommandHandler : VarsCommandHandlerBase<VarsTeamKillKickForBanCommand, int?>
     {
         public override string Command
         {

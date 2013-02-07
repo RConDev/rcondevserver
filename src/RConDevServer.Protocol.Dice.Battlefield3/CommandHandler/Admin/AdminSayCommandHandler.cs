@@ -2,11 +2,12 @@
 {
     using System.Linq;
     using Command;
+    using Command.Admin;
     using Common;
     using Data;
     using Event.Player;
 
-    public class AdminSayCommandHandler : CommandHandlerBase
+    public class AdminSayCommandHandler : CommandHandlerBase<AdminSayCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -15,7 +16,7 @@
             get { return CommandNames.AdminSay; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminSayCommand command, Packet requestPacket, Packet responsePacket)
         {
             string message = requestPacket.Words[1];
             PlayerSubset playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());

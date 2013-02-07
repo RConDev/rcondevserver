@@ -1,17 +1,18 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Command.MapList;
     using Common;
     using Event.Server;
 
-    public class MapListEndRoundCommandHandler : CommandHandlerBase
+    public class MapListEndRoundCommandHandler : CommandHandlerBase<MapListEndRoundCommand>
     {
         public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_END_ROUND; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListEndRoundCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 2)
             {

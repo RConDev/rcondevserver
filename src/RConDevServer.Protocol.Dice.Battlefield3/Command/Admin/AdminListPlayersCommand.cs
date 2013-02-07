@@ -6,13 +6,13 @@
     /// <summary>
     ///     Return list of all players on the server; including guids
     /// </summary>
-    public class ListPlayersCommand : ICommand
+    public class AdminListPlayersCommand : ICommand
     {
         /// <summary>
-        ///     create a new instance of <see cref="ListPlayersCommand" />
+        ///     create a new instance of <see cref="AdminListPlayersCommand" />
         /// </summary>
         /// <param name="playerSubset"></param>
-        public ListPlayersCommand(PlayerSubset playerSubset)
+        public AdminListPlayersCommand(PlayerSubset playerSubset)
         {
             this.PlayerSubset = playerSubset;
         }

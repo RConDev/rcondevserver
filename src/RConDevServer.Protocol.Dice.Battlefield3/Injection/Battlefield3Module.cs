@@ -40,173 +40,173 @@
         {
             #region Admin Commands
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, EventsEnabledCommandFactory>
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, EventsEnabledCommandFactory>
                 (CommandNames.AdminEventsEnabled);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, HelpCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, HelpCommandFactory>(
                 CommandNames.AdminHelp);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, KickPlayerCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, KickPlayerCommandFactory>(
                 CommandNames.AdminKickPlayer);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ListPlayersCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ListPlayersCommandFactory>(
                 CommandNames.AdminListPlayers);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, SayCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, SayCommandFactory>(
                 CommandNames.AdminSay);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, YellCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, YellCommandFactory>(
                 CommandNames.AdminYell);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, EffectiveMaxPlayersCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, EffectiveMaxPlayersCommandFactory>(
                 CommandNames.AdminEffectiveMaxPlayers);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MovePlayerCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MovePlayerCommandFactory>(
                 CommandNames.AdminMovePlayer);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, KillPlayerCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, KillPlayerCommandFactory>(
                 CommandNames.AdminKillPlayer);
 
             #endregion
 
             #region Reserved Slots
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListLoadCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListLoadCommandFactory>(
                 CommandNames.ReservedSlotsListLoad);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListSaveCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListSaveCommandFactory>(
                 CommandNames.ReservedSlotsListSave);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListAddCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListAddCommandFactory>(
                 CommandNames.ReservedSlotsListAdd);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListRemoveCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListRemoveCommandFactory>(
                 CommandNames.ReservedSlotsListRemove);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListClearCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListClearCommandFactory>(
                 CommandNames.ReservedSlotsListClear);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListListCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListListCommandFactory>(
                 CommandNames.ReservedSlotsListList);
             this.ServiceLocator
-                .RegisterNamedService<ICommandFactory<ICommand>, ReservedSlotsListAggressiveJoinCommandFactory>(
+                .RegisterNamedService<ISimpleCommandFactory, ReservedSlotsListAggressiveJoinCommandFactory>(
                     CommandNames.ReservedSlotsListAggressiveJoin);
 
             #endregion
 
             #region Ban List
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListLoadCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListLoadCommandFactory>(
                 CommandNames.BanListLoad);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListSaveCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListSaveCommandFactory>(
                 CommandNames.BanListSave);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListAddCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListAddCommandFactory>(
                 CommandNames.BanListAdd);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListRemoveCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListRemoveCommandFactory>(
                 CommandNames.BanListRemove);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListClearCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListClearCommandFactory>(
                 CommandNames.BanListClear);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, BanListListCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, BanListListCommandFactory>(
                 CommandNames.BanListClear);
 
             #endregion
 
             #region Map List
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListLoadCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListLoadCommandFactory>(
                 CommandNames.MapListLoad);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListSaveCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListSaveCommandFactory>(
                 CommandNames.MapListSave);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListAddCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListAddCommandFactory>(
                 CommandNames.MapListAdd);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListRemoveCommandFactory>
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListRemoveCommandFactory>
                 (CommandNames.MapListRemove);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListListCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListListCommandFactory>(
                 CommandNames.MapListList);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListSetNextMapIndexCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListSetNextMapIndexCommandFactory>(
                 CommandNames.MapListSetNextMapIndex);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListGetMapIndicesCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListGetMapIndicesCommandFactory>(
                 CommandNames.MapListGetMapIndices);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListGetRoundsCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListGetRoundsCommandFactory>(
                 CommandNames.MapListGetRounds);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListRunNextRoundCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListRunNextRoundCommandFactory>(
                 CommandNames.MapListRunNextRound);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListRestartRoundCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListRestartRoundCommandFactory>(
                 CommandNames.MapListRestartRound);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListEndRoundCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListEndRoundCommandFactory>(
                 CommandNames.MapListEndRound);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, MapListAvailableMapsCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, MapListAvailableMapsCommandFactory>(
                 CommandNames.MapListAvailableMaps);
 
             #endregion
 
             #region Vars
 
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRankedCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsRankedCommandFactory>(
                 CommandNames.VarsRanked);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerNameCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsServerNameCommandFactory>(
                 CommandNames.VarsServerName);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsGamePasswordCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsGamePasswordCommandFactory>(
                 CommandNames.VarsGamePassword);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsAutoBalanceCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsAutoBalanceCommandFactory>(
                 CommandNames.VarsAutoBalance);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsFriendlyFireCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsFriendlyFireCommandFactory>(
                 CommandNames.VarsFriendlyFire);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMaxPlayersCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsMaxPlayersCommandFactory>(
                 CommandNames.VarsMaxPlayers);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerDescriptionCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsServerDescriptionCommandFactory>(
                 CommandNames.VarsServerDescription);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsServerMessageCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsServerMessageCommandFactory>(
                 CommandNames.VarsServerMessage);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsKillCamCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsKillCamCommandFactory>(
                 CommandNames.VarsKillCam);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMiniMapCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsMiniMapCommandFactory>(
                 CommandNames.VarsMiniMap);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsHudCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsHudCommandFactory>(
                 CommandNames.VarsHud);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsCrossHairCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsCrossHairCommandFactory>(
                 CommandNames.VarsCrossHair);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, Vars3DSpottingCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, Vars3DSpottingCommandFactory>(
                 CommandNames.Vars3DSpotting);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsMiniMapSpottingCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsMiniMapSpottingCommandFactory>(
                 CommandNames.VarsMiniMapSpotting);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsNameTagCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsNameTagCommandFactory>(
                 CommandNames.VarsNameTag);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, Vars3PCamCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, Vars3PCamCommandFactory>(
                 CommandNames.Vars3PCam);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRegenerateHealthCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsRegenerateHealthCommandFactory>(
                 CommandNames.VarsRegenerateHealth);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillCountForKickCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsTeamKillCountForKickCommandFactory>(
                 CommandNames.VarsTeamKillCountForKick);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueForKickCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsTeamKillValueForKickCommandFactory>(
                 CommandNames.VarsTeamKillValueForKick);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueIncreaseCommandFactory>
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsTeamKillValueIncreaseCommandFactory>
                 (
                     CommandNames.VarsTeamKillValueIncrease);
             this.ServiceLocator
-                .RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillValueDecreasePerSecondCommandFactory>(
+                .RegisterNamedService<ISimpleCommandFactory, VarsTeamKillValueDecreasePerSecondCommandFactory>(
                     CommandNames.VarsTeamKillValueDecreasePerSecond);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleTimeoutCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsIdleTimeoutCommandFactory>(
                 CommandNames.VarsIdleTimeout);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsTeamKillKickForBanCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsTeamKillKickForBanCommandFactory>(
                 CommandNames.VarsTeamKillKickForBan);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsIdleBanRoundsCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsIdleBanRoundsCommandFactory>(
                 CommandNames.VarsIdleBanRounds);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsRoundStartPlayerCountCommandFactory>
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsRoundStartPlayerCountCommandFactory>
                 (
                     CommandNames.VarsRoundRestartPlayerCount);
             this.ServiceLocator
-                .RegisterNamedService<ICommandFactory<ICommand>, VarsRoundRestartPlayerCountCommandFactory>(
+                .RegisterNamedService<ISimpleCommandFactory, VarsRoundRestartPlayerCountCommandFactory>(
                     CommandNames.VarsRoundRestartPlayerCount);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsVehicleSpawnAllowedCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsVehicleSpawnAllowedCommandFactory>(
                 CommandNames.VarsVehicleSpawnAllowed);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsVehicleSpawnDelayCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsVehicleSpawnDelayCommandFactory>(
                 CommandNames.VarsVehicleSpawnDelay);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsSoldierHealthCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsSoldierHealthCommandFactory>(
                 CommandNames.VarsSoldierHealth);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPlayerRespawnTimeCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsPlayerRespawnTimeCommandFactory>(
                 CommandNames.VarsPlayerRespawnTime);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPlayerManDownTimeCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsPlayerManDownTimeCommandFactory>(
                 CommandNames.VarsPlayerManDownTime);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsBulletDamageCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsBulletDamageCommandFactory>(
                 CommandNames.VarsBulletDamage);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsGameModeCounterCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsGameModeCounterCommandFactory>(
                 CommandNames.VarsGameModeCounter);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsOnlySquadLeaderSpawnCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsOnlySquadLeaderSpawnCommandFactory>(
                 CommandNames.VarsOnlySquadLeaderSpawn);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsUnlockModeCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsUnlockModeCommandFactory>(
                 CommandNames.VarsUnlockMode);
-            this.ServiceLocator.RegisterNamedService<ICommandFactory<ICommand>, VarsPremiumStatusCommandFactory>(
+            this.ServiceLocator.RegisterNamedService<ISimpleCommandFactory, VarsPremiumStatusCommandFactory>(
                 CommandNames.VarsPremiumStatus);
             this.ServiceLocator
-                .RegisterNamedService<ICommandFactory<ICommand>, VarsGunMasterWeaponsPresetCommandFactory>(
+                .RegisterNamedService<ISimpleCommandFactory, VarsGunMasterWeaponsPresetCommandFactory>(
                     CommandNames.VarsGunMasterWeaponsPreset);
 
             #endregion

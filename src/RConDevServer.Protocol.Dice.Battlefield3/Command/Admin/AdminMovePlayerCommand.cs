@@ -9,16 +9,16 @@
     /// <remarks>
     ///     Only works if player is dead. This command will kill player if forceKill is true
     /// </remarks>
-    public class MovePlayerCommand : ICommand
+    public class AdminMovePlayerCommand : ICommand
     {
         /// <summary>
-        ///     create a new instance of <see cref="MovePlayerCommand" />
+        ///     create a new instance of <see cref="AdminMovePlayerCommand" />
         /// </summary>
         /// <param name="soldierName"></param>
         /// <param name="teamId"></param>
         /// <param name="squadId"></param>
         /// <param name="force"></param>
-        public MovePlayerCommand(string soldierName, int teamId, int squadId, bool force)
+        public AdminMovePlayerCommand(string soldierName, int teamId, int squadId, bool force)
         {
             this.SoldierName = soldierName;
             this.TeamId = teamId;

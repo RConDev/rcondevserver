@@ -6,14 +6,14 @@
     /// <summary>
     ///     the command for kicking a player from the server
     /// </summary>
-    public class KickPlayerCommand : ICommand
+    public class AdminKickPlayerCommand : ICommand
     {
         /// <summary>
-        ///     create a new <see cref="KickPlayerCommand" />
+        ///     create a new <see cref="AdminKickPlayerCommand" />
         /// </summary>
         /// <param name="soldierName">The Name of the soldier to be kicked</param>
         /// <param name="reason">The reason for kicking the soldier</param>
-        public KickPlayerCommand(string soldierName, string reason)
+        public AdminKickPlayerCommand(string soldierName, string reason)
         {
             Requires.NotNullOrEmpty(soldierName, "soldierName");
             Requires.NotNullOrEmpty(reason, "reason");

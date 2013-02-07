@@ -2,10 +2,11 @@
 {
     using System;
     using Command;
+    using Command.Vars;
     using Common;
     using Data;
 
-    public class VarsServerNameCommandHandler : CommandHandlerBase
+    public class VarsServerNameCommandHandler : CommandHandlerBase<VarsServerNameCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -14,7 +15,7 @@
             get { return Constants.COMMAND_VARS_SERVERNAME; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, VarsServerNameCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount == 1)
             {

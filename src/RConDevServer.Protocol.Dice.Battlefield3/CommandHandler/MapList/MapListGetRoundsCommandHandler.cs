@@ -2,10 +2,11 @@
 {
     using System;
     using Command;
+    using Command.MapList;
     using Common;
     using Util;
 
-    public class MapListGetRoundsCommandHandler : CommandHandlerBase
+    public class MapListGetRoundsCommandHandler : CommandHandlerBase<MapListGetRoundsCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -14,7 +15,7 @@
             get { return Constants.COMMAND_MAP_LIST_GET_ROUNDS; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListGetRoundsCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {

@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsPlayerRespawnTimeCommandHandler : VarsCommandHandlerBase
+    public class VarsPlayerRespawnTimeCommandHandler : VarsCommandHandlerBase<VarsPlayerRespawnTimeCommand, int?>
     {
         public override string Command
         {

@@ -2,16 +2,17 @@
 {
     using System.Linq;
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
 
-    public class ReservedSlotsListRemoveCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListRemoveCommandHandler : CommandHandlerBase<ReservedSlotsListRemoveCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListRemove; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListRemoveCommand command, Packet requestPacket, Packet responsePacket)
         {
             // incorrect number of parameters
             if (requestPacket.Words.Count != 2)

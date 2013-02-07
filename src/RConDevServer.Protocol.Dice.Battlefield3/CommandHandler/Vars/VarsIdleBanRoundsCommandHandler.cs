@@ -1,9 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
     using System;
+    using Command.Vars;
     using Common;
 
-    public class VarsIdleBanRoundsCommandHandler : VarsCommandHandlerBase
+    public class VarsIdleBanRoundsCommandHandler : VarsCommandHandlerBase<VarsIdleBanRoundsCommand, int?>
     {
         public override string Command
         {

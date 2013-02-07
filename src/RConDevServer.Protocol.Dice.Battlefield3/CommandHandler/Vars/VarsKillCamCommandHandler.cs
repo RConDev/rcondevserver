@@ -1,6 +1,8 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsKillCamCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsKillCamCommandHandler : VarsDefaultBoolCommandHandler<VarsKillCamCommand>
     {
         public override string Command
         {

@@ -1,6 +1,8 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class Vars3DSpottingCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class Vars3DSpottingCommandHandler : VarsDefaultBoolCommandHandler<Vars3DSpottingCommand>
     {
         public override string Command
         {

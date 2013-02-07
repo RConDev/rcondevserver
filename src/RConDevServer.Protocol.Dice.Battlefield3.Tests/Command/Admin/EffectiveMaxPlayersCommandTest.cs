@@ -12,7 +12,7 @@
         public void ToWords_ReturnsCommandWords()
         {
             var expectedWords = new[] {CommandNames.AdminEffectiveMaxPlayers};
-            var command = new EffectiveMaxPlayersCommand();
+            var command = new AdminEffectiveMaxPlayersCommand();
             Assert.AreEqual(CommandNames.AdminEffectiveMaxPlayers, command.Command);
             Assert.IsTrue(expectedWords.SequenceEqual(command.ToWords()));
         }

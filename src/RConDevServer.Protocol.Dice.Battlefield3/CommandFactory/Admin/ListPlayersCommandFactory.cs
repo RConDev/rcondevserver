@@ -8,22 +8,22 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="ListPlayersCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminListPlayersCommand" />
     /// </summary>
-    public class ListPlayersCommandFactory : CommandFactoryBase<ListPlayersCommand>
+    public class ListPlayersCommandFactory : CommandFactoryBase<AdminListPlayersCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override ListPlayersCommand FromWords(IEnumerable<string> commandWords)
+        public override AdminListPlayersCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.MinSequenceLength(words, 2, "commandWords");
             Requires.Equal(words[0], CommandNames.AdminListPlayers, "commandName");
             PlayerSubset playerSubset = PlayerSubset.FromWords(words.Skip(1));
-            return new ListPlayersCommand(playerSubset);
+            return new AdminListPlayersCommand(playerSubset);
         }
     }
 }

@@ -1,6 +1,9 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Vars
 {
-    public class VarsMiniMapSpottingCommandHandler : VarsDefaultBoolCommandHandler
+    using Command.Vars;
+
+    public class VarsMiniMapSpottingCommandHandler 
+        : VarsDefaultBoolCommandHandler<VarsMiniMapSpottingCommand>
     {
         public override string Command
         {

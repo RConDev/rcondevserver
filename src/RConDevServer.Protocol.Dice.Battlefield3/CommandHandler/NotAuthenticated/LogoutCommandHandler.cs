@@ -2,11 +2,12 @@
 {
     using Command;
     using Common;
+    using Tests.CommandFactory.NotAuthenticated;
 
     /// <summary>
     ///     Handles the Command "logout"
     /// </summary>
-    public class LogoutCommandHandler : CommandHandlerBase
+    public class LogoutCommandHandler : CommandHandlerBase<LogoutCommand>
     {
         #region ICanHandleClientCommands Members
 
@@ -15,7 +16,7 @@
             get { return Constants.COMMAND_LOGOUT; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, LogoutCommand command, Packet requestPacket, Packet responsePacket)
         {
             session.IsAuthenticated = false;
             responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);

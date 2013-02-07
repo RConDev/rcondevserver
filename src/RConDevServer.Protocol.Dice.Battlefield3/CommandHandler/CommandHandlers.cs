@@ -7,16 +7,17 @@
     using log4net;
 
     public class CommandHandlers
-    {
-        private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlers));
 
-        protected readonly IDictionary<string, ICanHandleClientCommands> RegisteredCommandHandlers;
+    {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(CommandHandlers));
+
+        protected readonly IDictionary<string, IHandleClientCommands> RegisteredCommandHandlers;
 
         #region Constructor
 
         public CommandHandlers()
         {
-            this.RegisteredCommandHandlers = new Dictionary<string, ICanHandleClientCommands>();
+            this.RegisteredCommandHandlers = new Dictionary<string, IHandleClientCommands>();
         }
 
         #endregion
@@ -24,11 +25,11 @@
         #region Public Methods
 
         /// <summary>
-        ///     Adds a new <see cref="ICanHandleClientCommands" /> instance to the handler list
+        ///     Adds a new <see cref="ICanHandleClientCommands{TCommand}" /> instance to the handler list
         /// </summary>
         /// <param name="handler"></param>
         /// <returns>true if it was successfully added, false if it is already registered</returns>
-        public bool RegisterCommandHandler(ICanHandleClientCommands handler)
+        public bool RegisterCommandHandler(IHandleClientCommands handler)
         {
             string commandName = handler.Command.ToLower();
             bool isAlreadyRegistered = this.RegisteredCommandHandlers.ContainsKey(commandName);
@@ -69,7 +70,7 @@
                 string currentCommand = requestPacket.Words[0];
                 if (this.RegisteredCommandHandlers.ContainsKey(currentCommand.ToLower()))
                 {
-                    ICanHandleClientCommands commandHandler = this.RegisteredCommandHandlers[currentCommand.ToLower()];
+                    var commandHandler = this.RegisteredCommandHandlers[currentCommand.ToLower()];
                     var responsePacket = new Packet(requestPacket.Origin,
                                                     true,
                                                     requestPacket.SequenceId.Value);
@@ -77,8 +78,7 @@
                     bool responseCreated = false;
                     try
                     {
-                        responseCreated = commandHandler.OnCreatingResponse(session,
-                                                                            args.Command, requestPacket, responsePacket);
+                        responseCreated = commandHandler.OnCreatingResponse(session, args.Command, requestPacket, responsePacket);
                     }
                     catch (Exception ex)
                     {

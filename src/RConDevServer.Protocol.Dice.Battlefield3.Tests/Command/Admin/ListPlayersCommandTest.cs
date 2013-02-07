@@ -11,7 +11,7 @@
         [Test]
         public void Ctor_WithSubsetAll_ReturnsInstance()
         {
-            var command = new ListPlayersCommand(new PlayerSubset(PlayerSubsetType.All));
+            var command = new AdminListPlayersCommand(new PlayerSubset(PlayerSubsetType.All));
             Assert.IsNotNull(command);
             Assert.AreEqual(CommandNames.AdminListPlayers, command.Command);
             Assert.AreEqual(PlayerSubsetType.All, command.PlayerSubset.Type);
@@ -23,7 +23,7 @@
         [Test]
         public void Ctor_WithSubsetPlayerName_ReturnsInstance()
         {
-            var command = new ListPlayersCommand(new PlayerSubset(PlayerSubsetType.Player, playerName: "a_Player_Name"));
+            var command = new AdminListPlayersCommand(new PlayerSubset(PlayerSubsetType.Player, playerName: "a_Player_Name"));
             Assert.IsNotNull(command);
             Assert.AreEqual(CommandNames.AdminListPlayers, command.Command);
             Assert.AreEqual(PlayerSubsetType.Player, command.PlayerSubset.Type);
@@ -35,7 +35,7 @@
         [Test]
         public void Ctor_WithSubsetTeamId_ReturnsInstance()
         {
-            var command = new ListPlayersCommand(new PlayerSubset(PlayerSubsetType.Team, teamId: 1));
+            var command = new AdminListPlayersCommand(new PlayerSubset(PlayerSubsetType.Team, teamId: 1));
             Assert.IsNotNull(command);
             Assert.AreEqual(CommandNames.AdminListPlayers, command.Command);
             Assert.AreEqual(PlayerSubsetType.Team, command.PlayerSubset.Type);

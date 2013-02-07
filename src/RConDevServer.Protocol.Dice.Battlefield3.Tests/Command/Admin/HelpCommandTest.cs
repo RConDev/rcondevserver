@@ -11,7 +11,7 @@
         [Test]
         public void ToWords_ReturnsWords()
         {
-            var command = new HelpCommand();
+            var command = new AdminHelpCommand();
             var expectedWords = new[] {CommandNames.AdminHelp};
             Assert.IsTrue(expectedWords.SequenceEqual(command.ToWords()));
         }

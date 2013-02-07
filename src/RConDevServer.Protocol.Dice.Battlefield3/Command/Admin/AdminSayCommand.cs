@@ -6,14 +6,14 @@
     /// <summary>
     ///     implementation of the admin.say command
     /// </summary>
-    public class SayCommand : ICommand
+    public class AdminSayCommand : ICommand
     {
         /// <summary>
-        ///     creates an instance of <see cref="SayCommand" />
+        ///     creates an instance of <see cref="AdminSayCommand" />
         /// </summary>
         /// <param name="message"></param>
         /// <param name="receiver"></param>
-        public SayCommand(string message, PlayerSubset receiver)
+        public AdminSayCommand(string message, PlayerSubset receiver)
         {
             this.Message = message;
             this.Receiver = receiver;

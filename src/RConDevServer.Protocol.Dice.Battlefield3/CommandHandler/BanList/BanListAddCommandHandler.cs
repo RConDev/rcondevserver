@@ -3,17 +3,18 @@
     using System;
     using System.Linq;
     using Command;
+    using Command.BanList;
     using Common;
     using Data;
 
-    public class BanListAddCommandHandler : CommandHandlerBase
+    public class BanListAddCommandHandler : CommandHandlerBase<BanListAddCommand>
     {
         public override string Command
         {
             get { return CommandNames.BanListAdd; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, BanListAddCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (this.ValidateRequestPacket(requestPacket))
             {

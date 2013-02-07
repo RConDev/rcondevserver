@@ -2,17 +2,18 @@
 {
     using System;
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
     using Util;
 
-    public class ReserverdSlotsListAggressiveJoinCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListAggressiveJoinCommandHandler : CommandHandlerBase<ReservedSlotsListAggressiveJoinCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListAggressiveJoin; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListAggressiveJoinCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.WordCount == 2)
             {

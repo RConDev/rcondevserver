@@ -1,10 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.NotAuthenticated
 {
-    using Command;
+    using Command.NotAuthenticated;
     using Common;
     using Interface;
 
-    public class ServerInfoCommandHandler : CommandHandlerBase
+    public class ServerInfoCommandHandler : CommandHandlerBase<ServerInfoCommand>
     {
         public ServerInfoCommandHandler(IServiceLocator serviceLocator)
         {
@@ -18,7 +18,7 @@
             get { return Constants.COMMAND_SERVER_INFO; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ServerInfoCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count == 1)
             {
@@ -37,6 +37,5 @@
 
         #endregion
 
-        public IServiceLocator ServiceLocator { get; set; }
     }
 }

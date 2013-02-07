@@ -1,17 +1,18 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
     using Event;
 
-    public class ReservedSlotsListClearCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListClearCommandHandler : CommandHandlerBase<ReservedSlotsListClearCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListClear; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListClearCommand command, Packet requestPacket, Packet responsePacket)
         {
             // invalid number of words
             if (requestPacket.Words.Count != 1)

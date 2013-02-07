@@ -5,7 +5,7 @@
     /// <summary>
     ///     Query the effective maximum number of players
     /// </summary>
-    public class EffectiveMaxPlayersCommand : ICommand
+    public class AdminEffectiveMaxPlayersCommand : ICommand
     {
         /// <summary>
         ///     The command name

@@ -11,7 +11,7 @@
     /// </summary>
     /// <typeparam name="TCommand"></typeparam>
     public abstract class CommandFactoryBase<TCommand> : ICommandFactory<TCommand>
-        where TCommand : class
+        where TCommand : class, ICommand
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof (CommandFactoryBase<TCommand>));
 
@@ -21,6 +21,16 @@
         /// <param name="commandWords"></param>
         /// <returns></returns>
         public abstract TCommand FromWords(IEnumerable<string> commandWords);
+
+        ICommand ISimpleCommandFactory.Parse(string commandString)
+        {
+            return this.Parse(commandString);
+        }
+
+        ICommand ISimpleCommandFactory.FromWords(IEnumerable<string> commandWords)
+        {
+            return this.FromWords(commandWords);
+        }
 
         /// <summary>
         ///     parses the command out of a <see cref="string" />

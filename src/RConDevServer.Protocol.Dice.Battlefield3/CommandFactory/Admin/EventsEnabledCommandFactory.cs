@@ -7,16 +7,16 @@
     using Util;
 
     /// <summary>
-    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="EventsEnabledCommand" />
+    ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminEventsEnabledCommand" />
     /// </summary>
-    public class EventsEnabledCommandFactory : CommandFactoryBase<EventsEnabledCommand>
+    public class EventsEnabledCommandFactory : CommandFactoryBase<AdminEventsEnabledCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
         /// </summary>
         /// <param name="commandWords"></param>
         /// <returns></returns>
-        public override EventsEnabledCommand FromWords(IEnumerable<string> commandWords)
+        public override AdminEventsEnabledCommand FromWords(IEnumerable<string> commandWords)
         {
             string[] words = commandWords.ToArray();
             Requires.Equal(words[0], CommandNames.AdminEventsEnabled, "commandName");
@@ -25,7 +25,7 @@
             {
                 isEnabled = Bool.SafeParse(words[1]);
             }
-            return new EventsEnabledCommand(isEnabled);
+            return new AdminEventsEnabledCommand(isEnabled);
         }
     }
 }

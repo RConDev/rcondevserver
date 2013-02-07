@@ -1,17 +1,18 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.ReservedSlots
 {
     using Command;
+    using Command.ReservedSlotsList;
     using Common;
     using Data;
 
-    public class ReserverdSlotsListSaveCommandHandler : CommandHandlerBase
+    public class ReservedSlotsListSaveCommandHandler : CommandHandlerBase<ReservedSlotsListSaveCommand>
     {
         public override string Command
         {
             get { return CommandNames.ReservedSlotsListSave; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, ReservedSlotsListSaveCommand command, Packet requestPacket, Packet responsePacket)
         {
             if (requestPacket.Words.Count != 1)
             {

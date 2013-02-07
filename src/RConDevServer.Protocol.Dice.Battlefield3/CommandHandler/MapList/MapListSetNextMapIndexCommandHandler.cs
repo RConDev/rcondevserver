@@ -1,17 +1,18 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.MapList
 {
     using Command;
+    using Command.MapList;
     using Common;
     using Data;
 
-    public class MapListSetNextMapIndexCommandHandler : CommandHandlerBase
+    public class MapListSetNextMapIndexCommandHandler : CommandHandlerBase<MapListSetNextMapIndexCommand>
     {
         public override string Command
         {
             get { return Constants.COMMAND_MAP_LIST_SET_NEXT_MAP_INDEX; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, MapListSetNextMapIndexCommand command, Packet requestPacket, Packet responsePacket)
         {
             MapList mapList = session.Server.MapList;
             if (requestPacket.Words.Count == 2)

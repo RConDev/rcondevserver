@@ -274,7 +274,7 @@
             ICommand command = null;
             if (packet.Words.Count > 0)
             {
-                var commandFactory = ServiceLocator.GetService<ICommandFactory<ICommand>>(packet.Words[0]);
+                var commandFactory = ServiceLocator.GetService<ISimpleCommandFactory>(packet.Words[0]);
                 if (commandFactory != null)
                 {
                     command = commandFactory.FromWords(packet.Words);

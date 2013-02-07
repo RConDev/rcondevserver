@@ -8,7 +8,7 @@
     using Data;
     using Interface;
 
-    public class AdminKickPlayerCommandHandler : CommandHandlerBase
+    public class AdminKickPlayerCommandHandler : CommandHandlerBase<AdminKickPlayerCommand>
     {
         public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator)
             : base(serviceLocator)
@@ -20,9 +20,9 @@
             get { return CommandNames.AdminKickPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, ICommand command1, Packet requestPacket, Packet responsePacket)
+        public override bool OnCreatingResponse(PacketSession session, AdminKickPlayerCommand command1, Packet requestPacket, Packet responsePacket)
         {
-            var command = command1 as KickPlayerCommand;
+            var command = command1 as AdminKickPlayerCommand;
             if (requestPacket.Words.Count > 3)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
