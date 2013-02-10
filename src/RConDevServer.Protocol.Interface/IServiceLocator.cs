@@ -2,6 +2,8 @@
 
 namespace RConDevServer.Protocol.Interface
 {
+    using Ninject.Modules;
+
     public interface IServiceLocator : ICloneable
     {
         T GetService<T>();
@@ -14,5 +16,7 @@ namespace RConDevServer.Protocol.Interface
 
         bool RegisterNamedService<TInterface, TImplementation>(string name) 
             where TImplementation : TInterface;
+
+        void Load(INinjectModule module);
     }
 }

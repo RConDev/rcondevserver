@@ -502,6 +502,7 @@
     <Compile Include="Injection\Battlefield3Module.cs" />
     <Compile Include="DataStore\IMapRepository.cs" />
     <Compile Include="DataStore\MapListDataFile.cs" />
+    <Compile Include="Injection\CommandFactoryModule.cs" />
     <Compile Include="PacketDataEventArgs.cs" />
     <Compile Include="PacketSession.cs" />
     <Compile Include="PacketSessionEventArgs.cs" />
