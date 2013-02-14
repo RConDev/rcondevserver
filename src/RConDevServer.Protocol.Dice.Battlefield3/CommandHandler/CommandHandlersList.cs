@@ -1,13 +1,18 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
     using System.Collections.Generic;
-    using Command;
     using Common;
     using log4net;
 
     public class CommandHandlersList : List<CommandHandlers>
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlersList));
+        private readonly CommandHandlers commandHandlers;
+
+        public CommandHandlersList(CommandHandlers commandHandlers)
+        {
+            this.commandHandlers = commandHandlers;
+        }
 
         public void OnCommandReceived(object sender, ClientCommandEventArgs args)
         {
@@ -18,22 +23,13 @@
 
             var session = sender as PacketSession;
             if (session == null
-                || (session.Server == null 
-                || !session.Server.IsAutomaticResponse))
+                || (session.Server == null
+                    || !session.Server.IsAutomaticResponse))
             {
                 return;
             }
 
-            bool handled = false;
-            foreach (var commandHandlers in this)
-            {
-                handled = commandHandlers.ProcessCommand(sender, args);
-                if (handled)
-                {
-                    break;
-                }
-            }
-
+            var handled = this.commandHandlers.ProcessCommand(sender, args);
             if (!handled)
             {
                 this.HandleUnknownCommand(session, args.PacketData);

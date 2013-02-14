@@ -24,8 +24,9 @@
                                                 new PlayerListStoreRepository(serviceLocator));
 
             // Command Factories
-            //this.RegisterCommandFactories();
             this.ServiceLocator.Load(new CommandFactoryModule());
+
+            this.ServiceLocator.Load(new CommandHandlerModule(this.ServiceLocator));
         }
 
         public IServiceLocator ServiceLocator { get; private set; }

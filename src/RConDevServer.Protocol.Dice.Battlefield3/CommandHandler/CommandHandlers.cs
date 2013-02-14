@@ -1,45 +1,24 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
     using System;
-    using System.Collections.Generic;
-    using Command;
     using Common;
+    using Interface;
     using log4net;
 
     public class CommandHandlers
-
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(CommandHandlers));
-
-        protected readonly IDictionary<string, IHandleClientCommands> RegisteredCommandHandlers;
+        private static readonly ILog logger = LogManager.GetLogger(typeof (CommandHandlers));
 
         #region Constructor
 
-        public CommandHandlers()
+        public CommandHandlers(IServiceLocator serviceLocator)
         {
-            this.RegisteredCommandHandlers = new Dictionary<string, IHandleClientCommands>();
+            this.ServiceLocator = serviceLocator;
         }
 
         #endregion
 
         #region Public Methods
-
-        /// <summary>
-        ///     Adds a new <see cref="ICanHandleClientCommands{TCommand}" /> instance to the handler list
-        /// </summary>
-        /// <param name="handler"></param>
-        /// <returns>true if it was successfully added, false if it is already registered</returns>
-        public bool RegisterCommandHandler(IHandleClientCommands handler)
-        {
-            string commandName = handler.Command.ToLower();
-            bool isAlreadyRegistered = this.RegisteredCommandHandlers.ContainsKey(commandName);
-            if (!isAlreadyRegistered)
-            {
-                this.RegisteredCommandHandlers.Add(commandName, handler);
-                return true;
-            }
-            return false;
-        }
 
         public bool ProcessCommand(object sender, ClientCommandEventArgs args)
         {
@@ -68,9 +47,10 @@
             if (requestPacket.SequenceId != null && requestPacket.Words.Count > 0)
             {
                 string currentCommand = requestPacket.Words[0];
-                if (this.RegisteredCommandHandlers.ContainsKey(currentCommand.ToLower()))
+
+                var commandHandler = this.ServiceLocator.GetService<IHandleClientCommands>(currentCommand);
+                if (commandHandler != null)
                 {
-                    var commandHandler = this.RegisteredCommandHandlers[currentCommand.ToLower()];
                     var responsePacket = new Packet(requestPacket.Origin,
                                                     true,
                                                     requestPacket.SequenceId.Value);
@@ -78,7 +58,8 @@
                     bool responseCreated = false;
                     try
                     {
-                        responseCreated = commandHandler.OnCreatingResponse(session, args.Command, requestPacket, responsePacket);
+                        responseCreated = commandHandler.OnCreatingResponse(session, args.Command, requestPacket,
+                                                                            responsePacket);
                     }
                     catch (Exception ex)
                     {
@@ -103,5 +84,7 @@
         }
 
         #endregion
+
+        public IServiceLocator ServiceLocator { get; private set; }
     }
 }

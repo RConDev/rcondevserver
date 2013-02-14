@@ -129,15 +129,8 @@
             // create the hash value for validating crypted password
             this.HashValue = Guid.NewGuid().ToString().Replace("-", string.Empty);
 
-            this.CommandHandlersList = new CommandHandlersList
-                {
-                    new MapListCommandHandlers(),
-                    new BanListCommandHandlers(),
-                    new VarsCommandHandlers(),
-                    new ReservedSlotsListCommandHandlers(),
-                    new AdminCommandHandlers(server.ServiceLocator),
-                    new NotAuthenticatedCommandHandlers(server.ServiceLocator)
-                };
+            this.CommandHandlersList = new CommandHandlersList(
+                new CommandHandlers(this.ServiceLocator));
 
             this.ClientCommandReceived += this.CommandHandlersList.OnCommandReceived;
             this.ServerEventResponseReceived += this.OnServerEventResponseReceived;
