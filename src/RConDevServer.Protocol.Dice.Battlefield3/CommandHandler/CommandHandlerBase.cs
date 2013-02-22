@@ -26,6 +26,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                                                 Packet responsePacket);
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
+        public virtual void ProcessCommand(TCommand command, PacketSession session) {}
+
+        /// <summary>
         /// </summary>
         /// <param name="session"></param>
         /// <param name="command"></param>
@@ -36,6 +43,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                                        Packet requestPacket,
                                        Packet responsePacket)
         {
+            this.ProcessCommand((TCommand) command, session);
             return this.OnCreatingResponse(session, (TCommand) command, requestPacket, responsePacket);
         }
 

@@ -40,10 +40,11 @@
                 }
                 else if (banListItem.BanType.Code == BanTypes.Rounds.Code)
                 {
-                    banListItem.Seconds = Convert.ToInt32(requestPacket.Words[4]);
+                    banListItem.Rounds = Convert.ToInt32(requestPacket.Words[4]);
                     banListItem.Reason = requestPacket.Words[5];
                     itemCreated = true;
                 }
+                
                 if (itemCreated)
                 {
                     session.Server.BanList.Add(banListItem);

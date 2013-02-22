@@ -17,5 +17,12 @@
         /// <param name="requestPacket"></param>
         /// <param name="responsePacket"></param>
         bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket, Packet responsePacket);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
+        void ProcessCommand(TCommand command, PacketSession session);
     }
 }

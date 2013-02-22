@@ -24,7 +24,7 @@
             return null;
         }
 
-        public static string ToWord(IdTypeType idType)
+        public static string ToWord(this IdTypeType idType)
         {
             switch (idType)
             {
