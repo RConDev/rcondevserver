@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Common;
     using NUnit.Framework;
@@ -11,6 +12,7 @@
     ///to contain all Battlefield3PacketSerializerTest Unit Tests
     ///</summary>
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class PacketSerializerTest
     {
         private IPacketSerializer<IPacket> serializer;

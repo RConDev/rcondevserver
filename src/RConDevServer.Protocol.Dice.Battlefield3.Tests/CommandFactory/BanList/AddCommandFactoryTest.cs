@@ -1,5 +1,6 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandFactory.BanList
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using Battlefield3.Command.BanList;
     using Battlefield3.CommandFactory.BanList;
@@ -7,6 +8,7 @@
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class AddCommandFactoryTest
     {
         [Test]

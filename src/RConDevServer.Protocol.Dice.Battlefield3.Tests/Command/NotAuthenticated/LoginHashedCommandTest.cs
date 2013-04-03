@@ -5,11 +5,13 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.NotAuthenticated
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using Battlefield3.Command.NotAuthenticated;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class LoginHashedCommandTest
     {
         [Test]

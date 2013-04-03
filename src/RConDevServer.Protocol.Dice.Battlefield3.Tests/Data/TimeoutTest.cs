@@ -1,11 +1,13 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Battlefield3.Data;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class TimeoutTest
     {
         [Test]

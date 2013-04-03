@@ -4,7 +4,10 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
 {
+    using System.Diagnostics.CodeAnalysis;
+
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class PlayerSubsetTest
     {
         [Test]

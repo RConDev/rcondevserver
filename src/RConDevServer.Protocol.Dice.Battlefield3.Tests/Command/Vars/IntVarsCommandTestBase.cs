@@ -1,8 +1,10 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.Vars
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
 
+    [ExcludeFromCodeCoverage]
     public abstract class IntVarsCommandTestBase<TCommand> : VarsCommandTestBase<TCommand, int?>
         where TCommand : class, IVarsCommand<int?>
     {

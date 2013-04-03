@@ -5,10 +5,12 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Data;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class MapListItemTest
     {
         #region ToDataString

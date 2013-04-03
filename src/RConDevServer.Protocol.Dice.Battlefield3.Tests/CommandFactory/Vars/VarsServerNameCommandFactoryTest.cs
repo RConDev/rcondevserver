@@ -1,12 +1,14 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandFactory.Vars
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using Battlefield3.Command.Vars;
     using Battlefield3.CommandFactory.Vars;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class VarsServerNameCommandFactoryTest
     {
         private readonly VarsServerNameCommandFactory commandFactory = 

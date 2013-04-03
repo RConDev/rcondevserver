@@ -1,9 +1,11 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.Vars
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Battlefield3.Command;
     using NUnit.Framework;
 
+    [ExcludeFromCodeCoverage]
     public abstract class VarsCommandTestBase<TCommand, TValue> where TCommand : class, IVarsCommand<TValue>
     {
         public abstract string CommandName { get; }

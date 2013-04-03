@@ -5,12 +5,14 @@ using System.Text;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command.Vars
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using Battlefield3.Command.Vars;
     using Battlefield3.Data;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class VarsUnlockModeCommandTest : VarsCommandTestBase<VarsUnlockModeCommand, Battlefield3.Data.UnlockMode?>
     {
         public override string CommandName

@@ -1,11 +1,13 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandFactory.NotAuthenticated
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using Battlefield3.Command.NotAuthenticated;
     using Battlefield3.CommandFactory.NotAuthenticated;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class LoginHashedCommandFactoryTest
     {
         [Test]

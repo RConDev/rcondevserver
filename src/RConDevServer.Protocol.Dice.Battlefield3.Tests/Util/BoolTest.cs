@@ -1,9 +1,11 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Util
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Util;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class BoolTest
     {
         [Test]
