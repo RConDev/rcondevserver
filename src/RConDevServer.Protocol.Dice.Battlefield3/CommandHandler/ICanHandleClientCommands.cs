@@ -2,6 +2,7 @@
 {
     using Command;
     using CommandFactory;
+    using CommandResponse;
     using Common;
 
     /// <summary>
@@ -23,6 +24,6 @@
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>
-        void ProcessCommand(TCommand command, PacketSession session);
+        ICommandResponse ProcessCommand(TCommand command, PacketSession session);
     }
 }

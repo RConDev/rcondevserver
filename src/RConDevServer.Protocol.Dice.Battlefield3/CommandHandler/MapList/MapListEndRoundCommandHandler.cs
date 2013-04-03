@@ -9,7 +9,7 @@
     {
         public override string Command
         {
-            get { return Constants.COMMAND_MAP_LIST_END_ROUND; }
+            get { return CommandNames.MapListEndRound; }
         }
 
         public override bool OnCreatingResponse(PacketSession session, MapListEndRoundCommand command, Packet requestPacket, Packet responsePacket)

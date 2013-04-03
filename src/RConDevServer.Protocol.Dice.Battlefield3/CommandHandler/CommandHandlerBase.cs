@@ -1,7 +1,9 @@
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
+    using System;
     using System.Collections.Generic;
     using Command;
+    using CommandResponse;
     using Common;
     using Event;
     using Interface;
@@ -30,7 +32,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>
-        public virtual void ProcessCommand(TCommand command, PacketSession session) {}
+        public virtual ICommandResponse ProcessCommand(TCommand command, PacketSession session)
+        {
+            return null;
+        }
 
         /// <summary>
         /// </summary>
@@ -43,7 +48,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                                        Packet requestPacket,
                                        Packet responsePacket)
         {
-            this.ProcessCommand((TCommand) command, session);
+            var response = this.ProcessCommand((TCommand) command, session);
+            if (response != null)
+            {
+                // ProcessCommand now can completely handle commands and their responses
+                responsePacket.Words.AddRange(response.ToWords());
+                return true;
+            }
+
+            // the old way has to be supported as long as all handlers are changed to the new way
             return this.OnCreatingResponse(session, (TCommand) command, requestPacket, responsePacket);
         }
 

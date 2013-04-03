@@ -17,7 +17,7 @@
         public override bool OnCreatingResponse(PacketSession session, MapListAddCommand command, Packet requestPacket, Packet responsePacket)
         {
             // Check the given map code
-            Map map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
+            Map map = session.Server.AvailableMaps.FirstOrDefault(x => x.Code == command.MapCode);
             if (map == null)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_MAP);
@@ -25,7 +25,7 @@
             }
 
             // check the given game mode code
-            GameMode gameMode = session.Server.AvailableModes.FirstOrDefault(x => x.Code == requestPacket.Words[2]);
+            GameMode gameMode = session.Server.AvailableModes.FirstOrDefault(x => x.Code == command.GameModeCode);
             if (gameMode == null)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_GAME_MODE_ON_MAP);
@@ -40,7 +40,7 @@
             }
 
             // check rounds given
-            var rounds = Convert.ToInt32(requestPacket.Words[3]);
+            var rounds = command.Rounds;
             if (rounds < 1)
             {
                 responsePacket.Words.Add(Constants.RESPONSE_INVALID_ROUNDS_PER_MAP);
@@ -55,14 +55,14 @@
                 };
 
             MapList mapList = session.Server.MapList;
-            if (requestPacket.Words.Count <= 4)
+            if (!command.Index.HasValue)
             {
                 mapList.Add(mapListItem);
             }
             else
             {
                 // check the index given
-                var index = Convert.ToInt32(requestPacket.Words[4]);
+                var index = Convert.ToInt32(command.Index.Value);
                 if (index <= 0 || index >= mapList.Count)
                 {
                     mapList.Insert(index, mapListItem);
