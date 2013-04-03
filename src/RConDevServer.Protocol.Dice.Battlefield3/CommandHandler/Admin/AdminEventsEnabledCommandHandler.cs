@@ -1,7 +1,9 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
+    using System;
     using Command;
     using Command.Admin;
+    using CommandResponse;
     using Common;
 
     public class AdminEventsEnabledCommandHandler : CommandHandlerBase<AdminEventsEnabledCommand>
@@ -11,6 +13,18 @@
         public override string Command
         {
             get { return CommandNames.AdminEventsEnabled; }
+        }
+
+        public override ICommandResponse ProcessCommand(AdminEventsEnabledCommand command, PacketSession session)
+        {
+            if (command.IsEnabled.HasValue)
+            {
+                // sets the value
+                session.IsEventsEnabled = command.IsEnabled.Value;
+                return new OkResponse();
+            }
+
+            throw new NotImplementedException();
         }
 
         public override bool OnCreatingResponse(PacketSession session, AdminEventsEnabledCommand command, Packet requestPacket, Packet responsePacket)

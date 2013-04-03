@@ -250,6 +250,7 @@
     <Compile Include="CommandHandler\Vars\VarsUnlockModeCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnAllowedCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnDelayCommandHandler.cs" />
+    <Compile Include="CommandResponse\DecimalOkResponse.cs" />
     <Compile Include="CommandResponse\ICommandResponse.cs" />
     <Compile Include="CommandResponse\OkResponse.cs" />
     <Compile Include="CommandResponse\ResponseNames.cs" />

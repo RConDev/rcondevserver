@@ -23,7 +23,7 @@
         /// <returns></returns>
         public virtual IEnumerable<string> ToWords()
         {
-            return new[] {this.ResponseName};
+            return new[] { this.ResponseName };
         }
     }
 }

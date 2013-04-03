@@ -1,6 +1,5 @@
 namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
-    using System;
     using System.Collections.Generic;
     using Command;
     using CommandResponse;
@@ -24,8 +23,11 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 
         public abstract string Command { get; }
 
-        public abstract bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket,
-                                                Packet responsePacket);
+        public virtual bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket,
+                                               Packet responsePacket)
+        {
+            return false;
+        }
 
         /// <summary>
         /// 
