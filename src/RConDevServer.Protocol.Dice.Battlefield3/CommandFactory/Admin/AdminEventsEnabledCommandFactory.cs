@@ -1,15 +1,17 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.Admin
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Command;
     using Command.Admin;
+    using Properties;
     using Util;
 
     /// <summary>
     ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminEventsEnabledCommand" />
     /// </summary>
-    public class EventsEnabledCommandFactory : CommandFactoryBase<AdminEventsEnabledCommand>
+    public class AdminEventsEnabledCommandFactory : CommandFactoryBase<AdminEventsEnabledCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
@@ -24,7 +26,17 @@
             if (words.Length >= 2)
             {
                 isEnabled = Bool.SafeParse(words[1]);
+                if (!isEnabled.HasValue)
+                {
+                    throw new ArgumentException(Resources.EXC_MSG_INVALID_ARGUMENT);
+                }
             }
+
+            if (words.Length > 2)
+            {
+                throw new ArgumentException(Resources.EXC_MSG_INVALID_ARGUMENT);
+            }
+
             return new AdminEventsEnabledCommand(isEnabled);
         }
     }

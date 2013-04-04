@@ -4,7 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using Common;
 
+    /// <summary>
+    /// this class represents a complete string which stands for <see cref="ICommand"/>
+    /// </summary>
     public class CommandString
     {
         private const string SplitChar = " ";
@@ -13,12 +17,20 @@
 
         private readonly string commandString;
 
+        /// <summary>
+        /// creates a new <see cref="CommandString"/> instance for a <see cref="string"/>
+        /// </summary>
+        /// <param name="commandString"></param>
         public CommandString(string commandString)
         {
             this.commandString = commandString;
         }
 
-        public IEnumerable<string> CommandWords()
+        /// <summary>
+        /// converts the command string to seperated words needed for <see cref="IPacket"/>
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> ToCommandWords()
         {
             string[] parts = this.commandString.Split(SplitChar.ToCharArray(),
                                                       StringSplitOptions.RemoveEmptyEntries);

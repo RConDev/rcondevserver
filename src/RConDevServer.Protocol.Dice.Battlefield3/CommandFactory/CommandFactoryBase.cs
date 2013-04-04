@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using Admin;
     using Command;
     using log4net;
 
@@ -13,7 +12,9 @@
     public abstract class CommandFactoryBase<TCommand> : ICommandFactory<TCommand>
         where TCommand : class, ICommand
     {
+// ReSharper disable StaticFieldInGenericType
         private static readonly ILog logger = LogManager.GetLogger(typeof (CommandFactoryBase<TCommand>));
+// ReSharper restore StaticFieldInGenericType
 
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
@@ -74,7 +75,7 @@
         protected IEnumerable<string> ExtractCommandWords(string commandString)
         {
             return new CommandString(commandString)
-                .CommandWords();
+                .ToCommandWords();
         }
     }
 }

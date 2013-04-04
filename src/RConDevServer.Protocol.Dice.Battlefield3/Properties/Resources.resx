@@ -133,4 +133,7 @@
   <data name="EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET" xml:space="preserve">
     <value>The sequence '{0}' has not the expected length of {1} at maximum.</value>
   </data>
+  <data name="EXC_MSG_INVALID_ARGUMENT" xml:space="preserve">
+    <value>The words sequences contains invalid arguments or values.</value>
+  </data>
 </root>

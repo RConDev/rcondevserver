@@ -36,7 +36,7 @@
             this.Bind<ISimpleCommandFactory>()
                 .To<EffectiveMaxPlayersCommandFactory>()
                 .Named(CommandNames.AdminEffectiveMaxPlayers);
-            this.Bind<ISimpleCommandFactory>().To<EventsEnabledCommandFactory>().Named(CommandNames.AdminEventsEnabled);
+            this.Bind<ISimpleCommandFactory>().To<AdminEventsEnabledCommandFactory>().Named(CommandNames.AdminEventsEnabled);
             this.Bind<ISimpleCommandFactory>().To<HelpCommandFactory>().Named(CommandNames.AdminHelp);
             this.Bind<ISimpleCommandFactory>().To<KickPlayerCommandFactory>().Named(CommandNames.AdminKickPlayer);
             this.Bind<ISimpleCommandFactory>().To<KillPlayerCommandFactory>().Named(CommandNames.AdminKillPlayer);

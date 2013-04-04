@@ -34,7 +34,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>
-        public virtual ICommandResponse ProcessCommand(TCommand command, PacketSession session)
+        public virtual ICommandResponse ProcessCommand(TCommand command, IPacketSession session)
         {
             return null;
         }
@@ -50,7 +50,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
                                        Packet requestPacket,
                                        Packet responsePacket)
         {
-            var response = this.ProcessCommand((TCommand) command, session);
+            var response = this.ProcessCommand((TCommand)command, session);
             if (response != null)
             {
                 // ProcessCommand now can completely handle commands and their responses
@@ -59,7 +59,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
             }
 
             // the old way has to be supported as long as all handlers are changed to the new way
-            return this.OnCreatingResponse(session, (TCommand) command, requestPacket, responsePacket);
+            return this.OnCreatingResponse(session, (TCommand)command, requestPacket, responsePacket);
         }
 
         public virtual void AddEvent(IEvent anEvent)
@@ -72,13 +72,13 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 
         protected bool ResponseSuccess(Packet responsePacket)
         {
-            responsePacket.Words.AddRange(new[] {Constants.RESPONSE_SUCCESS});
+            responsePacket.Words.AddRange(new[] { Constants.RESPONSE_SUCCESS });
             return true;
         }
 
         protected bool ResponseInvalidArguments(Packet responsePacket)
         {
-            responsePacket.Words.AddRange(new[] {Constants.RESPONSE_INVALID_ARGUMENTS});
+            responsePacket.Words.AddRange(new[] { Constants.RESPONSE_INVALID_ARGUMENTS });
             return true;
         }
 

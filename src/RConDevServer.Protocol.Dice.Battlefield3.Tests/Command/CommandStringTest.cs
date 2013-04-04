@@ -18,7 +18,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command
         {
             const string aString = "admin.kickPlayer soldier1 the-reason";
             var commandString = new CommandString(aString);
-            var parts = commandString.CommandWords();
+            var parts = commandString.ToCommandWords();
             var expectedParts = new[] {"admin.kickPlayer", "soldier1", "the-reason"};
             Assert.IsTrue(expectedParts.SequenceEqual(parts));
         }
@@ -29,7 +29,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command
             const string aString = "admin.kickPlayer soldier1 \"the reason\"";
             var expectedParts = new[] { "admin.kickPlayer", "soldier1", "the reason" };
             var commandString = new CommandString(aString);
-            var parts = commandString.CommandWords();
+            var parts = commandString.ToCommandWords();
             Assert.IsTrue(expectedParts.SequenceEqual(parts));
         }
 
@@ -39,7 +39,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command
             const string aString = "admin.kickPlayer soldier1 \"the unique reason\"";
             var expectedParts = new[] { "admin.kickPlayer", "soldier1", "the unique reason" };
             var commandString = new CommandString(aString);
-            var parts = commandString.CommandWords();
+            var parts = commandString.ToCommandWords();
             Assert.IsTrue(expectedParts.SequenceEqual(parts));
         }
     }

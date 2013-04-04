@@ -6,18 +6,15 @@
     using Command;
     using CommandFactory;
     using CommandHandler;
-    using CommandHandler.Admin;
-    using CommandHandler.BanList;
-    using CommandHandler.MapList;
-    using CommandHandler.NotAuthenticated;
-    using CommandHandler.ReservedSlots;
-    using CommandHandler.Vars;
     using Common;
     using Event;
     using Interface;
     using RConDevServer.Util;
 
-    public class PacketSession : IDisposable
+    /// <summary>
+    /// implementation of <see cref="IPacketSession"/>
+    /// </summary>
+    public class PacketSession : IPacketSession
     {
         private readonly object syncRoot = new object();
 

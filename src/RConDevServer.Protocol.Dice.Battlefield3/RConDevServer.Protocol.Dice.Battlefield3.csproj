@@ -78,7 +78,7 @@
     <Compile Include="Battlefield3Server.cs" />
     <Compile Include="ClientCommandEventArgs.cs" />
     <Compile Include="CommandFactory\Admin\EffectiveMaxPlayersCommandFactory.cs" />
-    <Compile Include="CommandFactory\Admin\EventsEnabledCommandFactory.cs" />
+    <Compile Include="CommandFactory\Admin\AdminEventsEnabledCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\HelpCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\KickPlayerCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\KillPlayerCommandFactory.cs" />
@@ -250,10 +250,12 @@
     <Compile Include="CommandHandler\Vars\VarsUnlockModeCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnAllowedCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnDelayCommandHandler.cs" />
+    <Compile Include="CommandResponse\BooleanOkResponse.cs" />
     <Compile Include="CommandResponse\DecimalOkResponse.cs" />
     <Compile Include="CommandResponse\ICommandResponse.cs" />
     <Compile Include="CommandResponse\OkResponse.cs" />
     <Compile Include="CommandResponse\ResponseNames.cs" />
+    <Compile Include="CommandResponse\ValueOkResponse.cs" />
     <Compile Include="Command\Admin\AdminEffectiveMaxPlayersCommand.cs" />
     <Compile Include="Command\Admin\AdminEventsEnabledCommand.cs" />
     <Compile Include="Command\Admin\AdminHelpCommand.cs" />
@@ -503,6 +505,7 @@
     <Compile Include="DataStore\MapListDataFile.cs" />
     <Compile Include="Injection\CommandFactoryModule.cs" />
     <Compile Include="Injection\CommandHandlerModule.cs" />
+    <Compile Include="IPacketSession.cs" />
     <Compile Include="PacketDataEventArgs.cs" />
     <Compile Include="PacketSession.cs" />
     <Compile Include="PacketSessionEventArgs.cs" />

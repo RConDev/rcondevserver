@@ -1,5 +1,6 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
+    using System;
     using Command;
     using CommandFactory;
     using CommandResponse;
@@ -17,6 +18,7 @@
         /// <param name="command"></param>
         /// <param name="requestPacket"></param>
         /// <param name="responsePacket"></param>
+        [Obsolete("This is the old way of handling the commands. Use ProcessCommand() instead")]
         bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket, Packet responsePacket);
 
         /// <summary>
@@ -24,6 +26,6 @@
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>
-        ICommandResponse ProcessCommand(TCommand command, PacketSession session);
+        ICommandResponse ProcessCommand(TCommand command, IPacketSession session);
     }
 }

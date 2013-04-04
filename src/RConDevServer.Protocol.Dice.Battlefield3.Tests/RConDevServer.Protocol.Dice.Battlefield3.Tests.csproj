@@ -53,9 +53,11 @@
     <Compile Include="..\Version.cs">
       <Link>Properties\Version.cs</Link>
     </Compile>
+    <Compile Include="CommandFactory\Admin\AdminEventsEnabledCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\BanList\AddCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\Vars\VarsServerNameCommandFactoryTest.cs" />
+    <Compile Include="CommandHandler\AdminEventsEnabledCommandHandlerTest.cs" />
     <Compile Include="CommandResponse\DecimalOkResponseTest.cs" />
     <Compile Include="CommandResponse\OkResponseTest.cs" />
     <Compile Include="CommandResponse\ResponseNamesTest.cs" />
@@ -66,6 +68,7 @@
     <Compile Include="Command\Admin\KillPlayerCommandTest.cs" />
     <Compile Include="Command\Admin\ListPlayersCommandTest.cs" />
     <Compile Include="Command\Admin\MovePlayerCommandTest.cs" />
+    <Compile Include="Command\CommandNamesTest.cs" />
     <Compile Include="Command\CommandStringTest.cs" />
     <Compile Include="Command\NotAuthenticated\LoginHashedCommandTest.cs" />
     <Compile Include="Command\Vars\IntVarsCommandTestBase.cs" />
@@ -117,7 +120,6 @@
     <Compile Include="Util\IntTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CommandHandler\" />
     <Folder Include="Command\BanList\" />
   </ItemGroup>
   <ItemGroup>
