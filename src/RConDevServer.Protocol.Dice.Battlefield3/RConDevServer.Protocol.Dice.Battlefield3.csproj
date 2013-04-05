@@ -80,7 +80,7 @@
     <Compile Include="CommandFactory\Admin\EffectiveMaxPlayersCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\AdminEventsEnabledCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\HelpCommandFactory.cs" />
-    <Compile Include="CommandFactory\Admin\KickPlayerCommandFactory.cs" />
+    <Compile Include="CommandFactory\Admin\AdminKickPlayerCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\KillPlayerCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\ListPlayersCommandFactory.cs" />
     <Compile Include="CommandFactory\Admin\MovePlayerCommandFactory.cs" />
@@ -254,7 +254,9 @@
     <Compile Include="CommandResponse\DecimalOkResponse.cs" />
     <Compile Include="CommandResponse\ICommandResponse.cs" />
     <Compile Include="CommandResponse\OkResponse.cs" />
+    <Compile Include="CommandResponse\PlayerNotFoundResponse.cs" />
     <Compile Include="CommandResponse\ResponseNames.cs" />
+    <Compile Include="CommandResponse\StringListOkResponse.cs" />
     <Compile Include="CommandResponse\ValueOkResponse.cs" />
     <Compile Include="Command\Admin\AdminEffectiveMaxPlayersCommand.cs" />
     <Compile Include="Command\Admin\AdminEventsEnabledCommand.cs" />
@@ -447,6 +449,7 @@
     <Compile Include="Data\GameModes.cs" />
     <Compile Include="Data\IdType.cs" />
     <Compile Include="Data\IdTypes.cs" />
+    <Compile Include="Data\IPlayerList.cs" />
     <Compile Include="Data\IpPortPair.cs" />
     <Compile Include="Data\IUpdatable.cs" />
     <Compile Include="Data\Map.cs" />
@@ -500,6 +503,7 @@
     <Compile Include="Event\Server\ServerOnRoundOverEvent.cs" />
     <Compile Include="Event\Server\ServerOnRoundOverPlayersEvent.cs" />
     <Compile Include="Event\Server\ServerOnRoundOverTeamScoresEvent.cs" />
+    <Compile Include="IBattlefield3Server.cs" />
     <Compile Include="Injection\Battlefield3Module.cs" />
     <Compile Include="DataStore\IMapRepository.cs" />
     <Compile Include="DataStore\MapListDataFile.cs" />

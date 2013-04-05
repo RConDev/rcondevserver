@@ -11,7 +11,7 @@
     using Interface;
     using Properties;
 
-    public class Battlefield3Server
+    public class Battlefield3Server : IBattlefield3Server
     {
         private readonly object syncRoot = new object();
         public IServiceLocator ServiceLocator { get; set; }
@@ -62,7 +62,7 @@
             get { return this.MapList.CurrentItem; }
         }
 
-        public PlayerList PlayerList { get; private set; }
+        public IPlayerList PlayerList { get; private set; }
 
         public ReservedSlots ReservedSlots { get; private set; }
 

@@ -60,7 +60,7 @@
         /// <summary>
         ///     the server the Session is related to
         /// </summary>
-        Battlefield3Server Server { get; }
+        IBattlefield3Server Server { get; }
 
         /// <summary>
         ///     the wrapped byte Session

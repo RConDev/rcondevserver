@@ -2,28 +2,18 @@
 {
     using Command;
     using Command.Admin;
-    using Common;
-    using Data;
+    using CommandResponse;
 
     public class AdminHelpCommandHandler : CommandHandlerBase<AdminHelpCommand>
     {
-        #region ICanHandleClientCommands Members
-
         public override string Command
         {
             get { return CommandNames.AdminHelp; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, AdminHelpCommand command1, Packet requestPacket, Packet responsePacket)
+        public override ICommandResponse ProcessCommand(AdminHelpCommand command, IPacketSession session)
         {
-            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
-            foreach (string command in new Commands())
-            {
-                responsePacket.Words.Add(command);
-            }
-            return true;
+            return new StringListOkResponse(CommandNames.GetAll());
         }
-
-        #endregion
     }
 }

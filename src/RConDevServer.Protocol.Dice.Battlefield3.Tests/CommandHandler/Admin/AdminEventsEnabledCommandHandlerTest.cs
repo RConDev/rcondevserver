@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler.Admin
 {
     using System.Diagnostics.CodeAnalysis;
+    using Battlefield3.Command;
     using Battlefield3.Command.Admin;
     using Battlefield3.CommandHandler.Admin;
     using Battlefield3.CommandResponse;
@@ -30,13 +26,23 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler
 
         #endregion
 
+        #region Command
+
+        [Test]
+        public void Command_AdminEventsEnabled()
+        {
+            Assert.AreEqual(CommandNames.AdminEventsEnabled, this.handler.Command);
+        }
+
+        #endregion
+
         #region ProcessCommand()
 
         [Test]
         public void ProcessCommand_WithValueCommand_OkResponse()
         {
             var command = new AdminEventsEnabledCommand(true);
-            var response = handler.ProcessCommand(command, this.packetSessionMock.Object);
+            var response = this.handler.ProcessCommand(command, this.packetSessionMock.Object);
 
             Assert.IsInstanceOf<OkResponse>(response);
         }
@@ -44,21 +50,21 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler
         [Test]
         public void ProcessCommand_WithTrueValueCommand_IsEventsEnabledIsSetToTrue()
         {
-            packetSessionMock.SetupSet(x => x.IsEventsEnabled = true).Verifiable();
+            this.packetSessionMock.SetupSet(x => x.IsEventsEnabled = true).Verifiable();
 
             var command = new AdminEventsEnabledCommand(true);
-            var response = handler.ProcessCommand(command, this.packetSessionMock.Object);
+            this.handler.ProcessCommand(command, this.packetSessionMock.Object);
 
-            packetSessionMock.VerifyAll();
+            this.packetSessionMock.VerifyAll();
         }
 
         [Test]
         public void ProcessCommand_WithoutValueCommand_BooleanOkResponse()
         {
-            packetSessionMock.Setup(x => x.IsEventsEnabled).Returns(true);
+            this.packetSessionMock.Setup(x => x.IsEventsEnabled).Returns(true);
 
             var command = new AdminEventsEnabledCommand();
-            var response = handler.ProcessCommand(command, this.packetSessionMock.Object);
+            var response = this.handler.ProcessCommand(command, this.packetSessionMock.Object);
 
             Assert.IsInstanceOf<BooleanOkResponse>(response);
         }
@@ -66,10 +72,10 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler
         [Test]
         public void ProcessCommand_WithoutValueCommand_BooleanOkResponseValueTrue()
         {
-            packetSessionMock.Setup(x => x.IsEventsEnabled).Returns(true);
+            this.packetSessionMock.Setup(x => x.IsEventsEnabled).Returns(true);
 
             var command = new AdminEventsEnabledCommand();
-            var response = handler.ProcessCommand(command, this.packetSessionMock.Object);
+            var response = this.handler.ProcessCommand(command, this.packetSessionMock.Object);
 
             Assert.IsInstanceOf<BooleanOkResponse>(response);
             Assert.IsTrue(((BooleanOkResponse)response).Value);

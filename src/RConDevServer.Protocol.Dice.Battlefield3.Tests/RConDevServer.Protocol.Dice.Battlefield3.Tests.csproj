@@ -54,13 +54,18 @@
       <Link>Properties\Version.cs</Link>
     </Compile>
     <Compile Include="CommandFactory\Admin\AdminEventsEnabledCommandFactoryTest.cs" />
+    <Compile Include="CommandFactory\Admin\AdminKickPlayerCommandFactory.cs" />
     <Compile Include="CommandFactory\BanList\AddCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\NotAuthenticated\LoginHashedCommandFactoryTest.cs" />
     <Compile Include="CommandFactory\Vars\VarsServerNameCommandFactoryTest.cs" />
-    <Compile Include="CommandHandler\AdminEventsEnabledCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminEventsEnabledCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminHelpCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminKickPlayerCommandHandlerTest.cs" />
     <Compile Include="CommandResponse\DecimalOkResponseTest.cs" />
     <Compile Include="CommandResponse\OkResponseTest.cs" />
+    <Compile Include="CommandResponse\PlayerNotFoundResponseTest.cs" />
     <Compile Include="CommandResponse\ResponseNamesTest.cs" />
+    <Compile Include="CommandResponse\StringListOkResponseTest.cs" />
     <Compile Include="Command\Admin\EffectiveMaxPlayersCommandTest.cs" />
     <Compile Include="Command\Admin\EventsEnabledCommandTest.cs" />
     <Compile Include="Command\Admin\HelpCommandTest.cs" />
@@ -130,6 +135,10 @@
     <ProjectReference Include="..\RConDevServer.Protocol.Dice.Common\RConDevServer.Protocol.Dice.Common.csproj">
       <Project>{BB8606D4-DADF-4031-901F-D0991B8FE418}</Project>
       <Name>RConDevServer.Protocol.Dice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RConDevServer.Protocol.Interface\RConDevServer.Protocol.Interface.csproj">
+      <Project>{BFA65175-1141-4239-8DB0-F5F14ED29E5A}</Project>
+      <Name>RConDevServer.Protocol.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

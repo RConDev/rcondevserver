@@ -4,40 +4,49 @@
     using System.Linq;
     using Command;
     using Command.Admin;
-    using Common;
+    using CommandResponse;
     using Data;
     using Interface;
 
+    /// <summary>
+    /// Implementation of <see cref="ICanHandleClientCommands{TCommand}"/> for <see cref="AdminKickPlayerCommand"/>
+    /// </summary>
     public class AdminKickPlayerCommandHandler : CommandHandlerBase<AdminKickPlayerCommand>
     {
+        /// <summary>
+        /// creates a new <see cref="AdminKickPlayerCommandHandler"/> instance
+        /// </summary>
+        /// <param name="serviceLocator"></param>
         public AdminKickPlayerCommandHandler(IServiceLocator serviceLocator)
             : base(serviceLocator)
         {
         }
 
+        /// <summary>
+        ///     gets the string command for which the current 
+        ///     <see cref="ICanHandleClientCommands{TCommand}" /> implementation
+        ///     is responsible for
+        /// </summary>
         public override string Command
         {
             get { return CommandNames.AdminKickPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, AdminKickPlayerCommand command1, Packet requestPacket, Packet responsePacket)
+        /// <summary>
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
+        public override ICommandResponse ProcessCommand(AdminKickPlayerCommand command,
+                                                        IPacketSession session)
         {
-            var command = command1 as AdminKickPlayerCommand;
-            if (requestPacket.Words.Count > 3)
+            IList<PlayerInfo> players = session.Server.PlayerList.Players;
+            if (players.All(x => x.Name != command.SoldierName))
             {
-                responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
-                return true;
+                return new PlayerNotFoundResponse();
             }
 
-            IList<PlayerInfo> playerList = session.Server.PlayerList.Players;
-            if (playerList.All(x => x.Name != command.SoldierName))
-            {
-                responsePacket.Words.Add(Constants.RESPONSE_PLAYER_NOT_FOUND);
-                return true;
-            }
-
-            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
-            return true;
+            return new OkResponse();
         }
     }
 }

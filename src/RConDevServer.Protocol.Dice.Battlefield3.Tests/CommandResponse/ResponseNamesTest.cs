@@ -13,5 +13,11 @@
         {
             Assert.AreEqual("OK", ResponseNames.Ok);
         }
+
+        [Test]
+        public void PlayerNotFound()
+        {
+            Assert.AreEqual("PlayerNotFound", ResponseNames.PlayerNotFound);
+        }
     }
 }

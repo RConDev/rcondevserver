@@ -12,7 +12,7 @@
 
     public class PlayersViewModel : ViewModelBase
     {
-        private readonly PlayerList players;
+        private readonly IPlayerList players;
         private readonly DataContractSerializer serializer = new DataContractSerializer(typeof (IEnumerable<PlayerInfo>));
 
         private readonly Battlefield3Server server;

@@ -1,14 +1,15 @@
-﻿using System.Linq;
-using System.Net.Sockets;
-using System.Threading;
-using NUnit.Framework;
-using RConDevServer.Core;
-using RConDevServer.Protocol.Dice.Battlefield3;
-
-namespace BF3DevServer.Core.Tests
+﻿namespace RConDevServer.Core.Tests
 {
-    using RConDevServer.Protocol.Dice.Common;
+    using System.Linq;
+    using System.Net.Sockets;
+    using System.Threading;
+    using NUnit.Framework;
+    using Core;
+    using Protocol.Dice.Battlefield3;
+    using System.Diagnostics.CodeAnalysis;
+    using Protocol.Dice.Common;
 
+    [ExcludeFromCodeCoverage]
     public class ServerInstanceTestBase
     {
         protected ServerInstance SocketServer;
@@ -22,33 +23,33 @@ namespace BF3DevServer.Core.Tests
         [SetUp]
         public void TestSetup()
         {
-            SocketServer = new ServerInstance(11000, 1);
+            this.SocketServer = new ServerInstance(11000, 1);
             var protocol = new Battlefield3Protocol() {Bf3Server = {Password = "test123"}};
-            SocketServer.SetProtocol(protocol);
+            this.SocketServer.SetProtocol(protocol);
 
-            Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this.Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-            ServerInstance = protocol.Bf3Server;
-            Session = Connect();
-            Session.StartReceiving();
+            this.ServerInstance = protocol.Bf3Server;
+            this.Session = this.Connect();
+            this.Session.StartReceiving();
         }
 
         [TearDown]
         public void TestCleanUp()
         {
-            if (Socket != null)
+            if (this.Socket != null)
             {
-                Socket.Close();
-                Socket = null;
+                this.Socket.Close();
+                this.Socket = null;
             }
-            if (Session != null)
+            if (this.Session != null)
             {
-                Session = null;
+                this.Session = null;
             }
-            if (ServerInstance != null)
+            if (this.ServerInstance != null)
             {
-                SocketServer.Stop();
-                SocketServer = null;
+                this.SocketServer.Stop();
+                this.SocketServer = null;
             }
         }
 
@@ -58,8 +59,8 @@ namespace BF3DevServer.Core.Tests
         {
             var received = new byte[1024];
             Packet receivedPacket = null;
-            var sessionBuffer = new SessionBuffer(null, Socket, received);
-            Socket.BeginReceive(sessionBuffer.Buffer, 0, sessionBuffer.Buffer.Length, SocketFlags.None,
+            var sessionBuffer = new SessionBuffer(null, this.Socket, received);
+            this.Socket.BeginReceive(sessionBuffer.Buffer, 0, sessionBuffer.Buffer.Length, SocketFlags.None,
                                 (asyncResult) =>
                                     {
                                         var buffer =
@@ -84,9 +85,9 @@ namespace BF3DevServer.Core.Tests
         protected PacketSession Connect()
         {
             PacketSession packetSession = null;
-            ServerInstance.ClientConnected += (sender, args) => packetSession = args.PacketSession;
-            SocketServer.Start();
-            Socket.Connect("localhost", 11000);
+            this.ServerInstance.ClientConnected += (sender, args) => packetSession = args.PacketSession;
+            this.SocketServer.Start();
+            this.Socket.Connect("localhost", 11000);
             while (packetSession == null)
             {
                 Thread.Sleep(10);

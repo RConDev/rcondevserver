@@ -22,7 +22,7 @@
         bool OnCreatingResponse(PacketSession session, TCommand command, Packet requestPacket, Packet responsePacket);
 
         /// <summary>
-        /// 
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>

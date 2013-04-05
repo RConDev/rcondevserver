@@ -5,12 +5,12 @@
 
     public class ServerOnRoundOverPlayersEvent : IEvent
     {
-        public ServerOnRoundOverPlayersEvent(PlayerList playerList)
+        public ServerOnRoundOverPlayersEvent(IPlayerList playerList)
         {
             this.PlayerList = playerList;
         }
 
-        public PlayerList PlayerList { get; private set; }
+        public IPlayerList PlayerList { get; private set; }
 
         public string Event
         {

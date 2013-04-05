@@ -28,9 +28,9 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
         {
             return false;
         }
-
+        
         /// <summary>
-        /// 
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
         /// </summary>
         /// <param name="command"></param>
         /// <param name="session"></param>

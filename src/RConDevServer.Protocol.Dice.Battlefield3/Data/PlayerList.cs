@@ -7,7 +7,7 @@
     /// <summary>
     ///     this class encapsulates the current list of PlayerInfo on the server
     /// </summary>
-    public class PlayerList
+    public class PlayerList : IPlayerList
     {
         private readonly IList<PlayerInfo> players = new List<PlayerInfo>();
         private readonly object syncRoot = new object();

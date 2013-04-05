@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command
+﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Command
 {
+    using System.Diagnostics.CodeAnalysis;
     using Battlefield3.Command;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class CommandNamesTest
     {
         #region GetAll()

@@ -3,6 +3,7 @@
 namespace BF3DevServer.Core.Tests
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net.Sockets;
     using System.Text;
     using System.Threading;
@@ -10,6 +11,7 @@ namespace BF3DevServer.Core.Tests
     using System.Collections.Generic;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class ServerInstanceTest
     {
         #region Setup/Teardown

@@ -72,7 +72,7 @@
         /// <summary>
         ///     the server the Session is related to
         /// </summary>
-        public Battlefield3Server Server { get; private set; }
+        public IBattlefield3Server Server { get; private set; }
 
         /// <summary>
         ///     the wrapped byte Session

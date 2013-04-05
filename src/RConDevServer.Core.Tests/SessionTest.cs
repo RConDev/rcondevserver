@@ -1,14 +1,14 @@
-﻿using RConDevServer.Core;
-using RConDevServer.Protocol.Interface;
-
-namespace BF3DevServer.Core.Tests
+﻿namespace RConDevServer.Core.Tests
 {
+    using Core;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net.Sockets;
     using System.Text;
     using System.Threading;
     using NUnit.Framework;
 
     [TestFixture]
+    [ExcludeFromCodeCoverage]
     public class SessionTest
     {
         public const int DEFAULT_PORT = 11000;
@@ -23,36 +23,36 @@ namespace BF3DevServer.Core.Tests
         [TestFixtureSetUp]
         public void TestSetup()
         {
-            serverInstance = new ServerInstance(DEFAULT_PORT, 2);
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            serverInstance.ClientConnected += (sender, args) => session = (Session) args.Session;
-            serverInstance.Start();
-            socket.Connect(DEFAULT_HOST, DEFAULT_PORT);
-            while (session == null)
+            this.serverInstance = new ServerInstance(DEFAULT_PORT, 2);
+            this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            this.serverInstance.ClientConnected += (sender, args) => this.session = (Session) args.Session;
+            this.serverInstance.Start();
+            this.socket.Connect(DEFAULT_HOST, DEFAULT_PORT);
+            while (this.session == null)
             {
                 Thread.Sleep(10);
             }
-            Assert.IsNotNull(session);
+            Assert.IsNotNull(this.session);
         }
 
         [TestFixtureTearDown]
         public void TearDown()
         {
-            if (socket != null)
+            if (this.socket != null)
             {
-                socket.Close();
+                this.socket.Close();
             }
-            socket = null;
-            serverInstance.Stop();
+            this.socket = null;
+            this.serverInstance.Stop();
         }
 
         [Test]
         public void SessionReceivesDataFromServerInstance()
         {
             byte[] bytes = null;
-            session.DataReceived += (sender, args) => bytes = args.ByteData;
-            session.WaitForData(session.Socket);
-            socket.Send(Encoding.Default.GetBytes("Test"));
+            this.session.DataReceived += (sender, args) => bytes = args.ByteData;
+            this.session.WaitForData(this.session.Socket);
+            this.socket.Send(Encoding.Default.GetBytes("Test"));
             while(bytes == null)
             {
                 Thread.Sleep(10);
@@ -66,8 +66,8 @@ namespace BF3DevServer.Core.Tests
         {
             var expectedText = "TestText";
             byte[] bytesSent = null;
-            session.DataSent += (sender, args) => bytesSent = args.ByteData;
-            session.SendToClient(Encoding.Default.GetBytes(expectedText));
+            this.session.DataSent += (sender, args) => bytesSent = args.ByteData;
+            this.session.SendToClient(Encoding.Default.GetBytes(expectedText));
             while(bytesSent == null)
             {
                 Thread.Sleep(10);
