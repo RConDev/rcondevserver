@@ -251,9 +251,13 @@
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnAllowedCommandHandler.cs" />
     <Compile Include="CommandHandler\Vars\VarsVehicleSpawnDelayCommandHandler.cs" />
     <Compile Include="CommandResponse\BooleanOkResponse.cs" />
+    <Compile Include="CommandResponse\CommandResponseBase.cs" />
     <Compile Include="CommandResponse\DecimalOkResponse.cs" />
     <Compile Include="CommandResponse\ICommandResponse.cs" />
+    <Compile Include="CommandResponse\InvalidPlayerNameResponse.cs" />
+    <Compile Include="CommandResponse\InvalidTeamIdResponse.cs" />
     <Compile Include="CommandResponse\OkResponse.cs" />
+    <Compile Include="CommandResponse\PlayerListOkResponse.cs" />
     <Compile Include="CommandResponse\PlayerNotFoundResponse.cs" />
     <Compile Include="CommandResponse\ResponseNames.cs" />
     <Compile Include="CommandResponse\StringListOkResponse.cs" />

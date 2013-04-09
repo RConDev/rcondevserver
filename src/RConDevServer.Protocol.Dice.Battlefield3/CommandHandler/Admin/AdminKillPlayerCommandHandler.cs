@@ -3,33 +3,38 @@
     using System.Linq;
     using Command;
     using Command.Admin;
+    using CommandResponse;
     using Common;
 
+    /// <summary>
+    /// Implementation of <see cref="ICanHandleClientCommands{TCommand}"/> for <see cref="AdminKillPlayerCommand"/>
+    /// </summary>
     public class AdminKillPlayerCommandHandler : CommandHandlerBase<AdminKillPlayerCommand>
     {
+        /// <summary>
+        ///     gets the string command for which the current 
+        ///     <see cref="ICanHandleClientCommands{TCommand}" /> implementation
+        ///     is responsible for
+        /// </summary>
         public override string Command
         {
             get { return CommandNames.AdminKillPlayer; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, AdminKillPlayerCommand command, Packet requestPacket, Packet responsePacket)
+        /// <summary>
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
+        public override ICommandResponse ProcessCommand(AdminKillPlayerCommand command, IPacketSession session)
         {
-            if (requestPacket.Words.Count != 2)
+            var players = session.Server.PlayerList.Players;
+            if (players.Any(x => x.Name == command.SoldierName))
             {
-                responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
-                return true;
+                return new OkResponse();
             }
 
-            var playerName = requestPacket.Words[1];
-            var playerList = session.Server.PlayerList.Players;
-            if (playerList.All(x => x.Name != playerName))
-            {
-                responsePacket.Words.Add(Constants.RESPONSE_INVALID_PLAYER_NAME);
-                return true;
-            }
-
-            responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
-            return true;
+            return new InvalidPlayerNameResponse();
         }
     }
 }

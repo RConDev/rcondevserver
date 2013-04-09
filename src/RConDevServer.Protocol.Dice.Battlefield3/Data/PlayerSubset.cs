@@ -9,7 +9,10 @@
     /// </summary>
     public class PlayerSubset
     {
-        public PlayerSubset(PlayerSubsetType type, string playerName = null, int? teamId = null, int? squadId = null)
+        public PlayerSubset(PlayerSubsetType type, 
+            string playerName = null, 
+            int? teamId = null, 
+            int? squadId = null)
         {
             this.Type = type;
             this.PlayerName = playerName;

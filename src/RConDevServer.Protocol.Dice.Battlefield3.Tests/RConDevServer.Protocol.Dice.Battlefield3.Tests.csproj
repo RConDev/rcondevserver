@@ -61,8 +61,14 @@
     <Compile Include="CommandHandler\Admin\AdminEventsEnabledCommandHandlerTest.cs" />
     <Compile Include="CommandHandler\Admin\AdminHelpCommandHandlerTest.cs" />
     <Compile Include="CommandHandler\Admin\AdminKickPlayerCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminKillPlayerCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminListPlayersCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminMovePlayerCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\CommandHandlerTestBase.cs" />
     <Compile Include="CommandResponse\DecimalOkResponseTest.cs" />
+    <Compile Include="CommandResponse\InvalidPlayerResponseTest.cs" />
     <Compile Include="CommandResponse\OkResponseTest.cs" />
+    <Compile Include="CommandResponse\PlayerListOkResponseTest.cs" />
     <Compile Include="CommandResponse\PlayerNotFoundResponseTest.cs" />
     <Compile Include="CommandResponse\ResponseNamesTest.cs" />
     <Compile Include="CommandResponse\StringListOkResponseTest.cs" />
@@ -117,6 +123,7 @@
     <Compile Include="Command\Vars\VarsVehicleSpawnAllowedCommandTest.cs" />
     <Compile Include="Command\Vars\VarsVehicleSpawnDelayCommandTest.cs" />
     <Compile Include="Data\MapListItemTest.cs" />
+    <Compile Include="Data\PlayerListTest.cs" />
     <Compile Include="Data\PlayerSubsetTest.cs" />
     <Compile Include="Data\TimeoutTest.cs" />
     <Compile Include="PacketSerializerTest.cs" />
@@ -129,7 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RConDevServer.Protocol.Dice.Battlefield3\RConDevServer.Protocol.Dice.Battlefield3.csproj">
-      <Project>{25F85AC2-D6E2-48A2-B889-1582F9508E46}</Project>
+      <Project>{25f85ac2-d6e2-48a2-b889-1582f9508e46}</Project>
       <Name>RConDevServer.Protocol.Dice.Battlefield3</Name>
     </ProjectReference>
     <ProjectReference Include="..\RConDevServer.Protocol.Dice.Common\RConDevServer.Protocol.Dice.Common.csproj">

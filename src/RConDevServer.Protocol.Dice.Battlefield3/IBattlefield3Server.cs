@@ -7,6 +7,9 @@
     using Event;
     using Interface;
 
+    /// <summary>
+    /// This interface describes the Battlefield 3 server instance
+    /// </summary>
     public interface IBattlefield3Server
     {
         IPlayerList PlayerList { get; }

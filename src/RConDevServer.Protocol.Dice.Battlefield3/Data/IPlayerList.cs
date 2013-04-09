@@ -2,6 +2,9 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// This interface describes a player list currently active on the server
+    /// </summary>
     public interface IPlayerList
     {
         /// <summary>

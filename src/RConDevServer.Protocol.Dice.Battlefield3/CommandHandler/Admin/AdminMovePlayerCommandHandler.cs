@@ -4,14 +4,33 @@
     using System.Linq;
     using Command;
     using Command.Admin;
+    using CommandResponse;
     using Common;
     using Data;
 
+    /// <summary>
+    /// Implementation of <see cref="ICanHandleClientCommands{TCommand}"/> for <see cref="AdminMovePlayerCommand"/>
+    /// </summary>
     public class AdminMovePlayerCommandHandler : CommandHandlerBase<AdminMovePlayerCommand>
     {
         public override string Command
         {
             get { return CommandNames.AdminMovePlayer; }
+        }
+
+        public override ICommandResponse ProcessCommand(AdminMovePlayerCommand command, IPacketSession session)
+        {
+            var players = session.Server.PlayerList.Players;
+            if (players.Any(x => x.Name == command.SoldierName))
+            {
+                if (command.TeamId < 0 || command.TeamId > 2)
+                {
+                    return new InvalidTeamIdResponse();
+                }
+                return new OkResponse();
+            }
+
+            return new InvalidPlayerNameResponse();
         }
 
         public override bool OnCreatingResponse(PacketSession session, AdminMovePlayerCommand command, Packet requestPacket, Packet responsePacket)

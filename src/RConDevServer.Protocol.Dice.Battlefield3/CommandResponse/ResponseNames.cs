@@ -7,6 +7,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
 {
     public static class ResponseNames
     {
+        public const string InvalidPlayerName = "InvalidPlayerName";
         public const string PlayerNotFound = "PlayerNotFound";
         public const string Ok = "OK";
     }
