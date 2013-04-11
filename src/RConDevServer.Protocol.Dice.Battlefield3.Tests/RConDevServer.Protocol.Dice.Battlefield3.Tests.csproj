@@ -67,6 +67,7 @@
     <Compile Include="CommandHandler\Admin\CommandHandlerTestBase.cs" />
     <Compile Include="CommandResponse\DecimalOkResponseTest.cs" />
     <Compile Include="CommandResponse\InvalidPlayerResponseTest.cs" />
+    <Compile Include="CommandResponse\InvalidSquadIdResponseTest.cs" />
     <Compile Include="CommandResponse\OkResponseTest.cs" />
     <Compile Include="CommandResponse\PlayerListOkResponseTest.cs" />
     <Compile Include="CommandResponse\PlayerNotFoundResponseTest.cs" />

@@ -27,6 +27,12 @@
                 {
                     return new InvalidTeamIdResponse();
                 }
+
+                if (command.SquadId < 0)
+                {
+                    return new InvalidSquadIdResponse();
+                }
+
                 return new OkResponse();
             }
 

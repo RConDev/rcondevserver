@@ -115,6 +115,23 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler.Admin
             PacketSessionMock.VerifyAll();
         }
 
+        [Test]
+        public void ProcessCommand_WithExistingPlayerListSquadIdMinus1_InvalidSquadIdResponse()
+        {
+            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>
+                {
+                    new PlayerInfo {Name = "Nobody"}
+                });
+
+            var command = new AdminMovePlayerCommand("Nobody", 1, -1, false);
+            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
+            Assert.IsInstanceOf<InvalidSquadIdResponse>(response);
+
+            playerListMock.VerifyAll();
+            serverMock.VerifyAll();
+            PacketSessionMock.VerifyAll();
+        }
+
         #endregion
     }
 }

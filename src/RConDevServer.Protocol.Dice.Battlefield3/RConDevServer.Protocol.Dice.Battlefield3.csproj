@@ -255,6 +255,7 @@
     <Compile Include="CommandResponse\DecimalOkResponse.cs" />
     <Compile Include="CommandResponse\ICommandResponse.cs" />
     <Compile Include="CommandResponse\InvalidPlayerNameResponse.cs" />
+    <Compile Include="CommandResponse\InvalidSquadIdResponse.cs" />
     <Compile Include="CommandResponse\InvalidTeamIdResponse.cs" />
     <Compile Include="CommandResponse\OkResponse.cs" />
     <Compile Include="CommandResponse\PlayerListOkResponse.cs" />
