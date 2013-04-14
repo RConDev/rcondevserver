@@ -1,23 +1,30 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    using System;
     using System.Linq;
     using Command;
     using Command.Admin;
     using CommandResponse;
-    using Common;
-    using Data;
 
     /// <summary>
     /// Implementation of <see cref="ICanHandleClientCommands{TCommand}"/> for <see cref="AdminMovePlayerCommand"/>
     /// </summary>
     public class AdminMovePlayerCommandHandler : CommandHandlerBase<AdminMovePlayerCommand>
     {
+        /// <summary>
+        ///     gets the string command for which the current 
+        ///     <see cref="ICanHandleClientCommands{TCommand}" /> implementation
+        ///     is responsible for
+        /// </summary>
         public override string Command
         {
             get { return CommandNames.AdminMovePlayer; }
         }
 
+        /// <summary>
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
         public override ICommandResponse ProcessCommand(AdminMovePlayerCommand command, IPacketSession session)
         {
             var players = session.Server.PlayerList.Players;
@@ -28,49 +35,22 @@
                     return new InvalidTeamIdResponse();
                 }
 
-                if (command.SquadId < 0)
+                if (command.SquadId < 0 || command.SquadId > 32)
                 {
                     return new InvalidSquadIdResponse();
+                }
+
+                var currentPlayer = players.FirstOrDefault(x => x.Name == command.SoldierName);
+                if (currentPlayer != null)
+                {
+                    currentPlayer.TeamId = command.TeamId;
+                    currentPlayer.SquadId = command.SquadId;
                 }
 
                 return new OkResponse();
             }
 
             return new InvalidPlayerNameResponse();
-        }
-
-        public override bool OnCreatingResponse(PacketSession session, AdminMovePlayerCommand command, Packet requestPacket, Packet responsePacket)
-        {
-            if (requestPacket.Words.Count != 5)
-            {
-                return this.ResponseInvalidArguments(responsePacket);
-            }
-
-            var playerName = requestPacket.Words[1];
-            if (session.Server.PlayerList.Players.All(x => x.Name != playerName))
-            {
-                return this.ResponseInvalidPlayerName(responsePacket);
-            }
-            PlayerInfo player = session.Server.PlayerList.Players.FirstOrDefault(x => x.Name == playerName);
-
-            var teamIdString = requestPacket.Words[2];
-            int teamId;
-            if (!Int32.TryParse(teamIdString, out teamId))
-            {
-                return this.ResponseInvalidTeamId(responsePacket);
-            }
-
-            var squadIdString = requestPacket.Words[3];
-            int squadId;
-            if (!Int32.TryParse(squadIdString, out squadId))
-            {
-                return this.ResponseInvalidSquadId(responsePacket);
-            }
-
-            player.TeamId = teamId;
-            player.SquadId = squadId;
-
-            return this.ResponseSuccess(responsePacket);
         }
     }
 }

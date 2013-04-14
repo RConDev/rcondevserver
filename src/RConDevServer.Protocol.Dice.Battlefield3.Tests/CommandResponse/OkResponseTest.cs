@@ -16,7 +16,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandResponse
         public void Ctor_Empty_Ok()
         {
             var response = new OkResponse();
-            Assert.AreEqual("OK", response.ResponseName);
+            Assert.AreEqual("OK", response.Response);
         }
 
         #endregion

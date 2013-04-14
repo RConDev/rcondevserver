@@ -12,7 +12,7 @@
         /// <summary>
         ///     gets the basic response name
         /// </summary>
-        public string ResponseName
+        public string Response
         {
             get { return ResponseNames.Ok; }
         }
@@ -23,7 +23,7 @@
         /// <returns></returns>
         public virtual IEnumerable<string> ToWords()
         {
-            return new[] { this.ResponseName };
+            return new[] { this.Response };
         }
     }
 }

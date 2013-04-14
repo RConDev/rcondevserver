@@ -2,6 +2,8 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Threading;
     using Battlefield3.Command;
     using Battlefield3.Command.Admin;
     using Battlefield3.CommandFactory.Admin;
@@ -28,6 +30,8 @@
         [Test]
         public void FromWords_WithInvalidCommandName_ThrowsArgumentOutOfRangeException()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             var words = new[] {CommandNames.AdminKillPlayer};
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => factory.FromWords(words));
             Assert.AreEqual("\r\nParameter name: commandName\r\nActual value was admin.killPlayer.", exception.Message);
@@ -36,6 +40,8 @@
         [Test]
         public void FromWords_WithInvalidWordCount_ThrowsArgumentOutOfRangeException()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             var words = new[] { CommandNames.AdminKickPlayer };
             var exception = Assert.Throws<ArgumentOutOfRangeException>(() => factory.FromWords(words));
             Assert.AreEqual("\r\nParameter name: commandWords.Length\r\nActual value was 1.", exception.Message);

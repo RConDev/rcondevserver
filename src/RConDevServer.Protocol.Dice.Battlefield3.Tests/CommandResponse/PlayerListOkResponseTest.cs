@@ -58,7 +58,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandResponse
         public void ResponseName_Ok()
         {
             var response = new PlayerListOkResponse();
-            Assert.AreEqual("OK", response.ResponseName);
+            Assert.AreEqual("OK", response.Response);
         }
 
         #endregion

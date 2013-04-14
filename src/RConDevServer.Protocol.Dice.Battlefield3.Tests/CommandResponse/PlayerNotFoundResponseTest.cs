@@ -14,7 +14,7 @@
         public void ResponseName_PlayerNotFound()
         {
             var response = new PlayerNotFoundResponse();
-            Assert.AreEqual("PlayerNotFound", response.ResponseName);
+            Assert.AreEqual("PlayerNotFound", response.Response);
         }
 
         #endregion

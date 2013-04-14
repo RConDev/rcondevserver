@@ -22,7 +22,7 @@
         /// <returns></returns>
         public override IEnumerable<string> ToWords()
         {
-            return new[] {this.ResponseName, Convert.ToString(this.Value).ToLower()};
+            return new[] {this.Response, Convert.ToString(this.Value).ToLower()};
         }
     }
 }

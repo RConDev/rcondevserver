@@ -5,6 +5,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        public override string ResponseName { get { return ResponseNames.InvalidPlayerName; } }
+        public override string Response { get { return ResponseNames.InvalidPlayer; } }
     }
 }

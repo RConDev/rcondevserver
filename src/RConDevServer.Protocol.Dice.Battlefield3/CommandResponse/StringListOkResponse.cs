@@ -22,7 +22,7 @@
         /// <returns></returns>
         public override IEnumerable<string> ToWords()
         {
-            var words = new List<string> {this.ResponseName};
+            var words = new List<string> {this.Response};
             words.AddRange(Value);
             return words;
         }

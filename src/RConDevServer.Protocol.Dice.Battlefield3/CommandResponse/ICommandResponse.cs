@@ -10,7 +10,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        string ResponseName { get; }
+        string Response { get; }
 
         /// <summary>
         /// Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />

@@ -1,13 +1,14 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
 {
     using System.Collections.Generic;
+    using System.ComponentModel;
 
     public class InvalidSquadIdResponse : ICommandResponse
     {
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        public string ResponseName { get { return ResponseNames.InvalidSquadId; } }
+        public string Response { get { return ResponseNames.InvalidSquadId; } }
 
         /// <summary>
         /// Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
@@ -15,7 +16,7 @@
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            throw new System.NotImplementedException();
+            return new [] {this.Response};
         }
     }
 }

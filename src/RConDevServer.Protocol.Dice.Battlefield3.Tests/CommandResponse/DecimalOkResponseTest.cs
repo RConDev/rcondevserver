@@ -21,7 +21,7 @@
         public void Ctor_1_NameOk()
         {
             var response = new DecimalOkResponse(1);
-            Assert.AreEqual("OK", response.ResponseName);
+            Assert.AreEqual("OK", response.Response);
         }
 
         #endregion

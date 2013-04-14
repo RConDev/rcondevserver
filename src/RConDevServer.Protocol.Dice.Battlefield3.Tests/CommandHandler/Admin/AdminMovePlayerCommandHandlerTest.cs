@@ -132,6 +132,61 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandHandler.Admin
             PacketSessionMock.VerifyAll();
         }
 
+        [Test]
+        public void ProcessCommand_WithExistingPlayerListSquadId33_InvalidSquadIdResponse()
+        {
+            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>
+                {
+                    new PlayerInfo {Name = "Nobody"}
+                });
+
+            var command = new AdminMovePlayerCommand("Nobody", 1, 33, false);
+            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
+            Assert.IsInstanceOf<InvalidSquadIdResponse>(response);
+
+            playerListMock.VerifyAll();
+            serverMock.VerifyAll();
+            PacketSessionMock.VerifyAll();
+        }
+
+        [Test]
+        public void ProcessCommand_WithExistingPlayerList_PlayerTeamIdIsSet()
+        {
+            var player = new PlayerInfo {Name = "Nobody"};
+            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>
+                {
+                    player
+                });
+
+            var command = new AdminMovePlayerCommand("Nobody", 2, 1, false);
+            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
+            
+            Assert.AreEqual(2, player.TeamId);
+
+            playerListMock.VerifyAll();
+            serverMock.VerifyAll();
+            PacketSessionMock.VerifyAll();
+        }
+
+        [Test]
+        public void ProcessCommand_WithExistingPlayerList_PlayerSquadIdIsSet()
+        {
+            var player = new PlayerInfo { Name = "Nobody" };
+            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>
+                {
+                    player
+                });
+
+            var command = new AdminMovePlayerCommand("Nobody", 1, 2, false);
+            handler.ProcessCommand(command, PacketSessionMock.Object);
+
+            Assert.AreEqual(2, player.SquadId);
+
+            playerListMock.VerifyAll();
+            serverMock.VerifyAll();
+            PacketSessionMock.VerifyAll();
+        }
+
         #endregion
     }
 }

@@ -19,7 +19,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandResponse
         [Test]
         public void ResponseName_InvalidSquadId()
         {
-            Assert.AreEqual("InvalidSquadId", new InvalidSquadIdResponse().ResponseName);
+            Assert.AreEqual("InvalidSquadId", new InvalidSquadIdResponse().Response);
+        }
+
+        #endregion
+
+        #region ToWords()
+
+        [Test]
+        public void ToWords_InvalidSquadId()
+        {
+            var response = new InvalidSquadIdResponse();
+            Assert.AreEqual(new [] {"InvalidSquadId"}, response.ToWords());
         }
 
         #endregion

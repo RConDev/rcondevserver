@@ -2,6 +2,8 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Threading;
     using Battlefield3.Command;
     using Battlefield3.Command.Vars;
     using Battlefield3.CommandFactory.Vars;
@@ -27,6 +29,8 @@
         [Test]
         public void FromWords_WithGreaterWordCount_ThrowsException()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             var commandWords = new[] {CommandNames.VarsServerName, "value", "test"};
             var exception = Assert.Throws<ArgumentOutOfRangeException>(
                 () => this.commandFactory.FromWords(commandWords));
@@ -39,6 +43,8 @@
         [Test]
         public void FromWords_WithIncorrectCommandName_ThrowsException()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             var commandWords = new[] {"myCommand", "value"};
             var exception = Assert.Throws<ArgumentOutOfRangeException>(
                 () => this.commandFactory.FromWords(commandWords));
@@ -49,6 +55,8 @@
         [Test]
         public void FromWords_WithSmallerWordCount_ThrowsException()
         {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-us");
             var commandWords = new string[] {};
             var exception = Assert.Throws<ArgumentOutOfRangeException>(
                 () => this.commandFactory.FromWords(commandWords));

@@ -10,7 +10,7 @@
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        public string ResponseName { get { return ResponseNames.PlayerNotFound; } }
+        public string Response { get { return ResponseNames.PlayerNotFound; } }
 
         /// <summary>
         /// Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
@@ -18,7 +18,7 @@
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            return new[] {this.ResponseName};
+            return new[] {this.Response};
         }
     }
 }

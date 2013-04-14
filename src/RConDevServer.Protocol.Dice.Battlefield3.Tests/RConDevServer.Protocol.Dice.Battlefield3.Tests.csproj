@@ -64,6 +64,7 @@
     <Compile Include="CommandHandler\Admin\AdminKillPlayerCommandHandlerTest.cs" />
     <Compile Include="CommandHandler\Admin\AdminListPlayersCommandHandlerTest.cs" />
     <Compile Include="CommandHandler\Admin\AdminMovePlayerCommandHandlerTest.cs" />
+    <Compile Include="CommandHandler\Admin\AdminSayCommandHandlerTest.cs" />
     <Compile Include="CommandHandler\Admin\CommandHandlerTestBase.cs" />
     <Compile Include="CommandResponse\DecimalOkResponseTest.cs" />
     <Compile Include="CommandResponse\InvalidPlayerResponseTest.cs" />

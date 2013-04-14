@@ -17,7 +17,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.CommandResponse
         public void ResponseName_InvalidPlayerName()
         {
             var response = new InvalidPlayerNameResponse();
-            Assert.AreEqual("InvalidPlayerName", response.ResponseName);
+            Assert.AreEqual("InvalidPlayerName", response.Response);
         }
 
         #endregion

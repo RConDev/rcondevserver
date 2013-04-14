@@ -8,7 +8,7 @@
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        public string ResponseName { get; private set; }
+        public string Response { get; private set; }
 
         /// <summary>
         /// Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />

@@ -10,7 +10,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
         /// <summary>
         /// gets the basic response name
         /// </summary>
-        public abstract string ResponseName { get; }
+        public abstract string Response { get; }
 
         /// <summary>
         /// Generates the words needed to create the <see cref="RConDevServer.Protocol.Dice.Common.IPacket" />
@@ -18,7 +18,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandResponse
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            return new[] {this.ResponseName};
+            return new[] {this.Response};
         }
     }
 }

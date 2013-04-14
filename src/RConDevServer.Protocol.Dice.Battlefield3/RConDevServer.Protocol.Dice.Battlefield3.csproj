@@ -262,6 +262,7 @@
     <Compile Include="CommandResponse\PlayerNotFoundResponse.cs" />
     <Compile Include="CommandResponse\ResponseNames.cs" />
     <Compile Include="CommandResponse\StringListOkResponse.cs" />
+    <Compile Include="CommandResponse\TooLongMessageResponse.cs" />
     <Compile Include="CommandResponse\ValueOkResponse.cs" />
     <Compile Include="Command\Admin\AdminEffectiveMaxPlayersCommand.cs" />
     <Compile Include="Command\Admin\AdminEventsEnabledCommand.cs" />
