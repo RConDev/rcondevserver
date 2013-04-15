@@ -9,7 +9,7 @@
     /// <summary>
     ///     Implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminKillPlayerCommand" />
     /// </summary>
-    public class KillPlayerCommandFactory : CommandFactoryBase<AdminKillPlayerCommand>
+    public class AdminKillPlayerCommandFactory : CommandFactoryBase<AdminKillPlayerCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

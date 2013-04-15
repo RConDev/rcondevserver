@@ -5,14 +5,13 @@
     using Battlefield3.CommandHandler.Admin;
     using Battlefield3.CommandResponse;
     using Battlefield3.Data;
-    using Event.Player;
     using Moq;
     using NUnit.Framework;
 
     [TestFixture]
-    public class AdminSayCommandHandlerTest : CommandHandlerTestBase
+    public class AdminYellCommandHandlerTest : CommandHandlerTestBase
     {
-        private AdminSayCommandHandler handler;
+        private AdminYellCommandHandler handler;
         private Mock<IBattlefield3Server> serverMock;
         private Mock<IPlayerList> playerListMock;
 
@@ -21,8 +20,8 @@
         [SetUp]
         public void TestSetup()
         {
-            handler = new AdminSayCommandHandler();
-            serverMock = new Mock<IBattlefield3Server>(); 
+            this.handler = new AdminYellCommandHandler();
+            serverMock = new Mock<IBattlefield3Server>();
             PacketSessionMock.SetupGet(x => x.Server).Returns(this.serverMock.Object);
 
             this.playerListMock = new Mock<IPlayerList>();
@@ -34,9 +33,9 @@
         #region Command
 
         [Test]
-        public void Command_AdminSay()
+        public void Command_AdminYell()
         {
-            Assert.AreEqual("admin.say", handler.Command);
+            Assert.AreEqual("admin.yell", handler.Command);
         }
 
         #endregion
@@ -46,91 +45,40 @@
         [Test]
         public void ProcessCommand_MessageToAll_OkResponse()
         {
-            var command = new AdminSayCommand("a message", new PlayerSubset(PlayerSubsetType.All));
+            var command = new AdminYellCommand("a message", playerSubset: new PlayerSubset(PlayerSubsetType.All));
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<OkResponse>(response);
         }
 
         [Test]
-        public void ProcessCommand_Message127Chars_OkResponse()
+        public void ProcessCommand_Message255Chars_OkResponse()
         {
-            var command = new AdminSayCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliqu", new PlayerSubset(PlayerSubsetType.All));
+            var command = new AdminYellCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata", playerSubset: new PlayerSubset(PlayerSubsetType.All));
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<OkResponse>(response);
         }
 
         [Test]
-        public void ProcessCommand_Message128Chars_TooLongMessageResponse()
+        public void ProcessCommand_Message256Chars_TooLongMessageResponse()
         {
-            var command = new AdminSayCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquy", new PlayerSubset(PlayerSubsetType.All));
-            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-            Assert.IsInstanceOf<TooLongMessageResponse>(response);
-        }
-
-
-        [Test]
-        public void ProcessCommand_Message129Chars_TooLongMessageResponse()
-        {
-            var command = new AdminSayCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquya", new PlayerSubset(PlayerSubsetType.All));
+            var command = new AdminYellCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimataa", playerSubset: new PlayerSubset(PlayerSubsetType.All));
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<TooLongMessageResponse>(response);
         }
 
         [Test]
-        public void ProcessCommand_Message_RaisesServerEvent()
+        public void ProcessCommand_Message257Chars_TooLongMessageResponse()
         {
-            var command = new AdminSayCommand("A Message", new PlayerSubset(PlayerSubsetType.All));
+            var command = new AdminYellCommand("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimataab", playerSubset: new PlayerSubset(PlayerSubsetType.All));
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-            
-            Assert.AreEqual(1, handler.CommandEvents.Count);
-        }
-
-        [Test]
-        public void ProcessCommand_Message_RaisedServerEventIsPlayerOnChat()
-        {
-            var command = new AdminSayCommand("A Message", new PlayerSubset(PlayerSubsetType.All));
-            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-
-            var commandEvent = handler.CommandEvents[0];
-            Assert.IsInstanceOf<PlayerOnChatEvent>(commandEvent);
-        }
-
-        [Test]
-        public void ProcessCommand_Message_RaisedServerEventContainsMessage()
-        {
-            var command = new AdminSayCommand("A Message", new PlayerSubset(PlayerSubsetType.All));
-            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-
-            var commandEvent = handler.CommandEvents[0] as PlayerOnChatEvent;
-            Assert.AreEqual("A Message", commandEvent.Message) ;
-        }
-
-        [Test]
-        public void ProcessCommand_Message_RaisedServerEventSenderIsServer()
-        {
-            var command = new AdminSayCommand("A Message", new PlayerSubset(PlayerSubsetType.All));
-            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-
-            var commandEvent = handler.CommandEvents[0] as PlayerOnChatEvent;
-            Assert.AreEqual("Server", commandEvent.SenderName );
-        }
-
-        [Test]
-        public void ProcessCommand_Message_RaisedServerEventReciepientsSet()
-        {
-            var playerSubset = new PlayerSubset(PlayerSubsetType.All);
-            var command = new AdminSayCommand("A Message", playerSubset);
-            var response = handler.ProcessCommand(command, PacketSessionMock.Object);
-
-            var commandEvent = handler.CommandEvents[0] as PlayerOnChatEvent;
-            Assert.AreEqual( playerSubset, commandEvent.Receivers);
+            Assert.IsInstanceOf<TooLongMessageResponse>(response);
         }
 
         [Test]
         public void ProcessCommand_PlayerSubsetTeamId1_OkResponse()
         {
             var playerSubset = new PlayerSubset(type: PlayerSubsetType.Team, teamId: 1);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<OkResponse>(response);
         }
@@ -139,7 +87,7 @@
         public void ProcessCommand_PlayerSubsetTeamIdMinus1_InvalidTeamIdResponse()
         {
             var playerSubset = new PlayerSubset(type: PlayerSubsetType.Team, teamId: -1);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<InvalidTeamIdResponse>(response);
         }
@@ -148,7 +96,7 @@
         public void ProcessCommand_PlayerSubsetTeamId17_InvalidTeamIdResponse()
         {
             var playerSubset = new PlayerSubset(type: PlayerSubsetType.Team, teamId: 17);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<InvalidTeamIdResponse>(response);
         }
@@ -157,7 +105,7 @@
         public void ProcessCommand_PlayerSubsetSquadId1_OkResponse()
         {
             var playerSubset = new PlayerSubset(PlayerSubsetType.Squad, squadId: 1);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<OkResponse>(response);
         }
@@ -166,7 +114,7 @@
         public void ProcessCommand_PlayerSubsetSquadIdMinus1_InvalidSquadIdResponse()
         {
             var playerSubset = new PlayerSubset(PlayerSubsetType.Squad, squadId: -1);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<InvalidSquadIdResponse>(response);
         }
@@ -175,7 +123,7 @@
         public void ProcessCommand_PlayerSubsetSquadId33_InvalidSquadIdResponse()
         {
             var playerSubset = new PlayerSubset(PlayerSubsetType.Squad, squadId: 33);
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<InvalidSquadIdResponse>(response);
         }
@@ -186,7 +134,7 @@
             playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>());
 
             var playerSubset = new PlayerSubset(PlayerSubsetType.Player, playerName: "unknownPlayer");
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<PlayerNotFoundResponse>(response);
         }
@@ -194,10 +142,10 @@
         [Test]
         public void ProcessCommand_PlayerSubsetPlayerNameUnknown_PlayerNotFoundResponse()
         {
-            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo>{new PlayerInfo(){Name = "Known"}});
+            playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo> { new PlayerInfo() { Name = "Known" } });
 
             var playerSubset = new PlayerSubset(PlayerSubsetType.Player, playerName: "unknownPlayer");
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<PlayerNotFoundResponse>(response);
         }
@@ -208,7 +156,7 @@
             playerListMock.SetupGet(x => x.Players).Returns(new List<PlayerInfo> { new PlayerInfo() { Name = "Known" } });
 
             var playerSubset = new PlayerSubset(PlayerSubsetType.Player, playerName: "Known");
-            var command = new AdminSayCommand("A Message", playerSubset);
+            var command = new AdminYellCommand("A Message", playerSubset: playerSubset);
             var response = handler.ProcessCommand(command, PacketSessionMock.Object);
             Assert.IsInstanceOf<OkResponse>(response);
         }

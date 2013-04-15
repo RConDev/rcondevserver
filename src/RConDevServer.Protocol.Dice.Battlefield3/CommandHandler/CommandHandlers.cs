@@ -1,6 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler
 {
     using System;
+    using CommandResponse;
     using Common;
     using Interface;
     using log4net;
@@ -56,14 +57,23 @@
                                                     requestPacket.SequenceId.Value);
 
                     bool responseCreated = false;
-                    try
+                    if (args.IsFaulted)
                     {
-                        responseCreated = commandHandler.OnCreatingResponse(session, args.Command, requestPacket,
-                                                                            responsePacket);
+                        responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
+                        responseCreated = true;
                     }
-                    catch (Exception ex)
+
+                    if (!responseCreated)
                     {
-                        logger.Error("Failed to create command response", ex);
+                        try
+                        {
+                            responseCreated = commandHandler.OnCreatingResponse(session, args.Command, requestPacket,
+                                                                                responsePacket);
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.Error("Failed to create command response", ex);
+                        }
                     }
 
                     if (responseCreated)

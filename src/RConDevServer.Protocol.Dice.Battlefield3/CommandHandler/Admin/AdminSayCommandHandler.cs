@@ -4,7 +4,6 @@
     using Command;
     using Command.Admin;
     using CommandResponse;
-    using Common;
     using Data;
     using Event.Player;
 
@@ -37,71 +36,26 @@
                 return new TooLongMessageResponse();
             }
 
+            if (command.Receiver.Type == PlayerSubsetType.Team 
+                && ( command.Receiver.TeamId < 0 || command.Receiver.TeamId > 16))
+            {
+                return new InvalidTeamIdResponse();
+            }
+
+            if (command.Receiver.Type == PlayerSubsetType.Squad
+                && (command.Receiver.SquadId < 0 || command.Receiver.SquadId > 32))
+            {
+                return new InvalidSquadIdResponse();
+            }
+
+            if (command.Receiver.Type == PlayerSubsetType.Player
+                && session.Server.PlayerList.Players.All(x => x.Name != command.Receiver.PlayerName))
+            {
+                return new PlayerNotFoundResponse();
+            }
+
             this.AddEvent(new PlayerOnChatEvent("Server",command.Message, command.Receiver));
-
             return new OkResponse();
-        }
-
-        public override bool OnCreatingResponse(PacketSession session, AdminSayCommand command, Packet requestPacket, Packet responsePacket)
-        {
-            string message = requestPacket.Words[1];
-            PlayerSubset playerSubset = PlayerSubset.FromWords(requestPacket.Words.Skip(2).ToList());
-
-            if (message.Length >= 128)
-            {
-                responsePacket.Words.Add(Constants.RESPONSE_TOO_LONG_MESSAGE);
-                return true;
-            }
-
-            bool result = false;
-            switch (playerSubset.Type)
-            {
-                case PlayerSubsetType.None:
-                    responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
-                    result = true;
-                    break;
-
-                case PlayerSubsetType.All:
-                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
-                    result = true;
-                    break;
-
-                case PlayerSubsetType.Team:
-                    responsePacket.Words.Add(playerSubset.TeamId <= 16
-                                                 ? Constants.RESPONSE_SUCCESS
-                                                 : Constants.RESPONSE_INVALID_TEAM);
-                    result = true;
-                    break;
-
-                case PlayerSubsetType.Squad:
-                    if (playerSubset.TeamId <= 16)
-                    {
-                        responsePacket.Words.Add(playerSubset.SquadId <= 32
-                                                     ? Constants.RESPONSE_SUCCESS
-                                                     : Constants.RESPONSE_INVALID_SQUAD);
-                    }
-                    else
-                    {
-                        responsePacket.Words.Add(Constants.RESPONSE_INVALID_TEAM);
-                    }
-                    result = true;
-                    break;
-
-                case PlayerSubsetType.Player:
-
-                    responsePacket.Words.Add(
-                        session.Server.PlayerList.Players.Any(x => x.Name == playerSubset.PlayerName)
-                            ? Constants.RESPONSE_SUCCESS
-                            : Constants.RESPONSE_PLAYER_NOT_FOUND);
-                    result = true;
-                    break;
-            }
-
-            // publish event 
-            var onChatEvent = new PlayerOnChatEvent("Server", message, playerSubset);
-            session.Server.PublishEvent(onChatEvent);
-
-            return result;
         }
 
         #endregion

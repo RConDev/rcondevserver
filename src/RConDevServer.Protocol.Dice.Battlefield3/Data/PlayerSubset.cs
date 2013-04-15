@@ -3,11 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Common;
+    using Properties;
 
     /// <summary>
     /// selection of players / groups to be addressed in messagíng
     /// </summary>
-    public class PlayerSubset
+    public class PlayerSubset : IPlayerSubset
     {
         public PlayerSubset(PlayerSubsetType type, 
             string playerName = null, 
@@ -72,7 +74,6 @@
             if (words.Count == 1 && words[0] == "all")
             {
                 playerSubset = new PlayerSubset(PlayerSubsetType.All);
-
             }
 
             if (words.Count == 2)
@@ -92,9 +93,17 @@
 
             if (words.Count == 3 && words[0] == "squad")
             {
-                playerSubset = new PlayerSubset(PlayerSubsetType.Squad);
-                playerSubset.TeamId = Convert.ToInt32(words[1]);
-                playerSubset.SquadId = Convert.ToInt32(words[2]);
+                playerSubset = new PlayerSubset(PlayerSubsetType.Squad)
+                    {
+                        TeamId = Convert.ToInt32(words[1]),
+                        SquadId = Convert.ToInt32(words[2])
+                    };
+            }
+
+            if (playerSubset == null)
+            {
+                var message = string.Format(Resources.EXC_MSG_PLAYER_SUBSET_NOT_BUILT, words.DisplayWords());
+                throw new ArgumentException(message);
             }
 
             return  playerSubset;

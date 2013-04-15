@@ -5,7 +5,10 @@
     using Command.Admin;
     using Data;
 
-    public class SayCommandFactory : CommandFactoryBase<AdminSayCommand>
+    /// <summary>
+    /// Implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="AdminSayCommand"/>
+    /// </summary>
+    public class AdminSayCommandFactory : CommandFactoryBase<AdminSayCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words
@@ -14,8 +17,8 @@
         /// <returns></returns>
         public override AdminSayCommand FromWords(IEnumerable<string> commandWords)
         {
-            string[] words = commandWords.ToArray();
-            PlayerSubset subsetWords = PlayerSubset.FromWords(words.Skip(2));
+            var words = commandWords.ToArray();
+            var subsetWords = PlayerSubset.FromWords(words.Skip(2));
             return new AdminSayCommand(words[1], subsetWords);
         }
     }

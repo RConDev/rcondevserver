@@ -9,7 +9,7 @@
     /// <summary>
     ///     implementation for <see cref="AdminYellCommand" />
     /// </summary>
-    public class YellCommandFactory : CommandFactoryBase<AdminYellCommand>
+    public class AdminYellCommandFactory : CommandFactoryBase<AdminYellCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

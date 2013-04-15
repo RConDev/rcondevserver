@@ -10,7 +10,7 @@
     /// <summary>
     ///     implementation of <see cref="ICommandFactory{TCommand}" /> for <see cref="AdminListPlayersCommand" />
     /// </summary>
-    public class ListPlayersCommandFactory : CommandFactoryBase<AdminListPlayersCommand>
+    public class AdminListPlayersCommandFactory : CommandFactoryBase<AdminListPlayersCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

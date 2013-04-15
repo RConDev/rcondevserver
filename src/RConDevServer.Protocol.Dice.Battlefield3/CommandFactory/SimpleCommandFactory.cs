@@ -9,7 +9,6 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory
         where TCommand : class, ICommand
     {
         protected TCommand SimpleCommandFromWords(IEnumerable<string> commandWords, string commandName)
-            
         {
             string[] words = commandWords.ToArray();
             Requires.SequenceLength(words, 1, "words");

@@ -262,15 +262,23 @@
             }
 
             ICommand command = null;
+            Exception exception = null;
             if (packet.Words.Count > 0)
             {
                 var commandFactory = ServiceLocator.GetService<ISimpleCommandFactory>(packet.Words[0]);
                 if (commandFactory != null)
                 {
-                    command = commandFactory.FromWords(packet.Words);
+                    try
+                    {
+                        command = commandFactory.FromWords(packet.Words);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        exception = ex;
+                    }
                 }
             }
-            this.ClientCommandReceived.InvokeAll(this, new ClientCommandEventArgs(packet, command));
+            this.ClientCommandReceived.InvokeAll(this, new ClientCommandEventArgs(packet, command, exception != null));
         }
 
         internal void InvokeServerEventResponseReceived(Packet packet)

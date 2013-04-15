@@ -12,7 +12,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.CommandFactory.Admin
     /// <summary>
     /// implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="AdminMovePlayerCommand"/>
     /// </summary>
-    public class MovePlayerCommandFactory : CommandFactoryBase<AdminMovePlayerCommand>
+    public class AdminMovePlayerCommandFactory : CommandFactoryBase<AdminMovePlayerCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

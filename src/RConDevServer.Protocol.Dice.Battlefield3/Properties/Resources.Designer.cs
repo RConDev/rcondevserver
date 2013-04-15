@@ -107,6 +107,15 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The sequence &apos;{0}&apos; does not represent a PlayerSubset instance..
+        /// </summary>
+        internal static string EXC_MSG_PLAYER_SUBSET_NOT_BUILT {
+            get {
+                return ResourceManager.GetString("EXC_MSG_PLAYER_SUBSET_NOT_BUILT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The sequence &apos;{0}&apos; has not the expected length of {1}..
         /// </summary>
         internal static string EXC_MSG_SEQUENCE_LENGTH_NOT_SET {

@@ -1,72 +1,57 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.CommandHandler.Admin
 {
-    using System;
     using System.Linq;
     using Command;
     using Command.Admin;
-    using Common;
+    using CommandResponse;
     using Data;
 
+    /// <summary>
+    /// Implementation of <see cref="ICanHandleClientCommands{TCommand}"/> for <see cref="AdminYellCommand"/>
+    /// </summary>
     public class AdminYellCommandHandler : CommandHandlerBase<AdminYellCommand>
     {
+        /// <summary>
+        ///     gets the string command for which the current 
+        ///     <see cref="ICanHandleClientCommands{TCommand}" /> implementation
+        ///     is responsible for
+        /// </summary>
         public override string Command
         {
             get { return CommandNames.AdminYell; }
         }
 
-        public override bool OnCreatingResponse(PacketSession session, AdminYellCommand command, Packet requestPacket, Packet responsePacket)
+        /// <summary>
+        /// Processes the <see cref="ICommand"/> the current handler is responsible for
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="session"></param>
+        public override ICommandResponse ProcessCommand(AdminYellCommand command, IPacketSession session)
         {
-            string message = requestPacket.Words[1];
-            int duration = (requestPacket.Words.Count > 2) ? Convert.ToInt32(requestPacket.Words[2]) : 10;
-            PlayerSubset playerSubset = (requestPacket.Words.Count > 3)
-                                            ? PlayerSubset.FromWords(requestPacket.Words.Skip(3).ToList())
-                                            : new PlayerSubset(PlayerSubsetType.All);
-
-            if (message.Length >= 256)
+            if (command.Message.Length >= 256)
             {
-                responsePacket.Words.Add(Constants.RESPONSE_TOO_LONG_MESSAGE);
-                return true;
+                return new TooLongMessageResponse();
             }
 
-            switch (playerSubset.Type)
+            if (command.PlayerSubset.Type == PlayerSubsetType.Team
+                && (command.PlayerSubset.TeamId < 0 || command.PlayerSubset.TeamId > 16))
             {
-                case PlayerSubsetType.None:
-                    responsePacket.Words.Add(Constants.RESPONSE_INVALID_ARGUMENTS);
-                    return true;
-
-                case PlayerSubsetType.All:
-                    responsePacket.Words.Add(Constants.RESPONSE_SUCCESS);
-                    return true;
-
-                case PlayerSubsetType.Team:
-                    responsePacket.Words.Add(playerSubset.TeamId <= 16
-                                                 ? Constants.RESPONSE_SUCCESS
-                                                 : Constants.RESPONSE_INVALID_TEAM);
-                    return true;
-
-                case PlayerSubsetType.Squad:
-                    if (playerSubset.TeamId <= 16)
-                    {
-                        responsePacket.Words.Add(playerSubset.SquadId <= 32
-                                                     ? Constants.RESPONSE_SUCCESS
-                                                     : Constants.RESPONSE_INVALID_SQUAD);
-                    }
-                    else
-                    {
-                        responsePacket.Words.Add(Constants.RESPONSE_INVALID_TEAM);
-                    }
-                    return true;
-
-                case PlayerSubsetType.Player:
-
-                    responsePacket.Words.Add(
-                        session.Server.PlayerList.Players.Any(x => x.Name == playerSubset.PlayerName)
-                            ? Constants.RESPONSE_SUCCESS
-                            : Constants.RESPONSE_PLAYER_NOT_FOUND);
-                    return true;
+                return new InvalidTeamIdResponse();
             }
 
-            return false;
+            if (command.PlayerSubset.Type == PlayerSubsetType.Squad
+                && (command.PlayerSubset.SquadId < 0 || command.PlayerSubset.SquadId > 32))
+            {
+                return new InvalidSquadIdResponse();
+            }
+
+            if (command.PlayerSubset.Type == PlayerSubsetType.Player
+                && session.Server.PlayerList.Players.All(x => x.Name != command.PlayerSubset.PlayerName))
+            {
+                return new PlayerNotFoundResponse();
+            }
+
+            return new OkResponse();
         }
     }
 }

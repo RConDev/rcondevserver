@@ -136,4 +136,7 @@
   <data name="EXC_MSG_INVALID_ARGUMENT" xml:space="preserve">
     <value>The words sequences contains invalid arguments or values.</value>
   </data>
+  <data name="EXC_MSG_PLAYER_SUBSET_NOT_BUILT" xml:space="preserve">
+    <value>The sequence '{0}' does not represent a PlayerSubset instance.</value>
+  </data>
 </root>

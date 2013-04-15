@@ -6,7 +6,10 @@
     using Command.Admin;
     using Util;
 
-    public class EffectiveMaxPlayersCommandFactory : CommandFactoryBase<AdminEffectiveMaxPlayersCommand>
+    /// <summary>
+    /// Implementation of <see cref="ICommandFactory{TCommand}"/> for <see cref="AdminEffectiveMaxPlayersCommand"/>
+    /// </summary>
+    public class AdminEffectiveMaxPlayersCommandFactory : CommandFactoryBase<AdminEffectiveMaxPlayersCommand>
     {
         /// <summary>
         ///     creates a command from the DICE <see cref="RConDevServer.Protocol.Dice.Common.Packet" /> words

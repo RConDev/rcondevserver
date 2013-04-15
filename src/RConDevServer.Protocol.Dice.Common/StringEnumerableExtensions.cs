@@ -17,7 +17,7 @@ namespace RConDevServer.Protocol.Dice.Common
             {
                 stringBuilder.Append(string.Concat(" [", word, "]"));
             }
-            return stringBuilder.ToString();
+            return stringBuilder.ToString().Substring(1);
         }
     }
 }

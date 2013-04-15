@@ -4,6 +4,7 @@ using RConDevServer.Protocol.Dice.Battlefield3.Data;
 
 namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
 
     [TestFixture]
@@ -59,12 +60,18 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Tests.Data
         }
 
         [Test]
-        public void FromWords_WithNoneWords_ReturnsNull()
+        public void FromWords_WithNoneWords_ThrowsArgumentException()
         {
             var words = new List<string>() { "dumb", "string" };
-            var subset = PlayerSubset.FromWords(words);
+            Assert.Throws<ArgumentException>(() => PlayerSubset.FromWords(words));
+        }
 
-            Assert.IsNull(subset);
+        [Test]
+        public void FromWords_WithNoneWords_ArgumentExceptionMessage()
+        {
+            var words = new List<string>() { "dumb", "string" };
+            var exception = Assert.Throws<ArgumentException>(() => PlayerSubset.FromWords(words));
+            Assert.AreEqual("The sequence '[dumb] [string]' does not represent a PlayerSubset instance.", exception.Message);
         }
     }
 }
