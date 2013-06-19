@@ -16,7 +16,7 @@
 
         public override bool OnCreatingResponse(PacketSession session, BanListListCommand command, Packet requestPacket, Packet responsePacket)
         {
-            BanList banList = session.Server.BanList;
+            var banList = session.Server.BanList;
 
             if (requestPacket.Words.Count == 2
                 && !string.IsNullOrEmpty(requestPacket.Words[1]))

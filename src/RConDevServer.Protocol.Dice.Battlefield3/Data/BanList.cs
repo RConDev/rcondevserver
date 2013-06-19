@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class BanList : List<BanListItem>
+    public class BanList : List<BanListItem>, IBanList
     {
         public const int MAX_ITEMS = 100;
 
@@ -15,7 +15,16 @@
             this.AddRange(items);
         }
 
-        public IList<string> ToWords(int offset)
+        /// <summary>
+        /// Removes the <see cref="BanListItem"/> from the list
+        /// </summary>
+        /// <param name="banListItem"></param>
+        public void Remove(BanListItem banListItem)
+        {
+            base.Remove(banListItem);
+        }
+
+        public IEnumerable<string> ToWords(int offset)
         {
             var words = new List<string>();
             if (offset >= this.Count)

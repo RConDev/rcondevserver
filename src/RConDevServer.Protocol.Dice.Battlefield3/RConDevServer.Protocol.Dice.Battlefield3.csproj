@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -453,6 +456,7 @@
     <Compile Include="Data\Country.cs" />
     <Compile Include="Data\GameMode.cs" />
     <Compile Include="Data\GameModes.cs" />
+    <Compile Include="Data\IBanList.cs" />
     <Compile Include="Data\IdType.cs" />
     <Compile Include="Data\IdTypes.cs" />
     <Compile Include="Data\IPlayerList.cs" />

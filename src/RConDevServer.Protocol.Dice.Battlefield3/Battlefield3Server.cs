@@ -53,7 +53,7 @@
 
         public MapList MapList { get; private set; }
 
-        public BanList BanList { get; private set; }
+        public IBanList BanList { get; private set; }
 
         public Vars Vars { get; private set; }
 

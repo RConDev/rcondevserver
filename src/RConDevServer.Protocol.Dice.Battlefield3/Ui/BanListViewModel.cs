@@ -8,7 +8,7 @@
 
     public class BanListViewModel : ViewModelBase
     {
-        public BanListViewModel(BanList banList, IdTypes idTypes, BanTypes banTypes, Action<Action> synchronousInvoker)
+        public BanListViewModel(IBanList banList, IdTypes idTypes, BanTypes banTypes, Action<Action> synchronousInvoker)
             : base(synchronousInvoker)
         {
             this.BanList = banList;
@@ -59,7 +59,7 @@
 
         #endregion
 
-        public BanList BanList { get; private set; }
+        public IBanList BanList { get; private set; }
 
         public IdTypes IdTypes { get; private set; }
 

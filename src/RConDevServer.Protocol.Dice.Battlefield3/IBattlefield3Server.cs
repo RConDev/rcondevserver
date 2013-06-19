@@ -36,7 +36,7 @@
 
         string ServerDescription { get; set; }
         MapList MapList { get; }
-        BanList BanList { get; }
+        IBanList BanList { get; }
         Vars Vars { get; }
         MapListItem CurrentMapListItem { get; }
         ReservedSlots ReservedSlots { get; }
