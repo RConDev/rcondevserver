@@ -18,7 +18,6 @@
             this.ServiceLocator.RegisterService(typeof (IDataContext), new Battlefield3DataContext(serviceLocator));
             this.ServiceLocator.RegisterService(typeof (IMapRepository), new MapRepository(serviceLocator));
             this.ServiceLocator.RegisterService(typeof (IGameModeRepository), new GameModeRepository(serviceLocator));
-            this.ServiceLocator.RegisterService(typeof (IIdTypeRepository), new IdTypesRepository(serviceLocator));
             this.ServiceLocator.RegisterService(typeof (ICountryRepository), new CountryRepository(serviceLocator));
             this.ServiceLocator.RegisterService(typeof (IPlayerListStoreRepository),
                                                 new PlayerListStoreRepository(serviceLocator));

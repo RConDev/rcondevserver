@@ -14,14 +14,13 @@
 
         public override bool OnCreatingResponse(PacketSession session, BanListRemoveCommand command, Packet requestPacket, Packet responsePacket)
         {
-            var idTypes = session.Server.IdTypes;
+            
             if (this.ValidateRequest(requestPacket))
             {
-                var idType = idTypes.FirstOrDefault(x => x.Code == requestPacket.Words[1]);
                 var idValue = requestPacket.Words[2];
 
                 var banListItem =
-                    session.Server.BanList.FirstOrDefault(x => x.IdType.Code == idType.Code && x.IdValue == idValue);
+                    session.Server.BanList.FirstOrDefault(x => x.IdType == command.IdType && x.IdValue == idValue);
                 if (banListItem != null)
                 {
                     session.Server.BanList.Remove(banListItem);

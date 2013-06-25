@@ -4,6 +4,7 @@
     using System.Linq;
     using Command;
     using Command.BanList;
+    using Data;
     using Util;
 
     /// <summary>
@@ -22,13 +23,16 @@
             Requires.SequenceLength(words, 3, "words");
             Requires.Equal(words[0], CommandNames.BanListRemove, "commandName");
 
-            var idType = words[1];
-            Requires.NotNullOrEmpty(idType, "idType");
+            var idTypeString = words[1];
+            Requires.NotNullOrEmpty(idTypeString, "idTypeString");
 
             var id = words[2];
             Requires.NotNullOrEmpty(id, "id");
 
-            return new BanListRemoveCommand(idType, id);
+            var idType = IdTypeExtension.FromWord(idTypeString);
+            Requires.NotNull(idType, "idType");
+
+            return new BanListRemoveCommand(idType.Value, id);
         }
     }
 }

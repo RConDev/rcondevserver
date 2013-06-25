@@ -1,6 +1,7 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Command.BanList
 {
     using System.Collections.Generic;
+    using Data;
 
     /// <summary>
     ///     Remove name/ip/guid from banlist
@@ -12,7 +13,7 @@
         /// </summary>
         /// <param name="idType"></param>
         /// <param name="id"></param>
-        public BanListRemoveCommand(string idType, string id)
+        public BanListRemoveCommand(IdType idType, string id)
         {
             this.IdType = idType;
             this.Id = id;
@@ -21,7 +22,7 @@
         /// <summary>
         ///     the type of id to identify the banned player
         /// </summary>
-        public string IdType { get; private set; }
+        public IdType IdType { get; private set; }
 
         /// <summary>
         ///     the player's identifier
@@ -42,7 +43,7 @@
         /// <returns></returns>
         public IEnumerable<string> ToWords()
         {
-            return new[] {this.Command, this.IdType, this.Id};
+            return new[] {this.Command, this.IdType.ToWord(), this.Id};
         }
     }
 }

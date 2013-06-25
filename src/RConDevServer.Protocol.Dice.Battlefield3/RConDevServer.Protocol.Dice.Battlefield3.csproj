@@ -419,7 +419,6 @@
     </Compile>
     <Compile Include="DataMapping\CountryMapping.cs" />
     <Compile Include="DataMapping\GameModeMapping.cs" />
-    <Compile Include="DataMapping\IdTypeMapping.cs" />
     <Compile Include="DataMapping\MapMapping.cs" />
     <Compile Include="DataMapping\PlayerListStoreItemMapping.cs" />
     <Compile Include="DataStore\Battlefield3DataContext.cs" />
@@ -436,9 +435,7 @@
     <Compile Include="DataStore\IDataFileItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataStore\IdTypesRepository.cs" />
     <Compile Include="DataStore\IGameModeRepository.cs" />
-    <Compile Include="DataStore\IIdTypeRepository.cs" />
     <Compile Include="DataStore\IPlayerListStoreRepository.cs" />
     <Compile Include="DataStore\IReservedSlotsDataFile.cs">
       <SubType>Code</SubType>
@@ -454,11 +451,12 @@
     <Compile Include="Data\BanTypes.cs" />
     <Compile Include="Data\Commands.cs" />
     <Compile Include="Data\Country.cs" />
+    <Compile Include="Data\Factories\BanListItemFactory.cs" />
     <Compile Include="Data\GameMode.cs" />
     <Compile Include="Data\GameModes.cs" />
     <Compile Include="Data\IBanList.cs" />
     <Compile Include="Data\IdType.cs" />
-    <Compile Include="Data\IdTypes.cs" />
+    <Compile Include="Data\IdTypeExtension.cs" />
     <Compile Include="Data\IPlayerList.cs" />
     <Compile Include="Data\IPlayerSubset.cs" />
     <Compile Include="Data\IpPortPair.cs" />
@@ -555,6 +553,7 @@
     <Compile Include="Ui\ViewModelBase.cs" />
     <Compile Include="Util\Bool.cs" />
     <Compile Include="Util\ControlExtensions.cs" />
+    <Compile Include="Util\EnumExtensions.cs" />
     <Compile Include="Util\HexConverterService.cs" />
     <Compile Include="Util\Int.cs" />
     <Compile Include="Util\ListExtensions.cs" />

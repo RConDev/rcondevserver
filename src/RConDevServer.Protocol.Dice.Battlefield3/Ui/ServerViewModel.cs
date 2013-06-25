@@ -25,7 +25,7 @@
             this.EventScript = new EventScriptViewModel(server, this.SynchronousInvoker);
             this.EventScript.EventRaised += this.EventScriptOnEventRaised;
             this.TeamScores = new TeamScoresViewModel(server.TeamScores, this.SynchronousInvoker);
-            this.BanList = new BanListViewModel(server.BanList, server.IdTypes, server.BanTypes, this.SynchronousInvoker);
+            this.BanList = new BanListViewModel(server.BanList, server.BanTypes, this.SynchronousInvoker);
         }
 
         #endregion

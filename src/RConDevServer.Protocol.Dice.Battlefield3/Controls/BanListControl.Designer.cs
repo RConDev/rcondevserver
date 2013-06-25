@@ -44,7 +44,6 @@
             this.reasonTextBox = new System.Windows.Forms.TextBox();
             this.idValueTextBox = new System.Windows.Forms.TextBox();
             this.idTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.dbsIdTypes = new System.Windows.Forms.BindingSource(this.components);
             this.banTypeComboBox = new System.Windows.Forms.ComboBox();
             this.dbsBanTypes = new System.Windows.Forms.BindingSource(this.components);
             this.grbItems = new System.Windows.Forms.GroupBox();
@@ -57,6 +56,8 @@
             this.Reason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.synchronousInvokerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmsBanListItems = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mitRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dbsBanListItems = new System.Windows.Forms.BindingSource(this.components);
             this.dbsBanList = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -68,8 +69,6 @@
             this.dataGridViewComboBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewComboBoxColumn8 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewComboBoxColumn9 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.cmsBanListItems = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mitRemoveItem = new System.Windows.Forms.ToolStripMenuItem();
             banTypeLabel = new System.Windows.Forms.Label();
             idTypeLabel = new System.Windows.Forms.Label();
             idValueLabel = new System.Windows.Forms.Label();
@@ -82,13 +81,12 @@
             this.spcMain.SuspendLayout();
             this.grbNewItem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dbsNewItem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsIdTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanTypes)).BeginInit();
             this.grbItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.banListItemsDataGridView)).BeginInit();
+            this.cmsBanListItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanList)).BeginInit();
-            this.cmsBanListItems.SuspendLayout();
             this.SuspendLayout();
             // 
             // banTypeLabel
@@ -235,18 +233,12 @@
             // idTypeComboBox
             // 
             this.idTypeComboBox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dbsNewItem, "IdType", true));
-            this.idTypeComboBox.DataSource = this.dbsIdTypes;
-            this.idTypeComboBox.DisplayMember = "Display";
             this.idTypeComboBox.FormattingEnabled = true;
             this.idTypeComboBox.Location = new System.Drawing.Point(125, 40);
             this.idTypeComboBox.Name = "idTypeComboBox";
             this.idTypeComboBox.Size = new System.Drawing.Size(203, 21);
             this.idTypeComboBox.TabIndex = 3;
             this.idTypeComboBox.ValueMember = "Instance";
-            // 
-            // dbsIdTypes
-            // 
-            this.dbsIdTypes.DataSource = typeof(RConDevServer.Protocol.Dice.Battlefield3.Data.IdType);
             // 
             // banTypeComboBox
             // 
@@ -299,13 +291,10 @@
             // IdType
             // 
             this.IdType.DataPropertyName = "IdType";
-            this.IdType.DataSource = this.dbsIdTypes;
-            this.IdType.DisplayMember = "Display";
             this.IdType.HeaderText = "Id Type";
             this.IdType.Name = "IdType";
             this.IdType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IdType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.IdType.ValueMember = "Instance";
             // 
             // IdValue
             // 
@@ -355,6 +344,20 @@
             this.synchronousInvokerDataGridViewTextBoxColumn.Name = "synchronousInvokerDataGridViewTextBoxColumn";
             this.synchronousInvokerDataGridViewTextBoxColumn.ReadOnly = true;
             this.synchronousInvokerDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // cmsBanListItems
+            // 
+            this.cmsBanListItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mitRemoveItem});
+            this.cmsBanListItems.Name = "contextMenuStrip1";
+            this.cmsBanListItems.Size = new System.Drawing.Size(145, 26);
+            // 
+            // mitRemoveItem
+            // 
+            this.mitRemoveItem.Name = "mitRemoveItem";
+            this.mitRemoveItem.Size = new System.Drawing.Size(144, 22);
+            this.mitRemoveItem.Text = "Remove Item";
+            this.mitRemoveItem.Click += new System.EventHandler(this.mitRemoveItem_Click);
             // 
             // dbsBanListItems
             // 
@@ -431,20 +434,6 @@
             this.dataGridViewComboBoxColumn9.HeaderText = "BanType";
             this.dataGridViewComboBoxColumn9.Name = "dataGridViewComboBoxColumn9";
             // 
-            // cmsBanListItems
-            // 
-            this.cmsBanListItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mitRemoveItem});
-            this.cmsBanListItems.Name = "contextMenuStrip1";
-            this.cmsBanListItems.Size = new System.Drawing.Size(145, 26);
-            // 
-            // mitRemoveItem
-            // 
-            this.mitRemoveItem.Name = "mitRemoveItem";
-            this.mitRemoveItem.Size = new System.Drawing.Size(144, 22);
-            this.mitRemoveItem.Text = "Remove Item";
-            this.mitRemoveItem.Click += new System.EventHandler(this.mitRemoveItem_Click);
-            // 
             // BanListControl
             // 
             this.Controls.Add(this.spcMain);
@@ -457,13 +446,12 @@
             this.grbNewItem.ResumeLayout(false);
             this.grbNewItem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dbsNewItem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dbsIdTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanTypes)).EndInit();
             this.grbItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.banListItemsDataGridView)).EndInit();
+            this.cmsBanListItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanListItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbsBanList)).EndInit();
-            this.cmsBanListItems.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -476,7 +464,6 @@
         private System.Windows.Forms.BindingSource dbsBanList;
         private System.Windows.Forms.DataGridView banListItemsDataGridView;
         private System.Windows.Forms.BindingSource dbsBanListItems;
-        private System.Windows.Forms.BindingSource dbsIdTypes;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn1;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn2;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewComboBoxColumn3;

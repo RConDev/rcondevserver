@@ -28,7 +28,7 @@
         /// <param name="id"></param>
         /// <param name="timeout"></param>
         /// <param name="reason"></param>
-        public BanListAddCommand(IdTypeType idType, string id, Timeout timeout, string reason = null)
+        public BanListAddCommand(IdType idType, string id, Timeout timeout, string reason = null)
         {
             this.IdType = idType;
             this.Id = id;
@@ -39,7 +39,7 @@
         /// <summary>
         /// Id-Type
         /// </summary>
-        public IdTypeType IdType { get; private set; }
+        public IdType IdType { get; private set; }
 
         /// <summary>
         /// Id

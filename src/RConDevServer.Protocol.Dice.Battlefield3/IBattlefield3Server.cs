@@ -43,7 +43,6 @@
         TeamScores TeamScores { get; }
         Maps AvailableMaps { get; }
         GameModes AvailableModes { get; }
-        IdTypes IdTypes { get; }
         BanTypes BanTypes { get; }
         IList<Country> Countries { get; }
         int EffectiveMaxPlayerCount { get; set; }

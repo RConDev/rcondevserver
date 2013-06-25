@@ -74,8 +74,6 @@
 
         public GameModes AvailableModes { get; private set; }
 
-        public IdTypes IdTypes { get; private set; }
-
         public BanTypes BanTypes { get; private set; }
 
         public IList<Country> Countries { get; private set; }
@@ -214,14 +212,12 @@
 
         private void InitializeBanList()
         {
-            var idTypeRepository = this.ServiceLocator.GetService<IIdTypeRepository>();
-            this.IdTypes = new IdTypes(idTypeRepository.GetAll());
             this.BanTypes = new BanTypes();
             this.BanList = new BanList
                 {
                     new BanListItem
                         {
-                            IdType = this.IdTypes.FirstOrDefault(x => x.Code == "name"),
+                            IdType = IdType.Name,
                             IdValue = "TestPlayer",
                             BanType = BanTypes.Perm,
                             Rounds = 0,

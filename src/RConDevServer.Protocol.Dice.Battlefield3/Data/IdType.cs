@@ -1,56 +1,29 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Data
 {
-    public enum IdTypeType
+    using System.ComponentModel.DataAnnotations;
+
+    /// <summary>
+    /// This Enum defines the way a player is identified 
+    /// (for example in a ban list)
+    /// </summary>
+    public enum IdType
     {
+        /// <summary>
+        /// identified by player name
+        /// </summary>
+        [Display(Name="Player Name")]
         Name,
+        
+        /// <summary>
+        /// identified by IP-Address
+        /// </summary>
+        [Display(Name = "IP-Address")]
         IpAddress,
+        
+        /// <summary>
+        /// identified by players EA_GUID
+        /// </summary>
+        [Display(Name = "Player GUID")]
         Guid
-    }
-
-    public static class IdTypeExtension
-    {
-        public static IdTypeType? FromWord(string idTypeWord)
-        {
-            switch (idTypeWord)
-            {
-                case "name":
-                    return IdTypeType.Name;
-                case "ip":
-                    return IdTypeType.IpAddress;
-                case "guid":
-                    return IdTypeType.Guid;
-            }
-
-            return null;
-        }
-
-        public static string ToWord(this IdTypeType idType)
-        {
-            switch (idType)
-            {
-                case IdTypeType.Guid:
-                    return "guid";
-                case IdTypeType.IpAddress:
-                    return "ip";
-                case IdTypeType.Name:
-                    return "name";
-            }
-
-            return null;
-        }
-    }
-
-    public class IdType
-    {
-        public virtual long Id { get; set; }
-
-        public virtual string Code { get; set; }
-
-        public virtual string Display { get; set; }
-
-        public virtual IdType Instance
-        {
-            get { return this; }
-        }
     }
 }

@@ -139,4 +139,7 @@
   <data name="EXC_MSG_PLAYER_SUBSET_NOT_BUILT" xml:space="preserve">
     <value>The sequence '{0}' does not represent a PlayerSubset instance.</value>
   </data>
+  <data name="EXC_MSG_TYPE_IS_NOT_ENUM" xml:space="preserve">
+    <value>The Type '{0}' is not an Enum-Type.</value>
+  </data>
 </root>

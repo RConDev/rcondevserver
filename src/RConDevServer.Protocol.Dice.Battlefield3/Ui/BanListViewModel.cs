@@ -1,18 +1,19 @@
 ﻿namespace RConDevServer.Protocol.Dice.Battlefield3.Ui
 {
     using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
     using Data;
+    using Util;
 
     public class BanListViewModel : ViewModelBase
     {
-        public BanListViewModel(IBanList banList, IdTypes idTypes, BanTypes banTypes, Action<Action> synchronousInvoker)
+        public BanListViewModel(IBanList banList, BanTypes banTypes, Action<Action> synchronousInvoker)
             : base(synchronousInvoker)
         {
             this.BanList = banList;
-            this.IdTypes = idTypes;
             this.BanTypes = banTypes;
             this.BanListItems =
                 new ObservableCollection<BanListItemViewModel>(
@@ -61,7 +62,10 @@
 
         public IBanList BanList { get; private set; }
 
-        public IdTypes IdTypes { get; private set; }
+        public IEnumerable<KeyValuePair<IdType, string>> IdTypesDataSource
+        {
+            get { return EnumExtensions.ToDataSource<IdType>(); }
+        }
 
         public BanTypes BanTypes { get; private set; }
 

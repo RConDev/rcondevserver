@@ -19,7 +19,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Permanent, command.Timeout.Type);
             Assert.AreEqual("the reason", command.Reason);
@@ -33,7 +33,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Permanent, command.Timeout.Type);
             Assert.IsNull(command.Timeout.Value);
@@ -48,7 +48,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Rounds, command.Timeout.Type);
             Assert.AreEqual(1, command.Timeout.Value);
@@ -63,7 +63,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Rounds, command.Timeout.Type);
             Assert.AreEqual(1, command.Timeout.Value);
@@ -78,7 +78,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Seconds, command.Timeout.Type);
             Assert.AreEqual(1, command.Timeout.Value);
@@ -93,7 +93,7 @@
             BanListAddCommand command = commandFactory.FromWords(words);
 
             Assert.IsNotNull(command);
-            Assert.AreEqual(IdTypeType.Name, command.IdType);
+            Assert.AreEqual(IdType.Name, command.IdType);
             Assert.AreEqual("soldier", command.Id);
             Assert.AreEqual(TimeoutType.Seconds, command.Timeout.Type);
             Assert.AreEqual(1, command.Timeout.Value);

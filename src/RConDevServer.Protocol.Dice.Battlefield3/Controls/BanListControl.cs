@@ -2,7 +2,9 @@
 {
     using System;
     using System.Windows.Forms;
+    using Data;
     using Ui;
+    using Util;
 
     public partial class BanListControl : UserControl
     {
@@ -26,11 +28,21 @@
                     this.dbsBanList.DataSource = this.dataContext;
                     this.dbsBanList.ResetBindings(false);
 
-                    this.dbsIdTypes.DataSource = this.dataContext.IdTypes;
-                    this.dbsIdTypes.ResetBindings(false);
+                    // ComboBox
+                    this.idTypeComboBox.DataSource = dataContext.IdTypesDataSource;
+                    this.idTypeComboBox.ValueMember = "Key";
+                    this.idTypeComboBox.DisplayMember = "Value";
+
+                    // Grid
+                    this.IdType.ValueType = typeof (IdType);
+                    this.IdType.DataSource = dataContext.IdTypesDataSource; 
+                    this.IdType.ValueMember = "Key";
+                    this.IdType.DisplayMember = "Value";
 
                     this.dbsBanTypes.DataSource = this.dataContext.BanTypes;
                     this.dbsBanTypes.ResetBindings(false);
+
+
                 }
             }
         }

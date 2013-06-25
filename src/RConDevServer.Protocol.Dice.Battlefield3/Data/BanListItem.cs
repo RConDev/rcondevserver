@@ -21,7 +21,7 @@ namespace RConDevServer.Protocol.Dice.Battlefield3.Data
         {
             var words = new List<string>
                 {
-                    this.IdType.Code,
+                    this.IdType.ToWord(),
                     this.IdValue,
                     this.BanType.Code,
                     Convert.ToString(this.Seconds),

@@ -37,7 +37,6 @@
                                           .Mappings(x => x.FluentMappings
                                                           .Add<MapMapping>()
                                                           .Add<GameModeMapping>()
-                                                          .Add<IdTypeMapping>()
                                                           .Add<CountryMapping>()
                                                           .Add<PlayerListStoreItemMapping>())
                                           .BuildSessionFactory();

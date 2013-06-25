@@ -79,7 +79,15 @@
             throw new ArgumentException(message, sequenceName);
         }
 
-        public static void NotNull<T>(T? parameterValue, string parameterName) where T : struct
+        public static void NotNull<T>(T? parameterValue, string parameterName) where T : struct 
+        {
+            if (parameterValue == null)
+            {
+                throw new ArgumentNullException(parameterName);
+            }
+        }
+
+        public static void NotNull<T>(T parameterValue, string parameterName) where T : class
         {
             if (parameterValue == null)
             {
@@ -103,6 +111,19 @@
             }
             string message = string.Format(Resources.EXC_MSG_MAX_SEQUENCE_LENGTH_NOT_SET, sequenceName, maxLength);
             throw new ArgumentOutOfRangeException(sequenceName, message);
+        }
+
+        /// <summary>
+        /// ensures the type is an enum type
+        /// </summary>
+        /// <param name="type"></param>
+        public static void EnumType(Type type)
+        {
+            if (!type.IsEnum)
+            {
+                var message = string.Format(Resources.EXC_MSG_TYPE_IS_NOT_ENUM, type.FullName);
+                throw new ArgumentException(message);
+            }
         }
     }
 }
